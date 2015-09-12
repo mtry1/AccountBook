@@ -1,22 +1,29 @@
 //
-//  AppDelegate.m
+//  ABAppDelegate.m
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/12.
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ABAppDelegate.h"
+#import "ABMainViewController.h"
 
-@interface AppDelegate ()
+@interface ABAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation ABAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    ABMainViewController *mainViewController = [[ABMainViewController alloc] init];
+    self.window.rootViewController = mainViewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
