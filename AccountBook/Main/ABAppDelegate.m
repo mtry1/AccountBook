@@ -17,9 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    ABMainViewController *mainViewController = [[ABMainViewController alloc] init];
+    ABNavigationController *mainViewController = [[ABNavigationController alloc] initWithRootViewController:[[ABMainViewController alloc] init]];
     self.window.rootViewController = mainViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

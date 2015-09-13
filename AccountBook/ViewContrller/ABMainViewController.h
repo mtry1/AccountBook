@@ -7,6 +7,6 @@
 //
 
 
-@interface ABMainViewController : UITabBarController
+@interface ABMainViewController : ABViewController
 
 @end
