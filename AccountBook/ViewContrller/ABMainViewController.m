@@ -8,6 +8,7 @@
 
 #import "ABMainViewController.h"
 #import "ABSetViewController.h"
+#import "ABDetailsViewController.h"
 #import "ABMainCollectionViewCell.h"
 #import "ABMainDataManger.h"
 
@@ -66,7 +67,26 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     [self.collectionView reloadData];
     
     [self.mainDataManger requestInitData];
+    
+    NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];
+    NSArray *fontNames;
+    NSInteger indFamily, indFont;
+    for(indFamily=0;indFamily<[familyNames count];++indFamily)
+        
+    {
+        NSLog(@"Family name: %@", [familyNames objectAtIndex:indFamily]);
+        fontNames =[[NSArray alloc]initWithArray:[UIFont fontNamesForFamilyName:[familyNames objectAtIndex:indFamily]]];
+        
+        for(indFont=0; indFont<[fontNames count]; ++indFont)
+            
+        {
+            NSLog(@"Font name: %@",[fontNames objectAtIndex:indFont]);
+            
+        }
+    }
 }
+
+#pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -94,7 +114,19 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%ld", indexPath.row);
+    if(indexPath.row < self.mainDataManger.numberOfItem - 1)
+    {
+        ABCategoryModel *model = [self.mainDataManger dataAtIndex:indexPath.row];
+        if(model)
+        {
+            ABDetailsViewController *controller = [[ABDetailsViewController alloc] init];
+            controller.title = model.name;
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }
 }
+
+#pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -118,6 +150,8 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 {
     return ABMainCollectionViewCellSpace;
 }
+
+#pragma mark - 其它
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {

@@ -27,6 +27,8 @@
 		939690C31BAD13C0008C09C9 /* ABDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C21BAD13C0008C09C9 /* ABDataManager.m */; };
 		939690C61BAD16A1008C09C9 /* ABMainDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C51BAD16A1008C09C9 /* ABMainDataManger.m */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
+		939690CC1BAD9924008C09C9 /* ABDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */; };
+		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,9 @@
 		939690C51BAD16A1008C09C9 /* ABMainDataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABMainDataManger.m; path = AccountBook/ViewContrller/ABMainDataManger.m; sourceTree = SOURCE_ROOT; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
+		939690CA1BAD9924008C09C9 /* ABDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDetailsViewController.h; sourceTree = "<group>"; };
+		939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDetailsViewController.m; sourceTree = "<group>"; };
+		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +156,7 @@
 				93679C741BA44034002B2401 /* Utils */,
 				93679C6B1BA44034002B2401 /* Category */,
 				93679C801BA440C4002B2401 /* Data */,
+				939690CD1BADA8F3008C09C9 /* Resouce */,
 				93679C451BA3D811002B2401 /* Supporting Files */,
 			);
 			path = AccountBook;
@@ -242,6 +248,8 @@
 				93679C8C1BA443F6002B2401 /* ABNavigationController.m */,
 				93679C871BA442A5002B2401 /* ABMainViewController.h */,
 				93679C881BA442A5002B2401 /* ABMainViewController.m */,
+				939690CA1BAD9924008C09C9 /* ABDetailsViewController.h */,
+				939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */,
 				93679C921BA46420002B2401 /* ABSetViewController.h */,
 				93679C931BA46420002B2401 /* ABSetViewController.m */,
 			);
@@ -277,6 +285,30 @@
 				939690BF1BAD0FAC008C09C9 /* ABCategoryModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		939690CD1BADA8F3008C09C9 /* Resouce */ = {
+			isa = PBXGroup;
+			children = (
+				939690CE1BADA8F3008C09C9 /* Image */,
+				939690CF1BADA8F3008C09C9 /* Other */,
+			);
+			path = Resouce;
+			sourceTree = "<group>";
+		};
+		939690CE1BADA8F3008C09C9 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		939690CF1BADA8F3008C09C9 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				939690D01BADA8F3008C09C9 /* STXINGKA.ttf */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93679C511BA3D811002B2401 /* Main.storyboard in Resources */,
+				939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */,
 				93679C561BA3D811002B2401 /* LaunchScreen.xib in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 			);
@@ -426,6 +459,7 @@
 				939690C61BAD16A1008C09C9 /* ABMainDataManger.m in Sources */,
 				939690BA1BAD088A008C09C9 /* ABMainCollectionViewCell.m in Sources */,
 				939690BD1BAD0F1B008C09C9 /* ABModel.m in Sources */,
+				939690CC1BAD9924008C09C9 /* ABDetailsViewController.m in Sources */,
 				939690C31BAD13C0008C09C9 /* ABDataManager.m in Sources */,
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,

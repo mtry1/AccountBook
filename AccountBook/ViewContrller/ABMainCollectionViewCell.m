@@ -64,7 +64,9 @@
     rect.origin.x = (CGRectGetWidth(self.contentView.frame) - rect.size.width) / 2;
     self.imageLabel.frame = rect;
     self.imageLabel.layer.cornerRadius = CGRectGetHeight(self.imageLabel.frame) / 2;
-    self.imageLabel.font = [UIFont systemFontOfSize:[ABUtils fontSizeForSystemFontHeight:CGRectGetHeight(self.frame) / 3]];
+    
+    CGFloat fontSize = [ABUtils fontSizeForHeight:CGRectGetHeight(self.frame) / 3 fontName:@"STXingkai"];
+    self.imageLabel.font = [UIFont fontWithName:@"STXingkai" size:fontSize];
     
     rect.origin.x = 5;
     rect.origin.y = CGRectGetMaxY(self.imageLabel.frame) + 1;
