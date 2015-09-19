@@ -9,6 +9,9 @@
 #ifndef AccountBook_ABPrefixHeader_pch
 #define AccountBook_ABPrefixHeader_pch
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #import "ABDefine.h"
 #import "ABUtils.h"
 #import "ABViewController.h"

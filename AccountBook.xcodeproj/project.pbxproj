@@ -29,6 +29,7 @@
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690CC1BAD9924008C09C9 /* ABDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
+		939690D41BADABF0008C09C9 /* ABEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690D31BADABF0008C09C9 /* ABEditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		939690CA1BAD9924008C09C9 /* ABDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDetailsViewController.h; sourceTree = "<group>"; };
 		939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDetailsViewController.m; sourceTree = "<group>"; };
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
+		939690D21BADABF0008C09C9 /* ABEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABEditViewController.h; sourceTree = "<group>"; };
+		939690D31BADABF0008C09C9 /* ABEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABEditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +253,8 @@
 				93679C881BA442A5002B2401 /* ABMainViewController.m */,
 				939690CA1BAD9924008C09C9 /* ABDetailsViewController.h */,
 				939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */,
+				939690D21BADABF0008C09C9 /* ABEditViewController.h */,
+				939690D31BADABF0008C09C9 /* ABEditViewController.m */,
 				93679C921BA46420002B2401 /* ABSetViewController.h */,
 				93679C931BA46420002B2401 /* ABSetViewController.m */,
 			);
@@ -462,6 +467,7 @@
 				939690CC1BAD9924008C09C9 /* ABDetailsViewController.m in Sources */,
 				939690C31BAD13C0008C09C9 /* ABDataManager.m in Sources */,
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,
+				939690D41BADABF0008C09C9 /* ABEditViewController.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

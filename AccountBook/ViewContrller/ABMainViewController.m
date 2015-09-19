@@ -9,11 +9,14 @@
 #import "ABMainViewController.h"
 #import "ABSetViewController.h"
 #import "ABDetailsViewController.h"
+#import "ABEditViewController.h"
 #import "ABMainCollectionViewCell.h"
 #import "ABMainDataManger.h"
 
 CGFloat const ABMainCollectionViewCellSpace = 5.0f;
-NSInteger const ABMainCollectionViewMaxColNumber = 4;
+CGFloat const ABMainCollectionViewSpacingForSection = 10.0f;
+CGFloat const ABMainCollectionViewSpacingForTop = 20.0f;
+NSInteger const ABMainCollectionViewColNumber = 4;
 
 static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReuseIdentifier";
 
@@ -52,6 +55,7 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     if(!_mainDataManger)
     {
         _mainDataManger = [[ABMainDataManger alloc] init];
+        [_mainDataManger addDelegate:self];
     }
     return _mainDataManger;
 }
@@ -67,23 +71,6 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     [self.collectionView reloadData];
     
     [self.mainDataManger requestInitData];
-    
-    NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];
-    NSArray *fontNames;
-    NSInteger indFamily, indFont;
-    for(indFamily=0;indFamily<[familyNames count];++indFamily)
-        
-    {
-        NSLog(@"Family name: %@", [familyNames objectAtIndex:indFamily]);
-        fontNames =[[NSArray alloc]initWithArray:[UIFont fontNamesForFamilyName:[familyNames objectAtIndex:indFamily]]];
-        
-        for(indFont=0; indFont<[fontNames count]; ++indFont)
-            
-        {
-            NSLog(@"Font name: %@",[fontNames objectAtIndex:indFont]);
-            
-        }
-    }
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -113,14 +100,20 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%ld", indexPath.row);
-    if(indexPath.row < self.mainDataManger.numberOfItem - 1)
+    ABCategoryModel *model = [self.mainDataManger dataAtIndex:indexPath.row];
+    if(model)
     {
-        ABCategoryModel *model = [self.mainDataManger dataAtIndex:indexPath.row];
-        if(model)
+        if(indexPath.row < self.mainDataManger.numberOfItem - 1)
         {
             ABDetailsViewController *controller = [[ABDetailsViewController alloc] init];
             controller.title = model.name;
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        else
+        {
+            ABEditViewController *controller = [[ABEditViewController alloc] init];
+            controller.title = model.name;
+            controller.mainDataManager = self.mainDataManger;
             [self.navigationController pushViewController:controller animated:YES];
         }
     }
@@ -131,19 +124,19 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize size = CGSizeZero;
-    size.width = (CGRectGetWidth(self.view.frame) - (ABMainCollectionViewMaxColNumber + 1) * ABMainCollectionViewCellSpace) / ABMainCollectionViewMaxColNumber;
+    size.width = (CGRectGetWidth(self.view.frame) - (ABMainCollectionViewColNumber + 1) * ABMainCollectionViewCellSpace) / ABMainCollectionViewColNumber;
     size.height = size.width;
     return size;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(20, ABMainCollectionViewCellSpace, 0, ABMainCollectionViewCellSpace);
+    return UIEdgeInsetsMake(ABMainCollectionViewSpacingForTop, ABMainCollectionViewCellSpace, 0, ABMainCollectionViewCellSpace);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return ABMainCollectionViewCellSpace * 2;
+    return ABMainCollectionViewSpacingForSection;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section

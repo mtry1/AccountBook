@@ -71,14 +71,11 @@
     [self.listItem addObject:model];
     
     model = [[ABCategoryModel alloc] init];
-    model.name = @"更多";
+    model.name = @"编辑";
     model.colorHexString = @"0xa784d4";
     [self.listItem addObject:model];
     
-    if([self.delegate respondsToSelector:@selector(dataManagerReloadData:)])
-    {
-        [self.delegate dataManagerReloadData:self];
-    }
+    [self callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
 
 - (NSInteger)numberOfItem

@@ -18,8 +18,6 @@
 
 @interface ABMainDataManger : ABDataManager
 
-@property (nonatomic, weak) id<ABMainDataMangerDelegate>delegate;
-
 - (void)requestInitData;
 
 - (NSInteger)numberOfItem;

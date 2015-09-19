@@ -6,8 +6,11 @@
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+extern void (* ABSendMessage0Param)(id,SEL);
+extern void (* ABSendMessage1Param)(id,SEL,id);
+extern void (* ABSendMessage2Param)(id,SEL,id,id);
+extern void (* ABSendMessage3Param)(id,SEL,id,id,id);
+extern void (* ABSendMessage4Param)(id,SEL,id,id,id,id);
 
 @interface ABUtils : NSObject
 

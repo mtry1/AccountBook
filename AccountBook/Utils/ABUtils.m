@@ -7,6 +7,13 @@
 //
 
 #import "ABUtils.h"
+#import <objc/message.h>
+
+void (* ABSendMessage0Param)(id,SEL) = (void (*)(id,SEL))objc_msgSend;
+void (* ABSendMessage1Param)(id,SEL,id) = (void (*)(id,SEL,id))objc_msgSend;
+void (* ABSendMessage2Param)(id,SEL,id,id) = (void (*)(id,SEL,id,id))objc_msgSend;
+void (* ABSendMessage3Param)(id,SEL,id,id,id) = (void (*)(id,SEL,id,id,id))objc_msgSend;
+void (* ABSendMessage4Param)(id,SEL,id,id,id,id) = (void (*)(id,SEL,id,id,id,id))objc_msgSend;
 
 @implementation ABUtils
 
