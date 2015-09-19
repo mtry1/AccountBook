@@ -10,8 +10,11 @@
 #define AccountBook_ABPrefixHeader_pch
 
 #import "ABDefine.h"
+#import "ABUtils.h"
 #import "ABViewController.h"
 #import "ABNavigationController.h"
+#import "ABModel.h"
+#import "ABDataManager.h"
 
 #import "UIColor+Category.h"
 #import "UIImage+Category.h"

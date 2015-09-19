@@ -22,8 +22,17 @@
     float r = (rgb >> 16)       / 255.0;
     float g = (rgb >> 8 & 0xff) / 255.0;
     float b = (rgb & 0xff)      / 255.0;
-    
     return [UIColor colorWithRed:r green:g blue:b alpha:alpha];
+}
+
+///十六进制字符串转颜色
++ (UIColor *)colorWithHexString:(NSString *)hexString
+{
+    if(hexString)
+    {
+        return [UIColor colorWithUInt:strtoull(hexString.UTF8String, NULL, 16)];
+    }
+    return [UIColor clearColor];
 }
 
 @end

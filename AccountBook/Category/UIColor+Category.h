@@ -16,4 +16,7 @@
 ///指定整数和颜色的透明度
 + (UIColor *)colorWithUInt:(NSUInteger)rgb alpha:(CGFloat)alpha;
 
+///十六进制字符串转颜色
++ (UIColor *)colorWithHexString:(NSString *)hexString;
+
 @end
