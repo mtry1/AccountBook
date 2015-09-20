@@ -28,6 +28,7 @@
 		938A2DA61BAE8E630042B86B /* ABCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DA11BAE8E630042B86B /* ABCategoryModel.m */; };
 		938A2DA71BAE8E630042B86B /* ABModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DA31BAE8E630042B86B /* ABModel.m */; };
 		938A2DA91BAE8EB90042B86B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DA81BAE8EB90042B86B /* main.m */; };
+		938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DAB1BAE90C90042B86B /* ABChargeModel.m */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690CC1BAD9924008C09C9 /* ABDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690CB1BAD9924008C09C9 /* ABDetailsViewController.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
@@ -89,6 +90,8 @@
 		938A2DA21BAE8E630042B86B /* ABModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABModel.h; sourceTree = "<group>"; };
 		938A2DA31BAE8E630042B86B /* ABModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABModel.m; sourceTree = "<group>"; };
 		938A2DA81BAE8EB90042B86B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Main/main.m; sourceTree = "<group>"; };
+		938A2DAA1BAE90C90042B86B /* ABChargeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeModel.h; sourceTree = "<group>"; };
+		938A2DAB1BAE90C90042B86B /* ABChargeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeModel.m; sourceTree = "<group>"; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
 		939690CA1BAD9924008C09C9 /* ABDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDetailsViewController.h; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 			children = (
 				938A2DA01BAE8E630042B86B /* ABCategoryModel.h */,
 				938A2DA11BAE8E630042B86B /* ABCategoryModel.m */,
+				938A2DAA1BAE90C90042B86B /* ABChargeModel.h */,
+				938A2DAB1BAE90C90042B86B /* ABChargeModel.m */,
 				938A2DA21BAE8E630042B86B /* ABModel.h */,
 				938A2DA31BAE8E630042B86B /* ABModel.m */,
 			);
@@ -466,6 +471,7 @@
 				938A2DA61BAE8E630042B86B /* ABCategoryModel.m in Sources */,
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
+				938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */,
 				93679C941BA46420002B2401 /* ABSetViewController.m in Sources */,
 				93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */,
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,
