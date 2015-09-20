@@ -65,10 +65,10 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     [super viewDidLoad];
     
     self.title = @"随身记";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideLeftBarButtonItem:)];
     
     [self.view addSubview:self.collectionView];
-    [self.collectionView reloadData];
     
     [self.mainDataManger requestInitData];
 }
@@ -103,19 +103,9 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     ABCategoryModel *model = [self.mainDataManger dataAtIndex:indexPath.row];
     if(model)
     {
-        if(indexPath.row < self.mainDataManger.numberOfItem - 1)
-        {
-            ABDetailsViewController *controller = [[ABDetailsViewController alloc] init];
-            controller.title = model.name;
-            [self.navigationController pushViewController:controller animated:YES];
-        }
-        else
-        {
-            ABEditViewController *controller = [[ABEditViewController alloc] init];
-            controller.title = model.name;
-            controller.mainDataManager = self.mainDataManger;
-            [self.navigationController pushViewController:controller animated:YES];
-        }
+        ABDetailsViewController *controller = [[ABDetailsViewController alloc] init];
+        controller.title = model.name;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -146,9 +136,16 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 
 #pragma mark - 其它
 
-- (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
+- (void)touchUpInsideLeftBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     ABSetViewController *controller = [[ABSetViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    ABEditViewController *controller = [[ABEditViewController alloc] init];
+    controller.mainDataManager = self.mainDataManger;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -157,6 +154,16 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 - (void)dataManagerReloadData:(ABDataManager *)manager
 {
     [self.collectionView reloadData];
+}
+
+- (void)dataManager:(ABDataManager *)manager removeIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+}
+
+- (void)mainDataManger:(ABMainDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:toIndexPath];
 }
 
 @end

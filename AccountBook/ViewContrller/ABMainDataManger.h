@@ -13,6 +13,9 @@
 
 @protocol ABMainDataMangerDelegate <ABDataManagerTableCallBackDelegate>
 
+@optional
+
+- (void)mainDataManger:(ABMainDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath;
 
 @end
 
@@ -23,5 +26,9 @@
 - (NSInteger)numberOfItem;
 
 - (ABCategoryModel *)dataAtIndex:(NSInteger)index;
+
+- (void)removeIndex:(NSInteger)index;
+
+- (void)moveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex;
 
 @end

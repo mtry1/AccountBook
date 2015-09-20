@@ -21,6 +21,8 @@
 		93679C891BA442A5002B2401 /* ABMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C881BA442A5002B2401 /* ABMainViewController.m */; };
 		93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C8C1BA443F6002B2401 /* ABNavigationController.m */; };
 		93679C941BA46420002B2401 /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C931BA46420002B2401 /* ABSetViewController.m */; };
+		938A2D8A1BAE4B450042B86B /* ABAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D891BAE4B450042B86B /* ABAlertView.m */; };
+		938A2D8D1BAE4BD40042B86B /* ABActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D8C1BAE4BD40042B86B /* ABActionSheet.m */; };
 		939690BA1BAD088A008C09C9 /* ABMainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690B91BAD088A008C09C9 /* ABMainCollectionViewCell.m */; };
 		939690BD1BAD0F1B008C09C9 /* ABModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690BC1BAD0F1B008C09C9 /* ABModel.m */; };
 		939690C01BAD0FAC008C09C9 /* ABCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690BF1BAD0FAC008C09C9 /* ABCategoryModel.m */; };
@@ -73,6 +75,10 @@
 		93679C8E1BA44594002B2401 /* ABPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPrefixHeader.pch; sourceTree = "<group>"; };
 		93679C921BA46420002B2401 /* ABSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetViewController.h; sourceTree = "<group>"; };
 		93679C931BA46420002B2401 /* ABSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetViewController.m; sourceTree = "<group>"; };
+		938A2D881BAE4B450042B86B /* ABAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAlertView.h; path = AccountBook/ViewContrller/ABAlertView.h; sourceTree = SOURCE_ROOT; };
+		938A2D891BAE4B450042B86B /* ABAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABAlertView.m; path = AccountBook/ViewContrller/ABAlertView.m; sourceTree = SOURCE_ROOT; };
+		938A2D8B1BAE4BD40042B86B /* ABActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABActionSheet.h; path = AccountBook/ViewContrller/ABActionSheet.h; sourceTree = SOURCE_ROOT; };
+		938A2D8C1BAE4BD40042B86B /* ABActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABActionSheet.m; path = AccountBook/ViewContrller/ABActionSheet.m; sourceTree = SOURCE_ROOT; };
 		939690B81BAD088A008C09C9 /* ABMainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMainCollectionViewCell.h; path = AccountBook/ViewContrller/ABMainCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
 		939690B91BAD088A008C09C9 /* ABMainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABMainCollectionViewCell.m; path = AccountBook/ViewContrller/ABMainCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
 		939690BB1BAD0F1B008C09C9 /* ABModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABModel.h; path = AccountBook/ViewContrller/ABModel.h; sourceTree = SOURCE_ROOT; };
@@ -238,6 +244,10 @@
 		93679C751BA44034002B2401 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				938A2D881BAE4B450042B86B /* ABAlertView.h */,
+				938A2D891BAE4B450042B86B /* ABAlertView.m */,
+				938A2D8B1BAE4BD40042B86B /* ABActionSheet.h */,
+				938A2D8C1BAE4BD40042B86B /* ABActionSheet.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -453,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93679C481BA3D811002B2401 /* main.m in Sources */,
+				938A2D8D1BAE4BD40042B86B /* ABActionSheet.m in Sources */,
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
 				939690C01BAD0FAC008C09C9 /* ABCategoryModel.m in Sources */,
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
@@ -464,6 +475,7 @@
 				939690C61BAD16A1008C09C9 /* ABMainDataManger.m in Sources */,
 				939690BA1BAD088A008C09C9 /* ABMainCollectionViewCell.m in Sources */,
 				939690BD1BAD0F1B008C09C9 /* ABModel.m in Sources */,
+				938A2D8A1BAE4B450042B86B /* ABAlertView.m in Sources */,
 				939690CC1BAD9924008C09C9 /* ABDetailsViewController.m in Sources */,
 				939690C31BAD13C0008C09C9 /* ABDataManager.m in Sources */,
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,

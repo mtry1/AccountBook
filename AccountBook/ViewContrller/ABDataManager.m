@@ -32,8 +32,7 @@
 
 - (void)callBackAction:(SEL)action
 {
-    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
-    for(id delegate in enumerator)
+    for(id delegate in self.delegateHashTable.allObjects)
     {
         if([delegate respondsToSelector:action])
         {
@@ -44,8 +43,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1
 {
-    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
-    for(id delegate in enumerator)
+    for(id delegate in self.delegateHashTable.allObjects)
     {
         if([delegate respondsToSelector:action])
         {
@@ -56,8 +54,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1 object2:(id)object2
 {
-    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
-    for(id delegate in enumerator)
+    for(id delegate in self.delegateHashTable.allObjects)
     {
         if([delegate respondsToSelector:action])
         {
@@ -68,8 +65,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1 object2:(id)object2 object3:(id)object3
 {
-    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
-    for(id delegate in enumerator)
+    for(id delegate in self.delegateHashTable.allObjects)
     {
         if([delegate respondsToSelector:action])
         {
@@ -80,8 +76,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1 object2:(id)object2 object3:(id)object3 object4:(id)object4
 {
-    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
-    for(id delegate in enumerator)
+    for(id delegate in self.delegateHashTable.allObjects)
     {
         if([delegate respondsToSelector:action])
         {
