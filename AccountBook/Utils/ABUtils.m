@@ -32,4 +32,21 @@ void (* ABSendMessage4Param)(id,SEL,id,id,id,id) = (void (*)(id,SEL,id,id,id,id)
     return [self fontSizeForHeight:height fontName:systemFont.fontName];
 }
 
+///每次调用都会产生一个唯一标示
++ (NSString *)uuid
+{
+    NSString *string = nil;
+    
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    
+    CFStringRef uuidStr = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+    
+    string = [(__bridge NSString *)uuidStr stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    CFRelease(uuidRef);
+    CFRelease(uuidStr);
+    
+    return string;
+}
+
 @end

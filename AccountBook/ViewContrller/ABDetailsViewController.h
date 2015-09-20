@@ -10,4 +10,6 @@
 
 @interface ABDetailsViewController : ABViewController
 
+@property (nonatomic, copy) NSString *categoryID;
+
 @end

@@ -92,6 +92,7 @@
 - (ABCategoryModel *)modelForText:(NSString *)text
 {
     ABCategoryModel *model = [[ABCategoryModel alloc] init];
+    model.categoryID = [ABUtils uuid];
     model.name = text;
     model.colorHexString = [[self class] colorHexStringAtIndex:self.listItem.count];
     return model;

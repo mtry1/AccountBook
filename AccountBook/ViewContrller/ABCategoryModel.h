@@ -10,6 +10,8 @@
 
 @interface ABCategoryModel : ABModel
 
+@property (nonatomic, strong) NSString *categoryID;
+
 @property (nonatomic, strong) NSString *name;
 
 @property (nonatomic, strong) NSString *colorHexString;

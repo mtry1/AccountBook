@@ -20,4 +20,7 @@ extern void (* ABSendMessage4Param)(id,SEL,id,id,id,id);
 ///获取最大字体，根据系统字体的高度
 + (CGFloat)fontSizeForSystemFontHeight:(CGFloat)height;
 
+///每次调用都会产生一个唯一标示
++ (NSString *)uuid;
+
 @end

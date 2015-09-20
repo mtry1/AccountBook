@@ -105,6 +105,7 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     {
         ABDetailsViewController *controller = [[ABDetailsViewController alloc] init];
         controller.title = model.name;
+        controller.categoryID = model.categoryID;
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

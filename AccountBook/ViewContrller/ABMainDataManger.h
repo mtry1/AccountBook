@@ -33,5 +33,4 @@
 
 - (void)moveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex;
 
-
 @end
