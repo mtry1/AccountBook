@@ -171,7 +171,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     }
 }
 
-- (void)categoryataManger:(ABCategoryDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)categoryDataManger:(ABCategoryDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:toIndexPath];
 }
