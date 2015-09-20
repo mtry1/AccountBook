@@ -1,5 +1,5 @@
 //
-//  ABMainViewController.h
+//  ABCategoryViewController.h
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/12.
@@ -7,6 +7,6 @@
 //
 
 
-@interface ABMainViewController : ABViewController
+@interface ABCategoryViewController : ABViewController
 
 @end

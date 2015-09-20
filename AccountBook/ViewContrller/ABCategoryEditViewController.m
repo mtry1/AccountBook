@@ -1,20 +1,20 @@
 //
-//  ABEditViewController.m
+//  ABCategoryEditViewController.m
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/19.
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import "ABEditViewController.h"
+#import "ABCategoryEditViewController.h"
 
-@interface ABEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABMainDataMangerDelegate>
+@interface ABCategoryEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABCategoryDataMangerDelegate>
 
 @property (nonatomic, readonly) UITableView *tableView;
 
 @end
 
-@implementation ABEditViewController
+@implementation ABCategoryEditViewController
 
 @synthesize tableView = _tableView;
 
@@ -41,7 +41,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.mainDataManager addDelegate:self];
+    [self.dataManager addDelegate:self];
     [self.tableView setEditing:YES animated:YES];
 }
 
@@ -54,7 +54,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.mainDataManager.numberOfItem;
+    return self.dataManager.numberOfItem;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +67,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    ABCategoryModel *model = [self.mainDataManager dataAtIndex:indexPath.row];
+    ABCategoryModel *model = [self.dataManager dataAtIndex:indexPath.row];
     if(model)
     {
         cell.textLabel.text = model.name;
@@ -85,7 +85,7 @@
 {
     if(sourceIndexPath.row != destinationIndexPath.row)
     {
-        [self.mainDataManager moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+        [self.dataManager requestMoveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
     }
 }
 
@@ -93,7 +93,7 @@
 {
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
-        ABCategoryModel *model = [self.mainDataManager dataAtIndex:indexPath.row];
+        ABCategoryModel *model = [self.dataManager dataAtIndex:indexPath.row];
         if(model)
         {
             ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"您确定要删除"
@@ -110,7 +110,7 @@
                 }
                 else
                 {
-                    [self.mainDataManager removeIndex:indexPath.row];
+                    [self.dataManager requestRemoveIndex:indexPath.row];
                 }
             }];
         }
@@ -134,7 +134,7 @@
             UITextField *textField = [alertView textFieldAtIndex:0];
             if(textField && textField.text.length)
             {
-                [self.mainDataManager addObjectWithText:textField.text];
+                [self.dataManager requestAddObjectWithText:textField.text];
             }
         }
     }];

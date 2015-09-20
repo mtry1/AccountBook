@@ -1,20 +1,20 @@
 //
-//  ABMainDataManger.m
+//  ABCategoryDataManger.m
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/19.
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import "ABMainDataManger.h"
+#import "ABCategoryDataManger.h"
 
-@interface ABMainDataManger()
+@interface ABCategoryDataManger()
 
 @property (nonatomic, strong) NSMutableArray *listItem;
 
 @end
 
-@implementation ABMainDataManger
+@implementation ABCategoryDataManger
 
 - (NSMutableArray *)listItem
 {
@@ -56,7 +56,7 @@
     return nil;
 }
 
-- (void)addObjectWithText:(NSString *)text
+- (void)requestAddObjectWithText:(NSString *)text
 {
     if(text.length)
     {
@@ -67,7 +67,7 @@
     }
 }
 
-- (void)removeIndex:(NSInteger)index
+- (void)requestRemoveIndex:(NSInteger)index
 {
     if(index < [self numberOfItem])
     {
@@ -78,7 +78,7 @@
     }
 }
 
-- (void)moveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex
+- (void)requestMoveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex
 {
     id object = self.listItem[index];
     [self.listItem removeObjectAtIndex:index];
@@ -86,7 +86,7 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex inSection:0];
-    [self callBackAction:@selector(mainDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
+    [self callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
 }
 
 - (ABCategoryModel *)modelForText:(NSString *)text

@@ -1,37 +1,37 @@
 //
-//  ABMainViewController.m
+//  ABCategoryViewController.m
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/12.
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import "ABMainViewController.h"
+#import "ABCategoryViewController.h"
 #import "ABSetViewController.h"
-#import "ABDetailsViewController.h"
-#import "ABEditViewController.h"
-#import "ABMainCollectionViewCell.h"
-#import "ABMainDataManger.h"
+#import "ABChargeListViewController.h"
+#import "ABCategoryEditViewController.h"
+#import "ABCategoryCell.h"
+#import "ABCategoryDataManger.h"
 
-CGFloat const ABMainCollectionViewCellSpace = 5.0f;
-CGFloat const ABMainCollectionViewSpacingForSection = 10.0f;
-CGFloat const ABMainCollectionViewSpacingForTop = 20.0f;
-NSInteger const ABMainCollectionViewColNumber = 4;
+CGFloat const ABCollectionViewCellSpace = 5.0f;
+CGFloat const ABCollectionViewSpacingForSection = 10.0f;
+CGFloat const ABCollectionViewSpacingForTop = 20.0f;
+NSInteger const ABCollectionViewColNumber = 4;
 
-static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReuseIdentifier";
+static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdentifier";
 
-@interface ABMainViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABMainDataMangerDelegate>
+@interface ABCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABCategoryDataMangerDelegate>
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
-@property (nonatomic, readonly) ABMainDataManger *mainDataManger;
+@property (nonatomic, readonly) ABCategoryDataManger *dataManger;
 
 @end
 
-@implementation ABMainViewController
+@implementation ABCategoryViewController
 
 @synthesize collectionView = _collectionView;
-@synthesize mainDataManger = _mainDataManger;
+@synthesize dataManger = _dataManger;
 
 - (UICollectionView *)collectionView
 {
@@ -44,20 +44,20 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         
-        [_collectionView registerClass:[ABMainCollectionViewCell class]
-            forCellWithReuseIdentifier:ABMainCollectionViewReuseIdentifier];
+        [_collectionView registerClass:[ABCategoryCell class]
+            forCellWithReuseIdentifier:ABCollectionViewReuseIdentifier];
     }
     return _collectionView;
 }
 
-- (ABMainDataManger *)mainDataManger
+- (ABCategoryDataManger *)dataManger
 {
-    if(!_mainDataManger)
+    if(!_dataManger)
     {
-        _mainDataManger = [[ABMainDataManger alloc] init];
-        [_mainDataManger addDelegate:self];
+        _dataManger = [[ABCategoryDataManger alloc] init];
+        [_dataManger addDelegate:self];
     }
-    return _mainDataManger;
+    return _dataManger;
 }
 
 - (void)viewDidLoad
@@ -70,7 +70,7 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     
     [self.view addSubview:self.collectionView];
     
-    [self.mainDataManger requestInitData];
+    [self.dataManger requestInitData];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -82,14 +82,14 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.mainDataManger.numberOfItem;
+    return self.dataManger.numberOfItem;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ABMainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ABMainCollectionViewReuseIdentifier forIndexPath:indexPath];
+    ABCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ABCollectionViewReuseIdentifier forIndexPath:indexPath];
     
-    ABCategoryModel *model = [self.mainDataManger dataAtIndex:indexPath.row];
+    ABCategoryModel *model = [self.dataManger dataAtIndex:indexPath.row];
     if(model)
     {
         [cell reloadWithModel:model];
@@ -100,10 +100,10 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ABCategoryModel *model = [self.mainDataManger dataAtIndex:indexPath.row];
+    ABCategoryModel *model = [self.dataManger dataAtIndex:indexPath.row];
     if(model)
     {
-        ABDetailsViewController *controller = [[ABDetailsViewController alloc] init];
+        ABChargeListViewController *controller = [[ABChargeListViewController alloc] init];
         controller.title = model.name;
         controller.categoryID = model.categoryID;
         [self.navigationController pushViewController:controller animated:YES];
@@ -115,24 +115,24 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize size = CGSizeZero;
-    size.width = (CGRectGetWidth(self.view.frame) - (ABMainCollectionViewColNumber + 1) * ABMainCollectionViewCellSpace) / ABMainCollectionViewColNumber;
+    size.width = (CGRectGetWidth(self.view.frame) - (ABCollectionViewColNumber + 1) * ABCollectionViewCellSpace) / ABCollectionViewColNumber;
     size.height = size.width;
     return size;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(ABMainCollectionViewSpacingForTop, ABMainCollectionViewCellSpace, 0, ABMainCollectionViewCellSpace);
+    return UIEdgeInsetsMake(ABCollectionViewSpacingForTop, ABCollectionViewCellSpace, 0, ABCollectionViewCellSpace);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return ABMainCollectionViewSpacingForSection;
+    return ABCollectionViewSpacingForSection;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return ABMainCollectionViewCellSpace;
+    return ABCollectionViewCellSpace;
 }
 
 #pragma mark - 其它
@@ -145,8 +145,8 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    ABEditViewController *controller = [[ABEditViewController alloc] init];
-    controller.mainDataManager = self.mainDataManger;
+    ABCategoryEditViewController *controller = [[ABCategoryEditViewController alloc] init];
+    controller.dataManager = self.dataManger;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -171,7 +171,7 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     }
 }
 
-- (void)mainDataManger:(ABMainDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)categoryataManger:(ABCategoryDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:toIndexPath];
 }

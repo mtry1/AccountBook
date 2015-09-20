@@ -1,5 +1,5 @@
 //
-//  ABMainCollectionViewCell.h
+//  ABCategoryCell.h
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/19.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ABCategoryModel.h"
 
-@interface ABMainCollectionViewCell : UICollectionViewCell
+@interface ABCategoryCell : UICollectionViewCell
 
 - (void)reloadWithModel:(ABCategoryModel *)model;
 

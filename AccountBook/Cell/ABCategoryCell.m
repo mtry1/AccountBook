@@ -1,14 +1,14 @@
 //
-//  ABMainCollectionViewCell.m
+//  ABCategoryCell.m
 //  AccountBook
 //
 //  Created by zhourongqing on 15/9/19.
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import "ABMainCollectionViewCell.h"
+#import "ABCategoryCell.h"
 
-@interface ABMainCollectionViewCell()
+@interface ABCategoryCell()
 
 @property (nonatomic, readonly) UILabel *imageLabel;
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation ABMainCollectionViewCell
+@implementation ABCategoryCell
 
 @synthesize imageLabel = _imageLabel;
 @synthesize titleLabel = _titleLabel;
