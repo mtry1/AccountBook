@@ -29,51 +29,15 @@
 {
     [self.listItem removeAllObjects];
     
-    ABCategoryModel *model;
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"0其它";
-    model.colorHexString = @"0xa784d4";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"1借出";
-    model.colorHexString = @"0xff708b";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"2借入";
-    model.colorHexString = @"0x57c3df";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"3淘宝";
-    model.colorHexString = @"0xefbc53";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"4打球";
-    model.colorHexString = @"0xa784d4";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"5礼物";
-    model.colorHexString = @"0x6cca80";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"6吃饭";
-    model.colorHexString = @"0xff708b";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"7零食";
-    model.colorHexString = @"0x57c3df";
-    [self.listItem addObject:model];
-    
-    model = [[ABCategoryModel alloc] init];
-    model.name = @"8购物";
-    model.colorHexString = @"0xefbc53";
-    [self.listItem addObject:model];
+    [self.listItem addObject:[self modelForText:@"借出"]];
+    [self.listItem addObject:[self modelForText:@"借入"]];
+    [self.listItem addObject:[self modelForText:@"淘宝"]];
+    [self.listItem addObject:[self modelForText:@"打球"]];
+    [self.listItem addObject:[self modelForText:@"礼物"]];
+    [self.listItem addObject:[self modelForText:@"吃饭"]];
+    [self.listItem addObject:[self modelForText:@"零食"]];
+    [self.listItem addObject:[self modelForText:@"购物"]];
+    [self.listItem addObject:[self modelForText:@"其它"]];
     
     [self callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
@@ -90,6 +54,17 @@
         return self.listItem[index];
     }
     return nil;
+}
+
+- (void)addObjectWithText:(NSString *)text
+{
+    if(text.length)
+    {
+        [self.listItem addObject:[self modelForText:text]];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
+        [self callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+    }
 }
 
 - (void)removeIndex:(NSInteger)index
@@ -112,6 +87,21 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex inSection:0];
     [self callBackAction:@selector(mainDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
+}
+
+- (ABCategoryModel *)modelForText:(NSString *)text
+{
+    ABCategoryModel *model = [[ABCategoryModel alloc] init];
+    model.name = text;
+    model.colorHexString = [[self class] colorHexStringAtIndex:self.listItem.count];
+    return model;
+}
+
++ (NSString *)colorHexStringAtIndex:(NSInteger)index
+{
+    NSArray *colors = @[@"0xff708b", @"0x57c3df", @"0xefbc53", @"0xa784d4", @"0x6cca80"];
+    index = index % colors.count;
+    return colors[index];
 }
 
 @end

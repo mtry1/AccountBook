@@ -105,6 +105,8 @@
                 
                 if(atIndex == alertView.cancelButtonIndex)
                 {
+                    [self.tableView setEditing:NO];
+                    [self.tableView setEditing:YES];
                 }
                 else
                 {
@@ -119,7 +121,23 @@
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    
+    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"建议两个中文字哦"
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"取消"
+                                              otherButtonTitles:@"确定", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
+        
+        if(atIndex != alertView.cancelButtonIndex)
+        {
+            UITextField *textField = [alertView textFieldAtIndex:0];
+            if(textField && textField.text.length)
+            {
+                [self.mainDataManager addObjectWithText:textField.text];
+            }
+        }
+    }];
 }
 
 #pragma mark - 数据处理
@@ -132,6 +150,11 @@
 - (void)dataManager:(ABDataManager *)manager removeIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)dataManager:(ABDataManager *)manager addIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end

@@ -156,9 +156,18 @@ static NSString *ABMainCollectionViewReuseIdentifier = @"ABMainCollectionViewReu
     [self.collectionView reloadData];
 }
 
+- (void)dataManager:(ABDataManager *)manager addIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+}
+
 - (void)dataManager:(ABDataManager *)manager removeIndexPath:(NSIndexPath *)indexPath
 {
-    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    if(cell)
+    {
+        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    }
 }
 
 - (void)mainDataManger:(ABMainDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath

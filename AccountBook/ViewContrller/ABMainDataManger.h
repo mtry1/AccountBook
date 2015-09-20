@@ -27,8 +27,11 @@
 
 - (ABCategoryModel *)dataAtIndex:(NSInteger)index;
 
+- (void)addObjectWithText:(NSString *)text;
+
 - (void)removeIndex:(NSInteger)index;
 
 - (void)moveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex;
+
 
 @end
