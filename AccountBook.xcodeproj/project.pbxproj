@@ -227,8 +227,8 @@
 		93679C741BA44034002B2401 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				93679C831BA4417D002B2401 /* ABDefine.h */,
 				93679C8E1BA44594002B2401 /* ABPrefixHeader.pch */,
+				93679C831BA4417D002B2401 /* ABDefine.h */,
 				939690C71BAD2EB5008C09C9 /* ABUtils.h */,
 				939690C81BAD2EB5008C09C9 /* ABUtils.m */,
 			);

@@ -8,7 +8,7 @@
 
 #import "ABEditViewController.h"
 
-@interface ABEditViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ABEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABMainDataMangerDelegate>
 
 @property (nonatomic, readonly) UITableView *tableView;
 
@@ -35,6 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+    
+    [self.mainDataManager addDelegate:self];
     
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
@@ -73,6 +77,16 @@
 
 #pragma mark - 其它
 
+- (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    
+}
+
 #pragma mark - 数据处理
+
+- (void)dataManagerReloadData:(ABDataManager *)manager
+{
+    [self.tableView reloadData];
+}
 
 @end

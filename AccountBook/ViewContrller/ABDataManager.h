@@ -33,9 +33,6 @@
 ///添加回调代理
 - (void)addDelegate:(id)delegate;
 
-///移除回调代理
-- (void)removeDelegate:(id)delegate;
-
 ///0个参数回调
 - (void)callBackAction:(SEL)action;
 

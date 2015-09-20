@@ -10,38 +10,29 @@
 
 @interface ABDataManager()
 
-@property (nonatomic, strong) NSMutableSet *delegateSet;
+@property (nonatomic, strong) NSHashTable *delegateHashTable;
 
 @end
 
 @implementation ABDataManager
 
-- (NSMutableSet *)delegateSet
+- (NSHashTable *)delegateHashTable
 {
-    if(!_delegateSet)
+    if(!_delegateHashTable)
     {
-        _delegateSet = [NSMutableSet set];
+        _delegateHashTable = [NSHashTable weakObjectsHashTable];
     }
-    return _delegateSet;
+    return _delegateHashTable;
 }
 
 - (void)addDelegate:(id)delegate
 {
-    __weak typeof(delegate) weakDelegate = delegate;
-    [self.delegateSet addObject:weakDelegate];
-}
-
-- (void)removeDelegate:(id)delegate
-{
-    if([self.delegateSet containsObject:delegate])
-    {
-        [self.delegateSet removeObject:delegate];
-    }
+    [self.delegateHashTable addObject:delegate];
 }
 
 - (void)callBackAction:(SEL)action
 {
-    NSEnumerator *enumerator = [self.delegateSet objectEnumerator];
+    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
     for(id delegate in enumerator)
     {
         if([delegate respondsToSelector:action])
@@ -53,7 +44,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1
 {
-    NSEnumerator *enumerator = [self.delegateSet objectEnumerator];
+    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
     for(id delegate in enumerator)
     {
         if([delegate respondsToSelector:action])
@@ -65,7 +56,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1 object2:(id)object2
 {
-    NSEnumerator *enumerator = [self.delegateSet objectEnumerator];
+    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
     for(id delegate in enumerator)
     {
         if([delegate respondsToSelector:action])
@@ -77,7 +68,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1 object2:(id)object2 object3:(id)object3
 {
-    NSEnumerator *enumerator = [self.delegateSet objectEnumerator];
+    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
     for(id delegate in enumerator)
     {
         if([delegate respondsToSelector:action])
@@ -89,7 +80,7 @@
 
 - (void)callBackAction:(SEL)action object1:(id)object1 object2:(id)object2 object3:(id)object3 object4:(id)object4
 {
-    NSEnumerator *enumerator = [self.delegateSet objectEnumerator];
+    NSEnumerator *enumerator = [self.delegateHashTable objectEnumerator];
     for(id delegate in enumerator)
     {
         if([delegate respondsToSelector:action])
@@ -101,7 +92,7 @@
 
 - (void)dealloc
 {
-    [self.delegateSet removeAllObjects];
+    [self.delegateHashTable removeAllObjects];
 }
 
 @end
