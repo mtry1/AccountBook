@@ -8,8 +8,9 @@
 
 #import "ABChargeListViewController.h"
 #import "ABChargeDataManger.h"
+#import "ABChargeListCell.h"
 
-@interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
 
 @property (nonatomic, readonly) UITableView *tableView;
 
@@ -49,9 +50,10 @@
 {
     [super viewDidLoad];
     
-    [self.dataManger addDelegate:self];
+    [self.view addSubview:self.tableView];
     
-    NSLog(@"%@", self.categoryID);
+    [self.dataManger addDelegate:self];
+    [self.dataManger requestChargeDataWithID:self.categoryID];
 }
 
 #pragma mark - UITableViewDelegate
@@ -66,15 +68,30 @@
     return self.dataManger.numberOfItem;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"chargeListIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    ABChargeListCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[ABChargeListCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:identifier];
     }
+    
     return cell;
+}
+
+#pragma mark - 数据处理
+
+- (void)dataManagerReloadData:(ABDataManager *)manager
+{
+    [self.tableView reloadData];
 }
 
 @end

@@ -29,9 +29,18 @@
 - (void)requestChargeDataWithID:(NSString *)chargeID
 {
     ABChargeModel *model;
-    model = [[ABChargeModel alloc] init];
-    model.title = @"周杰伦";
-    model.money = @"500000元";
+    for(NSInteger i = 0; i < 20; i++)
+    {
+        model = [[ABChargeModel alloc] init];
+        model.title = @"周杰伦";
+        model.money = @"500000元";
+        model.startTimeInterval = 1442760901.491756;
+        model.endTimeInterval = 1442770901.491756;
+        model.remark = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里什的肌肤的肌肤";
+        [self.listItem addObject:model];
+    }
+    
+    [self callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
 
 ///请求添加

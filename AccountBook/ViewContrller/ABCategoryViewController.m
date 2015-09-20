@@ -55,7 +55,6 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     if(!_dataManger)
     {
         _dataManger = [[ABCategoryDataManger alloc] init];
-        [_dataManger addDelegate:self];
     }
     return _dataManger;
 }
@@ -70,6 +69,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     
     [self.view addSubview:self.collectionView];
     
+    [self.dataManger addDelegate:self];
     [self.dataManger requestInitData];
 }
 

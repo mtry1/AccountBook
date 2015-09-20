@@ -20,10 +20,10 @@
 @property (nonatomic, strong) NSString *money;
 
 ///开始日期
-@property (nonatomic, strong) NSDate *startData;
+@property (nonatomic) NSTimeInterval startTimeInterval;
 
 ///结束日期
-@property (nonatomic, strong) NSDate *endData;
+@property (nonatomic) NSTimeInterval endTimeInterval;
 
 ///备注
 @property (nonatomic, strong) NSString *remark;
