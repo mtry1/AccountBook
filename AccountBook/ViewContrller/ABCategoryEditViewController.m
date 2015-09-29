@@ -41,7 +41,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.dataManager addDelegate:self];
+    [self.dataManager.callBackUtils addDelegate:self];
     [self.tableView setEditing:YES animated:YES];
 }
 

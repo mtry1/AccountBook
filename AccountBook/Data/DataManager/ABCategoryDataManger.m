@@ -39,7 +39,7 @@
     [self.listItem addObject:[self modelForText:@"衣服"]];
     [self.listItem addObject:[self modelForText:@"其它"]];
     
-    [self callBackAction:@selector(dataManagerReloadData:) object1:self];
+    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
 
 - (NSInteger)numberOfItem
@@ -63,7 +63,7 @@
         [self.listItem addObject:[self modelForText:text]];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
-        [self callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+        [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
     }
 }
 
@@ -74,7 +74,7 @@
         [self.listItem removeObjectAtIndex:index];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
+        [self.callBackUtils callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
     }
 }
 
@@ -86,7 +86,7 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex inSection:0];
-    [self callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
+    [self.callBackUtils callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
 }
 
 - (ABCategoryModel *)modelForText:(NSString *)text

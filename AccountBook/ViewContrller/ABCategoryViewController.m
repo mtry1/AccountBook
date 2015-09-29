@@ -69,7 +69,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     
     [self.view addSubview:self.collectionView];
     
-    [self.dataManger addDelegate:self];
+    [self.dataManger.callBackUtils addDelegate:self];
     [self.dataManger requestInitData];
 }
 

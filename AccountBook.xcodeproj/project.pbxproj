@@ -36,6 +36,7 @@
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 		939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */; };
+		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
 		939690D21BADABF0008C09C9 /* ABCategoryEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryEditViewController.h; sourceTree = "<group>"; };
 		939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCategoryEditViewController.m; sourceTree = "<group>"; };
+		93F193BA1BBAABC30000CEF0 /* ABCallBackUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCallBackUtils.h; sourceTree = "<group>"; };
+		93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCallBackUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +243,8 @@
 				93679C831BA4417D002B2401 /* ABDefine.h */,
 				939690C71BAD2EB5008C09C9 /* ABUtils.h */,
 				939690C81BAD2EB5008C09C9 /* ABUtils.m */,
+				93F193BA1BBAABC30000CEF0 /* ABCallBackUtils.h */,
+				93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
 				938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */,
+				93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */,
 				93679C941BA46420002B2401 /* ABSetViewController.m in Sources */,
 				93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */,
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,

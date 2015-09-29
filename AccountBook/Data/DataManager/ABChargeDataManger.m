@@ -40,7 +40,7 @@
         [self.listItem addObject:model];
     }
     
-    [self callBackAction:@selector(dataManagerReloadData:) object1:self];
+    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
 
 ///请求添加
@@ -51,7 +51,7 @@
         [self.listItem addObject:model];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem inSection:0];
-        [self callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+        [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
     }
 }
 
@@ -63,7 +63,7 @@
         [self.listItem removeObjectAtIndex:index];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
+        [self.callBackUtils callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
     }
 }
 

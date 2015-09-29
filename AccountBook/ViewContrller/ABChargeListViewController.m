@@ -52,7 +52,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.dataManger addDelegate:self];
+    [self.dataManger.callBackUtils addDelegate:self];
     [self.dataManger requestChargeDataWithID:self.categoryID];
 }
 
