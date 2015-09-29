@@ -18,4 +18,7 @@
 ///每次调用都会产生一个唯一标示
 + (NSString *)uuid;
 
+///时间转换
++ (NSString *)dateString:(NSTimeInterval)timeInterval;
+
 @end

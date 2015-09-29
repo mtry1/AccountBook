@@ -42,4 +42,11 @@
     return string;
 }
 
+///时间转换
++ (NSString *)dateString:(NSTimeInterval)timeInterval
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return date.description;
+}
+
 @end

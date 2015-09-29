@@ -37,7 +37,10 @@
     [super viewDidLoad];
     
     self.title = @"编辑";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(touchUpInsideRightBarButtonItem:)];
     
     [self.view addSubview:self.tableView];
     

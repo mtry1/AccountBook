@@ -29,15 +29,15 @@
 {
     [self.listItem removeAllObjects];
     
-    [self.listItem addObject:[self modelForText:@"借出"]];
-    [self.listItem addObject:[self modelForText:@"借入"]];
-    [self.listItem addObject:[self modelForText:@"淘宝"]];
-    [self.listItem addObject:[self modelForText:@"夜宵"]];
-    [self.listItem addObject:[self modelForText:@"礼物"]];
-    [self.listItem addObject:[self modelForText:@"吃饭"]];
-    [self.listItem addObject:[self modelForText:@"零食"]];
-    [self.listItem addObject:[self modelForText:@"衣服"]];
-    [self.listItem addObject:[self modelForText:@"其它"]];
+//    [self.listItem addObject:[self modelForText:@"借出"]];
+//    [self.listItem addObject:[self modelForText:@"借入"]];
+//    [self.listItem addObject:[self modelForText:@"淘宝"]];
+//    [self.listItem addObject:[self modelForText:@"夜宵"]];
+//    [self.listItem addObject:[self modelForText:@"礼物"]];
+//    [self.listItem addObject:[self modelForText:@"吃饭"]];
+//    [self.listItem addObject:[self modelForText:@"零食"]];
+//    [self.listItem addObject:[self modelForText:@"衣服"]];
+    [self.listItem addObject:[self modelForText:@"哈哈"]];
     
     [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
 }

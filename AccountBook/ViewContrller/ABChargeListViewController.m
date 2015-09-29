@@ -82,9 +82,21 @@
     {
         cell = [[ABChargeListCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:identifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    ABChargeModel *model = [self.dataManger modelAtIndex:indexPath.row];
+    if(model)
+    {
+        [cell reloadWithModel:model];
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - 数据处理

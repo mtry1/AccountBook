@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *title;
 
 ///消费金额
-@property (nonatomic, strong) NSString *money;
+@property (nonatomic) CGFloat money;
 
 ///开始日期
 @property (nonatomic) NSTimeInterval startTimeInterval;
