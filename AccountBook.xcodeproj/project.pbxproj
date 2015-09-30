@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EE8A649B2FB20943CBD75E6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53436FEF700FB78AB4A621FF /* libPods.a */; };
-		93679C511BA3D811002B2401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93679C4F1BA3D811002B2401 /* Main.storyboard */; };
 		93679C531BA3D811002B2401 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93679C521BA3D811002B2401 /* Images.xcassets */; };
-		93679C561BA3D811002B2401 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93679C541BA3D811002B2401 /* LaunchScreen.xib */; };
 		93679C621BA3D811002B2401 /* AccountBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C611BA3D811002B2401 /* AccountBookTests.m */; };
 		93679C771BA44034002B2401 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C6D1BA44034002B2401 /* UIColor+Category.m */; };
 		93679C781BA44034002B2401 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C6F1BA44034002B2401 /* UIImage+Category.m */; };
@@ -58,9 +56,7 @@
 		8B2781DD69BA9EB5951B2653 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		93679C421BA3D811002B2401 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93679C461BA3D811002B2401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93679C501BA3D811002B2401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93679C521BA3D811002B2401 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AccountBook/Images.xcassets; sourceTree = "<group>"; };
-		93679C551BA3D811002B2401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		93679C5B1BA3D811002B2401 /* AccountBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93679C601BA3D811002B2401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93679C611BA3D811002B2401 /* AccountBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountBookTests.m; sourceTree = "<group>"; };
@@ -198,8 +194,6 @@
 		93679C451BA3D811002B2401 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				93679C4F1BA3D811002B2401 /* Main.storyboard */,
-				93679C541BA3D811002B2401 /* LaunchScreen.xib */,
 				93679C461BA3D811002B2401 /* Info.plist */,
 				938A2DA81BAE8EB90042B86B /* main.m */,
 			);
@@ -448,9 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93679C511BA3D811002B2401 /* Main.storyboard in Resources */,
 				939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */,
-				93679C561BA3D811002B2401 /* LaunchScreen.xib in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,25 +542,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		93679C4F1BA3D811002B2401 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93679C501BA3D811002B2401 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		93679C541BA3D811002B2401 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93679C551BA3D811002B2401 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		93679C631BA3D811002B2401 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -657,6 +630,7 @@
 			baseConfigurationReference = 52ABED0AE7CB5C55BEC49945 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
@@ -673,6 +647,7 @@
 			baseConfigurationReference = 8B2781DD69BA9EB5951B2653 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
