@@ -45,7 +45,6 @@
     [self.view addSubview:self.tableView];
     
     [self.dataManager.callBackUtils addDelegate:self];
-    [self.tableView setEditing:YES animated:YES];
 }
 
 #pragma mark - UITableViewDelegate

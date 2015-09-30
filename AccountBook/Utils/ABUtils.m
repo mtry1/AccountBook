@@ -48,7 +48,7 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
     
     NSInteger y = [dateComponent year];

@@ -7,6 +7,7 @@
 //
 
 #import "ABChargeEditViewController.h"
+#import "ABDatePicker.h"
 
 NSString *const ABChargeEditStartDate = @"开始日期";
 NSString *const ABChargeEditEndDate = @"结束日期";
@@ -18,6 +19,8 @@ NSString *const ABChargeEditNotes = @"备注";
 @interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, readonly) ABTableView *tableView;
+
+@property (nonatomic, readonly) ABDatePicker *datePicker;
 
 ///是否是添加模式
 @property (nonatomic) BOOL isAddMode;
@@ -32,6 +35,7 @@ NSString *const ABChargeEditNotes = @"备注";
 @implementation ABChargeEditViewController
 
 @synthesize tableView = _tableView;
+@synthesize datePicker = _datePicker;
 
 - (ABTableView *)tableView
 {
@@ -46,6 +50,15 @@ NSString *const ABChargeEditNotes = @"备注";
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 10)];
     }
     return _tableView;
+}
+
+- (ABDatePicker *)datePicker
+{
+    if(!_datePicker)
+    {
+        _datePicker = [[ABDatePicker alloc] init];;
+    }
+    return _datePicker;
 }
 
 - (NSArray *)listItem
@@ -122,18 +135,18 @@ NSString *const ABChargeEditNotes = @"备注";
         cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.accessoryType = UITableViewCellAccessoryNone;
     
     NSString *title = [self listItem][indexPath.section][indexPath.row];
     cell.textLabel.text = title;
     
+    cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+    
     if([title isEqualToString:ABChargeEditStartDate])
     {
-        cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+        
     }
     else if([title isEqualToString:ABChargeEditEndDate])
     {
-        cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
     }
     else if([title isEqualToString:ABChargeEditTitle])
     {
@@ -149,6 +162,32 @@ NSString *const ABChargeEditNotes = @"备注";
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *title = [self listItem][indexPath.section][indexPath.row];
+    if([title isEqualToString:ABChargeEditStartDate])
+    {
+        [self.datePicker show];
+    }
+    else if([title isEqualToString:ABChargeEditEndDate])
+    {
+    }
+    else if([title isEqualToString:ABChargeEditTitle])
+    {
+        
+    }
+    else if([title isEqualToString:ABChargeEditAmount])
+    {
+        
+    }
+    else if([title isEqualToString:ABChargeEditNotes])
+    {
+        
+    }
+    
+    NSLog(@"%@", title);
 }
 
 #pragma mark - 点击事件
