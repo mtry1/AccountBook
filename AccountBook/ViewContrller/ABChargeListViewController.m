@@ -7,6 +7,7 @@
 //
 
 #import "ABChargeListViewController.h"
+#import "ABChargeEditViewController.h"
 #import "ABChargeDataManger.h"
 #import "ABChargeListCell.h"
 
@@ -14,14 +15,14 @@
 
 @property (nonatomic, readonly) ABTableView *tableView;
 
-@property (nonatomic, readonly) ABChargeDataManger *dataManger;
+@property (nonatomic, readonly) ABChargeDataManger *dataManager;
 
 @end
 
 @implementation ABChargeListViewController
 
 @synthesize tableView = _tableView;
-@synthesize dataManger = _dataManger;
+@synthesize dataManager = _dataManager;
 
 - (ABTableView *)tableView
 {
@@ -37,13 +38,13 @@
     return _tableView;
 }
 
-- (ABChargeDataManger *)dataManger
+- (ABChargeDataManger *)dataManager
 {
-    if(!_dataManger)
+    if(!_dataManager)
     {
-        _dataManger = [[ABChargeDataManger alloc] init];
+        _dataManager = [[ABChargeDataManger alloc] init];
     }
-    return _dataManger;
+    return _dataManager;
 }
 
 - (void)viewDidLoad
@@ -52,8 +53,20 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.dataManger.callBackUtils addDelegate:self];
-    [self.dataManger requestChargeDataWithID:self.categoryID];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(touchUpInsideRightBarButtonItem:)];
+    
+    [self.dataManager.callBackUtils addDelegate:self];
+    [self.dataManager requestChargeDataWithID:self.categoryID];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.tableView setEditing:NO animated:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -65,7 +78,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataManger.numberOfItem;
+    return self.dataManager.numberOfItem;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,7 +98,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    ABChargeModel *model = [self.dataManger modelAtIndex:indexPath.row];
+    ABChargeModel *model = [self.dataManager dataAtIndex:indexPath.row];
     if(model)
     {
         [cell reloadWithModel:model];
@@ -94,9 +107,56 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        ABChargeModel *model = [self.dataManager dataAtIndex:indexPath.row];
+        if(model)
+        {
+            ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"您确定要删除"
+                                                                message:nil
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"确定", nil];
+            [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
+                
+                if(atIndex != alertView.cancelButtonIndex)
+                {
+                    [self.dataManager requestRemoveIndex:indexPath.row];
+                }
+            }];
+        }
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ABChargeEditViewController *controller = [[ABChargeEditViewController alloc] init];
+    controller.dataManager = self.dataManager;
+    controller.index = indexPath.row;
+    controller.title = @"详情";
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - 其他
+
+- (void)touchUpInsideRightBarButtonItem:(id)sender
+{
+    ABChargeEditViewController *controller = [[ABChargeEditViewController alloc] init];
+    controller.dataManager = self.dataManager;
+    controller.index = -1;
+    controller.title = @"添加";
+    
+    ABNavigationController *navigation = [[ABNavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navigation animated:YES completion:nil];
 }
 
 #pragma mark - 数据处理
@@ -104,6 +164,21 @@
 - (void)dataManagerReloadData:(ABDataManager *)manager
 {
     [self.tableView reloadData];
+}
+
+- (void)dataManager:(ABDataManager *)manager removeIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)dataManager:(ABDataManager *)manager updateIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)dataManager:(ABDataManager *)manager addIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end

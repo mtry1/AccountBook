@@ -31,7 +31,6 @@
 		938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DAB1BAE90C90042B86B /* ABChargeModel.m */; };
 		938A2DAF1BAEEF270042B86B /* ABChargeDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DAE1BAEEF270042B86B /* ABChargeDataManger.m */; };
 		938A2DB21BAEF6A60042B86B /* ABChargeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */; };
-		938A2DB51BAEF6F90042B86B /* ABChargeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB41BAEF6F90042B86B /* ABChargeDetailViewController.m */; };
 		938A2DB81BAF01740042B86B /* ABChargeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB71BAF01740042B86B /* ABChargeListCell.m */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
@@ -39,6 +38,7 @@
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
 		93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */; };
 		93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADCB1BBB732D008A1539 /* ABTableView.m */; };
+		93F5ADCF1BBB881D008A1539 /* ABChargeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADCE1BBB881D008A1539 /* ABChargeEditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,8 +102,6 @@
 		938A2DAE1BAEEF270042B86B /* ABChargeDataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeDataManger.m; sourceTree = "<group>"; };
 		938A2DB01BAEF6A60042B86B /* ABChargeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeListViewController.h; sourceTree = "<group>"; };
 		938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeListViewController.m; sourceTree = "<group>"; };
-		938A2DB31BAEF6F90042B86B /* ABChargeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeDetailViewController.h; sourceTree = "<group>"; };
-		938A2DB41BAEF6F90042B86B /* ABChargeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeDetailViewController.m; sourceTree = "<group>"; };
 		938A2DB61BAF01740042B86B /* ABChargeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeListCell.h; sourceTree = "<group>"; };
 		938A2DB71BAF01740042B86B /* ABChargeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeListCell.m; sourceTree = "<group>"; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
@@ -117,6 +115,8 @@
 		93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
 		93F5ADCA1BBB732D008A1539 /* ABTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableView.h; sourceTree = "<group>"; };
 		93F5ADCB1BBB732D008A1539 /* ABTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableView.m; sourceTree = "<group>"; };
+		93F5ADCD1BBB881D008A1539 /* ABChargeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditViewController.h; sourceTree = "<group>"; };
+		93F5ADCE1BBB881D008A1539 /* ABChargeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,8 +268,8 @@
 				939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */,
 				938A2DB01BAEF6A60042B86B /* ABChargeListViewController.h */,
 				938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */,
-				938A2DB31BAEF6F90042B86B /* ABChargeDetailViewController.h */,
-				938A2DB41BAEF6F90042B86B /* ABChargeDetailViewController.m */,
+				93F5ADCD1BBB881D008A1539 /* ABChargeEditViewController.h */,
+				93F5ADCE1BBB881D008A1539 /* ABChargeEditViewController.m */,
 				93679C921BA46420002B2401 /* ABSetViewController.h */,
 				93679C931BA46420002B2401 /* ABSetViewController.m */,
 			);
@@ -327,12 +327,12 @@
 		938A2D9F1BAE8E630042B86B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				938A2DA21BAE8E630042B86B /* ABModel.h */,
+				938A2DA31BAE8E630042B86B /* ABModel.m */,
 				938A2DA01BAE8E630042B86B /* ABCategoryModel.h */,
 				938A2DA11BAE8E630042B86B /* ABCategoryModel.m */,
 				938A2DAA1BAE90C90042B86B /* ABChargeModel.h */,
 				938A2DAB1BAE90C90042B86B /* ABChargeModel.m */,
-				938A2DA21BAE8E630042B86B /* ABModel.h */,
-				938A2DA31BAE8E630042B86B /* ABModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -508,6 +508,7 @@
 				93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */,
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,
 				93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */,
+				93F5ADCF1BBB881D008A1539 /* ABChargeEditViewController.m in Sources */,
 				938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */,
 				938A2DA71BAE8E630042B86B /* ABModel.m in Sources */,
 				938A2DA91BAE8EB90042B86B /* main.m in Sources */,
@@ -522,7 +523,6 @@
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,
 				939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,
-				938A2DB51BAEF6F90042B86B /* ABChargeDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

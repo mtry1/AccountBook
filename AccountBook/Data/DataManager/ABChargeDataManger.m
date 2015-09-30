@@ -29,13 +29,13 @@
 - (void)requestChargeDataWithID:(NSString *)chargeID
 {
     ABChargeModel *model;
-    for(NSInteger i = 0; i < 20; i++)
+    for(NSInteger i = 0; i < 1; i++)
     {
         model = [[ABChargeModel alloc] init];
         model.title = @"周杰伦";
         model.money = 55555.5555;
         model.startTimeInterval = 1440770901.491756;
-        model.endTimeInterval = 1442470901.491756 + i * 100000;
+        model.endTimeInterval = 1443280892.843838 + i * 100000;
         model.remark = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里什的肌肤的肌肤";
         [self.listItem addObject:model];
     }
@@ -72,9 +72,9 @@
     return self.listItem.count;
 }
 
-- (ABChargeModel *)modelAtIndex:(NSInteger)index
+- (ABChargeModel *)dataAtIndex:(NSInteger)index
 {
-    if(index < self.numberOfItem)
+    if(0 <= index && index < self.numberOfItem)
     {
         return self.listItem[index];
     }

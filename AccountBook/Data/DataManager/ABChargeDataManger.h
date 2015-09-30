@@ -22,6 +22,6 @@
 
 - (NSInteger)numberOfItem;
 
-- (ABChargeModel *)modelAtIndex:(NSInteger)index;
+- (ABChargeModel *)dataAtIndex:(NSInteger)index;
 
 @end

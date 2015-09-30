@@ -64,7 +64,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     [super viewDidLoad];
     
     self.title = @"随身记";
-    self.title = @"AAAA";
+    self.title = @"Demo";
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
 //                                                                              style:UIBarButtonItemStylePlain
 //                                                                             target:self
@@ -78,8 +78,6 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     
     [self.dataManger.callBackUtils addDelegate:self];
     [self.dataManger requestInitData];
-    
-    NSLog(@"%lf", [[NSDate date] timeIntervalSince1970]);
 }
 
 #pragma mark - UICollectionViewDelegate
