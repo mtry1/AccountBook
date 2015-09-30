@@ -119,7 +119,17 @@
     self.titleLabel.text = model.title;
     self.moneyLabel.text = [NSString stringWithFormat:@"%.2lf刀", model.money];
     self.startDateLabel.text = [NSString stringWithFormat:@"开始时间：%@", [ABUtils dateString:model.startTimeInterval]];
-    self.endDateLabel.text = [NSString stringWithFormat:@"结束时间：%@", [ABUtils dateString:model.endTimeInterval]];
+    
+    NSMutableString *endDateString = [[NSMutableString alloc] initWithString:@"结束时间："];
+    if(model.endTimeInterval)
+    {
+        [endDateString appendString:[ABUtils dateString:model.endTimeInterval]];
+    }
+    else
+    {
+        [endDateString appendString:@"-"];
+    }
+    self.endDateLabel.text = endDateString;
     
     if(model.isTimeOut)
     {
