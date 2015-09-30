@@ -33,6 +33,7 @@
     {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.font = [UIFont systemFontOfSize:18];
     }
     return _titleLabel;
 }
@@ -42,7 +43,8 @@
     if(!_moneyLabel)
     {
         _moneyLabel = [[UILabel alloc] init];
-        _moneyLabel.textColor = [UIColor redColor];
+        _moneyLabel.textColor = [UIColor colorWithUInt:0x308ac2];
+        _moneyLabel.font = [UIFont systemFontOfSize:18];
     }
     return _moneyLabel;
 }
@@ -52,6 +54,8 @@
     if(!_startDateLabel)
     {
         _startDateLabel = [[UILabel alloc] init];
+        _startDateLabel.font = [UIFont systemFontOfSize:14];
+        _startDateLabel.textColor = [UIColor grayColor];
     }
     return _startDateLabel;
 }
@@ -61,6 +65,8 @@
     if(!_endDateLabel)
     {
         _endDateLabel = [[UILabel alloc] init];
+        _endDateLabel.font = [UIFont systemFontOfSize:14];
+        _endDateLabel.textColor = [UIColor grayColor];
     }
     return _endDateLabel;
 }
@@ -82,24 +88,47 @@
 {
     [super layoutSubviews];
     
+    CGFloat space = 10;
     CGRect rect = CGRectZero;
-    rect.origin.x = 15;
-    rect.origin.y = 10;
+    
     rect.size.width = 100;
-    rect.size.height = 20;
+    rect.size.height = self.startDateLabel.font.lineHeight;
+    rect.origin.x = 15;
+    rect.origin.y = (CGRectGetHeight(self.contentView.frame) - rect.size.height * 2 - space) / 2;
     self.titleLabel.frame = rect;
     
     rect = self.titleLabel.frame;
-    rect.origin.y = CGRectGetMaxY(self.titleLabel.frame) + 10;
+    rect.size.height = self.moneyLabel.font.lineHeight;
+    rect.origin.y = CGRectGetMaxY(self.titleLabel.frame) + space;
     self.moneyLabel.frame = rect;
+    
+    space = 5;
+    rect.size.width = 150;
+    rect.size.height = self.startDateLabel.font.lineHeight;
+    rect.origin.x = CGRectGetWidth(self.contentView.frame) - rect.size.width - 10;
+    rect.origin.y = (CGRectGetHeight(self.contentView.frame) - rect.size.height * 2 - space) / 2;
+    self.startDateLabel.frame = rect;
+    
+    rect.origin.y = CGRectGetMaxY(self.startDateLabel.frame) + space;
+    rect.size.height = self.endDateLabel.font.lineHeight;
+    self.endDateLabel.frame = rect;
 }
 
 - (void)reloadWithModel:(ABChargeModel *)model
 {
     self.titleLabel.text = model.title;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%.2lf", model.money];
-    self.startDateLabel.text = [ABUtils dateString:model.startTimeInterval];
-    self.endDateLabel.text = [ABUtils dateString:model.endTimeInterval];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.2lf刀", model.money];
+    self.startDateLabel.text = [NSString stringWithFormat:@"开始时间：%@", [ABUtils dateString:model.startTimeInterval]];
+    self.endDateLabel.text = [NSString stringWithFormat:@"结束时间：%@", [ABUtils dateString:model.endTimeInterval]];
+    
+    if(model.isTimeOut)
+    {
+        self.moneyLabel.textColor = [UIColor redColor];
+    }
+    else
+    {
+        self.moneyLabel.textColor = [UIColor colorWithUInt:0x308ac2];
+    }
 }
 
 @end

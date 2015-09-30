@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ABChargeModel.h"
 
-@interface ABChargeListCell : UITableViewCell
+@interface ABChargeListCell : ABTableViewCell
 
 - (void)reloadWithModel:(ABChargeModel *)model;
 

@@ -37,6 +37,8 @@
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 		939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */; };
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
+		93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */; };
+		93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADCB1BBB732D008A1539 /* ABTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,10 @@
 		939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCategoryEditViewController.m; sourceTree = "<group>"; };
 		93F193BA1BBAABC30000CEF0 /* ABCallBackUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCallBackUtils.h; sourceTree = "<group>"; };
 		93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCallBackUtils.m; sourceTree = "<group>"; };
+		93F5ADC71BBB7285008A1539 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
+		93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
+		93F5ADCA1BBB732D008A1539 /* ABTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableView.h; sourceTree = "<group>"; };
+		93F5ADCB1BBB732D008A1539 /* ABTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +279,8 @@
 		938A2D8E1BAE8E3E0042B86B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				93F5ADCA1BBB732D008A1539 /* ABTableView.h */,
+				93F5ADCB1BBB732D008A1539 /* ABTableView.m */,
 				938A2D8F1BAE8E3E0042B86B /* ABActionSheet.h */,
 				938A2D901BAE8E3E0042B86B /* ABActionSheet.m */,
 				938A2D911BAE8E3E0042B86B /* ABAlertView.h */,
@@ -284,6 +292,8 @@
 		938A2D951BAE8E510042B86B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				93F5ADC71BBB7285008A1539 /* ABTableViewCell.h */,
+				93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */,
 				938A2D961BAE8E510042B86B /* ABCategoryCell.h */,
 				938A2D971BAE8E510042B86B /* ABCategoryCell.m */,
 				938A2DB61BAF01740042B86B /* ABChargeListCell.h */,
@@ -493,9 +503,11 @@
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
 				938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */,
 				93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */,
+				93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */,
 				93679C941BA46420002B2401 /* ABSetViewController.m in Sources */,
 				93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */,
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,
+				93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */,
 				938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */,
 				938A2DA71BAE8E630042B86B /* ABModel.m in Sources */,
 				938A2DA91BAE8EB90042B86B /* main.m in Sources */,

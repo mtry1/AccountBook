@@ -12,7 +12,7 @@
 
 @interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
 
-@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, readonly) ABTableView *tableView;
 
 @property (nonatomic, readonly) ABChargeDataManger *dataManger;
 
@@ -23,11 +23,11 @@
 @synthesize tableView = _tableView;
 @synthesize dataManger = _dataManger;
 
-- (UITableView *)tableView
+- (ABTableView *)tableView
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[ABTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;

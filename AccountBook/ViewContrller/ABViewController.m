@@ -14,7 +14,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
 }
 
 @end

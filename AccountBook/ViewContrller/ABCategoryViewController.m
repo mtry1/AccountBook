@@ -40,7 +40,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         
@@ -64,13 +64,22 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     [super viewDidLoad];
     
     self.title = @"随身记";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideLeftBarButtonItem:)];
+    self.title = @"AAAA";
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
+//                                                                              style:UIBarButtonItemStylePlain
+//                                                                             target:self
+//                                                                             action:@selector(touchUpInsideRightBarButtonItem:)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置"
+//                                                                             style:UIBarButtonItemStylePlain
+//                                                                            target:self
+//                                                                            action:@selector(touchUpInsideLeftBarButtonItem:)];
     
     [self.view addSubview:self.collectionView];
     
     [self.dataManger.callBackUtils addDelegate:self];
     [self.dataManger requestInitData];
+    
+    NSLog(@"%lf", [[NSDate date] timeIntervalSince1970]);
 }
 
 #pragma mark - UICollectionViewDelegate

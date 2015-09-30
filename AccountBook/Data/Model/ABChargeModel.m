@@ -10,4 +10,20 @@
 
 @implementation ABChargeModel
 
+- (BOOL)isTimeOut
+{
+    if(self.endTimeInterval)
+    {
+        NSString *nowDateString = [ABUtils dateString:[[NSDate date] timeIntervalSince1970]];
+        NSString *endDateString = [ABUtils dateString:self.endTimeInterval];
+        
+        if([nowDateString compare:endDateString] == NSOrderedDescending)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 @end

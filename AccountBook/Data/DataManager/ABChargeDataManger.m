@@ -34,8 +34,8 @@
         model = [[ABChargeModel alloc] init];
         model.title = @"周杰伦";
         model.money = 55555.5555;
-        model.startTimeInterval = 1442760901.491756;
-        model.endTimeInterval = 1442770901.491756;
+        model.startTimeInterval = 1440770901.491756;
+        model.endTimeInterval = 1441770901.491756 + i * 100000;
         model.remark = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里什的肌肤的肌肤";
         [self.listItem addObject:model];
     }

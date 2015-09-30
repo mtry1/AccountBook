@@ -10,7 +10,7 @@
 
 @interface ABCategoryEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABCategoryDataMangerDelegate>
 
-@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, readonly) ABTableView *tableView;
 
 @end
 
@@ -18,11 +18,11 @@
 
 @synthesize tableView = _tableView;
 
-- (UITableView *)tableView
+- (ABTableView *)tableView
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[ABTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.dataSource = self;
         _tableView.delegate = self;

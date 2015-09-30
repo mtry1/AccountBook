@@ -45,8 +45,17 @@
 ///时间转换
 + (NSString *)dateString:(NSTimeInterval)timeInterval
 {
-    NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
-    return date.description;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
+    
+    NSInteger y = [dateComponent year];
+    NSInteger m = [dateComponent month];
+    NSInteger d = [dateComponent day];
+    
+    return [NSString stringWithFormat:@"%04ld-%02ld-%02ld", y, m, d];
 }
 
 @end
