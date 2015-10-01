@@ -117,7 +117,7 @@
 - (void)reloadWithModel:(ABChargeModel *)model
 {
     self.titleLabel.text = model.title;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%.2lf", model.money];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.2lf元", model.money];
     self.startDateLabel.text = [NSString stringWithFormat:@"开始时间：%@", [ABUtils dateString:model.startTimeInterval]];
     
     NSMutableString *endDateString = [[NSMutableString alloc] initWithString:@"结束时间："];
