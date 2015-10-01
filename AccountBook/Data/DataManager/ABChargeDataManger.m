@@ -29,7 +29,7 @@
 - (void)requestChargeDataWithID:(NSString *)chargeID
 {
     ABChargeModel *model;
-    for(NSInteger i = 0; i < 1; i++)
+    for(NSInteger i = 0; i < 20; i++)
     {
         model = [[ABChargeModel alloc] init];
         model.title = @"周杰伦";

@@ -64,15 +64,14 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     [super viewDidLoad];
     
     self.title = @"随身记";
-    self.title = @"Demo";
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
-//                                                                              style:UIBarButtonItemStylePlain
-//                                                                             target:self
-//                                                                             action:@selector(touchUpInsideRightBarButtonItem:)];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置"
-//                                                                             style:UIBarButtonItemStylePlain
-//                                                                            target:self
-//                                                                            action:@selector(touchUpInsideLeftBarButtonItem:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(touchUpInsideRightBarButtonItem:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(touchUpInsideLeftBarButtonItem:)];
     
     [self.view addSubview:self.collectionView];
     
