@@ -18,6 +18,7 @@
 		93679C891BA442A5002B2401 /* ABCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C881BA442A5002B2401 /* ABCategoryViewController.m */; };
 		93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C8C1BA443F6002B2401 /* ABNavigationController.m */; };
 		93679C941BA46420002B2401 /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C931BA46420002B2401 /* ABSetViewController.m */; };
+		938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */; settings = {ASSET_TAGS = (); }; };
 		938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D901BAE8E3E0042B86B /* ABActionSheet.m */; };
 		938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D921BAE8E3E0042B86B /* ABAlertView.m */; };
 		938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D971BAE8E510042B86B /* ABCategoryCell.m */; };
@@ -78,6 +79,8 @@
 		93679C8E1BA44594002B2401 /* ABPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPrefixHeader.pch; sourceTree = "<group>"; };
 		93679C921BA46420002B2401 /* ABSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetViewController.h; sourceTree = "<group>"; };
 		93679C931BA46420002B2401 /* ABSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetViewController.m; sourceTree = "<group>"; };
+		938695D51BC4E34300F4B1A9 /* ABChargeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditCell.h; sourceTree = "<group>"; };
+		938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditCell.m; sourceTree = "<group>"; };
 		938A2D8F1BAE8E3E0042B86B /* ABActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABActionSheet.h; sourceTree = "<group>"; };
 		938A2D901BAE8E3E0042B86B /* ABActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABActionSheet.m; sourceTree = "<group>"; };
 		938A2D911BAE8E3E0042B86B /* ABAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAlertView.h; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 				938A2D971BAE8E510042B86B /* ABCategoryCell.m */,
 				938A2DB61BAF01740042B86B /* ABChargeListCell.h */,
 				938A2DB71BAF01740042B86B /* ABChargeListCell.m */,
+				938695D51BC4E34300F4B1A9 /* ABChargeEditCell.h */,
+				938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */,
 				938A2DA71BAE8E630042B86B /* ABModel.m in Sources */,
 				938A2DA91BAE8EB90042B86B /* main.m in Sources */,
+				938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */,
 				938A2DB21BAEF6A60042B86B /* ABChargeListViewController.m in Sources */,
 				938A2DA51BAE8E630042B86B /* ABCategoryDataManger.m in Sources */,
 				938A2DAF1BAEEF270042B86B /* ABChargeDataManger.m in Sources */,

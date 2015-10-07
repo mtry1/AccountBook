@@ -26,4 +26,22 @@
     return NO;
 }
 
+- (NSTimeInterval)startTimeInterval
+{
+    if(!_startTimeInterval)
+    {
+        _startTimeInterval = [[NSDate date] timeIntervalSince1970];
+    }
+    return _startTimeInterval;
+}
+
+- (NSTimeInterval)endTimeInterval
+{
+    if(!_endTimeInterval)
+    {
+        _endTimeInterval = [[NSDate date] timeIntervalSince1970];
+    }
+    return _endTimeInterval;
+}
+
 @end

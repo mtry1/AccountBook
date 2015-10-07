@@ -25,6 +25,8 @@
     self.window.rootViewController = mainViewController;
     [self.window makeKeyAndVisible];
     
+    [self initSVProgressHUD];
+    
     return YES;
 }
 
@@ -48,6 +50,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)initSVProgressHUD
+{
+    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
 }
 
 @end

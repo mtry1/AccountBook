@@ -58,4 +58,13 @@
     return [NSString stringWithFormat:@"%04ld-%02ld-%02ld", y, m, d];
 }
 
+///本地化时间
++ (NSString *)localDateString:(NSDate *)date
+{
+    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    return [formatter stringFromDate:date];
+}
+
 @end

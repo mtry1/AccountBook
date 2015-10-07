@@ -28,4 +28,6 @@
 #import "UIImage+Category.h"
 #import "UIViewController+Category.h"
 
+#import "SVProgressHUD.h"
+
 #endif

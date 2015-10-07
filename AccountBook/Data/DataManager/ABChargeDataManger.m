@@ -33,10 +33,10 @@
     {
         model = [[ABChargeModel alloc] init];
         model.title = @"周杰伦";
-        model.money = 55555.555555;
+        model.amount = 55555.555555;
         model.startTimeInterval = 1440770901.491756;
         model.endTimeInterval = 1443280892.843838 + i * 100000;
-        model.remark = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里什的肌肤的肌肤";
+        model.notes = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里到空间发大发啊速度啊速度加夫里到空间发大发啊速度啊速度加夫里到空间发大";
         [self.listItem addObject:model];
     }
     
@@ -50,7 +50,7 @@
     {
         [self.listItem addObject:model];
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
         [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
     }
 }

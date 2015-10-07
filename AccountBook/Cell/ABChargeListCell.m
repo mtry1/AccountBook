@@ -12,7 +12,7 @@
 
 @property (nonatomic, readonly) UILabel *titleLabel;
 
-@property (nonatomic, readonly) UILabel *moneyLabel;
+@property (nonatomic, readonly) UILabel *amountLabel;
 
 @property (nonatomic, readonly) UILabel *startDateLabel;
 
@@ -23,7 +23,7 @@
 @implementation ABChargeListCell
 
 @synthesize titleLabel = _titleLabel;
-@synthesize moneyLabel = _moneyLabel;
+@synthesize amountLabel = _amountLabel;
 @synthesize startDateLabel = _startDateLabel;
 @synthesize endDateLabel = _endDateLabel;
 
@@ -38,15 +38,15 @@
     return _titleLabel;
 }
 
-- (UILabel *)moneyLabel
+- (UILabel *)amountLabel
 {
-    if(!_moneyLabel)
+    if(!_amountLabel)
     {
-        _moneyLabel = [[UILabel alloc] init];
-        _moneyLabel.textColor = [UIColor colorWithUInt:0x308ac2];
-        _moneyLabel.font = [UIFont systemFontOfSize:18];
+        _amountLabel = [[UILabel alloc] init];
+        _amountLabel.textColor = [UIColor colorWithUInt:0x308ac2];
+        _amountLabel.font = [UIFont systemFontOfSize:18];
     }
-    return _moneyLabel;
+    return _amountLabel;
 }
 
 - (UILabel *)startDateLabel
@@ -77,7 +77,7 @@
     if(self)
     {
         [self.contentView addSubview:self.titleLabel];
-        [self.contentView addSubview:self.moneyLabel];
+        [self.contentView addSubview:self.amountLabel];
         [self.contentView addSubview:self.startDateLabel];
         [self.contentView addSubview:self.endDateLabel];
     }
@@ -98,9 +98,9 @@
     self.titleLabel.frame = rect;
     
     rect = self.titleLabel.frame;
-    rect.size.height = self.moneyLabel.font.lineHeight;
+    rect.size.height = self.amountLabel.font.lineHeight;
     rect.origin.y = CGRectGetMaxY(self.titleLabel.frame) + space;
-    self.moneyLabel.frame = rect;
+    self.amountLabel.frame = rect;
     
     space = 5;
     rect.size.width = 150;
@@ -117,7 +117,7 @@
 - (void)reloadWithModel:(ABChargeModel *)model
 {
     self.titleLabel.text = model.title;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%.2lf元", model.money];
+    self.amountLabel.text = [NSString stringWithFormat:@"%.2lf元", model.amount];
     self.startDateLabel.text = [NSString stringWithFormat:@"开始时间：%@", [ABUtils dateString:model.startTimeInterval]];
     
     NSMutableString *endDateString = [[NSMutableString alloc] initWithString:@"结束时间："];
@@ -133,11 +133,11 @@
     
     if(model.isTimeOut)
     {
-        self.moneyLabel.textColor = [UIColor redColor];
+        self.amountLabel.textColor = [UIColor redColor];
     }
     else
     {
-        self.moneyLabel.textColor = [UIColor colorWithUInt:0x308ac2];
+        self.amountLabel.textColor = [UIColor colorWithUInt:0x308ac2];
     }
 }
 

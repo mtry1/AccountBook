@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *title;
 
 ///消费金额
-@property (nonatomic) CGFloat money;
+@property (nonatomic) CGFloat amount;
 
 ///开始日期
 @property (nonatomic) NSTimeInterval startTimeInterval;
@@ -26,7 +26,7 @@
 @property (nonatomic) NSTimeInterval endTimeInterval;
 
 ///备注
-@property (nonatomic, strong) NSString *remark;
+@property (nonatomic, strong) NSString *notes;
 
 ///是否已经超过指定时间
 @property (nonatomic, readonly) BOOL isTimeOut;

@@ -15,6 +15,9 @@
 
 @optional;
 
+///更新整个表格
+- (void)dataManagerReloadData:(ABDataManager *)manager;
+
 ///增加
 - (void)dataManager:(ABDataManager *)manager addIndexPath:(NSIndexPath *)indexPath;
 
@@ -24,8 +27,11 @@
 ///更新
 - (void)dataManager:(ABDataManager *)manager updateIndexPath:(NSIndexPath *)indexPath;
 
-///更新整个表格
-- (void)dataManagerReloadData:(ABDataManager *)manager;
+///错误提醒
+- (void)dataManager:(ABDataManager *)manager errorMessge:(NSString *)message;
+
+///成功提醒
+- (void)dataManager:(ABDataManager *)manager successMessge:(NSString *)message;
 
 @end
 

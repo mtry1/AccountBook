@@ -8,6 +8,7 @@
 
 #import "ABChargeEditViewController.h"
 #import "ABDatePicker.h"
+#import "ABChargeEditCell.h"
 
 NSString *const ABChargeEditStartDate = @"开始日期";
 NSString *const ABChargeEditEndDate = @"结束日期";
@@ -16,7 +17,7 @@ NSString *const ABChargeEditAmount = @"额度";
 NSString *const ABChargeEditNotes = @"备注";
 
 
-@interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABDatePickerDeleage>
 
 @property (nonatomic, readonly) ABTableView *tableView;
 
@@ -33,6 +34,9 @@ NSString *const ABChargeEditNotes = @"备注";
 @end
 
 @implementation ABChargeEditViewController
+{
+    NSIndexPath *_currentSelectedIndexPath;
+}
 
 @synthesize tableView = _tableView;
 @synthesize datePicker = _datePicker;
@@ -56,7 +60,8 @@ NSString *const ABChargeEditNotes = @"备注";
 {
     if(!_datePicker)
     {
-        _datePicker = [[ABDatePicker alloc] init];;
+        _datePicker = [[ABDatePicker alloc] init];
+        _datePicker.delegate = self;
     }
     return _datePicker;
 }
@@ -77,6 +82,8 @@ NSString *const ABChargeEditNotes = @"备注";
     if(self.isAddMode)
     {
         self.isEditMode = YES;
+        
+        self.model = [[ABChargeModel alloc] init];
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭"
                                                                                  style:UIBarButtonItemStylePlain
@@ -128,37 +135,46 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ABTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
+    ABChargeEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if(!cell)
     {
-        cell = [[ABTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
+        cell = [[ABChargeEditCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"reuseIdentifier"];
         cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.detailTextLabel.numberOfLines = 5;
+        cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+        cell.detailTextLabel.textColor = [UIColor blackColor];
     }
     
     NSString *title = [self listItem][indexPath.section][indexPath.row];
     cell.textLabel.text = title;
     
-    cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     if([title isEqualToString:ABChargeEditStartDate])
     {
-        
+        cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+        cell.detailTextLabel.text = [ABUtils dateString:self.model.startTimeInterval];
     }
     else if([title isEqualToString:ABChargeEditEndDate])
     {
+        cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+        cell.detailTextLabel.text = [ABUtils dateString:self.model.startTimeInterval];
     }
     else if([title isEqualToString:ABChargeEditTitle])
     {
-        
+        cell.detailTextLabel.text = self.model.title;
     }
     else if([title isEqualToString:ABChargeEditAmount])
     {
-        
+        if(self.model.amount > 0)
+        {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.2lf", self.model.amount];
+        }
     }
     else if([title isEqualToString:ABChargeEditNotes])
     {
-        
+        cell.detailTextLabel.text = self.model.notes;
     }
     
     return cell;
@@ -166,6 +182,13 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(!self.isEditMode)
+    {
+        return;
+    }
+    
+    _currentSelectedIndexPath = indexPath;
+    
     NSString *title = [self listItem][indexPath.section][indexPath.row];
     if([title isEqualToString:ABChargeEditStartDate])
     {
@@ -173,6 +196,7 @@ NSString *const ABChargeEditNotes = @"备注";
     }
     else if([title isEqualToString:ABChargeEditEndDate])
     {
+        [self.datePicker show];
     }
     else if([title isEqualToString:ABChargeEditTitle])
     {
@@ -186,8 +210,24 @@ NSString *const ABChargeEditNotes = @"备注";
     {
         
     }
+}
+
+#pragma mark - ABDatePickerDeleage
+
+- (void)datePicker:(ABDatePicker *)picker didConfirmDate:(NSDate *)date
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:_currentSelectedIndexPath];
+    cell.detailTextLabel.text = [ABUtils localDateString:date];
     
-    NSLog(@"%@", title);
+    NSString *title = [self listItem][_currentSelectedIndexPath.section][_currentSelectedIndexPath.row];
+    if([title isEqualToString:ABChargeEditStartDate])
+    {
+        self.model.startTimeInterval = [date timeIntervalSince1970];
+    }
+    else if([title isEqualToString:ABChargeEditEndDate])
+    {
+        self.model.endTimeInterval = [date timeIntervalSince1970];
+    }
 }
 
 #pragma mark - 点击事件

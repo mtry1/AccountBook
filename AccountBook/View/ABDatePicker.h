@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class ABDatePicker;
+
+@protocol ABDatePickerDeleage <NSObject>
+
+- (void)datePicker:(ABDatePicker *)picker didConfirmDate:(NSDate *)date;
+
+@optional
+
+- (void)datePickerDidCancal:(ABDatePicker *)picker;
+
+@end
+
 @interface ABDatePicker : UIView
+
+@property (nonatomic, weak) id<ABDatePickerDeleage>delegate;
 
 @property (nonatomic, readonly) UIDatePicker *datePicker;
 
