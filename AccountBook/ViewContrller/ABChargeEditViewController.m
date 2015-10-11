@@ -7,39 +7,34 @@
 //
 
 #import "ABChargeEditViewController.h"
+#import "ABTextViewController.h"
 #import "ABDatePicker.h"
 #import "ABChargeEditCell.h"
-
-NSString *const ABChargeEditStartDate = @"开始日期";
-NSString *const ABChargeEditEndDate = @"结束日期";
-NSString *const ABChargeEditTitle = @"名称";
-NSString *const ABChargeEditAmount = @"额度";
-NSString *const ABChargeEditNotes = @"备注";
+#import "ABChargeEditDataManager.h"
 
 
-@interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABDatePickerDeleage>
+@interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABDatePickerDeleage, ABTextViewControllerDelegate, ABDataManagerTableCallBackDelegate>
 
 @property (nonatomic, readonly) ABTableView *tableView;
 
 @property (nonatomic, readonly) ABDatePicker *datePicker;
 
-///是否是添加模式
-@property (nonatomic) BOOL isAddMode;
-
-///是否是编辑模式
-@property (nonatomic) BOOL isEditMode;
-
-@property (nonatomic, strong) ABChargeModel *model;
+@property (nonatomic, readonly) ABChargeEditDataManager *editDataManager;
 
 @end
 
 @implementation ABChargeEditViewController
 {
+    ///当前选择的indexPath
     NSIndexPath *_currentSelectedIndexPath;
+    
+    ///是否是编辑模式
+    BOOL _isEdit;
 }
 
 @synthesize tableView = _tableView;
 @synthesize datePicker = _datePicker;
+@synthesize editDataManager = _editDataManager;
 
 - (ABTableView *)tableView
 {
@@ -66,45 +61,33 @@ NSString *const ABChargeEditNotes = @"备注";
     return _datePicker;
 }
 
-- (NSArray *)listItem
-{
-    return @[@[ABChargeEditStartDate, ABChargeEditEndDate],
-             @[ABChargeEditTitle],
-             @[ABChargeEditAmount],
-             @[ABChargeEditNotes]];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.isAddMode = self.index >= 0 ? NO : YES;
-    if(self.isAddMode)
+    _editDataManager = [[ABChargeEditDataManager alloc] initWithChargeDataManger:self.chargeDataManager
+                                                                           index:self.editIndex];
+    [_editDataManager.callBackUtils addDelegate:self];
+    
+    if(self.editDataManager.isModify)
     {
-        self.isEditMode = YES;
-        
-        self.model = [[ABChargeModel alloc] init];
-        
+        _isEdit = NO;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(touchRightBarButtonItem:)];
+    }
+    else
+    {
+        _isEdit = YES;
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭"
                                                                                  style:UIBarButtonItemStylePlain
                                                                                 target:self
                                                                                 action:@selector(touchLeftBarButtonItem:)];
-        
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成"
-                                                                                   style:UIBarButtonItemStylePlain
-                                                                                  target:self
-                                                                                  action:@selector(touchRightBarButtonItem:)];
-    }
-    else
-    {
-        self.isEditMode = NO;
-        
-        self.model = [self.dataManager dataAtIndex:self.index];
-        
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
-                                                                                   style:UIBarButtonItemStylePlain
-                                                                                  target:self
-                                                                                  action:@selector(touchRightBarButtonItem:)];
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(touchRightBarButtonItem:)];
     }
     
     [self.view addSubview:self.tableView];
@@ -115,22 +98,22 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self listItem].count;
+    return self.editDataManager.numberSection;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self listItem][section] count];
+    return [self.editDataManager numberOfRowAtSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *title = [self listItem][indexPath.section][indexPath.row];
-    if([title isEqualToString:ABChargeEditNotes])
+    ABChargeEditModel *model = [self.editDataManager dataAtIndexPath:indexPath];
+    if(model)
     {
-        return 100;
+        return [ABChargeEditCell heightWithModel:model width:CGRectGetWidth(self.tableView.frame)];
     }
-    return 50;
+    return ABChargeEditCellDefaultHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,42 +122,13 @@ NSString *const ABChargeEditNotes = @"备注";
     if(!cell)
     {
         cell = [[ABChargeEditCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"reuseIdentifier"];
-        cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.detailTextLabel.numberOfLines = 5;
-        cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
-        cell.detailTextLabel.textColor = [UIColor blackColor];
     }
     
-    NSString *title = [self listItem][indexPath.section][indexPath.row];
-    cell.textLabel.text = title;
-    
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    if([title isEqualToString:ABChargeEditStartDate])
+    ABChargeEditModel *model = [self.editDataManager dataAtIndexPath:indexPath];
+    if(model)
     {
-        cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-        cell.detailTextLabel.text = [ABUtils dateString:self.model.startTimeInterval];
-    }
-    else if([title isEqualToString:ABChargeEditEndDate])
-    {
-        cell.accessoryType = self.isEditMode ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-        cell.detailTextLabel.text = [ABUtils dateString:self.model.startTimeInterval];
-    }
-    else if([title isEqualToString:ABChargeEditTitle])
-    {
-        cell.detailTextLabel.text = self.model.title;
-    }
-    else if([title isEqualToString:ABChargeEditAmount])
-    {
-        if(self.model.amount > 0)
-        {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.2lf", self.model.amount];
-        }
-    }
-    else if([title isEqualToString:ABChargeEditNotes])
-    {
-        cell.detailTextLabel.text = self.model.notes;
+        [cell reloadWithModel:model isEdit:_isEdit];
     }
     
     return cell;
@@ -182,33 +136,42 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!self.isEditMode)
+    if(!_isEdit)
     {
         return;
     }
     
     _currentSelectedIndexPath = indexPath;
     
-    NSString *title = [self listItem][indexPath.section][indexPath.row];
-    if([title isEqualToString:ABChargeEditStartDate])
+    ABChargeEditModel *model = [self.editDataManager dataAtIndexPath:indexPath];
+    if(model)
     {
-        [self.datePicker show];
-    }
-    else if([title isEqualToString:ABChargeEditEndDate])
-    {
-        [self.datePicker show];
-    }
-    else if([title isEqualToString:ABChargeEditTitle])
-    {
-        
-    }
-    else if([title isEqualToString:ABChargeEditAmount])
-    {
-        
-    }
-    else if([title isEqualToString:ABChargeEditNotes])
-    {
-        
+        if([model.title isEqualToString:ABChargeEditStartDate] ||
+           [model.title isEqualToString:ABChargeEditEndDate])
+        {
+            [self.datePicker show];
+        }
+        else
+        {
+            ABTextViewController *controller = [[ABTextViewController alloc] init];
+            controller.title = model.title;
+            controller.delegate = self;
+            
+            if([model.title isEqualToString:ABChargeEditAmount])
+            {
+                controller.textView.keyboardType = UIKeyboardTypeNumberPad;
+                if([model.desc integerValue] > 0)
+                {
+                    controller.textView.text = model.desc;
+                }
+            }
+            else
+            {
+                controller.textView.text = model.desc;
+            }
+            
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
 }
 
@@ -216,17 +179,34 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (void)datePicker:(ABDatePicker *)picker didConfirmDate:(NSDate *)date
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:_currentSelectedIndexPath];
-    cell.detailTextLabel.text = [ABUtils localDateString:date];
-    
-    NSString *title = [self listItem][_currentSelectedIndexPath.section][_currentSelectedIndexPath.row];
-    if([title isEqualToString:ABChargeEditStartDate])
+    ABChargeEditModel *model = [self.editDataManager dataAtIndexPath:_currentSelectedIndexPath];
+    if(model)
     {
-        self.model.startTimeInterval = [date timeIntervalSince1970];
+        if([model.title isEqualToString:ABChargeEditStartDate] ||
+           [model.title isEqualToString:ABChargeEditEndDate])
+        {
+            model.date = date;
+        }
+        
+        [self.tableView reloadRowsAtIndexPaths:@[_currentSelectedIndexPath, ] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
-    else if([title isEqualToString:ABChargeEditEndDate])
+}
+
+#pragma mark - ABTextViewControllerDelegate
+
+- (void)textViewController:(ABTextViewController *)controller didFinishedText:(NSString *)text
+{
+    ABChargeEditModel *model = [self.editDataManager dataAtIndexPath:_currentSelectedIndexPath];
+    if(model)
     {
-        self.model.endTimeInterval = [date timeIntervalSince1970];
+        if([model.title isEqualToString:ABChargeEditAmount] ||
+           [model.title isEqualToString:ABChargeEditTitle] ||
+           [model.title isEqualToString:ABChargeEditNotes])
+        {
+            model.desc = text;
+        }
+        
+        [self.tableView reloadRowsAtIndexPaths:@[_currentSelectedIndexPath, ] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
@@ -234,7 +214,7 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (void)touchLeftBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    if(self.isAddMode)
+    if(!self.editDataManager.isModify)
     {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -242,26 +222,43 @@ NSString *const ABChargeEditNotes = @"备注";
 
 - (void)touchRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    if(self.isAddMode)
+    if(self.editDataManager.isModify)
     {
-        [self.dataManager requestAddModel:self.model];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else
-    {
-        self.isEditMode = !self.isEditMode;
-        
-        if(self.isEditMode)
+        if(_isEdit)
         {
-            self.navigationItem.rightBarButtonItem.title = @"完成";
+            if([self.editDataManager finishEdited])
+            {
+                self.navigationItem.rightBarButtonItem.title = @"编辑";
+                
+            }
+            else
+            {
+                return;
+            }
         }
         else
         {
-            self.navigationItem.rightBarButtonItem.title = @"编辑";
+            self.navigationItem.rightBarButtonItem.title = @"完成";
         }
+        
+        _isEdit = !_isEdit;
         
         [self.tableView reloadData];
     }
+    else
+    {
+        if([self.editDataManager finishEdited])
+        {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+}
+
+#pragma mark - 数据处理
+
+- (void)dataManager:(ABDataManager *)manager errorMessge:(NSString *)message
+{
+    [SVProgressHUD showInfoWithStatus:message];
 }
 
 @end

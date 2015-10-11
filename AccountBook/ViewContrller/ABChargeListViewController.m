@@ -140,8 +140,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ABChargeEditViewController *controller = [[ABChargeEditViewController alloc] init];
-    controller.dataManager = self.dataManager;
-    controller.index = indexPath.row;
+    controller.chargeDataManager = self.dataManager;
+    controller.editIndex = indexPath.row;
     controller.title = @"详情";
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -151,8 +151,8 @@
 - (void)touchUpInsideRightBarButtonItem:(id)sender
 {
     ABChargeEditViewController *controller = [[ABChargeEditViewController alloc] init];
-    controller.dataManager = self.dataManager;
-    controller.index = -1;
+    controller.chargeDataManager = self.dataManager;
+    controller.editIndex = -1;
     controller.title = @"添加";
     
     ABNavigationController *navigation = [[ABNavigationController alloc] initWithRootViewController:controller];

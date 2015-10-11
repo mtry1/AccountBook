@@ -12,6 +12,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "UIColor+Category.h"
+#import "UIImage+Category.h"
+#import "NSString+Category.h"
+
+#import "SVProgressHUD.h"
+
 #import "ABDefine.h"
 #import "ABUtils.h"
 #import "ABViewController.h"
@@ -23,11 +29,5 @@
 #import "ABCallBackUtils.h"
 #import "ABTableViewCell.h"
 #import "ABTableView.h"
-
-#import "UIColor+Category.h"
-#import "UIImage+Category.h"
-#import "UIViewController+Category.h"
-
-#import "SVProgressHUD.h"
 
 #endif

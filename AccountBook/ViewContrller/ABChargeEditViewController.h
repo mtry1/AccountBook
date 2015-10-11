@@ -11,9 +11,9 @@
 
 @interface ABChargeEditViewController : ABViewController
 
-@property (nonatomic, strong) ABChargeDataManger *dataManager;
+@property (nonatomic, strong) ABChargeDataManger *chargeDataManager;
 
 ///如果index为－1表示添加，否则认为修改
-@property (nonatomic) NSInteger index;
+@property (nonatomic) NSInteger editIndex;
 
 @end

@@ -36,7 +36,7 @@
         model.amount = 55555.555555;
         model.startTimeInterval = 1440770901.491756;
         model.endTimeInterval = 1443280892.843838 + i * 100000;
-        model.notes = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里到空间发大发啊速度啊速度加夫里到空间发大发啊速度啊速度加夫里到空间发大";
+        model.notes = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里到空间发大发啊速度";
         [self.listItem addObject:model];
     }
     

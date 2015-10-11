@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ABChargeEditDataManager.h"
+
+extern NSInteger const ABChargeEditCellDefaultHeight;
 
 @interface ABChargeEditCell : ABTableViewCell
 
-@property (nonatomic, readonly) UILabel *detailsLabel;
+- (void)reloadWithModel:(ABChargeEditModel *)model isEdit:(BOOL)isEdit;
+
++ (CGFloat)heightWithModel:(ABChargeEditModel *)model width:(CGFloat)width;
 
 @end
