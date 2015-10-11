@@ -8,6 +8,10 @@
 
 #import "ABViewController.h"
 
+@interface ABViewController ()
+
+@end
+
 @implementation ABViewController
 
 - (void)viewDidLoad
