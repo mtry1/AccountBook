@@ -35,9 +35,14 @@
     
     [self.view addSubview:self.textView];
     
-    [self.textView becomeFirstResponder];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.textView becomeFirstResponder];
 }
 
 - (void)viewDidLayoutSubviews
