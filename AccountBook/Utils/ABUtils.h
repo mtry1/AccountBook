@@ -24,4 +24,10 @@
 ///本地化时间
 + (NSString *)localDateString:(NSDate *)date;
 
+///计算普通字符串高
++ (CGFloat)calculateHeightForWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font;
+
+///计算普通字符串宽
++ (CGFloat)calculateWidthForHeight:(CGFloat)height text:(NSString *)text font:(UIFont *)font;
+
 @end

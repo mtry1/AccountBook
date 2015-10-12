@@ -67,4 +67,18 @@
     return [formatter stringFromDate:date];
 }
 
+///计算普通字符串高
++ (CGFloat)calculateHeightForWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font
+{
+    CGSize size = CGSizeMake(width, CGFLOAT_MAX);
+    return [text boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:font} context:NULL].size.width;
+}
+
+///计算普通字符串宽
++ (CGFloat)calculateWidthForHeight:(CGFloat)height text:(NSString *)text font:(UIFont *)font
+{
+    CGSize size = CGSizeMake(CGFLOAT_MAX, height);
+    return [text boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:font} context:NULL].size.width;
+}
+
 @end
