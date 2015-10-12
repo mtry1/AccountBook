@@ -86,7 +86,7 @@ NSString *const ABChargeEditNotes = @"备注";
             }
             else if([title isEqualToString:ABChargeEditAmount])
             {
-                editModel.desc = chargeModel ? [NSString stringWithFormat:@"%.lf", chargeModel.amount] : @"";
+                editModel.desc = chargeModel ? [NSString stringWithFormat:@"%.2lf", chargeModel.amount] : @"";
             }
             else if([title isEqualToString:ABChargeEditNotes])
             {
