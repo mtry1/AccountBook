@@ -15,6 +15,7 @@
 #import "UIColor+Category.h"
 #import "UIImage+Category.h"
 #import "NSString+Category.h"
+#import "NSDate+Category.h"
 
 #import "SVProgressHUD.h"
 

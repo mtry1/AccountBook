@@ -149,6 +149,25 @@
         if([model.title isEqualToString:ABChargeEditStartDate] ||
            [model.title isEqualToString:ABChargeEditEndDate])
         {
+            if([model.title isEqualToString:ABChargeEditStartDate])
+            {
+                ABChargeEditModel *tempModel = [self.editDataManager dataForTitle:ABChargeEditEndDate];
+                if(tempModel)
+                {
+                    self.datePicker.datePicker.maximumDate = tempModel.date;
+                }
+                self.datePicker.datePicker.minimumDate = nil;
+            }
+            else
+            {
+                ABChargeEditModel *tempModel = [self.editDataManager dataForTitle:ABChargeEditStartDate];
+                if(tempModel)
+                {
+                    self.datePicker.datePicker.minimumDate = tempModel.date;
+                }
+                self.datePicker.datePicker.maximumDate = nil;
+            }
+            
             [self.datePicker show];
         }
         else

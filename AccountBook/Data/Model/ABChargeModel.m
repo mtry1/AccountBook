@@ -35,13 +35,4 @@
     return _startTimeInterval;
 }
 
-- (NSTimeInterval)endTimeInterval
-{
-    if(!_endTimeInterval)
-    {
-        _endTimeInterval = [[NSDate date] timeIntervalSince1970];
-    }
-    return _endTimeInterval;
-}
-
 @end

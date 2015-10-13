@@ -34,6 +34,8 @@ extern NSString *const ABChargeEditNotes;
 
 - (ABChargeEditModel *)dataAtIndexPath:(NSIndexPath *)indexPath;
 
+- (ABChargeEditModel *)dataForTitle:(NSString *)title;
+
 - (BOOL)finishEdited;
 
 @end

@@ -78,7 +78,7 @@ NSString *const ABChargeEditNotes = @"备注";
             }
             else if([title isEqualToString:ABChargeEditEndDate])
             {
-                editModel.date = chargeModel ? [NSDate dateWithTimeIntervalSince1970:chargeModel.endTimeInterval] : [NSDate date];
+                editModel.date = (chargeModel && chargeModel.endTimeInterval > 0) ? [NSDate dateWithTimeIntervalSince1970:chargeModel.endTimeInterval] : nil;
             }
             else if([title isEqualToString:ABChargeEditTitle])
             {

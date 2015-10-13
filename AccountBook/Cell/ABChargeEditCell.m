@@ -47,7 +47,14 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
     if([model.title isEqualToString:ABChargeEditStartDate] ||
        [model.title isEqualToString:ABChargeEditEndDate])
     {
-        self.detailTextLabel.text = [ABUtils dateString:[model.date timeIntervalSince1970]];
+        if(model.date)
+        {
+            self.detailTextLabel.text = [ABUtils dateString:[model.date timeIntervalSince1970]];
+        }
+        else
+        {
+            self.detailTextLabel.text = @"-";
+        }
     }
     else if([model.title isEqualToString:ABChargeEditTitle] ||
             [model.title isEqualToString:ABChargeEditAmount])
