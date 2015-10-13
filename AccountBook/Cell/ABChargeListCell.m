@@ -91,7 +91,7 @@
     CGFloat space = 10;
     CGRect rect = CGRectZero;
     
-    rect.size.width = 100;
+    rect.size.width = 150;
     rect.size.height = self.startDateLabel.font.lineHeight;
     rect.origin.x = 15;
     rect.origin.y = (CGRectGetHeight(self.contentView.frame) - rect.size.height * 2 - space) / 2;
@@ -117,7 +117,7 @@
 - (void)reloadWithModel:(ABChargeModel *)model
 {
     self.titleLabel.text = model.title;
-    self.amountLabel.text = [NSString stringWithFormat:@"%.2lf元", model.amount];
+    self.amountLabel.text = [NSString stringWithFormat:@"%.lf元", model.amount];
     self.startDateLabel.text = [NSString stringWithFormat:@"开始时间：%@", [ABUtils dateString:model.startTimeInterval]];
     
     NSMutableString *endDateString = [[NSMutableString alloc] initWithString:@"结束时间："];

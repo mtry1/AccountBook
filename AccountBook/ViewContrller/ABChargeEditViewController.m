@@ -183,7 +183,7 @@
             
             if([model.title isEqualToString:ABChargeEditAmount])
             {
-                controller.textView.keyboardType = UIKeyboardTypeDecimalPad;
+                controller.textView.keyboardType = UIKeyboardTypeNumberPad;
                 controller.textView.text = model.desc;
             }
             else
