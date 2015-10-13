@@ -17,6 +17,9 @@
 ///请求添加
 - (void)requestAddModel:(ABChargeModel *)model;
 
+///请求修改
+- (void)requestUpdateModel:(ABChargeModel *)model atIndex:(NSInteger)index;
+
 ///请求删除
 - (void)requestRemoveIndex:(NSInteger)index;
 

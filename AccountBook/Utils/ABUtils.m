@@ -62,7 +62,6 @@
 + (NSString *)localDateString:(NSDate *)date
 {
     NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     [formatter setDateFormat:@"YYYY-MM-dd"];
     return [formatter stringFromDate:date];
 }

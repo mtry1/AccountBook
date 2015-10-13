@@ -168,6 +168,11 @@
                 self.datePicker.datePicker.maximumDate = nil;
             }
             
+            if(model.date)
+            {
+                self.datePicker.datePicker.date = model.date;
+            }
+            
             [self.datePicker show];
         }
         else

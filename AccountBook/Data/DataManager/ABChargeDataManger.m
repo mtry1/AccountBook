@@ -34,8 +34,8 @@
         model = [[ABChargeModel alloc] init];
         model.title = @"周杰伦";
         model.amount = 55555.555555;
-        model.startTimeInterval = 1440770901.491756;
-        model.endTimeInterval = 1443280892.843838 + i * 100000;
+        model.startTimeInterval = 1440770901.491756 + i * 100000;
+        model.endTimeInterval = 1443280892.843838 + i * 200000;
         model.notes = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里到空间发大发啊速度";
         [self.listItem addObject:model];
     }
@@ -48,17 +48,34 @@
 {
     if([model isKindOfClass:[ABChargeModel class]])
     {
-        [self.listItem addObject:model];
+        NSInteger i;
+        for(i = self.numberOfItem - 1; i >= 0; i--)
+        {
+            ABChargeModel *tempModel = self.listItem[i];
+            if(tempModel.startTimeInterval <= model.startTimeInterval)
+            {
+                break;
+            }
+        }
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
+        [self.listItem insertObject:model atIndex:i + 1];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i + 1 inSection:0];
         [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
     }
+}
+
+///请求修改
+- (void)requestUpdateModel:(ABChargeModel *)model atIndex:(NSInteger)index
+{
+    [self requestRemoveIndex:index];
+    [self requestAddModel:model];
 }
 
 ///请求删除
 - (void)requestRemoveIndex:(NSInteger)index
 {
-    if(index < self.numberOfItem)
+    if(0 <= index && index < self.numberOfItem)
     {
         [self.listItem removeObjectAtIndex:index];
         

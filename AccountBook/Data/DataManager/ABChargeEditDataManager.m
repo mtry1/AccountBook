@@ -164,7 +164,63 @@ NSString *const ABChargeEditNotes = @"备注";
         return NO;
     }
     
+    if(self.isModify)
+    {
+        [self.chargeDataManager requestUpdateModel:[self chargeModelForSelf] atIndex:self.editIndex];
+    }
+    else
+    {
+        [self.chargeDataManager requestAddModel:[self chargeModelForSelf]];
+    }
+    
     return YES;
+}
+
+- (ABChargeModel *)chargeModelForSelf
+{
+    ABChargeModel *chargeModel = [[ABChargeModel alloc] init];
+    for(NSArray *array in self.listItem)
+    {
+        for(ABChargeEditModel *editModel in array)
+        {
+            if([editModel.title isEqualToString:ABChargeEditStartDate])
+            {
+                if(editModel.date)
+                {
+                    chargeModel.startTimeInterval = [editModel.date timeIntervalSince1970];
+                }
+            }
+            else if([editModel.title isEqualToString:ABChargeEditEndDate])
+            {
+                if(editModel.date)
+                {
+                    chargeModel.endTimeInterval = [editModel.date timeIntervalSince1970];
+                }
+            }
+            else if([editModel.title isEqualToString:ABChargeEditTitle])
+            {
+                if(editModel.desc.length)
+                {
+                    chargeModel.title = editModel.desc;
+                }
+            }
+            else if([editModel.title isEqualToString:ABChargeEditAmount])
+            {
+                if(editModel.desc.length)
+                {
+                    chargeModel.amount = [editModel.desc floatValue];
+                }
+            }
+            else if([editModel.title isEqualToString:ABChargeEditNotes])
+            {
+                if(editModel.desc.length)
+                {
+                    chargeModel.notes = editModel.desc;
+                }
+            }
+        }
+    }
+    return chargeModel;
 }
 
 @end

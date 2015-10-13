@@ -179,6 +179,7 @@
 - (void)dataManager:(ABDataManager *)manager addIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 @end

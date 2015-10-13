@@ -25,10 +25,10 @@
 ///请求初始数据
 - (void)requestInitData;
 
-///请求添加一个
+///请求添加
 - (void)requestAddObjectWithText:(NSString *)text;
 
-///请求删除一个
+///请求删除
 - (void)requestRemoveIndex:(NSInteger)index;
 
 ///请求移动

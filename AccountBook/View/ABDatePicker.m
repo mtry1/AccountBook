@@ -106,8 +106,6 @@
 
 - (void)show
 {
-    self.datePicker.date = [NSDate date];
-    
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
     self.backgroundView.alpha = 0;
