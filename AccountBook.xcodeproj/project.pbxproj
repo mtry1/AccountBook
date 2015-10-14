@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0EE8A649B2FB20943CBD75E6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53436FEF700FB78AB4A621FF /* libPods.a */; };
 		930A36DA1BCD1D9900521A4E /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 930A36D91BCD1D9900521A4E /* NSDate+Category.m */; };
+		9313E05D1BCE479F0068D8FA /* chargeList_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05B1BCE479F0068D8FA /* chargeList_arrow@2x.png */; settings = {ASSET_TAGS = (); }; };
+		9313E05E1BCE479F0068D8FA /* chargeList_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05C1BCE479F0068D8FA /* chargeList_arrow@3x.png */; settings = {ASSET_TAGS = (); }; };
 		933110961BCA1EF400C0F3BC /* ABTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 933110951BCA1EF400C0F3BC /* ABTextViewController.m */; };
 		933110991BCA46CA00C0F3BC /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 933110981BCA46CA00C0F3BC /* NSString+Category.m */; };
 		9331109C1BCA8FC700C0F3BC /* ABChargeEditDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9331109B1BCA8FC700C0F3BC /* ABChargeEditDataManager.m */; };
@@ -61,6 +63,8 @@
 		8B2781DD69BA9EB5951B2653 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		930A36D81BCD1D9900521A4E /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		930A36D91BCD1D9900521A4E /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		9313E05B1BCE479F0068D8FA /* chargeList_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chargeList_arrow@2x.png"; sourceTree = "<group>"; };
+		9313E05C1BCE479F0068D8FA /* chargeList_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chargeList_arrow@3x.png"; sourceTree = "<group>"; };
 		933110941BCA1EF400C0F3BC /* ABTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTextViewController.h; sourceTree = "<group>"; };
 		933110951BCA1EF400C0F3BC /* ABTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTextViewController.m; sourceTree = "<group>"; };
 		933110971BCA46CA00C0F3BC /* NSString+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
@@ -167,6 +171,15 @@
 				8B2781DD69BA9EB5951B2653 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9313E05A1BCE479F0068D8FA /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				9313E05B1BCE479F0068D8FA /* chargeList_arrow@2x.png */,
+				9313E05C1BCE479F0068D8FA /* chargeList_arrow@3x.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		93679C391BA3D810002B2401 = {
@@ -364,17 +377,10 @@
 		939690CD1BADA8F3008C09C9 /* Resouce */ = {
 			isa = PBXGroup;
 			children = (
-				939690CE1BADA8F3008C09C9 /* Image */,
+				9313E05A1BCE479F0068D8FA /* Image */,
 				939690CF1BADA8F3008C09C9 /* Other */,
 			);
 			path = Resouce;
-			sourceTree = "<group>";
-		};
-		939690CE1BADA8F3008C09C9 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		939690CF1BADA8F3008C09C9 /* Other */ = {
@@ -468,7 +474,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */,
+				9313E05E1BCE479F0068D8FA /* chargeList_arrow@3x.png in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
+				9313E05D1BCE479F0068D8FA /* chargeList_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
