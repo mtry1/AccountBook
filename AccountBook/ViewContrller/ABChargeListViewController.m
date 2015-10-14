@@ -10,10 +10,13 @@
 #import "ABChargeEditViewController.h"
 #import "ABChargeDataManger.h"
 #import "ABChargeListCell.h"
+#import "ABStatisticsView.h"
 
 @interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
 
 @property (nonatomic, readonly) ABTableView *tableView;
+
+@property (nonatomic, readonly) ABStatisticsView *statisticsView;
 
 @property (nonatomic, readonly) ABChargeDataManger *dataManager;
 
@@ -22,13 +25,18 @@
 @implementation ABChargeListViewController
 
 @synthesize tableView = _tableView;
+@synthesize statisticsView  = _statisticsView;
 @synthesize dataManager = _dataManager;
 
 - (ABTableView *)tableView
 {
     if(!_tableView)
     {
-        _tableView = [[ABTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        CGRect rect = self.view.bounds;
+        rect.origin.y = CGRectGetMaxY(self.statisticsView.frame);
+        rect.size.height = CGRectGetHeight(self.view.frame) - CGRectGetMaxY(self.statisticsView.frame);
+        
+        _tableView = [[ABTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -36,6 +44,16 @@
         _tableView.tableFooterView = [[UIView alloc] init];
     }
     return _tableView;
+}
+
+- (ABStatisticsView *)statisticsView
+{
+    if(!_statisticsView)
+    {
+        _statisticsView = [[ABStatisticsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+        _statisticsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    }
+    return _statisticsView;
 }
 
 - (ABChargeDataManger *)dataManager
@@ -52,6 +70,7 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.statisticsView];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加"
                                                                               style:UIBarButtonItemStylePlain
@@ -60,6 +79,8 @@
     
     [self.dataManager.callBackUtils addDelegate:self];
     [self.dataManager requestChargeDataWithID:self.categoryID];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

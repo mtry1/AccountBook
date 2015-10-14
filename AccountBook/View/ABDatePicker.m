@@ -21,6 +21,10 @@
 @end
 
 @implementation ABDatePicker
+{
+    ///是否点击确定关闭
+    BOOL _isConfirmDateClose;
+}
 
 @synthesize backgroundView = _backgroundView;
 @synthesize contentView = _contentView;
@@ -108,6 +112,7 @@
 {
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
+    _isConfirmDateClose = NO;
     self.backgroundView.alpha = 0;
     
     CGRect startRect = self.contentView.bounds;
@@ -140,11 +145,18 @@
     } completion:^(BOOL finished) {
         
         [self removeFromSuperview];
+        
+        if(!_isConfirmDateClose && [self.delegate respondsToSelector:@selector(datePickerDidCancal:)])
+        {
+            [self.delegate datePickerDidCancal:self];
+        }
     }];
 }
 
 - (void)touchUpInsideConfirmButton:(UIButton *)button
 {
+    _isConfirmDateClose = YES;
+    
     [self close];
     
     if([self.delegate respondsToSelector:@selector(datePicker:didConfirmDate:)])
