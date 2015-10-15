@@ -9,6 +9,15 @@
 #import "ABDataManager.h"
 #import "ABChargeModel.h"
 
+@class ABChargeDataManger;
+
+@protocol ABChargeDataMangerDelegate <NSObject>
+
+///计算额度
+- (void)chargeDataManger:(ABChargeDataManger *)chargeDataManger didCalculateAmount:(NSNumber *)amount startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
+@end
+
 @interface ABChargeDataManger : ABDataManager
 
 ///请求列表数据
@@ -22,6 +31,9 @@
 
 ///请求删除
 - (void)requestRemoveIndex:(NSInteger)index;
+
+///请求计算额度
+- (void)requestCalculateAmountWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 - (NSInteger)numberOfItem;
 

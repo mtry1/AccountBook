@@ -12,7 +12,7 @@
 #import "ABChargeListCell.h"
 #import "ABStatisticsView.h"
 
-@interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
+@interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource, ABChargeDataMangerDelegate, ABStatisticsViewDelegate>
 
 @property (nonatomic, readonly) ABTableView *tableView;
 
@@ -50,8 +50,9 @@
 {
     if(!_statisticsView)
     {
-        _statisticsView = [[ABStatisticsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+        _statisticsView = [[ABStatisticsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 30)];
         _statisticsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _statisticsView.delegate = self;
     }
     return _statisticsView;
 }
@@ -167,6 +168,13 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+#pragma mark - ABStatisticsViewDelegate
+
+- (void)statisticsView:(ABStatisticsView *)statisticsView didSelectStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    [self.dataManager requestCalculateAmountWithStartDate:startDate endDate:endDate];
+}
+
 #pragma mark - 其他
 
 - (void)touchUpInsideRightBarButtonItem:(id)sender
@@ -201,6 +209,13 @@
 {
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+}
+
+- (void)chargeDataManger:(ABChargeDataManger *)chargeDataManger didCalculateAmount:(NSNumber *)amount startDate:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    self.statisticsView.startDate = startDate;
+    self.statisticsView.endDate = endDate;
+    [self.statisticsView updateStatisticsAmount:[amount floatValue]];
 }
 
 @end

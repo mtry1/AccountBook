@@ -120,6 +120,24 @@
     return _datePicker;
 }
 
+- (void)setStartDate:(NSDate *)startDate
+{
+    if(![_startDate isEqualToDate:startDate])
+    {
+        _startDate = startDate;
+        [self.startButton setTitle:[ABUtils dateString:[startDate timeIntervalSince1970]] forState:UIControlStateNormal];
+    }
+}
+
+- (void)setEndDate:(NSDate *)endDate
+{
+    if(![_endDate isEqualToDate:endDate])
+    {
+        _endDate = endDate;
+        [self.endButton setTitle:[ABUtils dateString:[endDate timeIntervalSince1970]] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - 生命周期
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -134,11 +152,8 @@
         [self addSubview:self.amountLabel];
         
         self.backgroundColor = [UIColor whiteColor];
-        _startDate = [NSDate date];
-        _endDate = [NSDate date];
-        
-        [self.startButton setTitle:[ABUtils dateString:[self.startDate timeIntervalSince1970]] forState:UIControlStateNormal];
-        [self.endButton setTitle:[ABUtils dateString:[self.endDate timeIntervalSince1970]] forState:UIControlStateNormal];
+        self.startDate = [NSDate date];
+        self.endDate = [NSDate date];
     }
     return self;
 }
@@ -181,6 +196,17 @@
     button.selected = !button.selected;
     [self updateDateImageButton:button];
     [self.datePicker show];
+    
+    if(self.endDate)
+    {
+        self.datePicker.datePicker.maximumDate = self.endDate;
+    }
+    self.datePicker.datePicker.minimumDate = nil;
+    
+    if(self.startDate)
+    {
+        self.datePicker.datePicker.date = self.startDate;
+    }
 }
 
 - (void)touchUpInsideEndButton:(UIButton *)button
@@ -188,6 +214,17 @@
     button.selected = !button.selected;
     [self updateDateImageButton:button];
     [self.datePicker show];
+    
+    if(self.startDate)
+    {
+        self.datePicker.datePicker.minimumDate = self.startDate;
+    }
+    self.datePicker.datePicker.maximumDate = nil;
+    
+    if(self.endDate)
+    {
+        self.datePicker.datePicker.date = self.endDate;
+    }
 }
 
 #pragma mark - ABDatePickerDeleage
@@ -216,8 +253,6 @@
     {
         [self.delegate statisticsView:self didSelectStartDate:self.startDate endDate:self.endDate];
     }
-    
-    [self setNeedsLayout];
 }
 
 - (void)datePickerDidCancal:(ABDatePicker *)picker
