@@ -11,6 +11,7 @@
 
 @class ABDataManager;
 
+///表格类型回调代理
 @protocol ABDataManagerTableCallBackDelegate <NSObject>
 
 @optional;
@@ -27,6 +28,17 @@
 ///更新
 - (void)dataManager:(ABDataManager *)manager updateIndexPath:(NSIndexPath *)indexPath;
 
+@end
+
+
+///消息回调代理
+@protocol ABDataManagerMessageCallBackDelegate <NSObject>
+
+@optional
+
+///消息描述
+- (void)dataManager:(ABDataManager *)manager infoMessge:(NSString *)message;
+
 ///错误提醒
 - (void)dataManager:(ABDataManager *)manager errorMessge:(NSString *)message;
 
@@ -34,6 +46,7 @@
 - (void)dataManager:(ABDataManager *)manager successMessge:(NSString *)message;
 
 @end
+
 
 @interface ABDataManager : NSObject
 

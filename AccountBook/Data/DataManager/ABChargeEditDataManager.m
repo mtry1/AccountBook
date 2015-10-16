@@ -152,7 +152,7 @@ NSString *const ABChargeEditNotes = @"备注";
     if(model.desc.length == 0)
     {
         NSString *message = [NSString stringWithFormat:@"请输入%@", ABChargeEditTitle];
-        [self.callBackUtils callBackAction:@selector(dataManager:errorMessge:) object1:self object2:message];
+        [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
         return NO;
     }
     
@@ -160,7 +160,7 @@ NSString *const ABChargeEditNotes = @"备注";
     if(model.desc.length == 0)
     {
         NSString *message = [NSString stringWithFormat:@"请输入%@", ABChargeEditAmount];
-        [self.callBackUtils callBackAction:@selector(dataManager:errorMessge:) object1:self object2:message];
+        [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
         return NO;
     }
     

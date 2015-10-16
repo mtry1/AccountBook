@@ -30,5 +30,6 @@
 #import "ABCallBackUtils.h"
 #import "ABTableViewCell.h"
 #import "ABTableView.h"
+#import "ABCenterDataManager.h"
 
 #endif

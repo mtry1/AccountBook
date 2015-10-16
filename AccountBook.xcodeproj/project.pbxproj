@@ -27,6 +27,7 @@
 		93679C891BA442A5002B2401 /* ABCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C881BA442A5002B2401 /* ABCategoryViewController.m */; };
 		93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C8C1BA443F6002B2401 /* ABNavigationController.m */; };
 		93679C941BA46420002B2401 /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C931BA46420002B2401 /* ABSetViewController.m */; };
+		937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */; };
 		938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D901BAE8E3E0042B86B /* ABActionSheet.m */; };
 		938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D921BAE8E3E0042B86B /* ABAlertView.m */; };
@@ -40,6 +41,11 @@
 		938A2DAF1BAEEF270042B86B /* ABChargeDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DAE1BAEEF270042B86B /* ABChargeDataManger.m */; };
 		938A2DB21BAEF6A60042B86B /* ABChargeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */; };
 		938A2DB81BAF01740042B86B /* ABChargeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB71BAF01740042B86B /* ABChargeListCell.m */; };
+		938A4D841BD0E5BE00EE0630 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D821BD0E5BE00EE0630 /* Model.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D881BD0E8C200EE0630 /* ABChargeEntity.m */; settings = {ASSET_TAGS = (); }; };
+		938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */; settings = {ASSET_TAGS = (); }; };
+		938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */; settings = {ASSET_TAGS = (); }; };
+		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 		939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */; };
@@ -102,6 +108,8 @@
 		93679C8E1BA44594002B2401 /* ABPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPrefixHeader.pch; sourceTree = "<group>"; };
 		93679C921BA46420002B2401 /* ABSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetViewController.h; sourceTree = "<group>"; };
 		93679C931BA46420002B2401 /* ABSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetViewController.m; sourceTree = "<group>"; };
+		937FCC491BCFD27C00E4297D /* ABCenterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterDataManager.h; sourceTree = "<group>"; };
+		937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterDataManager.m; sourceTree = "<group>"; };
 		938695D51BC4E34300F4B1A9 /* ABChargeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditCell.h; sourceTree = "<group>"; };
 		938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditCell.m; sourceTree = "<group>"; };
 		938A2D8F1BAE8E3E0042B86B /* ABActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABActionSheet.h; sourceTree = "<group>"; };
@@ -127,6 +135,15 @@
 		938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeListViewController.m; sourceTree = "<group>"; };
 		938A2DB61BAF01740042B86B /* ABChargeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeListCell.h; sourceTree = "<group>"; };
 		938A2DB71BAF01740042B86B /* ABChargeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeListCell.m; sourceTree = "<group>"; };
+		938A4D831BD0E5BE00EE0630 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		938A4D871BD0E8C200EE0630 /* ABChargeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEntity.h; sourceTree = "<group>"; };
+		938A4D881BD0E8C200EE0630 /* ABChargeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEntity.m; sourceTree = "<group>"; };
+		938A4D8B1BD0E8C200EE0630 /* ABCategoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryEntity.h; sourceTree = "<group>"; };
+		938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCategoryEntity.m; sourceTree = "<group>"; };
+		938A4DA31BD0EE7400EE0630 /* ABCoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCoreDataHelper.h; sourceTree = "<group>"; };
+		938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCoreDataHelper.m; sourceTree = "<group>"; };
+		938A4DA61BD0F35C00EE0630 /* ABCenterCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterCoreDataManager.h; sourceTree = "<group>"; };
+		938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterCoreDataManager.m; sourceTree = "<group>"; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
@@ -314,6 +331,38 @@
 			path = ViewContrller;
 			sourceTree = "<group>";
 		};
+		937FCC461BCFD20500E4297D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				937FCC471BCFD20500E4297D /* CoreDataManager */,
+				937FCC481BCFD20500E4297D /* Entity */,
+				938A4D821BD0E5BE00EE0630 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		937FCC471BCFD20500E4297D /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				938A4DA31BD0EE7400EE0630 /* ABCoreDataHelper.h */,
+				938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */,
+				938A4DA61BD0F35C00EE0630 /* ABCenterCoreDataManager.h */,
+				938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		937FCC481BCFD20500E4297D /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				938A4D871BD0E8C200EE0630 /* ABChargeEntity.h */,
+				938A4D881BD0E8C200EE0630 /* ABChargeEntity.m */,
+				938A4D8B1BD0E8C200EE0630 /* ABCategoryEntity.h */,
+				938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		938A2D8E1BAE8E3E0042B86B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +398,7 @@
 		938A2D991BAE8E630042B86B /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				937FCC461BCFD20500E4297D /* CoreData */,
 				938A2D9A1BAE8E630042B86B /* DataManager */,
 				938A2D9F1BAE8E630042B86B /* Model */,
 			);
@@ -360,6 +410,8 @@
 			children = (
 				938A2D9B1BAE8E630042B86B /* ABDataManager.h */,
 				938A2D9C1BAE8E630042B86B /* ABDataManager.m */,
+				937FCC491BCFD27C00E4297D /* ABCenterDataManager.h */,
+				937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */,
 				938A2D9D1BAE8E630042B86B /* ABCategoryDataManger.h */,
 				938A2D9E1BAE8E630042B86B /* ABCategoryDataManger.m */,
 				938A2DAD1BAEEF270042B86B /* ABChargeDataManger.h */,
@@ -546,16 +598,19 @@
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
 				938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */,
+				938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */,
 				93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */,
 				93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */,
 				93679C941BA46420002B2401 /* ABSetViewController.m in Sources */,
 				9313E0641BCE6DF40068D8FA /* ABStatisticsView.m in Sources */,
 				933110961BCA1EF400C0F3BC /* ABTextViewController.m in Sources */,
+				937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */,
 				93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */,
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,
 				93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */,
 				93F5ADD21BBBCE8E008A1539 /* ABDatePicker.m in Sources */,
 				93F5ADCF1BBB881D008A1539 /* ABChargeEditViewController.m in Sources */,
+				938A4D841BD0E5BE00EE0630 /* Model.xcdatamodeld in Sources */,
 				938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */,
 				938A2DA71BAE8E630042B86B /* ABModel.m in Sources */,
 				938A2DA91BAE8EB90042B86B /* main.m in Sources */,
@@ -566,13 +621,16 @@
 				938A2DAF1BAEEF270042B86B /* ABChargeDataManger.m in Sources */,
 				9331109C1BCA8FC700C0F3BC /* ABChargeEditDataManager.m in Sources */,
 				93679C891BA442A5002B2401 /* ABCategoryViewController.m in Sources */,
+				938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */,
 				9331109F1BCA903C00C0F3BC /* ABChargeEditModel.m in Sources */,
 				938A2DA41BAE8E630042B86B /* ABDataManager.m in Sources */,
 				938A2DB81BAF01740042B86B /* ABChargeListCell.m in Sources */,
 				938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */,
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,
 				939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */,
+				938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,
+				938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +839,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		938A4D821BD0E5BE00EE0630 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				938A4D831BD0E5BE00EE0630 /* Model.xcdatamodel */,
+			);
+			currentVersion = 938A4D831BD0E5BE00EE0630 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 93679C3A1BA3D810002B2401 /* Project object */;
 }

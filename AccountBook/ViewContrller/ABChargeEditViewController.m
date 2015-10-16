@@ -13,7 +13,7 @@
 #import "ABChargeEditDataManager.h"
 
 
-@interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABDatePickerDeleage, ABTextViewControllerDelegate, ABDataManagerTableCallBackDelegate>
+@interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABDatePickerDeleage, ABTextViewControllerDelegate, ABDataManagerTableCallBackDelegate, ABDataManagerMessageCallBackDelegate>
 
 @property (nonatomic, readonly) ABTableView *tableView;
 
@@ -289,7 +289,7 @@
 
 #pragma mark - 数据处理
 
-- (void)dataManager:(ABDataManager *)manager errorMessge:(NSString *)message
+- (void)dataManager:(ABDataManager *)manager infoMessge:(NSString *)message
 {
     [SVProgressHUD showInfoWithStatus:message];
 }

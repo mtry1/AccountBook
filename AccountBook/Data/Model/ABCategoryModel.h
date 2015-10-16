@@ -16,4 +16,10 @@
 
 @property (nonatomic, strong) NSString *colorHexString;
 
+///是否已经删除
+@property (nonatomic) BOOL isRemoved;
+
+///是否在云端存在
+@property (nonatomic) BOOL isExistCloud;
+
 @end

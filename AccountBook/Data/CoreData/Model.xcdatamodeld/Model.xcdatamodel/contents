@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Xcode 7.0">
+    <entity name="ABCategoryEntity" representedClassName="ABCategoryEntity" syncable="YES">
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorHexString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isExistCloud" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isRemoved" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ABChargeEntity" representedClassName="ABChargeEntity" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="chargeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endTimeInterval" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="isExistCloud" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isRemoved" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTimeInterval" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ABCategoryEntity" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="ABChargeEntity" positionX="115" positionY="-54" width="128" height="165"/>
+    </elements>
+</model>

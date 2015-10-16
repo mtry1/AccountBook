@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MJExtension/MJExtension.h>
 
-@interface ABModel : NSObject
+@interface ABModel : NSObject<NSCopying>
 
 @end

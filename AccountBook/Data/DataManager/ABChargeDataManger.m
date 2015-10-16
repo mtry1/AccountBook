@@ -8,7 +8,7 @@
 
 #import "ABChargeDataManger.h"
 
-@interface ABChargeDataManger ()
+@interface ABChargeDataManger ()<ABCenterDataManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *listItem;
 
@@ -18,6 +18,16 @@
 {
     NSDate *_calculateStartDate;
     NSDate *_calculateEndDate;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        [[ABCenterDataManager share].callBackUtils addDelegate:self];
+    }
+    return self;
 }
 
 - (NSMutableArray *)listItem
@@ -32,30 +42,7 @@
 ///请求列表数据
 - (void)requestChargeDataWithID:(NSString *)chargeID
 {
-    ABChargeModel *model;
-    for(NSInteger i = 0; i < 10; i++)
-    {
-        model = [[ABChargeModel alloc] init];
-        model.title = @"周杰伦";
-        model.amount = 10000;
-        model.startTimeInterval = 1440770901.491756 + i * 100000;
-        model.endTimeInterval = 1443280892.843838 + i * 200000;
-        model.notes = @"抖动阿萨德发到空间发大发啊速度啊速度加夫里到空间发大发啊速度";
-        [self.listItem addObject:model];
-    }
     
-    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
-    
-    if(self.numberOfItem)
-    {
-        ABChargeModel *firstModel = [self.listItem firstObject];
-        [self requestCalculateAmountWithStartDate:[NSDate dateWithTimeIntervalSince1970:firstModel.startTimeInterval]
-                                          endDate:[NSDate date]];
-    }
-    else
-    {
-        [self requestCalculateAmountWithStartDate:[NSDate date] endDate:[NSDate date]];
-    }
 }
 
 ///请求添加
@@ -157,6 +144,27 @@
         return self.listItem[index];
     }
     return nil;
+}
+
+#pragma mark - ABCenterDataManagerDelegate
+
+- (void)centerDataManager:(ABCenterDataManager *)manager successRequestChargeListData:(NSArray *)data
+{
+    [self.listItem removeAllObjects];
+    [self.listItem addObjectsFromArray:data];
+    
+    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
+    
+    if(self.numberOfItem)
+    {
+        ABChargeModel *firstModel = [self.listItem firstObject];
+        [self requestCalculateAmountWithStartDate:[NSDate dateWithTimeIntervalSince1970:firstModel.startTimeInterval]
+                                          endDate:[NSDate date]];
+    }
+    else
+    {
+        [self requestCalculateAmountWithStartDate:[NSDate date] endDate:[NSDate date]];
+    }
 }
 
 @end

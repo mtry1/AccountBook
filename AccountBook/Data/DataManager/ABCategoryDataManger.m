@@ -8,13 +8,23 @@
 
 #import "ABCategoryDataManger.h"
 
-@interface ABCategoryDataManger()
+@interface ABCategoryDataManger()<ABCenterDataManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *listItem;
 
 @end
 
 @implementation ABCategoryDataManger
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        [[ABCenterDataManager share].callBackUtils addDelegate:self];
+    }
+    return self;
+}
 
 - (NSMutableArray *)listItem
 {
@@ -27,19 +37,7 @@
 
 - (void)requestInitData;
 {
-    [self.listItem removeAllObjects];
-    
-    [self.listItem addObject:[self modelForText:@"借出"]];
-    [self.listItem addObject:[self modelForText:@"借入"]];
-    [self.listItem addObject:[self modelForText:@"淘宝"]];
-    [self.listItem addObject:[self modelForText:@"夜宵"]];
-    [self.listItem addObject:[self modelForText:@"礼物"]];
-    [self.listItem addObject:[self modelForText:@"吃饭"]];
-    [self.listItem addObject:[self modelForText:@"零食"]];
-    [self.listItem addObject:[self modelForText:@"衣服"]];
-    [self.listItem addObject:[self modelForText:@"其它"]];
-    
-    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
+    [[ABCenterDataManager share] requestCategoryListData];
 }
 
 - (NSInteger)numberOfItem
@@ -60,7 +58,10 @@
 {
     if(text.length)
     {
-        [self.listItem addObject:[self modelForText:text]];
+        ABCategoryModel *model = [self modelForText:text];
+        [[ABCenterDataManager share] requestCategoryAddModel:[model copy]];
+        
+        [self.listItem addObject:model];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
         [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
@@ -71,6 +72,9 @@
 {
     if(index < [self numberOfItem])
     {
+        ABCategoryModel *model = [self dataAtIndex:index];
+        [[ABCenterDataManager share] requestCategoryRemoveCategoryId:model.categoryID];
+        
         [self.listItem removeObjectAtIndex:index];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
@@ -94,15 +98,28 @@
     ABCategoryModel *model = [[ABCategoryModel alloc] init];
     model.categoryID = [ABUtils uuid];
     model.name = text;
-    model.colorHexString = [[self class] colorHexStringAtIndex:self.listItem.count];
+    model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
     return model;
 }
 
-+ (NSString *)colorHexStringAtIndex:(NSInteger)index
+- (NSString *)colorHexStringAtIndex:(NSInteger)index
 {
     NSArray *colors = @[@"0xff708b", @"0x57c3df", @"0xefbc53", @"0xa784d4", @"0x6cca80"];
     index = index % colors.count;
     return colors[index];
+}
+
+#pragma mark - ABCenterDataManagerDelegate
+
+- (void)centerDataManager:(ABCenterDataManager *)manager successRequestCategoryListData:(NSArray *)data
+{
+    if(data.count)
+    {
+        [self.listItem removeAllObjects];
+        [self.listItem addObjectsFromArray:data];
+        
+        [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
+    }
 }
 
 @end

@@ -7,8 +7,20 @@
 //
 
 #import "ABModel.h"
-#import <objc/runtime.h>
 
 @implementation ABModel
+
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+    id selfCopy = [[[self class] alloc] init];
+    
+    NSDictionary *dict = self.keyValues;
+    if(dict)
+    {
+        selfCopy = [[self class] objectWithKeyValues:dict];
+    }
+    
+    return selfCopy;
+}
 
 @end
