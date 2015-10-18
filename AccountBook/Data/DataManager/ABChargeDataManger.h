@@ -21,7 +21,7 @@
 @interface ABChargeDataManger : ABDataManager
 
 ///请求列表数据
-- (void)requestChargeDataWithID:(NSString *)chargeID;
+- (void)requestChargeDataWithCategoryID:(NSString *)categoryID;
 
 ///请求添加
 - (void)requestAddModel:(ABChargeModel *)model;

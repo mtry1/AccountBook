@@ -10,6 +10,9 @@
 
 @interface ABChargeModel : ABModel
 
+///分类ID
+@property (nonatomic, strong) NSString *categoryID;
+
 ///消费ID
 @property (nonatomic, strong) NSString *chargeID;
 
@@ -33,7 +36,6 @@
 
 ///是否已经删除
 @property (nonatomic) BOOL isRemoved;
-
 ///是否在云端存在
 @property (nonatomic) BOOL isExistCloud;
 

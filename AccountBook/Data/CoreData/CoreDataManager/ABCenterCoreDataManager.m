@@ -52,6 +52,8 @@
         model.categoryID = entity.categoryId;
         model.name = entity.title;
         model.colorHexString = entity.colorHexString;
+        model.isRemoved = [entity.isRemoved boolValue];
+        model.isExistCloud = [entity.isExistCloud boolValue];
         [result addObject:model];
     }
     
@@ -82,8 +84,8 @@
 - (void)insertCategoryModel:(ABCategoryModel *)model
 {
     ABCategoryEntity *entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([ABCategoryEntity class]) inManagedObjectContext:self.coreDataHelper.context];
-    entity.isRemoved = @(NO);
-    entity.isExistCloud = @(NO);
+    entity.isRemoved = @(model.isRemoved);
+    entity.isExistCloud = @(model.isExistCloud);
     entity.categoryId = model.categoryID;
     entity.title = model.name;
     entity.colorHexString = model.colorHexString;
@@ -117,6 +119,8 @@
             entity.categoryId = model.categoryID;
             entity.title = model.name;
             entity.colorHexString = model.colorHexString;
+            entity.isRemoved = @(model.isRemoved);
+            entity.isExistCloud = @(model.isExistCloud);
         }
         else
         {
@@ -126,10 +130,23 @@
 }
 
 
-
 ///查询消费列表
 - (NSArray *)selectChargeListDateWithCategoryId:(NSString *)categoryId
 {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([ABCategoryEntity class]) inManagedObjectContext:self.coreDataHelper.context];
+    [request setEntity:entityDescription];
+    
+    NSString *selectString = [NSString stringWithFormat:@"categoryId == \"%@\"", categoryId];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:selectString];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *listItem = [self.coreDataHelper.context executeFetchRequest:request error:&error];
+    if(listItem.count)
+    {
+        return [listItem lastObject];
+    }
     return nil;
 }
 

@@ -79,7 +79,7 @@
                                                                              action:@selector(touchUpInsideRightBarButtonItem:)];
     
     [self.dataManager.callBackUtils addDelegate:self];
-    [self.dataManager requestChargeDataWithID:self.categoryID];
+    [self.dataManager requestChargeDataWithCategoryID:self.categoryID];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }

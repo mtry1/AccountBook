@@ -16,6 +16,7 @@
 
 @implementation ABChargeDataManger
 {
+    NSString *_categoryID;
     NSDate *_calculateStartDate;
     NSDate *_calculateEndDate;
 }
@@ -40,9 +41,10 @@
 }
 
 ///请求列表数据
-- (void)requestChargeDataWithID:(NSString *)chargeID
+- (void)requestChargeDataWithCategoryID:(NSString *)categoryID
 {
-    
+    _categoryID = categoryID;
+    [[ABCenterDataManager share] requestChargeListDateWithCategoryId:categoryID];
 }
 
 ///请求添加
@@ -50,6 +52,11 @@
 {
     if([model isKindOfClass:[ABChargeModel class]])
     {
+        model.isRemoved = model.isRemoved ? YES : NO;
+        model.isExistCloud = model.isExistCloud ? YES : NO;
+        model.categoryID = _categoryID;
+        [[ABCenterDataManager share] requestChargeAddModel:model];
+        
         NSInteger i;
         for(i = self.numberOfItem - 1; i >= 0; i--)
         {
@@ -72,6 +79,8 @@
 ///请求修改
 - (void)requestUpdateModel:(ABChargeModel *)model atIndex:(NSInteger)index
 {
+    [[ABCenterDataManager share] requestChargeUpdateModel:[model copy]];
+    
     [self requestRemoveIndex:index];
     [self requestAddModel:model];
 }
@@ -82,6 +91,8 @@
     if(0 <= index && index < self.numberOfItem)
     {
         ABChargeModel *model = [self dataAtIndex:index];
+        
+        [[ABCenterDataManager share] requestChargeRemoveChargeId:model.chargeID];
         
         [self.listItem removeObjectAtIndex:index];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
@@ -151,7 +162,10 @@
 - (void)centerDataManager:(ABCenterDataManager *)manager successRequestChargeListData:(NSArray *)data
 {
     [self.listItem removeAllObjects];
-    [self.listItem addObjectsFromArray:data];
+    if([data isKindOfClass:[NSArray class]] && data.count)
+    {
+        [self.listItem addObjectsFromArray:data];
+    }
     
     [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
     

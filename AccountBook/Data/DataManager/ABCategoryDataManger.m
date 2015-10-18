@@ -99,6 +99,8 @@
     model.categoryID = [ABUtils uuid];
     model.name = text;
     model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
+    model.isRemoved = NO;
+    model.isExistCloud = NO;
     return model;
 }
 

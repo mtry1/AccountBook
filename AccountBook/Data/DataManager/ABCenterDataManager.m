@@ -14,10 +14,6 @@
 
 @property (nonatomic, readonly) ABCenterCoreDataManager *centerCoreDataManager;
 
-@property (nonatomic, strong) NSMutableArray *categoryDataArray;
-
-@property (nonatomic, strong) NSMutableDictionary *chargeDataDict;
-
 @end
 
 @implementation ABCenterDataManager
@@ -44,33 +40,12 @@
     return _centerCoreDataManager;
 }
 
-- (NSMutableArray *)categoryDataArray
-{
-    if(!_categoryDataArray)
-    {
-        _categoryDataArray = [NSMutableArray array];
-    }
-    return _categoryDataArray;
-}
-
-- (NSMutableDictionary *)chargeDataDict
-{
-    if(!_chargeDataDict)
-    {
-        _chargeDataDict = [NSMutableDictionary dictionary];
-    }
-    return _chargeDataDict;
-}
-
 ///请求分类列表数据
 - (void)requestCategoryListData
 {
     NSArray *array = [self.centerCoreDataManager selectCategoryListData];
     if(array)
     {
-        [self.categoryDataArray removeAllObjects];
-        [self.categoryDataArray addObjectsFromArray:array];
-        
         [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestCategoryListData:) object1:self object2:array];
     }
 }
@@ -90,31 +65,35 @@
 ///请求修改分类
 - (void)requestCategoryUpdateModel:(ABCategoryModel *)model
 {
-    
+    [self.centerCoreDataManager updateCategoryModel:model];
 }
 
 ///请求消费列表
 - (void)requestChargeListDateWithCategoryId:(NSString *)categoryId
 {
-    
+    NSArray *array = [self.centerCoreDataManager selectChargeListDateWithCategoryId:categoryId];
+    if(array)
+    {
+        [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestChargeListData:) object1:self object2:array];
+    }
 }
 
 ///请求增加消费记录
 - (void)requestChargeAddModel:(ABChargeModel *)model
 {
-    
+    [self.centerCoreDataManager insertChargeModel:model];
 }
 
 ///请求删除消费记录
 - (void)requestChargeRemoveChargeId:(NSString *)chargeId
 {
-    
+    [self.centerCoreDataManager deleteChargeChargeId:chargeId];
 }
 
 ///请求修改消费记录
 - (void)requestChargeUpdateModel:(ABChargeModel *)model
 {
-    
+    [self.centerCoreDataManager updateChargeModel:model];
 }
 
 ///同步本地数据
