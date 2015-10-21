@@ -238,18 +238,7 @@
 {
     if(!self.editDataManager.isModify)
     {
-        ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"您还没有保存哦"
-                                                            message:nil
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"取消"
-                                                  otherButtonTitles:@"确定", nil];
-        [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
-           
-            if(atIndex != alertView.cancelButtonIndex)
-            {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
