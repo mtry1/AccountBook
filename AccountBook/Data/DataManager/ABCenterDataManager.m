@@ -59,7 +59,7 @@
 ///请求删除分类
 - (void)requestCategoryRemoveCategoryId:(NSString *)categoryId
 {
-    [self.centerCoreDataManager deleteCategoryCategoryId:categoryId];
+    [self.centerCoreDataManager deleteCategoryCategoryID:categoryId];
 }
 
 ///请求修改分类
@@ -71,7 +71,7 @@
 ///请求消费列表
 - (void)requestChargeListDateWithCategoryId:(NSString *)categoryId
 {
-    NSArray *array = [self.centerCoreDataManager selectChargeListDateWithCategoryId:categoryId];
+    NSArray *array = [self.centerCoreDataManager selectChargeListDateWithCategoryID:categoryId];
     if(array)
     {
         [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestChargeListData:) object1:self object2:array];
@@ -87,7 +87,7 @@
 ///请求删除消费记录
 - (void)requestChargeRemoveChargeId:(NSString *)chargeId
 {
-    [self.centerCoreDataManager deleteChargeChargeId:chargeId];
+    [self.centerCoreDataManager deleteChargeChargeID:chargeId];
 }
 
 ///请求修改消费记录

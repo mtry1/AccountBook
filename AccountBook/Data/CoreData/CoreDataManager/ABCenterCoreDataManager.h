@@ -17,7 +17,7 @@
 - (void)insertCategoryModel:(ABCategoryModel *)model;
 
 ///删除分类
-- (void)deleteCategoryCategoryId:(NSString *)categoryId;
+- (void)deleteCategoryCategoryID:(NSString *)categoryID;
 
 ///修改分类
 - (void)updateCategoryModel:(ABCategoryModel *)model;
@@ -25,13 +25,13 @@
 
 
 ///查询消费列表
-- (NSArray *)selectChargeListDateWithCategoryId:(NSString *)categoryId;
+- (NSArray *)selectChargeListDateWithCategoryID:(NSString *)categoryID;
 
 ///增加消费记录
 - (void)insertChargeModel:(ABChargeModel *)model;
 
 ///删除消费记录
-- (void)deleteChargeChargeId:(NSString *)chargeId;
+- (void)deleteChargeChargeID:(NSString *)chargeID;
 
 ///修改消费记录
 - (void)updateChargeModel:(ABChargeModel *)model;

@@ -55,6 +55,7 @@
         model.isRemoved = model.isRemoved ? YES : NO;
         model.isExistCloud = model.isExistCloud ? YES : NO;
         model.categoryID = _categoryID;
+        model.chargeID = [ABUtils uuid];
         [[ABCenterDataManager share] requestChargeAddModel:model];
         
         NSInteger i;
@@ -79,10 +80,17 @@
 ///请求修改
 - (void)requestUpdateModel:(ABChargeModel *)model atIndex:(NSInteger)index
 {
-    [[ABCenterDataManager share] requestChargeUpdateModel:[model copy]];
+    ABChargeModel *modelCopy = [[self dataAtIndex:index] copy];
+    modelCopy.title = model.title;
+    modelCopy.amount = model.amount;
+    modelCopy.startTimeInterval = model.startTimeInterval;
+    modelCopy.endTimeInterval = model.endTimeInterval;
+    modelCopy.notes = model.notes;
+    
+    [[ABCenterDataManager share] requestChargeUpdateModel:modelCopy];
     
     [self requestRemoveIndex:index];
-    [self requestAddModel:model];
+    [self requestAddModel:modelCopy];
 }
 
 ///请求删除

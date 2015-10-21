@@ -34,16 +34,6 @@
     return YES;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [[ABCoreDataHelper share] saveContext];
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    [[ABCoreDataHelper share] saveContext];
-}
-
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     

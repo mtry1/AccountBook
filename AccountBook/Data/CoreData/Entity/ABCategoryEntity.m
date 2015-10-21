@@ -10,7 +10,7 @@
 
 @implementation ABCategoryEntity
 
-@dynamic categoryId;
+@dynamic categoryID;
 @dynamic title;
 @dynamic colorHexString;
 @dynamic isRemoved;

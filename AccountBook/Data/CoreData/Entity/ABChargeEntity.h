@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *isExistCloud;
 @property (nullable, nonatomic, retain) NSNumber *isRemoved;
+@property (nullable, nonatomic, retain) NSString *categoryID;
 @property (nullable, nonatomic, retain) NSString *chargeID;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSNumber *amount;

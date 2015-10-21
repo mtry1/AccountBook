@@ -12,6 +12,7 @@
 
 @dynamic isExistCloud;
 @dynamic isRemoved;
+@dynamic categoryID;
 @dynamic chargeID;
 @dynamic title;
 @dynamic amount;

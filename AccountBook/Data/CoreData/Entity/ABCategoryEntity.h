@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ABCategoryEntity : NSManagedObject
 
-@property (nullable, nonatomic, retain) NSString *categoryId;
+@property (nullable, nonatomic, retain) NSString *categoryID;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSString *colorHexString;
 @property (nullable, nonatomic, retain) NSNumber *isExistCloud;
