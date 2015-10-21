@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ABCategoryModel.h"
 
+@class ABCategoryCell;
+
+@protocol ABCategoryCellDelegate <NSObject>
+
+- (void)categoryCellDidLongPress:(ABCategoryCell *)cell;
+
+@end
+
 @interface ABCategoryCell : UICollectionViewCell
+
+@property (nonatomic, weak) id<ABCategoryCellDelegate>delegate;
 
 - (void)reloadWithModel:(ABCategoryModel *)model;
 

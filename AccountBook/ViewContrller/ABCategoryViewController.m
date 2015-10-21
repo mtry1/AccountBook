@@ -20,7 +20,7 @@ NSInteger const ABCollectionViewColNumber = 4;
 
 static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdentifier";
 
-@interface ABCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABCategoryDataMangerDelegate>
+@interface ABCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABCategoryDataMangerDelegate, ABDataManagerMessageCallBackDelegate, ABCategoryCellDelegate>
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
@@ -64,7 +64,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     [super viewDidLoad];
     
     self.title = @"随身记";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(touchUpInsideRightBarButtonItem:)];
@@ -94,6 +94,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ABCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ABCollectionViewReuseIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
     
     ABCategoryModel *model = [self.dataManger dataAtIndex:indexPath.row];
     if(model)
@@ -141,6 +142,65 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     return ABCollectionViewCellSpace;
 }
 
+#pragma mark - ABCategoryCellDelegate
+
+- (void)categoryCellDidLongPress:(ABCategoryCell *)cell
+{
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    if(indexPath)
+    {
+        ABCategoryModel *model = [self.dataManger dataAtIndex:indexPath.row];
+        if(model)
+        {
+            NSString *title = [NSString stringWithFormat:@"修改“%@”", model.name];
+            ABActionSheet *actionSheet = [[ABActionSheet alloc] initWithTitle:title
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"取消"
+                                                       destructiveButtonTitle:@"删除"
+                                                            otherButtonTitles:@"重命名", nil];
+            [actionSheet showInView:self.navigationController.view clickButtonBlock:^(UIActionSheet *actionSheet, NSUInteger buttonIndex) {
+               
+                if(buttonIndex == 0)
+                {
+                    NSString *title = [NSString stringWithFormat:@"重命名“%@”", model.name];
+                    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:title
+                                                                        message:nil
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"取消"
+                                                              otherButtonTitles:@"确定", nil];
+                    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+                    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
+                        
+                        if(atIndex != alertView.cancelButtonIndex)
+                        {
+                            UITextField *textField = [alertView textFieldAtIndex:0];
+                            if(textField && textField.text.length)
+                            {
+                                [self.dataManger requestRename:textField.text atIndex:indexPath.row];
+                            }
+                        }
+                    }];
+                }
+                else if(buttonIndex == 1)
+                {
+                    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"您确定要删除"
+                                                                        message:model.name
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"取消"
+                                                              otherButtonTitles:@"确定", nil];
+                    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
+                        
+                        if(atIndex != alertView.cancelButtonIndex)
+                        {
+                            [self.dataManger requestRemoveIndex:indexPath.row];
+                        }
+                    }];
+                }
+            }];
+        }
+    }
+}
+
 #pragma mark - 其它
 
 - (void)touchUpInsideLeftBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -151,9 +211,23 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    ABCategoryEditViewController *controller = [[ABCategoryEditViewController alloc] init];
-    controller.dataManager = self.dataManger;
-    [self.navigationController pushViewController:controller animated:YES];
+    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"建议两个中文字哦"
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"取消"
+                                              otherButtonTitles:@"确定", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
+        
+        if(atIndex != alertView.cancelButtonIndex)
+        {
+            UITextField *textField = [alertView textFieldAtIndex:0];
+            if(textField && textField.text.length)
+            {
+                [self.dataManger requestAddObjectWithText:textField.text];
+            }
+        }
+    }];
 }
 
 #pragma mark - 数据处理
@@ -177,9 +251,19 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     }
 }
 
+- (void)dataManager:(ABDataManager *)manager updateIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+}
+
 - (void)categoryDataManger:(ABCategoryDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:toIndexPath];
+}
+
+- (void)dataManager:(ABDataManager *)manager infoMessge:(NSString *)message
+{
+    [SVProgressHUD showInfoWithStatus:message];
 }
 
 @end

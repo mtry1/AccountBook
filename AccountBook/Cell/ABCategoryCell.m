@@ -50,6 +50,9 @@
     {
         [self.contentView addSubview:self.imageLabel];
         [self.contentView addSubview:self.titleLabel];
+        
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressSelf:)];
+        [self.contentView addGestureRecognizer:longPress];
     }
     return self;
 }
@@ -74,6 +77,17 @@
     rect.size.height = CGRectGetHeight(self.contentView.frame) - rect.origin.y;
     self.titleLabel.frame = rect;
     self.titleLabel.font = [UIFont systemFontOfSize:[ABUtils fontSizeForSystemFontHeight:CGRectGetHeight(self.titleLabel.frame)] * 2 / 3];
+}
+
+- (void)longPressSelf:(UILongPressGestureRecognizer *)sender
+{
+    if(sender.state == UIGestureRecognizerStateBegan)
+    {
+        if([self.delegate respondsToSelector:@selector(categoryCellDidLongPress:)])
+        {
+            [self.delegate categoryCellDidLongPress:self];
+        }
+    }
 }
 
 - (void)reloadWithModel:(ABCategoryModel *)model

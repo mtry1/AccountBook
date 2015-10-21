@@ -31,6 +31,9 @@
 ///请求删除
 - (void)requestRemoveIndex:(NSInteger)index;
 
+///请求重命名
+- (void)requestRename:(NSString *)text atIndex:(NSInteger)index;
+
 ///请求移动
 - (void)requestMoveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex;
 
