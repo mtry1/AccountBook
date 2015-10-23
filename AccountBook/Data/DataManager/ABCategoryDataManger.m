@@ -87,21 +87,19 @@
     text = [text trim];
     if(text.length == 0)
     {
-        [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:@"不能为空哦"];
+        text = @" ";
     }
-    else
+    
+    ABCategoryModel *model = [self dataAtIndex:index];
+    if(model)
     {
-        ABCategoryModel *model = [self dataAtIndex:index];
-        if(model)
-        {
-            model.name = text;
-        }
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.callBackUtils callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
-        
-        [[ABCenterDataManager share] requestCategoryUpdateModel:model.copy];
+        model.name = text;
     }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.callBackUtils callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
+    
+    [[ABCenterDataManager share] requestCategoryUpdateModel:model.copy];
 }
 
 - (void)requestMoveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex

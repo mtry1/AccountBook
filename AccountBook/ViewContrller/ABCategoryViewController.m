@@ -9,7 +9,6 @@
 #import "ABCategoryViewController.h"
 #import "ABSetViewController.h"
 #import "ABChargeListViewController.h"
-#import "ABCategoryEditViewController.h"
 #import "ABCategoryCell.h"
 #import "ABCategoryDataManger.h"
 
@@ -20,7 +19,7 @@ NSInteger const ABCollectionViewColNumber = 4;
 
 static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdentifier";
 
-@interface ABCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABCategoryDataMangerDelegate, ABDataManagerMessageCallBackDelegate, ABCategoryCellDelegate>
+@interface ABCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABCategoryDataMangerDelegate, ABCategoryCellDelegate>
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
@@ -165,7 +164,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
                     NSString *title = [NSString stringWithFormat:@"重命名“%@”", model.name];
                     ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:title
                                                                         message:nil
-                                                                       delegate:nil
+                                                                       delegate:self
                                                               cancelButtonTitle:@"取消"
                                                               otherButtonTitles:@"确定", nil];
                     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -174,7 +173,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
                         if(atIndex != alertView.cancelButtonIndex)
                         {
                             UITextField *textField = [alertView textFieldAtIndex:0];
-                            if(textField && textField.text.length)
+                            if(textField)
                             {
                                 [self.dataManger requestRename:textField.text atIndex:indexPath.row];
                             }
@@ -259,11 +258,6 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 - (void)categoryDataManger:(ABCategoryDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:toIndexPath];
-}
-
-- (void)dataManager:(ABDataManager *)manager infoMessge:(NSString *)message
-{
-    [SVProgressHUD showInfoWithStatus:message];
 }
 
 @end

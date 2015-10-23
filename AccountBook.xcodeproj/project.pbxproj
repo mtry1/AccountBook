@@ -48,7 +48,6 @@
 		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
-		939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */; };
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
 		93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */; };
 		93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADCB1BBB732D008A1539 /* ABTableView.m */; };
@@ -147,8 +146,6 @@
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
-		939690D21BADABF0008C09C9 /* ABCategoryEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryEditViewController.h; sourceTree = "<group>"; };
-		939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCategoryEditViewController.m; sourceTree = "<group>"; };
 		93F193BA1BBAABC30000CEF0 /* ABCallBackUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCallBackUtils.h; sourceTree = "<group>"; };
 		93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCallBackUtils.m; sourceTree = "<group>"; };
 		93F5ADC71BBB7285008A1539 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
@@ -317,8 +314,6 @@
 				93679C8C1BA443F6002B2401 /* ABNavigationController.m */,
 				93679C871BA442A5002B2401 /* ABCategoryViewController.h */,
 				93679C881BA442A5002B2401 /* ABCategoryViewController.m */,
-				939690D21BADABF0008C09C9 /* ABCategoryEditViewController.h */,
-				939690D31BADABF0008C09C9 /* ABCategoryEditViewController.m */,
 				938A2DB01BAEF6A60042B86B /* ABChargeListViewController.h */,
 				938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */,
 				93F5ADCD1BBB881D008A1539 /* ABChargeEditViewController.h */,
@@ -627,7 +622,6 @@
 				938A2DB81BAF01740042B86B /* ABChargeListCell.m in Sources */,
 				938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */,
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,
-				939690D41BADABF0008C09C9 /* ABCategoryEditViewController.m in Sources */,
 				938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,
 				938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */,
