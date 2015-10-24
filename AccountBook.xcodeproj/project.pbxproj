@@ -19,7 +19,6 @@
 		9331109C1BCA8FC700C0F3BC /* ABChargeEditDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9331109B1BCA8FC700C0F3BC /* ABChargeEditDataManager.m */; };
 		9331109F1BCA903C00C0F3BC /* ABChargeEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9331109E1BCA903C00C0F3BC /* ABChargeEditModel.m */; };
 		93679C531BA3D811002B2401 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93679C521BA3D811002B2401 /* Images.xcassets */; };
-		93679C621BA3D811002B2401 /* AccountBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C611BA3D811002B2401 /* AccountBookTests.m */; };
 		93679C771BA44034002B2401 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C6D1BA44034002B2401 /* UIColor+Category.m */; };
 		93679C781BA44034002B2401 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C6F1BA44034002B2401 /* UIImage+Category.m */; };
 		93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C7E1BA4409B002B2401 /* ABAppDelegate.m */; };
@@ -55,16 +54,6 @@
 		93F5ADD21BBBCE8E008A1539 /* ABDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADD11BBBCE8E008A1539 /* ABDatePicker.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		93679C5C1BA3D811002B2401 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93679C3A1BA3D810002B2401 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 93679C411BA3D811002B2401;
-			remoteInfo = AccountBook;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		52ABED0AE7CB5C55BEC49945 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		53436FEF700FB78AB4A621FF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,9 +77,6 @@
 		93679C421BA3D811002B2401 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93679C461BA3D811002B2401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93679C521BA3D811002B2401 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AccountBook/Images.xcassets; sourceTree = "<group>"; };
-		93679C5B1BA3D811002B2401 /* AccountBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		93679C601BA3D811002B2401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93679C611BA3D811002B2401 /* AccountBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountBookTests.m; sourceTree = "<group>"; };
 		93679C6C1BA44034002B2401 /* UIColor+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		93679C6D1BA44034002B2401 /* UIColor+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		93679C6E1BA44034002B2401 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
@@ -167,13 +153,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93679C581BA3D811002B2401 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -209,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				93679C441BA3D811002B2401 /* AccountBook */,
-				93679C5E1BA3D811002B2401 /* AccountBookTests */,
 				93679C431BA3D811002B2401 /* Products */,
 				2F5E565DFE45856D0B0C98EB /* Pods */,
 				10187D2DD405954A365E3E2C /* Frameworks */,
@@ -221,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				93679C421BA3D811002B2401 /* AccountBook.app */,
-				93679C5B1BA3D811002B2401 /* AccountBookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,23 +224,6 @@
 			children = (
 				93679C461BA3D811002B2401 /* Info.plist */,
 				938A2DA81BAE8EB90042B86B /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		93679C5E1BA3D811002B2401 /* AccountBookTests */ = {
-			isa = PBXGroup;
-			children = (
-				93679C611BA3D811002B2401 /* AccountBookTests.m */,
-				93679C5F1BA3D811002B2401 /* Supporting Files */,
-			);
-			path = AccountBookTests;
-			sourceTree = "<group>";
-		};
-		93679C5F1BA3D811002B2401 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				93679C601BA3D811002B2401 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -471,24 +431,6 @@
 			productReference = 93679C421BA3D811002B2401 /* AccountBook.app */;
 			productType = "com.apple.product-type.application";
 		};
-		93679C5A1BA3D811002B2401 /* AccountBookTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 93679C681BA3D811002B2401 /* Build configuration list for PBXNativeTarget "AccountBookTests" */;
-			buildPhases = (
-				93679C571BA3D811002B2401 /* Sources */,
-				93679C581BA3D811002B2401 /* Frameworks */,
-				93679C591BA3D811002B2401 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				93679C5D1BA3D811002B2401 /* PBXTargetDependency */,
-			);
-			name = AccountBookTests;
-			productName = AccountBookTests;
-			productReference = 93679C5B1BA3D811002B2401 /* AccountBookTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -500,10 +442,6 @@
 				TargetAttributes = {
 					93679C411BA3D811002B2401 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					93679C5A1BA3D811002B2401 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 93679C411BA3D811002B2401;
 					};
 				};
 			};
@@ -521,7 +459,6 @@
 			projectRoot = "";
 			targets = (
 				93679C411BA3D811002B2401 /* AccountBook */,
-				93679C5A1BA3D811002B2401 /* AccountBookTests */,
 			);
 		};
 /* End PBXProject section */
@@ -537,13 +474,6 @@
 				9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 				9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		93679C591BA3D811002B2401 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,23 +558,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93679C571BA3D811002B2401 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93679C621BA3D811002B2401 /* AccountBookTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		93679C5D1BA3D811002B2401 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 93679C411BA3D811002B2401 /* AccountBook */;
-			targetProxy = 93679C5C1BA3D811002B2401 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		93679C631BA3D811002B2401 /* Debug */ = {
@@ -766,42 +680,6 @@
 			};
 			name = Release;
 		};
-		93679C691BA3D811002B2401 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AccountBookTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mtry.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AccountBook.app/AccountBook";
-			};
-			name = Debug;
-		};
-		93679C6A1BA3D811002B2401 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AccountBookTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mtry.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AccountBook.app/AccountBook";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -819,15 +697,6 @@
 			buildConfigurations = (
 				93679C661BA3D811002B2401 /* Debug */,
 				93679C671BA3D811002B2401 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		93679C681BA3D811002B2401 /* Build configuration list for PBXNativeTarget "AccountBookTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				93679C691BA3D811002B2401 /* Debug */,
-				93679C6A1BA3D811002B2401 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
