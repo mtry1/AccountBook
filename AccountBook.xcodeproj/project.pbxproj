@@ -45,6 +45,7 @@
 		938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */; settings = {ASSET_TAGS = (); }; };
 		938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */; settings = {ASSET_TAGS = (); }; };
 		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
+		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
@@ -129,6 +130,8 @@
 		938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCoreDataHelper.m; sourceTree = "<group>"; };
 		938A4DA61BD0F35C00EE0630 /* ABCenterCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterCoreDataManager.h; sourceTree = "<group>"; };
 		938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterCoreDataManager.m; sourceTree = "<group>"; };
+		938F9EC51BDC79B9007F1778 /* ABSetDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetDataManager.h; sourceTree = "<group>"; };
+		938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetDataManager.m; sourceTree = "<group>"; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				938A2DAE1BAEEF270042B86B /* ABChargeDataManger.m */,
 				9331109A1BCA8FC700C0F3BC /* ABChargeEditDataManager.h */,
 				9331109B1BCA8FC700C0F3BC /* ABChargeEditDataManager.m */,
+				938F9EC51BDC79B9007F1778 /* ABSetDataManager.h */,
+				938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */,
 				938A2DA61BAE8E630042B86B /* ABCategoryModel.m in Sources */,
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
+				938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */,
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
 				938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */,
 				938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */,

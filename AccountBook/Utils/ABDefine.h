@@ -9,4 +9,12 @@
 #ifndef AccountBook_ABDefine_h
 #define AccountBook_ABDefine_h
 
+#pragma mark - UserDefault
+
+///安全锁
+#define ABUserDefaultKeySafeLock @"ABUserDefaultKeySafeLock"
+
+///超过结束时间红色字体
+#define ABUserDefaultKeyOutEndTimeRed @"ABUserDefaultKeyOutEndTimeRed"
+
 #endif

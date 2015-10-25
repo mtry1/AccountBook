@@ -151,7 +151,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
         ABCategoryModel *model = [self.dataManger dataAtIndex:indexPath.row];
         if(model)
         {
-            NSString *title = [NSString stringWithFormat:@"修改“%@”", model.name];
+            NSString *title = [NSString stringWithFormat:@"编辑“%@”", model.name];
             ABActionSheet *actionSheet = [[ABActionSheet alloc] initWithTitle:title
                                                                      delegate:nil
                                                             cancelButtonTitle:@"取消"
