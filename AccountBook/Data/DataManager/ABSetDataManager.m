@@ -77,12 +77,12 @@ NSString *const ABSetTitleEndTimeRed = @"关闭超过结束时间红色显示";
     }
     else if([title isEqualToString:ABSetTitleEndTimeRed])
     {
-        if(![[NSUserDefaults standardUserDefaults] objectForKey:ABSetTitleEndTimeRed])
+        if(![[NSUserDefaults standardUserDefaults] objectForKey:ABUserDefaultKeyOutEndTimeRed])
         {
-            [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:ABSetTitleEndTimeRed];
+            [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:ABUserDefaultKeyOutEndTimeRed];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:ABSetTitleEndTimeRed] boolValue];
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:ABUserDefaultKeyOutEndTimeRed] boolValue];
     }
     return NO;
 }
@@ -95,7 +95,7 @@ NSString *const ABSetTitleEndTimeRed = @"关闭超过结束时间红色显示";
     }
     else if([title isEqualToString:ABSetTitleEndTimeRed])
     {
-        [[NSUserDefaults standardUserDefaults] setObject:@(status) forKey:ABSetTitleEndTimeRed];
+        [[NSUserDefaults standardUserDefaults] setObject:@(status) forKey:ABUserDefaultKeyOutEndTimeRed];
     }
     
     NSIndexPath *indexPath = [self indexPathForTitle:title];

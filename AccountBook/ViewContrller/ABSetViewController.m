@@ -50,6 +50,8 @@
     
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
+    
+    [self.setDataManager.callBackUtils addDelegate:self];
 }
 
 #pragma mark - UITableViewDelegate
@@ -66,8 +68,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                   reuseIdentifier:nil];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
+    if(!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:@"reuseIdentifier"];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.highlighted = NO;
+    }
     
     NSString *title = [self.setDataManager titleAtIndexPath:indexPath];
     cell.textLabel.text = title;
@@ -81,6 +89,16 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.highlighted = NO;
+        cell.accessoryView = [[UISwitch alloc] init];
+        
+        UISwitch *switchButton = (UISwitch *)cell.accessoryView;
+        [switchButton addTarget:self
+                         action:@selector(touchUpInsideSwitchButton:)
+               forControlEvents:UIControlEventTouchUpInside];
+        
+        switchButton.on = [self.setDataManager boolForTitle:title];
+        switchButton.tag = indexPath.section * 10 + indexPath.row;
     }
     
     return cell;
@@ -89,6 +107,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - 点击事件
+
+- (void)touchUpInsideSwitchButton:(UISwitch *)sender
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag % 10 inSection:sender.tag / 10];
+    NSString *title = [self.setDataManager titleAtIndexPath:indexPath];
+    [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
 }
 
 #pragma mark - 数据处理
