@@ -97,12 +97,6 @@ NSString *const ABSetTitleEndTimeRed = @"关闭超过结束时间红色显示";
     {
         [[NSUserDefaults standardUserDefaults] setObject:@(status) forKey:ABUserDefaultKeyOutEndTimeRed];
     }
-    
-    NSIndexPath *indexPath = [self indexPathForTitle:title];
-    if(indexPath)
-    {
-        [self.callBackUtils callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
-    }
 }
 
 - (NSIndexPath *)indexPathForTitle:(NSString *)title

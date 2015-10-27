@@ -17,7 +17,8 @@
         NSString *nowDateString = [ABUtils dateString:[[NSDate date] timeIntervalSince1970]];
         NSString *endDateString = [ABUtils dateString:self.endTimeInterval];
         
-        if([nowDateString compare:endDateString] == NSOrderedDescending)
+        if(![[[NSUserDefaults standardUserDefaults] objectForKey:ABUserDefaultKeyOutEndTimeRed] boolValue] &&
+           [nowDateString compare:endDateString] == NSOrderedDescending)
         {
             return YES;
         }

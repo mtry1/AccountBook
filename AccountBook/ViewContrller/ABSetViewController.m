@@ -7,6 +7,7 @@
 //
 
 #import "ABSetViewController.h"
+#import "ABSafeLockViewController.h"
 #import "ABSetDataManager.h"
 
 @interface ABSetViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
@@ -115,14 +116,40 @@
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag % 10 inSection:sender.tag / 10];
     NSString *title = [self.setDataManager titleAtIndexPath:indexPath];
-    [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
+    if([title isEqualToString:ABSetTitleLock])
+    {
+        if(sender.on)
+        {
+            [ABSafeLockViewController showInViewController:self openType:ABSafeLockOpenTypeStart completion:^(BOOL isCompleted) {
+                
+                if(!isCompleted)
+                {
+                    [sender setOn:!sender.on];
+                }
+                
+                [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
+            }];
+        }
+        else
+        {
+            [ABSafeLockViewController showInViewController:self openType:ABSafeLockOpenTypeClose completion:^(BOOL isCompleted) {
+                
+                if(!isCompleted)
+                {
+                    [sender setOn:!sender.on];
+                }
+                
+                [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
+            }];
+        }
+    }
 }
 
-#pragma mark - 数据处理
+#pragma mark - 数据刷新
 
 - (void)dataManager:(ABDataManager *)manager updateIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation: UITableViewRowAnimationAutomatic];
 }
 
 @end
