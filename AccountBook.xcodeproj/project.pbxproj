@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		0EE8A649B2FB20943CBD75E6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53436FEF700FB78AB4A621FF /* libPods.a */; };
 		930A36DA1BCD1D9900521A4E /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 930A36D91BCD1D9900521A4E /* NSDate+Category.m */; };
-		9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05B1BCE479F0068D8FA /* chargeList_arrowDown@2x.png */; settings = {ASSET_TAGS = (); }; };
-		9313E05E1BCE479F0068D8FA /* chargeList_arrowDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05C1BCE479F0068D8FA /* chargeList_arrowDown@3x.png */; settings = {ASSET_TAGS = (); }; };
-		9313E0641BCE6DF40068D8FA /* ABStatisticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9313E0631BCE6DF40068D8FA /* ABStatisticsView.m */; settings = {ASSET_TAGS = (); }; };
-		9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E0651BCE788C0068D8FA /* chargeList_arrowUp@2x.png */; settings = {ASSET_TAGS = (); }; };
-		9313E0681BCE788C0068D8FA /* chargeList_arrowUp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E0661BCE788C0068D8FA /* chargeList_arrowUp@3x.png */; settings = {ASSET_TAGS = (); }; };
+		9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05B1BCE479F0068D8FA /* chargeList_arrowDown@2x.png */; };
+		9313E05E1BCE479F0068D8FA /* chargeList_arrowDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05C1BCE479F0068D8FA /* chargeList_arrowDown@3x.png */; };
+		9313E0641BCE6DF40068D8FA /* ABStatisticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9313E0631BCE6DF40068D8FA /* ABStatisticsView.m */; };
+		9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E0651BCE788C0068D8FA /* chargeList_arrowUp@2x.png */; };
+		9313E0681BCE788C0068D8FA /* chargeList_arrowUp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E0661BCE788C0068D8FA /* chargeList_arrowUp@3x.png */; };
 		933110961BCA1EF400C0F3BC /* ABTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 933110951BCA1EF400C0F3BC /* ABTextViewController.m */; };
 		933110991BCA46CA00C0F3BC /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 933110981BCA46CA00C0F3BC /* NSString+Category.m */; };
 		9331109C1BCA8FC700C0F3BC /* ABChargeEditDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9331109B1BCA8FC700C0F3BC /* ABChargeEditDataManager.m */; };
@@ -26,7 +26,7 @@
 		93679C891BA442A5002B2401 /* ABCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C881BA442A5002B2401 /* ABCategoryViewController.m */; };
 		93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C8C1BA443F6002B2401 /* ABNavigationController.m */; };
 		93679C941BA46420002B2401 /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C931BA46420002B2401 /* ABSetViewController.m */; };
-		937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */; settings = {ASSET_TAGS = (); }; };
+		937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */; };
 		938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */; };
 		938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D901BAE8E3E0042B86B /* ABActionSheet.m */; };
 		938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D921BAE8E3E0042B86B /* ABAlertView.m */; };
@@ -40,12 +40,12 @@
 		938A2DAF1BAEEF270042B86B /* ABChargeDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DAE1BAEEF270042B86B /* ABChargeDataManger.m */; };
 		938A2DB21BAEF6A60042B86B /* ABChargeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB11BAEF6A60042B86B /* ABChargeListViewController.m */; };
 		938A2DB81BAF01740042B86B /* ABChargeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2DB71BAF01740042B86B /* ABChargeListCell.m */; };
-		938A4D841BD0E5BE00EE0630 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D821BD0E5BE00EE0630 /* Model.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
-		938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D881BD0E8C200EE0630 /* ABChargeEntity.m */; settings = {ASSET_TAGS = (); }; };
-		938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */; settings = {ASSET_TAGS = (); }; };
-		938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */; settings = {ASSET_TAGS = (); }; };
-		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
-		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; settings = {ASSET_TAGS = (); }; };
+		938A4D841BD0E5BE00EE0630 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D821BD0E5BE00EE0630 /* Model.xcdatamodeld */; };
+		938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D881BD0E8C200EE0630 /* ABChargeEntity.m */; };
+		938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */; };
+		938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */; };
+		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; };
+		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
@@ -656,6 +656,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_DISPLAY_NAME = "随身记";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
@@ -674,6 +675,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_DISPLAY_NAME = "随身记";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
