@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DMPasscode-DMPasscode.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DMPasscode.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +32,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18442D109BE513AF602C44089866C37F</key>
+		<key>21F938396C92E241E6227223E274D79D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51E4A921E290B3634E125A54AB126C44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A26CAF7A3AF9B2540EF3FA1DE5AE282D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E8A0A4B69F32778E2F6D6F211E1ACDB3</key>
+		<key>EA13CFB7403034FCAA429D59A7735F15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
