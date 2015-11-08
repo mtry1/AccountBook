@@ -45,13 +45,13 @@
 		938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */; };
 		938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */; };
 		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; };
-		938D7CF01BEEE0C500DDA2C8 /* DMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE41BEEE0C500DDA2C8 /* DMKeychain.m */; settings = {ASSET_TAGS = (); }; };
-		938D7CF11BEEE0C500DDA2C8 /* DMPasscode.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE61BEEE0C500DDA2C8 /* DMPasscode.m */; settings = {ASSET_TAGS = (); }; };
-		938D7CF21BEEE0C500DDA2C8 /* DMPasscodeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE81BEEE0C500DDA2C8 /* DMPasscodeConfig.m */; settings = {ASSET_TAGS = (); }; };
-		938D7CF31BEEE0C500DDA2C8 /* DMPasscodeInternalField.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEA1BEEE0C500DDA2C8 /* DMPasscodeInternalField.m */; settings = {ASSET_TAGS = (); }; };
-		938D7CF41BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */; settings = {ASSET_TAGS = (); }; };
-		938D7CF51BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */; settings = {ASSET_TAGS = (); }; };
-		938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */; settings = {ASSET_TAGS = (); }; };
+		938D7CF01BEEE0C500DDA2C8 /* DMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE41BEEE0C500DDA2C8 /* DMKeychain.m */; };
+		938D7CF11BEEE0C500DDA2C8 /* DMPasscode.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE61BEEE0C500DDA2C8 /* DMPasscode.m */; };
+		938D7CF21BEEE0C500DDA2C8 /* DMPasscodeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE81BEEE0C500DDA2C8 /* DMPasscodeConfig.m */; };
+		938D7CF31BEEE0C500DDA2C8 /* DMPasscodeInternalField.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEA1BEEE0C500DDA2C8 /* DMPasscodeInternalField.m */; };
+		938D7CF41BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */; };
+		938D7CF51BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */; };
+		938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */; };
 		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
@@ -496,6 +496,7 @@
 				TargetAttributes = {
 					93679C411BA3D811002B2401 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = J5M499R3KZ;
 					};
 				};
 			};
@@ -713,6 +714,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME = "随身记";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
@@ -721,6 +724,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mtry.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -732,6 +736,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME = "随身记";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
@@ -740,6 +746,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mtry.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
