@@ -22,20 +22,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    UIViewController *rootViewController;
-    if([DMPasscode isPasscodeSet])
-    {
-         rootViewController = [[ABViewController alloc] init];
-    }
-    else
-    {
-         rootViewController = [[ABNavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
-    }
-    self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
+    self.window.rootViewController = [[ABNavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
     
-    [self showDMPasscode];
+    [self showDMPasscode:YES];
     
     [self initSVProgressHUD];
     
@@ -46,15 +36,23 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [self showDMPasscode];
+    [self showDMPasscode:NO];
 }
 
-- (void)showDMPasscode
+- (void)showDMPasscode:(BOOL)isNeedBackgroudView
 {
     if([DMPasscode isPasscodeSet])
     {
-        static BOOL isShowing;
+        UIView *backgroudView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        if(isNeedBackgroudView)
+        {
+            backgroudView.backgroundColor = [UIColor whiteColor];
+            
+            ABNavigationController *navigation = (ABNavigationController *)self.window.rootViewController;
+            [navigation.topViewController.navigationController.view addSubview:backgroudView];
+        }
         
+        static BOOL isShowing;
         if(isShowing)
         {
             return;
@@ -67,20 +65,17 @@
         isShowing = YES;
         [DMPasscode showPasscodeInViewController:self.window.rootViewController
                                         animated:NO
-                                      completion:^(BOOL success, NSError *error)
-         {
+                                willCloseHandler:^
+        {
+            if(isNeedBackgroudView)
+            {
+                [backgroudView removeFromSuperview];
+            }
+        }completion:^(BOOL success, NSError *error){
+            
              if(success)
              {
                  isShowing = NO;
-                 if(![self.window.rootViewController isKindOfClass:[ABNavigationController class]])
-                 {
-                     self.window.rootViewController = [[ABNavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
-                     
-                     self.window.rootViewController.view.alpha = 0;
-                     [UIView animateWithDuration:0.2 animations:^{
-                         self.window.rootViewController.view.alpha = 1;
-                     }];
-                 }
              }
          }];
     }

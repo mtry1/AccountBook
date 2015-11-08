@@ -126,6 +126,7 @@
         {
             [DMPasscode setupPasscodeInViewController:self
                                              animated:YES
+                                     willCloseHandler:nil
                                            completion:^(BOOL success, NSError *error)
             {
                 if(!success)
@@ -140,6 +141,7 @@
         {
             [DMPasscode showPasscodeInViewController:self
                                             animated:YES
+                                    willCloseHandler:nil
                                           completion:^(BOOL success, NSError *error)
             {
                 if(success)

@@ -28,6 +28,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 
 @implementation DMPasscode {
     PasscodeCompletionBlock _completion;
+    PasscodeWillCloseBlock _willClose;
     DMPasscodeInternalViewController* _passcodeViewController;
     int _mode; // 0 = setup, 1 = input
     int _count;
@@ -48,12 +49,24 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 }
 
 #pragma mark - Public
-+ (void)setupPasscodeInViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(PasscodeCompletionBlock)completion {
-    [instance setupPasscodeInViewController:viewController animated:animated completion:completion];
++ (void)setupPasscodeInViewController:(UIViewController *)viewController
+                             animated:(BOOL)animated
+                     willCloseHandler:(PasscodeWillCloseBlock)willCloseHandler
+                           completion:(PasscodeCompletionBlock)completion {
+    [instance setupPasscodeInViewController:viewController
+                                   animated:animated
+                           willCloseHandler:willCloseHandler
+                                 completion:completion];
 }
 
-+ (void)showPasscodeInViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(PasscodeCompletionBlock)completion {
-    [instance showPasscodeInViewController:viewController animated:animated completion:completion];
++ (void)showPasscodeInViewController:(UIViewController *)viewController
+                            animated:(BOOL)animated
+                    willCloseHandler:(PasscodeWillCloseBlock)willCloseHandler
+                          completion:(PasscodeCompletionBlock)completion {
+    [instance showPasscodeInViewController:viewController
+                                  animated:animated
+                          willCloseHandler:willCloseHandler
+                                completion:completion];
 }
 
 + (void)removePasscode {
@@ -69,14 +82,22 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 }
 
 #pragma mark - Instance methods
-- (void)setupPasscodeInViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(PasscodeCompletionBlock)completion {
+- (void)setupPasscodeInViewController:(UIViewController *)viewController
+                             animated:(BOOL)animated
+                     willCloseHandler:(PasscodeWillCloseBlock)willCloseHandler
+                           completion:(PasscodeCompletionBlock)completion {
     _completion = completion;
+    _willClose = willCloseHandler;
     [self openPasscodeWithMode:0 viewController:viewController animated:animated];
 }
 
-- (void)showPasscodeInViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(PasscodeCompletionBlock)completion {
+- (void)showPasscodeInViewController:(UIViewController *)viewController
+                            animated:(BOOL)animated
+                    willCloseHandler:(PasscodeWillCloseBlock)willCloseHandler
+                          completion:(PasscodeCompletionBlock)completion {
     NSAssert([self isPasscodeSet], @"No passcode set");
     _completion = completion;
+    _willClose = willCloseHandler;
     LAContext* context = [[LAContext alloc] init];
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:NSLocalizedString(@"dmpasscode_touchid_reason", nil) reply:^(BOOL success, NSError* error) {
@@ -139,6 +160,12 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 }
 
 - (void)closeAndNotify:(BOOL)success withError:(NSError *)error {
+    
+    if(_willClose)
+    {
+        _willClose();
+    }
+    
     [_passcodeViewController dismissViewControllerAnimated:YES completion:^() {
         _completion(success, error);
     }];
