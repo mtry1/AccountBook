@@ -26,7 +26,6 @@
 		93679C891BA442A5002B2401 /* ABCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C881BA442A5002B2401 /* ABCategoryViewController.m */; };
 		93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C8C1BA443F6002B2401 /* ABNavigationController.m */; };
 		93679C941BA46420002B2401 /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C931BA46420002B2401 /* ABSetViewController.m */; };
-		936A180B1BDFA4AF00E7A906 /* ABSafeLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A180A1BDFA4AF00E7A906 /* ABSafeLockViewController.m */; };
 		937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */; };
 		938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */; };
 		938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D901BAE8E3E0042B86B /* ABActionSheet.m */; };
@@ -46,6 +45,13 @@
 		938A4D901BD0E8C200EE0630 /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4D8C1BD0E8C200EE0630 /* ABCategoryEntity.m */; };
 		938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */; };
 		938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */; };
+		938D7CF01BEEE0C500DDA2C8 /* DMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE41BEEE0C500DDA2C8 /* DMKeychain.m */; settings = {ASSET_TAGS = (); }; };
+		938D7CF11BEEE0C500DDA2C8 /* DMPasscode.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE61BEEE0C500DDA2C8 /* DMPasscode.m */; settings = {ASSET_TAGS = (); }; };
+		938D7CF21BEEE0C500DDA2C8 /* DMPasscodeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CE81BEEE0C500DDA2C8 /* DMPasscodeConfig.m */; settings = {ASSET_TAGS = (); }; };
+		938D7CF31BEEE0C500DDA2C8 /* DMPasscodeInternalField.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEA1BEEE0C500DDA2C8 /* DMPasscodeInternalField.m */; settings = {ASSET_TAGS = (); }; };
+		938D7CF41BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */; settings = {ASSET_TAGS = (); }; };
+		938D7CF51BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */; settings = {ASSET_TAGS = (); }; };
+		938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */; settings = {ASSET_TAGS = (); }; };
 		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
@@ -95,8 +101,6 @@
 		93679C8E1BA44594002B2401 /* ABPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPrefixHeader.pch; sourceTree = "<group>"; };
 		93679C921BA46420002B2401 /* ABSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetViewController.h; sourceTree = "<group>"; };
 		93679C931BA46420002B2401 /* ABSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetViewController.m; sourceTree = "<group>"; };
-		936A18091BDFA4AF00E7A906 /* ABSafeLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSafeLockViewController.h; sourceTree = "<group>"; };
-		936A180A1BDFA4AF00E7A906 /* ABSafeLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSafeLockViewController.m; sourceTree = "<group>"; };
 		937FCC491BCFD27C00E4297D /* ABCenterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterDataManager.h; sourceTree = "<group>"; };
 		937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterDataManager.m; sourceTree = "<group>"; };
 		938695D51BC4E34300F4B1A9 /* ABChargeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditCell.h; sourceTree = "<group>"; };
@@ -133,6 +137,19 @@
 		938A4DA41BD0EE7400EE0630 /* ABCoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCoreDataHelper.m; sourceTree = "<group>"; };
 		938A4DA61BD0F35C00EE0630 /* ABCenterCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterCoreDataManager.h; sourceTree = "<group>"; };
 		938A4DA71BD0F35C00EE0630 /* ABCenterCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterCoreDataManager.m; sourceTree = "<group>"; };
+		938D7CE31BEEE0C500DDA2C8 /* DMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMKeychain.h; sourceTree = "<group>"; };
+		938D7CE41BEEE0C500DDA2C8 /* DMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMKeychain.m; sourceTree = "<group>"; };
+		938D7CE51BEEE0C500DDA2C8 /* DMPasscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPasscode.h; sourceTree = "<group>"; };
+		938D7CE61BEEE0C500DDA2C8 /* DMPasscode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscode.m; sourceTree = "<group>"; };
+		938D7CE71BEEE0C500DDA2C8 /* DMPasscodeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPasscodeConfig.h; sourceTree = "<group>"; };
+		938D7CE81BEEE0C500DDA2C8 /* DMPasscodeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscodeConfig.m; sourceTree = "<group>"; };
+		938D7CE91BEEE0C500DDA2C8 /* DMPasscodeInternalField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPasscodeInternalField.h; sourceTree = "<group>"; };
+		938D7CEA1BEEE0C500DDA2C8 /* DMPasscodeInternalField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscodeInternalField.m; sourceTree = "<group>"; };
+		938D7CEB1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPasscodeInternalNavigationController.h; sourceTree = "<group>"; };
+		938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscodeInternalNavigationController.m; sourceTree = "<group>"; };
+		938D7CED1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPasscodeInternalViewController.h; sourceTree = "<group>"; };
+		938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscodeInternalViewController.m; sourceTree = "<group>"; };
+		938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = DMPasscodeLocalisation.strings; sourceTree = "<group>"; };
 		938F9EC51BDC79B9007F1778 /* ABSetDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetDataManager.h; sourceTree = "<group>"; };
 		938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetDataManager.m; sourceTree = "<group>"; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
@@ -217,6 +234,7 @@
 				93679C731BA44034002B2401 /* Main */,
 				93679C761BA44034002B2401 /* ViewContrller */,
 				93679C741BA44034002B2401 /* Utils */,
+				938D7CE11BEEDFDF00DDA2C8 /* ThiryParty */,
 				93679C6B1BA44034002B2401 /* Category */,
 				938A2D991BAE8E630042B86B /* Data */,
 				939690CD1BADA8F3008C09C9 /* Resouce */,
@@ -288,8 +306,6 @@
 				93679C931BA46420002B2401 /* ABSetViewController.m */,
 				933110941BCA1EF400C0F3BC /* ABTextViewController.h */,
 				933110951BCA1EF400C0F3BC /* ABTextViewController.m */,
-				936A18091BDFA4AF00E7A906 /* ABSafeLockViewController.h */,
-				936A180A1BDFA4AF00E7A906 /* ABSafeLockViewController.m */,
 			);
 			path = ViewContrller;
 			sourceTree = "<group>";
@@ -402,6 +418,34 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		938D7CE11BEEDFDF00DDA2C8 /* ThiryParty */ = {
+			isa = PBXGroup;
+			children = (
+				938D7CE21BEEE0C500DDA2C8 /* DMPasscode */,
+			);
+			path = ThiryParty;
+			sourceTree = "<group>";
+		};
+		938D7CE21BEEE0C500DDA2C8 /* DMPasscode */ = {
+			isa = PBXGroup;
+			children = (
+				938D7CE31BEEE0C500DDA2C8 /* DMKeychain.h */,
+				938D7CE41BEEE0C500DDA2C8 /* DMKeychain.m */,
+				938D7CE51BEEE0C500DDA2C8 /* DMPasscode.h */,
+				938D7CE61BEEE0C500DDA2C8 /* DMPasscode.m */,
+				938D7CE71BEEE0C500DDA2C8 /* DMPasscodeConfig.h */,
+				938D7CE81BEEE0C500DDA2C8 /* DMPasscodeConfig.m */,
+				938D7CE91BEEE0C500DDA2C8 /* DMPasscodeInternalField.h */,
+				938D7CEA1BEEE0C500DDA2C8 /* DMPasscodeInternalField.m */,
+				938D7CEB1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.h */,
+				938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */,
+				938D7CED1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.h */,
+				938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */,
+				938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */,
+			);
+			path = DMPasscode;
+			sourceTree = "<group>";
+		};
 		939690CD1BADA8F3008C09C9 /* Resouce */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +526,7 @@
 				939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */,
 				9313E05E1BCE479F0068D8FA /* chargeList_arrowDown@3x.png in Resources */,
 				9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */,
+				938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 				9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */,
 			);
@@ -531,25 +576,29 @@
 				938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */,
 				938A2DA61BAE8E630042B86B /* ABCategoryModel.m in Sources */,
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
+				938D7CF11BEEE0C500DDA2C8 /* DMPasscode.m in Sources */,
 				938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */,
 				93679C8D1BA443F6002B2401 /* ABNavigationController.m in Sources */,
 				938A2DAC1BAE90C90042B86B /* ABChargeModel.m in Sources */,
 				938A4DA81BD0F35C00EE0630 /* ABCenterCoreDataManager.m in Sources */,
+				938D7CF31BEEE0C500DDA2C8 /* DMPasscodeInternalField.m in Sources */,
 				93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */,
 				93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */,
 				93679C941BA46420002B2401 /* ABSetViewController.m in Sources */,
 				9313E0641BCE6DF40068D8FA /* ABStatisticsView.m in Sources */,
+				938D7CF01BEEE0C500DDA2C8 /* DMKeychain.m in Sources */,
 				933110961BCA1EF400C0F3BC /* ABTextViewController.m in Sources */,
 				937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */,
 				93679C7F1BA4409B002B2401 /* ABAppDelegate.m in Sources */,
-				936A180B1BDFA4AF00E7A906 /* ABSafeLockViewController.m in Sources */,
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,
+				938D7CF41BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m in Sources */,
 				93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */,
 				93F5ADD21BBBCE8E008A1539 /* ABDatePicker.m in Sources */,
 				93F5ADCF1BBB881D008A1539 /* ABChargeEditViewController.m in Sources */,
 				938A4D841BD0E5BE00EE0630 /* Model.xcdatamodeld in Sources */,
 				938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */,
 				938A2DA71BAE8E630042B86B /* ABModel.m in Sources */,
+				938D7CF21BEEE0C500DDA2C8 /* DMPasscodeConfig.m in Sources */,
 				938A2DA91BAE8EB90042B86B /* main.m in Sources */,
 				938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */,
 				938A2DB21BAEF6A60042B86B /* ABChargeListViewController.m in Sources */,
@@ -567,6 +616,7 @@
 				938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,
 				938A4DA51BD0EE7400EE0630 /* ABCoreDataHelper.m in Sources */,
+				938D7CF51BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

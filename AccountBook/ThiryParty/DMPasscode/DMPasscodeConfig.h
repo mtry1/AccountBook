@@ -91,4 +91,6 @@
  */
 @property (nonatomic, strong) UIColor * navigationBarTitleColor;
 
+@property (nonatomic) BOOL isShowCloseButton;
+
 @end

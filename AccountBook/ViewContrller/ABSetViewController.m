@@ -7,8 +7,8 @@
 //
 
 #import "ABSetViewController.h"
-#import "ABSafeLockViewController.h"
 #import "ABSetDataManager.h"
+#import "DMPasscode.h"
 
 @interface ABSetViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
 
@@ -114,17 +114,23 @@
 
 - (void)touchUpInsideSwitchButton:(UISwitch *)sender
 {
+    DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
+    config.isShowCloseButton = YES;
+    [DMPasscode setConfig:config];
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag % 10 inSection:sender.tag / 10];
     NSString *title = [self.setDataManager titleAtIndexPath:indexPath];
     if([title isEqualToString:ABSetTitleLock])
     {
         if(sender.on)
         {
-            [ABSafeLockViewController showInViewController:self openType:ABSafeLockOpenTypeStart completion:^(BOOL isCompleted) {
-                
-                if(!isCompleted)
+            [DMPasscode setupPasscodeInViewController:self
+                                             animated:YES
+                                           completion:^(BOOL success, NSError *error)
+            {
+                if(!success)
                 {
-                    [sender setOn:!sender.on];
+                    [sender setOn:!sender.isOn];
                 }
                 
                 [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
@@ -132,16 +138,26 @@
         }
         else
         {
-            [ABSafeLockViewController showInViewController:self openType:ABSafeLockOpenTypeClose completion:^(BOOL isCompleted) {
-                
-                if(!isCompleted)
+            [DMPasscode showPasscodeInViewController:self
+                                            animated:YES
+                                          completion:^(BOOL success, NSError *error)
+            {
+                if(success)
                 {
-                    [sender setOn:!sender.on];
+                    [DMPasscode removePasscode];
+                }
+                else
+                {
+                    [sender setOn:!sender.isOn];
                 }
                 
                 [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
             }];
         }
+    }
+    else if([title isEqualToString:ABSetTitleEndTimeRed])
+    {
+        [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
     }
 }
 

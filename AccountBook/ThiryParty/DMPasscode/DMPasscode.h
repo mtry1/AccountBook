@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, DMUnlockErrorCodes)
  *  @param viewController The view controller in which the passcode screen will be presented
  *  @param completion     The completion block with a BOOL to inidcate if authentication was successful (and NSError if not)
  */
-+ (void)setupPasscodeInViewController:(UIViewController *)viewController completion:(PasscodeCompletionBlock)completion;
++ (void)setupPasscodeInViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(PasscodeCompletionBlock)completion;
 
 /**
  *  Authenticate the user.
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, DMUnlockErrorCodes)
  *  @param viewController The view controller in which the passcode screen will be presented
  *  @param completion     The completion block with a BOOL to inidcate if the authentication was successful (and NSError if not)
  */
-+ (void)showPasscodeInViewController:(UIViewController *)viewController completion:(PasscodeCompletionBlock)completion;
++ (void)showPasscodeInViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(PasscodeCompletionBlock)completion;
 
 /**
  *  Remove the passcode from the keychain.
