@@ -98,6 +98,10 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     NSAssert([self isPasscodeSet], @"No passcode set");
     _completion = completion;
     _willClose = willCloseHandler;
+    [self openPasscodeWithMode:1 viewController:viewController animated:animated];
+    return;
+    
+    /*
     LAContext* context = [[LAContext alloc] init];
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:NSLocalizedString(@"dmpasscode_touchid_reason", nil) reply:^(BOOL success, NSError* error) {
@@ -129,6 +133,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
         // no touch id available
         [self openPasscodeWithMode:1 viewController:viewController animated:animated];
     }
+     */
 }
 
 - (void)removePasscode {
