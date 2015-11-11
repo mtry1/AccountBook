@@ -89,7 +89,7 @@
         _startButton.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
         _startButton.titleLabel.font = ABStatisticsViewDefaultFont;
         [_startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_startButton setImage:[UIImage imageWithResourceName:@"chargeList_arrowDown"] forState:UIControlStateNormal];
+        [_startButton setImage:[UIImage imageNamed:@"chargeList_arrowDown"] forState:UIControlStateNormal];
         [_startButton addTarget:self action:@selector(touchUpInsideStartButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _startButton;
@@ -104,7 +104,7 @@
         _endButton.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
         _endButton.titleLabel.font = ABStatisticsViewDefaultFont;
         [_endButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_endButton setImage:[UIImage imageWithResourceName:@"chargeList_arrowDown"] forState:UIControlStateNormal];
+        [_endButton setImage:[UIImage imageNamed:@"chargeList_arrowDown"] forState:UIControlStateNormal];
         [_endButton addTarget:self action:@selector(touchUpInsideEndButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _endButton;
@@ -280,7 +280,7 @@
 - (void)updateDateImageButton:(UIButton *)button
 {
     NSString *imageName = button.selected ? @"chargeList_arrowUp" : @"chargeList_arrowDown";
-    [button setImage:[UIImage imageWithResourceName:imageName] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
 @end
