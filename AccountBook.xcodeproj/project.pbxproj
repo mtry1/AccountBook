@@ -53,6 +53,8 @@
 		938D7CF51BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */; };
 		938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */; };
 		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; };
+		93938FBA1BF32E6D008CDDD4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93938FB91BF32E6D008CDDD4 /* CloudKit.framework */; };
+		93938FBC1BF330A6008CDDD4 /* AccountBook.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 93938FBB1BF330A6008CDDD4 /* AccountBook.entitlements */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
@@ -152,6 +154,8 @@
 		938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = DMPasscodeLocalisation.strings; sourceTree = "<group>"; };
 		938F9EC51BDC79B9007F1778 /* ABSetDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetDataManager.h; sourceTree = "<group>"; };
 		938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetDataManager.m; sourceTree = "<group>"; };
+		93938FB91BF32E6D008CDDD4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		93938FBB1BF330A6008CDDD4 /* AccountBook.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AccountBook.entitlements; sourceTree = "<group>"; };
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EE8A649B2FB20943CBD75E6 /* libPods.a in Frameworks */,
+				93938FBA1BF32E6D008CDDD4 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +187,7 @@
 		10187D2DD405954A365E3E2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93938FB91BF32E6D008CDDD4 /* CloudKit.framework */,
 				53436FEF700FB78AB4A621FF /* libPods.a */,
 			);
 			name = Frameworks;
@@ -458,6 +464,7 @@
 		939690CF1BADA8F3008C09C9 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				93938FBB1BF330A6008CDDD4 /* AccountBook.entitlements */,
 				939690D01BADA8F3008C09C9 /* STXINGKA.ttf */,
 			);
 			path = Other;
@@ -496,7 +503,12 @@
 				TargetAttributes = {
 					93679C411BA3D811002B2401 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = J5M499R3KZ;
+						DevelopmentTeam = ZV5SVKKPDA;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -525,6 +537,7 @@
 			files = (
 				9313E0681BCE788C0068D8FA /* chargeList_arrowUp@3x.png in Resources */,
 				939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */,
+				93938FBC1BF330A6008CDDD4 /* AccountBook.entitlements in Resources */,
 				9313E05E1BCE479F0068D8FA /* chargeList_arrowDown@3x.png in Resources */,
 				9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */,
 				938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */,
@@ -714,6 +727,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME = "随身记";
+				CODE_SIGN_ENTITLEMENTS = AccountBook/Resouce/Other/AccountBook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -722,10 +736,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mtry.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 			};
 			name = Debug;
 		};
@@ -736,6 +751,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME = "随身记";
+				CODE_SIGN_ENTITLEMENTS = AccountBook/Resouce/Other/AccountBook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -744,10 +760,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mtry.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 			};
 			name = Release;
 		};
