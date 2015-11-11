@@ -10,6 +10,4 @@
 
 @interface UIImage (Category)
 
-+ (UIImage *)imageWithResourceName:(NSString *)name;
-
 @end
