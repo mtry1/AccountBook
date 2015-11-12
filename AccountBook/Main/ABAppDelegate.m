@@ -10,12 +10,27 @@
 #import "ABCategoryViewController.h"
 #import "ABCoreDataHelper.h"
 #import "DMPasscode.h"
+#import "DMPasscodeInternalViewController.h"
 
 @interface ABAppDelegate ()
+
+@property (nonatomic, readonly) UIView *backgroudView;
 
 @end
 
 @implementation ABAppDelegate
+
+@synthesize backgroudView = _backgroudView;
+
+- (UIView *)backgroudView
+{
+    if(!_backgroudView)
+    {
+        _backgroudView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _backgroudView.backgroundColor = [UIColor whiteColor];
+    }
+    return _backgroudView;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -25,59 +40,54 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [[ABNavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
     
-    [self showDMPasscode:YES];
+    [[ABCoreDataHelper share] setupCoreData];
     
     [self initSVProgressHUD];
     
-    [[ABCoreDataHelper share] setupCoreData];
+    [self showDMPasscode];
     
     return YES;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [self showDMPasscode:NO];
+    [self showDMPasscode];
 }
 
-- (void)showDMPasscode:(BOOL)isNeedBackgroudView
+- (void)showDMPasscode
 {
     if([DMPasscode isPasscodeSet])
     {
-        UIView *backgroudView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        if(isNeedBackgroudView)
-        {
-            backgroudView.backgroundColor = [UIColor whiteColor];
-            
-            ABNavigationController *navigation = (ABNavigationController *)self.window.rootViewController;
-            [navigation.topViewController.navigationController.view addSubview:backgroudView];
-        }
-        
         static BOOL isShowing;
         if(isShowing)
         {
             return;
         }
         
-        DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
-        config.isShowCloseButton = NO;
-        [DMPasscode setConfig:config];
-        
-        isShowing = YES;
-        [DMPasscode showPasscodeInViewController:self.window.rootViewController
-                                        animated:NO
-                                willCloseHandler:^
-        {
-            if(isNeedBackgroudView)
-            {
-                [backgroudView removeFromSuperview];
-            }
-        }completion:^(BOOL success, NSError *error){
+        [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-             if(success)
+            DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
+            config.isShowCloseButton = NO;
+            [DMPasscode setConfig:config];
+            
+            isShowing = YES;
+            [DMPasscode showPasscodeInViewController:[ABUtils currentShowViewController]
+                                            animated:NO
+                                    willCloseHandler:^
              {
-                 isShowing = NO;
-             }
-         }];
+                 if(self.backgroudView.superview)
+                 {
+                     [self.backgroudView removeFromSuperview];
+                 }
+             }completion:^(BOOL success, NSError *error){
+                 
+                 if(success)
+                 {
+                     isShowing = NO;
+                 }
+             }];
+        });
     }
 }
 

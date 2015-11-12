@@ -24,6 +24,9 @@
 ///本地化时间
 + (NSString *)localDateString:(NSDate *)date;
 
+///当前显示的控制器
++ (UIViewController *)currentShowViewController;
+
 ///计算普通字符串高
 + (CGFloat)calculateHeightForWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font;
 

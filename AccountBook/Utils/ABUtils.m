@@ -66,6 +66,63 @@
     return [formatter stringFromDate:date];
 }
 
+///当前显示的控制器
++ (UIViewController *)currentShowViewController
+{
+    UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [self findBestViewController:viewController];
+    
+}
+
+///当前显示的控制器
++ (UIViewController*)findBestViewController:(UIViewController *)viewController
+{
+    if(viewController.presentedViewController)
+    {
+        return [self findBestViewController:viewController.presentedViewController];
+    }
+    else if ([viewController isKindOfClass:[UISplitViewController class]])
+    {
+        UISplitViewController *splitViewController = (UISplitViewController *)viewController;
+        if(splitViewController.viewControllers.count > 0)
+        {
+            return [self findBestViewController:splitViewController.viewControllers.lastObject];
+        }
+        else
+        {
+            return viewController;
+        }
+    }
+    else if([viewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController *navigationController = (UINavigationController *)viewController;
+        if(navigationController.viewControllers.count > 0)
+        {
+            return [self findBestViewController:navigationController.topViewController];
+        }
+        else
+        {
+            return viewController;
+        }
+    }
+    else if ([viewController isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController *tabBarController = (UITabBarController *)viewController;
+        if (tabBarController.viewControllers.count > 0)
+        {
+            return [self findBestViewController:tabBarController.selectedViewController];
+        }
+        else
+        {
+            return viewController;
+        }
+    }
+    else
+    {
+        return viewController;
+    }
+}
+
 ///计算普通字符串高
 + (CGFloat)calculateHeightForWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font
 {
