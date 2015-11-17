@@ -57,6 +57,7 @@
 		93938FBC1BF330A6008CDDD4 /* AccountBook.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 93938FBB1BF330A6008CDDD4 /* AccountBook.entitlements */; };
 		939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 939690C81BAD2EB5008C09C9 /* ABUtils.m */; };
 		939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939690D01BADA8F3008C09C9 /* STXINGKA.ttf */; };
+		93D7D06E1BFAF81100971100 /* ABCloudKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D7D06D1BFAF81100971100 /* ABCloudKit.m */; };
 		93F193BC1BBAABC30000CEF0 /* ABCallBackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */; };
 		93F5ADC91BBB7285008A1539 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADC81BBB7285008A1539 /* ABTableViewCell.m */; };
 		93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F5ADCB1BBB732D008A1539 /* ABTableView.m */; };
@@ -159,6 +160,8 @@
 		939690C71BAD2EB5008C09C9 /* ABUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtils.h; sourceTree = "<group>"; };
 		939690C81BAD2EB5008C09C9 /* ABUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtils.m; sourceTree = "<group>"; };
 		939690D01BADA8F3008C09C9 /* STXINGKA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = STXINGKA.ttf; sourceTree = "<group>"; };
+		93D7D06C1BFAF81100971100 /* ABCloudKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCloudKit.h; sourceTree = "<group>"; };
+		93D7D06D1BFAF81100971100 /* ABCloudKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCloudKit.m; sourceTree = "<group>"; };
 		93F193BA1BBAABC30000CEF0 /* ABCallBackUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCallBackUtils.h; sourceTree = "<group>"; };
 		93F193BB1BBAABC30000CEF0 /* ABCallBackUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCallBackUtils.m; sourceTree = "<group>"; };
 		93F5ADC71BBB7285008A1539 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
@@ -383,6 +386,7 @@
 		938A2D991BAE8E630042B86B /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				93EBCEB81BFA0A4500E80ED4 /* CloudKit */,
 				937FCC461BCFD20500E4297D /* CoreData */,
 				938A2D9A1BAE8E630042B86B /* DataManager */,
 				938A2D9F1BAE8E630042B86B /* Model */,
@@ -468,6 +472,15 @@
 				939690D01BADA8F3008C09C9 /* STXINGKA.ttf */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		93EBCEB81BFA0A4500E80ED4 /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				93D7D06C1BFAF81100971100 /* ABCloudKit.h */,
+				93D7D06D1BFAF81100971100 /* ABCloudKit.m */,
+			);
+			path = CloudKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,6 +620,7 @@
 				93679C771BA44034002B2401 /* UIColor+Category.m in Sources */,
 				938D7CF41BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m in Sources */,
 				93F5ADCC1BBB732D008A1539 /* ABTableView.m in Sources */,
+				93D7D06E1BFAF81100971100 /* ABCloudKit.m in Sources */,
 				93F5ADD21BBBCE8E008A1539 /* ABDatePicker.m in Sources */,
 				93F5ADCF1BBB881D008A1539 /* ABChargeEditViewController.m in Sources */,
 				938A4D841BD0E5BE00EE0630 /* Model.xcdatamodeld in Sources */,

@@ -19,7 +19,7 @@
 ///删除分类
 - (void)deleteCategoryCategoryID:(NSString *)categoryID;
 
-///修改分类
+///修改分类(如果没有就插入)
 - (void)updateCategoryModel:(ABCategoryModel *)model;
 
 

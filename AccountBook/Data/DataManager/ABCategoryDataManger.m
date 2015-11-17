@@ -121,6 +121,7 @@
     model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
     model.isRemoved = NO;
     model.isExistCloud = NO;
+    model.modifyTime = [[NSDate date] timeIntervalSince1970];
     return model;
 }
 

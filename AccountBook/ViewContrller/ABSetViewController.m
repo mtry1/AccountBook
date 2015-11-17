@@ -108,6 +108,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
+    {
+        [[ABCenterDataManager share] synchronizeCouldData];
+    }
 }
 
 #pragma mark - 点击事件

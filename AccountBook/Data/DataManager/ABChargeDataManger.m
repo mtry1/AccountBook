@@ -52,10 +52,13 @@
 {
     if([model isKindOfClass:[ABChargeModel class]])
     {
-        model.isRemoved = model.isRemoved ? YES : NO;
-        model.isExistCloud = model.isExistCloud ? YES : NO;
         model.categoryID = _categoryID;
         model.chargeID = [ABUtils uuid];
+        
+        model.isRemoved = model.isRemoved ? YES : NO;
+        model.isExistCloud = model.isExistCloud ? YES : NO;
+        model.modifyTime = model.modifyTime ? model.modifyTime : [[NSDate date] timeIntervalSince1970];
+        
         [[ABCenterDataManager share] requestChargeAddModel:model];
         
         NSInteger i;

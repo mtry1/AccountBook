@@ -9,6 +9,7 @@
 #import "ABCenterDataManager.h"
 #import "ABCenterCoreDataManager.h"
 #import "ABCoreDataHelper.h"
+#import "ABCloudKit.h"
 
 @interface ABCenterDataManager ()
 
@@ -96,16 +97,35 @@
     [self.centerCoreDataManager updateChargeModel:model];
 }
 
-///同步本地数据
-- (void)synchronizeLocalData
-{
-    [[ABCoreDataHelper share] saveContext];
-}
-
 ///同步iCould数据
 - (void)synchronizeCouldData
 {
-    
+    [ABCloudKit requestIsOpenCloudCompletionHandler:^(CKAccountStatus accountStatus, NSError *error) {
+        
+        if(accountStatus == CKAccountStatusNoAccount)
+        {
+            ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"请登录iCloud帐号"
+                                                                message:@"请确保 设置->iCloud->iCloud Drive 开启"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"知道了"
+                                                      otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+        else
+        {
+            [ABCloudKit requestCategoryListDataCompletionHandler:^(NSArray<ABCategoryModel *> *results, NSError *error) {
+                
+                if(error)
+                {
+                    [SVProgressHUD showErrorWithStatus:@"合并失败，请稍后再试"];
+                }
+                else
+                {
+                    NSArray *localCategoryList = [self.centerCoreDataManager selectCategoryListData];
+                }
+            }];
+        }
+    }];
 }
 
 @end

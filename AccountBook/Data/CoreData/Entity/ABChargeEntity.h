@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *startTimeInterval;
 @property (nullable, nonatomic, retain) NSNumber *endTimeInterval;
 @property (nullable, nonatomic, retain) NSString *notes;
+@property (nullable, nonatomic, retain) NSNumber *modifyTime;
 
 @end
 

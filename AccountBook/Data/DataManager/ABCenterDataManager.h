@@ -52,9 +52,6 @@
 ///请求修改消费记录
 - (void)requestChargeUpdateModel:(ABChargeModel *)model;
 
-///同步本地数据
-- (void)synchronizeLocalData;
-
 ///同步iCould数据
 - (void)synchronizeCouldData;
 

@@ -19,5 +19,6 @@
 @dynamic startTimeInterval;
 @dynamic endTimeInterval;
 @dynamic notes;
+@dynamic modifyTime;
 
 @end

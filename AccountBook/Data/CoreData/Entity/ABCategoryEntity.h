@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *colorHexString;
 @property (nullable, nonatomic, retain) NSNumber *isExistCloud;
 @property (nullable, nonatomic, retain) NSNumber *isRemoved;
+@property (nullable, nonatomic, retain) NSNumber *modifyTime;
 
 @end
 
