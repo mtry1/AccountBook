@@ -128,13 +128,10 @@
 
 - (void)centerDataManager:(ABCenterDataManager *)manager successRequestCategoryListData:(NSArray *)data
 {
-    if(data.count)
-    {
-        [self.listItem removeAllObjects];
-        [self.listItem addObjectsFromArray:data];
-        
-        [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
-    }
+    [self.listItem removeAllObjects];
+    [self.listItem addObjectsFromArray:data];
+    
+    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
 
 @end

@@ -49,10 +49,7 @@
 - (void)requestCategoryListData
 {
     NSArray *array = [self.centerCoreDataManager selectCategoryListData:NO];
-    if(array)
-    {
-        [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestCategoryListData:) object1:self object2:array];
-    }
+    [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestCategoryListData:) object1:self object2:array];
 }
 
 ///请求增加分类
@@ -336,7 +333,7 @@
     {
         [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
             
-            if(error)
+            if(error && !model.isRemoved)
             {
                 _uploadErrorCount ++;
             }
@@ -351,7 +348,7 @@
                     
                     if(_uploadErrorCount)
                     {
-                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有%ld数据上传Cloud失败", _uploadErrorCount]];
+                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
                     }
                 }
             }
@@ -369,7 +366,7 @@
     {
         [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
             
-            if(error)
+            if(error && !model.isRemoved)
             {
                 _uploadErrorCount ++;
             }
@@ -384,7 +381,7 @@
                     
                     if(_uploadErrorCount)
                     {
-                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有%ld数据上传Cloud失败", _uploadErrorCount]];
+                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
                     }
                 }
             }
