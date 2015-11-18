@@ -38,6 +38,9 @@
                                                          inManagedObjectContext:self.coreDataHelper.context];
     [request setEntity:entityDescription];
     
+    NSSortDescriptor *sortDescripter = [NSSortDescriptor sortDescriptorWithKey:@"createTime" ascending:YES];
+    [request setSortDescriptors:@[sortDescripter]];
+    
     if(!isSelectRemoved)
     {
         NSString *selectString = [NSString stringWithFormat:@"isRemoved == 0"];
@@ -57,6 +60,7 @@
         model.colorHexString = entity.colorHexString;
         model.isRemoved = [entity.isRemoved boolValue];
         model.isExistCloud = [entity.isExistCloud boolValue];
+        model.createTime = [entity.createTime doubleValue];
         model.modifyTime = [entity.modifyTime doubleValue];
         [result addObject:model];
     }
@@ -87,13 +91,15 @@
 #pragma mark 请求增加分类
 - (void)insertCategoryModel:(ABCategoryModel *)model
 {
-    ABCategoryEntity *entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([ABCategoryEntity class]) inManagedObjectContext:self.coreDataHelper.context];
+    ABCategoryEntity *entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([ABCategoryEntity class])
+                                                             inManagedObjectContext:self.coreDataHelper.context];
     entity.isRemoved = @(model.isRemoved);
     entity.isExistCloud = @(model.isExistCloud);
     entity.categoryID = model.categoryID;
     entity.title = model.name;
     entity.colorHexString = model.colorHexString;
-    entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+    entity.createTime = @(model.createTime);
+    entity.modifyTime = @(model.modifyTime);
     
     [self.coreDataHelper saveContext];
 }
@@ -130,7 +136,8 @@
             entity.colorHexString = model.colorHexString;
             entity.isRemoved = @(model.isRemoved);
             entity.isExistCloud = @(model.isExistCloud);
-            entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+            entity.modifyTime = @(model.modifyTime);
+            entity.createTime = @(model.createTime);
             
             [self.coreDataHelper saveContext];
         }
@@ -221,7 +228,7 @@
     entity.notes = model.notes;
     entity.isRemoved = @(model.isRemoved);
     entity.isExistCloud = @(model.isExistCloud);
-    entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+    entity.modifyTime = @(model.modifyTime);
     
     [self.coreDataHelper saveContext];
 }
@@ -259,7 +266,7 @@
         entity.notes = model.notes;
         entity.isRemoved = @(model.isRemoved);
         entity.isExistCloud = @(model.isExistCloud);
-        entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+        entity.modifyTime = @(model.modifyTime);
         
         [self.coreDataHelper saveContext];
     }

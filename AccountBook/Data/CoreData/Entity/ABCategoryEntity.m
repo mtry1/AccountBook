@@ -15,6 +15,7 @@
 @dynamic colorHexString;
 @dynamic isRemoved;
 @dynamic isExistCloud;
+@dynamic createTime;
 @dynamic modifyTime;
 
 @end

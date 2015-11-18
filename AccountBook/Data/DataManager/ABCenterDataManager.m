@@ -54,6 +54,11 @@
 ///请求增加分类
 - (void)requestCategoryAddModel:(ABCategoryModel *)model
 {
+    model.isRemoved = NO;
+    model.isExistCloud = NO;
+    model.createTime = [[NSDate date] timeIntervalSince1970];
+    model.modifyTime = [[NSDate date] timeIntervalSince1970];
+    
     [self.centerCoreDataManager insertCategoryModel:model];
 }
 
@@ -66,6 +71,8 @@
 ///请求修改分类
 - (void)requestCategoryUpdateModel:(ABCategoryModel *)model
 {
+    model.modifyTime = [[NSDate date] timeIntervalSince1970];
+    
     [self.centerCoreDataManager updateCategoryModel:model];
 }
 
@@ -82,6 +89,10 @@
 ///请求增加消费记录
 - (void)requestChargeAddModel:(ABChargeModel *)model
 {
+    model.isRemoved = NO;
+    model.isExistCloud = NO;
+    model.modifyTime = [[NSDate date] timeIntervalSince1970];
+    
     [self.centerCoreDataManager insertChargeModel:model];
 }
 
@@ -94,6 +105,8 @@
 ///请求修改消费记录
 - (void)requestChargeUpdateModel:(ABChargeModel *)model
 {
+    model.modifyTime = [[NSDate date] timeIntervalSince1970];
+    
     [self.centerCoreDataManager updateChargeModel:model];
 }
 

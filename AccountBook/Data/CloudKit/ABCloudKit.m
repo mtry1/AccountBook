@@ -43,6 +43,7 @@
         newRecord[@"isExistCloud"] = @(model.isExistCloud);
         newRecord[@"isRemoved"] = @(model.isRemoved);
         newRecord[@"modifyTime"] = @(model.modifyTime);
+        newRecord[@"createTime"] = @(model.createTime);
         
         CKDatabase *privateContainer = [[CKContainer defaultContainer] privateCloudDatabase];
         [privateContainer saveRecord:newRecord completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
@@ -111,6 +112,7 @@
                                model.isExistCloud = [record[@"isExistCloud"] boolValue];
                                model.isRemoved = [record[@"isRemoved"] boolValue];
                                model.modifyTime = [record[@"modifyTime"] doubleValue];
+                               model.createTime = [record[@"createTime"] doubleValue];
                                [listItem addObject:model];
                            }
                            dispatch_async(dispatch_get_main_queue(), ^{

@@ -170,13 +170,7 @@ NSString *const ABChargeEditNotes = @"备注";
     }
     else
     {
-        ABChargeModel *newModel = [self chargeModelForSelf];
-        newModel.categoryID = self.chargeDataManager.categoryID;
-        newModel.chargeID = [ABUtils uuid];
-        newModel.isRemoved = NO;
-        newModel.isExistCloud = NO;
-        
-        [self.chargeDataManager requestAddModel:newModel];
+        [self.chargeDataManager requestAddModel:[self chargeModelForSelf]];
     }
     
     return YES;

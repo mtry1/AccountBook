@@ -53,6 +53,9 @@
 {
     if([model isKindOfClass:[ABChargeModel class]])
     {
+        model.categoryID = self.categoryID;
+        model.chargeID = [ABUtils uuid];
+        
         [[ABCenterDataManager share] requestChargeAddModel:model];
         
         NSInteger i;
@@ -86,8 +89,26 @@
     
     [[ABCenterDataManager share] requestChargeUpdateModel:modelCopy];
     
-    [self requestRemoveIndex:index];
-    [self requestAddModel:modelCopy];
+    //删除
+    [self.listItem removeObjectAtIndex:index];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.callBackUtils callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
+    
+    //添加
+    NSInteger i;
+    for(i = self.numberOfItem - 1; i >= 0; i--)
+    {
+        ABChargeModel *tempModel = self.listItem[i];
+        if(tempModel.startTimeInterval <= model.startTimeInterval)
+        {
+            break;
+        }
+    }
+    [self.listItem insertObject:modelCopy atIndex:i + 1];
+    indexPath = [NSIndexPath indexPathForRow:i + 1 inSection:0];
+    [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+    
+    [self requestUpdateAmountWithModel:model];
 }
 
 ///请求删除

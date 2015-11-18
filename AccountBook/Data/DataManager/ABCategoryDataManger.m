@@ -62,8 +62,6 @@
         model.categoryID = [ABUtils uuid];
         model.name = text;
         model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
-        model.isRemoved = NO;
-        model.isExistCloud = NO;
         
         [[ABCenterDataManager share] requestCategoryAddModel:[model copy]];
         
@@ -100,12 +98,12 @@
     if(model)
     {
         model.name = text;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.callBackUtils callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
+        
+        [[ABCenterDataManager share] requestCategoryUpdateModel:model.copy];
     }
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    [self.callBackUtils callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
-    
-    [[ABCenterDataManager share] requestCategoryUpdateModel:model.copy];
 }
 
 - (void)requestMoveItemAtIndex:(NSInteger)index toIndex:(NSInteger)toIndex
