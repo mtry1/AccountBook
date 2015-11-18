@@ -61,7 +61,7 @@
         ABCategoryModel *model = [[ABCategoryModel alloc] init];
         model.categoryID = [ABUtils uuid];
         model.name = text;
-        model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
+        model.colorHexString = [self colorHexString];
         
         [[ABCenterDataManager share] requestCategoryAddModel:[model copy]];
         
@@ -117,10 +117,10 @@
     [self.callBackUtils callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
 }
 
-- (NSString *)colorHexStringAtIndex:(NSInteger)index
+- (NSString *)colorHexString
 {
-    NSArray *colors = @[@"0xff708b", @"0x57c3df", @"0xefbc53", @"0xa784d4", @"0x6cca80"];
-    index = index % colors.count;
+    NSArray *colors = @[@"0x43A7CA", @"0xF75978", @"0xE9B043", @"0x5DC26D", @"0xB26DAD", @"0xD19459", @"0x6395c5", @"0x98BF58", @"D8686B"];
+    NSInteger index = arc4random() % colors.count;
     return colors[index];
 }
 
