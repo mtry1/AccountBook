@@ -35,6 +35,9 @@
 ///删除消费记录
 - (void)deleteChargeChargeID:(NSString *)chargeID;
 
+///删除消费列表纪录
+- (void)deleteChargeListDataWithCategoryID:(NSString *)categoryID;
+
 ///修改消费记录
 - (void)updateChargeModel:(ABChargeModel *)model;
 

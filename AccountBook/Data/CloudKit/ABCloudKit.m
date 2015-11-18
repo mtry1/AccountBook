@@ -91,41 +91,41 @@
     [privateDatabase performQuery:query
                      inZoneWithID:nil
                 completionHandler:^(NSArray *results, NSError *error) {
-                   
-                   if(completionHandler)
-                   {
-                       if(error)
-                       {
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               completionHandler(nil, error);
-                           });
-                       }
-                       else
-                       {
-                           NSMutableArray *listItem = [NSMutableArray array];
-                           for(CKRecord *record in results)
-                           {
-                               ABCategoryModel *model = [[ABCategoryModel alloc] init];
-                               model.categoryID = record[@"categoryID"];
-                               model.name = record[@"title"];
-                               model.colorHexString = record[@"colorHexString"];
-                               model.isExistCloud = [record[@"isExistCloud"] boolValue];
-                               model.isRemoved = [record[@"isRemoved"] boolValue];
-                               model.modifyTime = [record[@"modifyTime"] doubleValue];
-                               model.createTime = [record[@"createTime"] doubleValue];
-                               [listItem addObject:model];
-                           }
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               completionHandler(listItem, nil);
-                           });
-                       }
-                   }
-               }];
+                    
+                    if(completionHandler)
+                    {
+                        if(error)
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completionHandler(nil, error);
+                            });
+                        }
+                        else
+                        {
+                            NSMutableArray *listItem = [NSMutableArray array];
+                            for(CKRecord *record in results)
+                            {
+                                ABCategoryModel *model = [[ABCategoryModel alloc] init];
+                                model.categoryID = record[@"categoryID"];
+                                model.name = record[@"title"];
+                                model.colorHexString = record[@"colorHexString"];
+                                model.isExistCloud = [record[@"isExistCloud"] boolValue];
+                                model.isRemoved = [record[@"isRemoved"] boolValue];
+                                model.modifyTime = [record[@"modifyTime"] doubleValue];
+                                model.createTime = [record[@"createTime"] doubleValue];
+                                [listItem addObject:model];
+                            }
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completionHandler(listItem, nil);
+                            });
+                        }
+                    }
+                }];
 }
 
 + (void)requestInsertChargeData:(ABChargeModel *)model completionHandler:(void(^)(NSError *error))completionHandler
 {
-    [self requestChargeDataWithchargeID:model.chargeID completionHandler:^(CKRecord *record, NSError *error) {
+    [self requestChargeDataWithChargeID:model.chargeID completionHandler:^(CKRecord *record, NSError *error) {
         
         CKRecord *newRecord;
         if(record)
@@ -169,7 +169,7 @@
     }];
 }
 
-+ (void)requestChargeDataWithchargeID:(NSString *)chargeID completionHandler:(void(^)(CKRecord *record, NSError *error))completionHandler
++ (void)requestChargeDataWithChargeID:(NSString *)chargeID completionHandler:(void(^)(CKRecord *record, NSError *error))completionHandler
 {
     CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
     CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:chargeID];
@@ -184,10 +184,18 @@
                      }];
 }
 
-+ (void)requestChargeListDataWithCompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *))completionHandler
++ (void)requestChargeListDataWithCategoryID:(NSString *)categoryID CompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *error))completionHandler
 {
     CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+    NSPredicate *predicate;
+    if(categoryID)
+    {
+        predicate = [NSPredicate predicateWithFormat:@"categoryID = %@", categoryID];
+    }
+    else
+    {
+        predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+    }
     CKQuery *query = [[CKQuery alloc] initWithRecordType:@"ChargeRecord" predicate:predicate];
     [privateDatabase performQuery:query
                      inZoneWithID:nil
@@ -215,7 +223,7 @@
                                 model.isRemoved = [record[@"isRemoved"] boolValue];
                                 model.startTimeInterval = [record[@"startTimeInterval"] doubleValue];
                                 model.modifyTime = [record[@"modifyTime"] doubleValue];
-                               
+                                
                                 if(record[@"endTimeInterval"])
                                 {
                                     model.endTimeInterval = [record[@"endTimeInterval"] doubleValue];
@@ -234,6 +242,31 @@
                         }
                     }
                 }];
+}
+
++ (void)requestChargeListDataWithCompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *error))completionHandler
+{
+    [self requestChargeListDataWithCategoryID:nil CompletionHandler:completionHandler];
+}
+
+///请求删除消费纪录列表
++ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID
+{
+    [self requestChargeListDataWithCategoryID:categoryID CompletionHandler:^(NSArray<ABChargeModel *> *results, NSError *error) {
+        
+        for(ABChargeModel *model in results)
+        {
+            CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
+            CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:model.chargeID];
+            [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+                
+                if(error)
+                {
+                    NSLog(@"%@", error);
+                }
+            }];
+        }
+    }];
 }
 
 @end

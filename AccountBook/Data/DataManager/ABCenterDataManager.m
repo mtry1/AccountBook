@@ -161,9 +161,14 @@
                                 if(finishedCount == mergeData.count)
                                 {
                                     isCategoryFinished = YES;
-                                    if(isChargeFinidshed && finishedHandler)
+                                    if(isChargeFinidshed)
                                     {
-                                        finishedHandler();
+                                        if(finishedHandler)
+                                        {
+                                            finishedHandler();
+                                        }
+                                        
+                                        [self requestDeleteDiscardChargeData];
                                     }
                                     
                                     [self requestCategoryListData];
@@ -210,9 +215,15 @@
                                 if(finishedCount == mergeData.count)
                                 {
                                     isChargeFinidshed = YES;
-                                    if(isCategoryFinished && finishedHandler)
+                                    if(isCategoryFinished)
                                     {
-                                        finishedHandler();
+                                        if(finishedHandler)
+                                        {
+                                            finishedHandler();
+                                        }
+                                        
+                                        [self requestDeleteDiscardChargeData];
+                                        
                                     }
                                 }
                                 
@@ -350,6 +361,29 @@
             }
             
             completionHandler(mergeData, nil);
+        }
+    }];
+}
+
+///请求删除多余数据
+- (void)requestDeleteDiscardChargeData
+{
+    [self mergeCategoryDataCompletionHandler:^(NSArray<ABCategoryModel *> *mergeData, NSError *error) {
+        
+        if(mergeData)
+        {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                for(ABCategoryModel *model in mergeData)
+                {
+                    if(model.isRemoved)
+                    {
+                        [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
+                        
+                        [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID];
+                    }
+                }
+            });
         }
     }];
 }

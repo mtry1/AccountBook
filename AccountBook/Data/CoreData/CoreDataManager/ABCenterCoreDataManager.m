@@ -119,9 +119,9 @@
         {
             [self.coreDataHelper.context deleteObject:entity];
         }
+        
+        [self.coreDataHelper saveContext];
     }
-    
-    [self.coreDataHelper saveContext];
 }
 
 #pragma mark 修改分类
@@ -248,8 +248,23 @@
         {
             [self.coreDataHelper.context deleteObject:entity];
         }
+        
+        [self.coreDataHelper saveContext];
     }
-    
+}
+
+#pragma mark 删除消费列表纪录
+- (void)deleteChargeListDataWithCategoryID:(NSString *)categoryID
+{
+    NSArray *array = [self selectChargeListDateWithCategoryID:categoryID];
+    for(ABChargeModel *model in array)
+    {
+        ABChargeEntity *entity = [self selectChargeEntityWithChargeID:model.chargeID];
+        if(entity)
+        {
+            [self.coreDataHelper.context deleteObject:entity];
+        }
+    }
     [self.coreDataHelper saveContext];
 }
 
