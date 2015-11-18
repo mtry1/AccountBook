@@ -144,6 +144,7 @@
 {
     DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
     config.isShowCloseButton = YES;
+    config.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
     [DMPasscode setConfig:config];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag % 10 inSection:sender.tag / 10];

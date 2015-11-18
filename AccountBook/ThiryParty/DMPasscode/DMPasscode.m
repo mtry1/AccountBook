@@ -99,7 +99,6 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     _completion = completion;
     _willClose = willCloseHandler;
     [self openPasscodeWithMode:1 viewController:viewController animated:animated];
-    return;
     
     /*
     LAContext* context = [[LAContext alloc] init];

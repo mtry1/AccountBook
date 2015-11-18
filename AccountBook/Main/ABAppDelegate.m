@@ -69,6 +69,7 @@
             
             DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
             config.isShowCloseButton = NO;
+            config.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
             [DMPasscode setConfig:config];
             
             isShowing = YES;
