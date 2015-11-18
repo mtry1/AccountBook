@@ -113,8 +113,27 @@
     if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
     {
         [SVProgressHUD show];
+        
         [[ABCenterDataManager share] mergeCouldDataFinishedHandler:^{
+            
             [SVProgressHUD dismiss];
+        } errorHandler:^(CKAccountStatus accountStatus, NSError *error) {
+            
+            [SVProgressHUD dismiss];
+            if(accountStatus == CKAccountStatusNoAccount)
+            {
+                [SVProgressHUD dismiss];
+                ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"请登录iCloud帐号"
+                                                                    message:@"确保 设置->iCloud->iCloud Drive 开启"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"知道了"
+                                                          otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:@"合并失败，请稍后再试"];
+            }
         }];
     }
 }

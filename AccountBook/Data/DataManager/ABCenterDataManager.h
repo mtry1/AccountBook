@@ -9,6 +9,7 @@
 #import "ABDataManager.h"
 #import "ABChargeModel.h"
 #import "ABCategoryModel.h"
+#import "ABCloudKit.h"
 
 @class ABCenterDataManager;
 
@@ -53,6 +54,6 @@
 - (void)requestChargeUpdateModel:(ABChargeModel *)model;
 
 ///合并iCould数据
-- (void)mergeCouldDataFinishedHandler:(void(^)(void))finishedHandler;
+- (void)mergeCouldDataFinishedHandler:(void(^)(void))finishedHandler errorHandler:(void(^)(CKAccountStatus accountStatus, NSError *error))errorHandler;
 
 @end

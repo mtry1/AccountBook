@@ -9,7 +9,6 @@
 #import "ABCenterDataManager.h"
 #import "ABCenterCoreDataManager.h"
 #import "ABCoreDataHelper.h"
-#import "ABCloudKit.h"
 
 @interface ABCenterDataManager ()
 
@@ -18,6 +17,11 @@
 @end
 
 @implementation ABCenterDataManager
+{
+    BOOL _isFinishedUploadCategoryData;
+    BOOL _isFinishedUploadChargeData;
+    NSInteger _uploadErrorCount;
+}
 
 @synthesize centerCoreDataManager = _centerCoreDataManager;
 
@@ -110,27 +114,26 @@
     [self.centerCoreDataManager updateChargeModel:model];
 }
 
+
+#pragma mark - iCloud
+
 ///同步iCould数据
 - (void)mergeCouldDataFinishedHandler:(void(^)(void))finishedHandler
+                         errorHandler:(void(^)(CKAccountStatus accountStatus, NSError *error))errorHandler
 {
     [ABCloudKit requestIsOpenCloudCompletionHandler:^(CKAccountStatus accountStatus, NSError *error) {
         
         if(accountStatus == CKAccountStatusNoAccount)
         {
-            if(finishedHandler)
+            if(errorHandler)
             {
-                finishedHandler();
+                errorHandler(accountStatus, error);
             }
-            
-            ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"请登录iCloud帐号"
-                                                                message:@"请确保 设置->iCloud->iCloud Drive 开启"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"知道了"
-                                                      otherButtonTitles:nil, nil];
-            [alertView show];
         }
-        else
+        else if(accountStatus == CKAccountStatusAvailable)
         {
+            _uploadErrorCount = 0;
+            
             __block BOOL isCategoryFinished = NO;
             __block BOOL isChargeFinidshed = NO;
             
@@ -138,53 +141,31 @@
                 
                 if(!error)
                 {
-                    if(mergeData.count == 0)
+                    for(ABCategoryModel *model in mergeData)
                     {
-                        isCategoryFinished = YES;
-                        if(isChargeFinidshed && finishedHandler)
+                        model.isExistCloud = YES;
+                        [self.centerCoreDataManager updateCategoryModel:model];
+                    }
+                    
+                    isCategoryFinished = YES;
+                    if(isChargeFinidshed)
+                    {
+                        if(finishedHandler)
                         {
                             finishedHandler();
                         }
+                        
+                        [self requestCategoryListData];
                     }
-                    else
-                    {
-                        __block NSInteger finishedCount = 0;
-                        for(ABCategoryModel *model in mergeData)
-                        {
-                            model.isExistCloud = YES;
-                            
-                            [self.centerCoreDataManager updateCategoryModel:model];
-                            
-                            [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
-                                
-                                finishedCount ++;
-                                if(finishedCount == mergeData.count)
-                                {
-                                    isCategoryFinished = YES;
-                                    if(isChargeFinidshed)
-                                    {
-                                        if(finishedHandler)
-                                        {
-                                            finishedHandler();
-                                        }
-                                        
-                                        [self requestDeleteDiscardChargeData];
-                                    }
-                                    
-                                    [self requestCategoryListData];
-                                }
-                                
-                                if(error)
-                                {
-                                    NSLog(@"%@", error);
-                                }
-                            }];
-                        }
-                    }
+                    
+                    [self requestUploadCategoryData:mergeData];
                 }
                 else
                 {
-                    NSLog(@"%@", error);
+                    if(errorHandler)
+                    {
+                        errorHandler(accountStatus, error);
+                    }
                 }
             }];
             
@@ -192,54 +173,35 @@
                 
                 if(!error)
                 {
-                    if(mergeData.count == 0)
+                    for(ABChargeModel *model in mergeData)
                     {
-                        isChargeFinidshed = YES;
-                        if(isCategoryFinished && finishedHandler)
-                        {
-                            finishedHandler();
-                        }
+                        model.isExistCloud = YES;
+                        [self.centerCoreDataManager updateChargeModel:model];
                     }
-                    else
+                    
+                    isChargeFinidshed = YES;
+                    if(isCategoryFinished && finishedHandler)
                     {
-                        __block NSInteger finishedCount = 0;
-                        for(ABChargeModel *model in mergeData)
-                        {
-                            model.isExistCloud = YES;
-                            
-                            [self.centerCoreDataManager updateChargeModel:model];
-                            
-                            [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
-                                
-                                finishedCount ++;
-                                if(finishedCount == mergeData.count)
-                                {
-                                    isChargeFinidshed = YES;
-                                    if(isCategoryFinished)
-                                    {
-                                        if(finishedHandler)
-                                        {
-                                            finishedHandler();
-                                        }
-                                        
-                                        [self requestDeleteDiscardChargeData];
-                                        
-                                    }
-                                }
-                                
-                                if(error)
-                                {
-                                    NSLog(@"%@", error);
-                                }
-                            }];
-                        }
+                        finishedHandler();
                     }
+                    
+                    [self requestUploadChargeData:mergeData];
                 }
                 else
                 {
-                    NSLog(@"%@", error);
+                    if(errorHandler)
+                    {
+                        errorHandler(accountStatus, error);
+                    }
                 }
             }];
+        }
+        else
+        {
+            if(errorHandler)
+            {
+                errorHandler(accountStatus, error);
+            }
         }
     }];
 }
@@ -365,6 +327,72 @@
     }];
 }
 
+///请求上传分类数据
+- (void)requestUploadCategoryData:(NSArray *)categoryData
+{
+    __block NSInteger uploadCnt = 0;
+    _isFinishedUploadCategoryData = NO;
+    
+    for(ABCategoryModel *model in categoryData)
+    {
+        [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
+            
+            if(error)
+            {
+                _uploadErrorCount ++;
+            }
+            
+            uploadCnt ++;
+            if(uploadCnt == categoryData.count)
+            {
+                _isFinishedUploadCategoryData = YES;
+                if(_isFinishedUploadChargeData)
+                {
+                    [self requestDeleteDiscardChargeData];
+                    
+                    if(_uploadErrorCount)
+                    {
+                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有%ld数据上传Cloud失败", _uploadErrorCount]];
+                    }
+                }
+            }
+        }];
+    }
+}
+
+///请求上传消费数据
+- (void)requestUploadChargeData:(NSArray *)chargeData
+{
+    __block NSInteger uploadCnt = 0;
+    _isFinishedUploadChargeData = NO;
+    
+    for(ABChargeModel *model in chargeData)
+    {
+        [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
+            
+            if(error)
+            {
+                _uploadErrorCount ++;
+            }
+            
+            uploadCnt ++;
+            if(uploadCnt == chargeData.count)
+            {
+                _isFinishedUploadChargeData = YES;
+                if(_isFinishedUploadCategoryData)
+                {
+                    [self requestDeleteDiscardChargeData];
+                    
+                    if(_uploadErrorCount)
+                    {
+                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有%ld数据上传Cloud失败", _uploadErrorCount]];
+                    }
+                }
+            }
+        }];
+    }
+}
+
 ///请求删除多余数据
 - (void)requestDeleteDiscardChargeData
 {
@@ -372,18 +400,15 @@
         
         if(mergeData)
         {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                
-                for(ABCategoryModel *model in mergeData)
+            for(ABCategoryModel *model in mergeData)
+            {
+                if(model.isRemoved)
                 {
-                    if(model.isRemoved)
-                    {
-                        [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
-                        
-                        [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID];
-                    }
+                    [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
+                    
+                    [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID];
                 }
-            });
+            }
         }
     }];
 }

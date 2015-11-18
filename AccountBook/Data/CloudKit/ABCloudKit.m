@@ -69,16 +69,14 @@
                 completionHandler:^(NSArray *results, NSError *error) {
                     if(completionHandler)
                     {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            if([results isKindOfClass:[NSArray class]])
-                            {
-                                completionHandler([results firstObject], nil);
-                            }
-                            else
-                            {
-                                completionHandler(nil, error);
-                            }
-                        });
+                        if([results isKindOfClass:[NSArray class]])
+                        {
+                            completionHandler([results firstObject], nil);
+                        }
+                        else
+                        {
+                            completionHandler(nil, error);
+                        }
                     }
                 }];
 }
