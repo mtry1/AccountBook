@@ -58,7 +58,13 @@
 {
     if(text.length)
     {
-        ABCategoryModel *model = [self modelForText:text];
+        ABCategoryModel *model = [[ABCategoryModel alloc] init];
+        model.categoryID = [ABUtils uuid];
+        model.name = text;
+        model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
+        model.isRemoved = NO;
+        model.isExistCloud = NO;
+        
         [[ABCenterDataManager share] requestCategoryAddModel:[model copy]];
         
         [self.listItem addObject:model];
@@ -111,17 +117,6 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex inSection:0];
     [self.callBackUtils callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
-}
-
-- (ABCategoryModel *)modelForText:(NSString *)text
-{
-    ABCategoryModel *model = [[ABCategoryModel alloc] init];
-    model.categoryID = [ABUtils uuid];
-    model.name = text;
-    model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
-    model.isRemoved = NO;
-    model.isExistCloud = NO;
-    return model;
 }
 
 - (NSString *)colorHexStringAtIndex:(NSInteger)index

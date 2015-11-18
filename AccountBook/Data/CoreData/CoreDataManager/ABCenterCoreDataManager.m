@@ -163,8 +163,8 @@
         model.startTimeInterval = [entity.startTimeInterval doubleValue];
         model.endTimeInterval = [entity.endTimeInterval doubleValue];
         model.notes = entity.notes;
-        model.isRemoved = entity.isRemoved;
-        model.isExistCloud = entity.isExistCloud;
+        model.isRemoved = [entity.isRemoved boolValue];
+        model.isExistCloud = [entity.isExistCloud boolValue];
         model.modifyTime = [entity.modifyTime doubleValue];
         [result addObject:model];
     }
@@ -200,8 +200,8 @@
         model.startTimeInterval = [entity.startTimeInterval doubleValue];
         model.endTimeInterval = [entity.endTimeInterval doubleValue];
         model.notes = entity.notes;
-        model.isRemoved = entity.isRemoved;
-        model.isExistCloud = entity.isExistCloud;
+        model.isRemoved = [entity.isRemoved boolValue];
+        model.isExistCloud = [entity.isExistCloud boolValue];
         model.modifyTime = [entity.modifyTime doubleValue];
         [result addObject:model];
     }

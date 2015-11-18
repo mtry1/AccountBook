@@ -153,6 +153,11 @@
                                object4:endDate];
 }
 
+- (void)insertModel:(ABCategoryModel *)model
+{
+    
+}
+
 - (NSInteger)numberOfItem
 {
     return self.listItem.count;

@@ -10,6 +10,21 @@
 
 @implementation ABChargeModel
 
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+    id selfCopy = [[[self class] alloc] init];
+    
+    NSMutableDictionary *dict = self.keyValues;
+    if(dict)
+    {
+        [dict removeObjectForKey:@"isTimeOut"];
+        
+        selfCopy = [[self class] objectWithKeyValues:dict];
+    }
+    
+    return selfCopy;
+}
+
 - (BOOL)isTimeOut
 {
     if(self.endTimeInterval)
