@@ -88,18 +88,10 @@ NSString *const ABCoreDataHelperFileName = @"CoreData.splite";
     if([_context hasChanges])
     {
         NSError *error = nil;
-        if([_context save:&error])
-        {
-            NSLog(@"save successed");
-        }
-        else
+        if(![_context save:&error])
         {
             NSLog(@"save error: %@", error);
         }
-    }
-    else
-    {
-        NSLog(@"context not changes");
     }
 }
 

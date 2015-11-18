@@ -112,7 +112,10 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
     {
-        [[ABCenterDataManager share] synchronizeCouldData];
+        [SVProgressHUD show];
+        [[ABCenterDataManager share] mergeCouldDataFinishedHandler:^{
+            [SVProgressHUD dismiss];
+        }];
     }
 }
 

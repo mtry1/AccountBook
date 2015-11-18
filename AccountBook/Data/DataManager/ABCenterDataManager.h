@@ -52,7 +52,7 @@
 ///请求修改消费记录
 - (void)requestChargeUpdateModel:(ABChargeModel *)model;
 
-///同步iCould数据
-- (void)synchronizeCouldData;
+///合并iCould数据
+- (void)mergeCouldDataFinishedHandler:(void(^)(void))finishedHandler;
 
 @end

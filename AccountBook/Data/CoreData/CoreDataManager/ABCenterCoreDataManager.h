@@ -11,7 +11,7 @@
 @interface ABCenterCoreDataManager : NSObject
 
 ///查询分类列表数据
-- (NSArray *)selectCategoryListData;
+- (NSArray *)selectCategoryListData:(BOOL)isSelectRemoved;
 
 ///增加分类
 - (void)insertCategoryModel:(ABCategoryModel *)model;
@@ -23,6 +23,8 @@
 - (void)updateCategoryModel:(ABCategoryModel *)model;
 
 
+///查询全部消费纪录
+- (NSArray *)selectChargeListData;
 
 ///查询消费列表
 - (NSArray *)selectChargeListDateWithCategoryID:(NSString *)categoryID;

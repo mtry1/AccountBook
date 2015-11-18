@@ -182,10 +182,10 @@
                      }];
 }
 
-+ (void)requestChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *))completionHandler
++ (void)requestChargeListDataWithCompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *))completionHandler
 {
     CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"categoryID = %@", categoryID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     CKQuery *query = [[CKQuery alloc] initWithRecordType:@"ChargeRecord" predicate:predicate];
     [privateDatabase performQuery:query
                      inZoneWithID:nil

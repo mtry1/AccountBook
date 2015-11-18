@@ -31,16 +31,19 @@
 }
 
 #pragma mark 查询分类列表数据
-- (NSArray *)selectCategoryListData
+- (NSArray *)selectCategoryListData:(BOOL)isSelectRemoved
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([ABCategoryEntity class])
                                                          inManagedObjectContext:self.coreDataHelper.context];
     [request setEntity:entityDescription];
     
-    NSString *selectString = [NSString stringWithFormat:@"isRemoved == 0"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:selectString];
-    [request setPredicate:predicate];
+    if(!isSelectRemoved)
+    {
+        NSString *selectString = [NSString stringWithFormat:@"isRemoved == 0"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:selectString];
+        [request setPredicate:predicate];
+    }
     
     NSError *error = nil;
     NSArray *listItem = [self.coreDataHelper.context executeFetchRequest:request error:&error];
@@ -54,6 +57,7 @@
         model.colorHexString = entity.colorHexString;
         model.isRemoved = [entity.isRemoved boolValue];
         model.isExistCloud = [entity.isExistCloud boolValue];
+        model.modifyTime = [entity.modifyTime doubleValue];
         [result addObject:model];
     }
     
@@ -89,6 +93,7 @@
     entity.categoryID = model.categoryID;
     entity.title = model.name;
     entity.colorHexString = model.colorHexString;
+    entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
     
     [self.coreDataHelper saveContext];
 }
@@ -99,13 +104,14 @@
     ABCategoryEntity *entity = [self selectCategoryEntityWithCategoryID:categoryID];
     if(entity)
     {
-        if(![entity.isExistCloud boolValue])
+        if([entity.isExistCloud boolValue])
         {
-            [self.coreDataHelper.context deleteObject:entity];
+            entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+            entity.isRemoved = @(YES);
         }
         else
         {
-            entity.isRemoved = @(YES);
+            [self.coreDataHelper.context deleteObject:entity];
         }
     }
     
@@ -120,11 +126,11 @@
         ABCategoryEntity *entity = [self selectCategoryEntityWithCategoryID:model.categoryID];
         if(entity)
         {
-            entity.categoryID = model.categoryID;
             entity.title = model.name;
             entity.colorHexString = model.colorHexString;
             entity.isRemoved = @(model.isRemoved);
             entity.isExistCloud = @(model.isExistCloud);
+            entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
             
             [self.coreDataHelper saveContext];
         }
@@ -135,11 +141,42 @@
     }
 }
 
+#pragma mark 查询全部消费纪录
+- (NSArray *)selectChargeListData
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([ABChargeEntity class])
+                                                         inManagedObjectContext:self.coreDataHelper.context];
+    [request setEntity:entityDescription];
+    
+    NSError *error = nil;
+    NSArray *listItem = [self.coreDataHelper.context executeFetchRequest:request error:&error];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    for(ABChargeEntity *entity in listItem)
+    {
+        ABChargeModel *model = [[ABChargeModel alloc] init];
+        model.categoryID = entity.categoryID;
+        model.chargeID = entity.chargeID;
+        model.title = entity.title;
+        model.amount = [entity.amount floatValue];
+        model.startTimeInterval = [entity.startTimeInterval doubleValue];
+        model.endTimeInterval = [entity.endTimeInterval doubleValue];
+        model.notes = entity.notes;
+        model.isRemoved = entity.isRemoved;
+        model.isExistCloud = entity.isExistCloud;
+        model.modifyTime = [entity.modifyTime doubleValue];
+        [result addObject:model];
+    }
+    return result;
+}
+
 #pragma mark 查询消费列表
 - (NSArray *)selectChargeListDateWithCategoryID:(NSString *)categoryId
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([ABChargeEntity class]) inManagedObjectContext:self.coreDataHelper.context];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([ABChargeEntity class])
+                                                         inManagedObjectContext:self.coreDataHelper.context];
     [request setEntity:entityDescription];
     
     NSString *selectString = [NSString stringWithFormat:@"categoryID == \"%@\" && isRemoved == 0", categoryId];
@@ -165,6 +202,7 @@
         model.notes = entity.notes;
         model.isRemoved = entity.isRemoved;
         model.isExistCloud = entity.isExistCloud;
+        model.modifyTime = [entity.modifyTime doubleValue];
         [result addObject:model];
     }
     return result;
@@ -183,6 +221,7 @@
     entity.notes = model.notes;
     entity.isRemoved = @(model.isRemoved);
     entity.isExistCloud = @(model.isExistCloud);
+    entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
     
     [self.coreDataHelper saveContext];
 }
@@ -193,13 +232,14 @@
     ABChargeEntity *entity = [self selectChargeEntityWithChargeID:chargeID];
     if(entity)
     {
-        if(![entity.isExistCloud boolValue])
+        if([entity.isExistCloud boolValue])
         {
-            [self.coreDataHelper.context deleteObject:entity];
+            entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+            entity.isRemoved = @(YES);
         }
         else
         {
-            entity.isRemoved = @(YES);
+            [self.coreDataHelper.context deleteObject:entity];
         }
     }
     
@@ -219,8 +259,13 @@
         entity.notes = model.notes;
         entity.isRemoved = @(model.isRemoved);
         entity.isExistCloud = @(model.isExistCloud);
+        entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
         
         [self.coreDataHelper saveContext];
+    }
+    else
+    {
+        [self insertChargeModel:model];
     }
 }
 

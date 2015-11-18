@@ -26,6 +26,6 @@
 + (void)requestInsertChargeData:(ABChargeModel *)model completionHandler:(void(^)(NSError *error))completionHandler;
 
 ///请求消费纪录列表
-+ (void)requestChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *))completionHandler;
++ (void)requestChargeListDataWithCompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *))completionHandler;
 
 @end

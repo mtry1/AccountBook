@@ -57,7 +57,6 @@
         
         model.isRemoved = model.isRemoved ? YES : NO;
         model.isExistCloud = model.isExistCloud ? YES : NO;
-        model.modifyTime = model.modifyTime ? model.modifyTime : [[NSDate date] timeIntervalSince1970];
         
         [[ABCenterDataManager share] requestChargeAddModel:model];
         
