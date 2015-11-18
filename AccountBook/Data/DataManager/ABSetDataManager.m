@@ -7,6 +7,7 @@
 //
 
 #import "ABSetDataManager.h"
+#import "DMPasscode.h"
 
 NSString *const ABSetTitleLock = @"安全锁";
 NSString *const ABSetTitleiCloud = @"合并iCloud";
@@ -68,12 +69,7 @@ NSString *const ABSetTitleEndTimeRed = @"关闭超过结束时间红色显示";
 {
     if([title isEqualToString:ABSetTitleLock])
     {
-        if(![[NSUserDefaults standardUserDefaults] objectForKey:ABUserDefaultKeySafeLock])
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:ABUserDefaultKeySafeLock];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:ABUserDefaultKeySafeLock] boolValue];
+        return [DMPasscode isPasscodeSet];
     }
     else if([title isEqualToString:ABSetTitleEndTimeRed])
     {
@@ -89,11 +85,7 @@ NSString *const ABSetTitleEndTimeRed = @"关闭超过结束时间红色显示";
 
 - (void)requestUpdateSwitchStatus:(BOOL)status title:(NSString *)title
 {
-    if([title isEqualToString:ABSetTitleLock])
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:@(status) forKey:ABUserDefaultKeySafeLock];
-    }
-    else if([title isEqualToString:ABSetTitleEndTimeRed])
+    if([title isEqualToString:ABSetTitleEndTimeRed])
     {
         [[NSUserDefaults standardUserDefaults] setObject:@(status) forKey:ABUserDefaultKeyOutEndTimeRed];
     }

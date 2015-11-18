@@ -151,9 +151,9 @@
                                     if(isChargeFinidshed && finishedHandler)
                                     {
                                         finishedHandler();
-                                        
-                                        [self requestCategoryListData];
                                     }
+                                    
+                                    [self requestCategoryListData];
                                 }
                                 
                                 if(error)

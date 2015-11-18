@@ -16,10 +16,11 @@
 
 @implementation ABChargeDataManger
 {
-    NSString *_categoryID;
     NSDate *_calculateStartDate;
     NSDate *_calculateEndDate;
 }
+
+@synthesize categoryID = _categoryID;
 
 - (instancetype)init
 {
@@ -52,12 +53,6 @@
 {
     if([model isKindOfClass:[ABChargeModel class]])
     {
-        model.categoryID = _categoryID;
-        model.chargeID = [ABUtils uuid];
-        
-        model.isRemoved = model.isRemoved ? YES : NO;
-        model.isExistCloud = model.isExistCloud ? YES : NO;
-        
         [[ABCenterDataManager share] requestChargeAddModel:model];
         
         NSInteger i;
@@ -151,11 +146,6 @@
                                object2:@(amount)
                                object3:startDate
                                object4:endDate];
-}
-
-- (void)insertModel:(ABCategoryModel *)model
-{
-    
 }
 
 - (NSInteger)numberOfItem

@@ -20,6 +20,8 @@
 
 @interface ABChargeDataManger : ABDataManager
 
+@property (nonatomic, readonly) NSString *categoryID;
+
 ///请求列表数据
 - (void)requestChargeDataWithCategoryID:(NSString *)categoryID;
 
