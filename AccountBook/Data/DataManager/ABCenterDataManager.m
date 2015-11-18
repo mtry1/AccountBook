@@ -146,6 +146,7 @@
                         model.isExistCloud = YES;
                         [self.centerCoreDataManager updateCategoryModel:model];
                     }
+                    [self requestCategoryListData];
                     
                     isCategoryFinished = YES;
                     if(isChargeFinidshed)
@@ -154,8 +155,6 @@
                         {
                             finishedHandler();
                         }
-                        
-                        [self requestCategoryListData];
                     }
                     
                     [self requestUploadCategoryData:mergeData];
