@@ -86,6 +86,10 @@
     CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     CKQuery *query = [[CKQuery alloc] initWithRecordType:@"CategoryRecord" predicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:YES];
+    query.sortDescriptors = @[sortDescriptor];
+    
     [privateDatabase performQuery:query
                      inZoneWithID:nil
                 completionHandler:^(NSArray *results, NSError *error) {
@@ -195,6 +199,10 @@
         predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     }
     CKQuery *query = [[CKQuery alloc] initWithRecordType:@"ChargeRecord" predicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTimeInterval" ascending:YES];
+    query.sortDescriptors = @[sortDescriptor];
+    
     [privateDatabase performQuery:query
                      inZoneWithID:nil
                 completionHandler:^(NSArray *results, NSError *error) {

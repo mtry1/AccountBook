@@ -215,48 +215,56 @@
         {
             NSMutableArray *mergeData = [NSMutableArray array];
             NSArray *localData = [self.centerCoreDataManager selectCategoryListData:YES];
-            for(ABCategoryModel *cloudModel in results)
+            NSArray *cloudData = results;
+            NSInteger localDataCount = localData.count;
+            NSInteger cloudDataCount = cloudData.count;
+            NSInteger localCurCnt = 0, cloudCurCnt = 0;
+            while (localCurCnt < localDataCount && cloudCurCnt < cloudDataCount)
             {
-                ABCategoryModel *newModel = nil;
-                for(ABCategoryModel *localModel in localData)
+                ABCategoryModel *localModel = localData[localCurCnt];
+                ABCategoryModel *cloudModel = cloudData[cloudCurCnt];
+                
+                if([localModel.categoryID isEqualToString:cloudModel.categoryID])
                 {
-                    if([cloudModel.categoryID isEqualToString:localModel.categoryID])
+                    if(localModel.modifyTime < cloudModel.modifyTime)
                     {
-                        if(cloudModel.modifyTime > localModel.modifyTime)
-                        {
-                            newModel = [cloudModel copy];
-                        }
-                        else
-                        {
-                            newModel = [localModel copy];
-                        }
-                        break;
+                        [mergeData addObject:cloudModel];
+                    }
+                    else
+                    {
+                        [mergeData addObject:localModel];
+                    }
+                    
+                    localCurCnt ++;
+                    cloudCurCnt ++;
+                }
+                else
+                {
+                    if(localModel.createTime < cloudModel.createTime)
+                    {
+                        [mergeData addObject:localModel];
+                        localCurCnt ++;
+                    }
+                    else
+                    {
+                        [mergeData addObject:cloudModel];
+                        cloudCurCnt ++;
                     }
                 }
-                
-                if(!newModel)
-                {
-                    newModel = [cloudModel copy];
-                }
-                [mergeData addObject:newModel];
             }
             
-            for(ABCategoryModel *localModel in localData)
+            while(localCurCnt < localDataCount)
             {
-                BOOL isFinded = NO;
-                for(ABCategoryModel *mergeModel in mergeData)
-                {
-                    if([localModel.categoryID isEqualToString:mergeModel.categoryID])
-                    {
-                        isFinded = YES;
-                        break;
-                    }
-                }
-                if(!isFinded)
-                {
-                    [mergeData addObject:[localModel copy]];
-                }
+                [mergeData addObject:localData[localCurCnt]];
+                localCurCnt ++;
             }
+            
+            while(cloudCurCnt < cloudDataCount)
+            {
+                [mergeData addObject:cloudData[cloudCurCnt]];
+                cloudCurCnt ++;
+            }
+            
             completionHandler(mergeData, nil);
         }
     }];
@@ -275,47 +283,54 @@
         {
             NSMutableArray *mergeData = [NSMutableArray array];
             NSArray *localData = [self.centerCoreDataManager selectChargeListData];
-            for(ABChargeModel *cloudModel in results)
+            NSArray *cloudData = results;
+            NSInteger localDataCount = localData.count;
+            NSInteger cloudDataCount = cloudData.count;
+            NSInteger localCurCnt = 0, cloudCurCnt = 0;
+            while(localCurCnt < localDataCount && cloudCurCnt < cloudDataCount)
             {
-                ABChargeModel *newModel = nil;
-                for(ABChargeModel *localModel in localData)
+                ABChargeModel *localModel = localData[localCurCnt];
+                ABChargeModel *cloudModel = cloudData[cloudCurCnt];
+                
+                if([localModel.chargeID isEqualToString:cloudModel.chargeID])
                 {
-                    if([cloudModel.chargeID isEqualToString:localModel.chargeID])
+                    if(localModel.modifyTime < cloudModel.modifyTime)
                     {
-                        if(cloudModel.modifyTime > localModel.modifyTime)
-                        {
-                            newModel = [cloudModel copy];
-                        }
-                        else
-                        {
-                            newModel = [localModel copy];
-                        }
-                        break;
+                        [mergeData addObject:cloudModel];
+                    }
+                    else
+                    {
+                        [mergeData addObject:localModel];
+                    }
+                    
+                    localCurCnt ++;
+                    cloudCurCnt ++;
+                }
+                else
+                {
+                    if(localModel.startTimeInterval < cloudModel.startTimeInterval)
+                    {
+                        [mergeData addObject:localModel];
+                        localCurCnt ++;
+                    }
+                    else
+                    {
+                        [mergeData addObject:cloudModel];
+                        cloudCurCnt ++;
                     }
                 }
-                
-                if(!newModel)
-                {
-                    newModel = [cloudModel copy];
-                }
-                [mergeData addObject:newModel];
             }
             
-            for(ABChargeModel *localModel in localData)
+            while(localCurCnt < localDataCount)
             {
-                BOOL isFinded = NO;
-                for(ABChargeModel *mergeModel in mergeData)
-                {
-                    if([localModel.chargeID isEqualToString:mergeModel.chargeID])
-                    {
-                        isFinded = YES;
-                        break;
-                    }
-                }
-                if(!isFinded)
-                {
-                    [mergeData addObject:[localModel copy]];
-                }
+                [mergeData addObject:localData[localCurCnt]];
+                localCurCnt ++;
+            }
+            
+            while(cloudCurCnt < cloudDataCount)
+            {
+                [mergeData addObject:cloudData[cloudCurCnt]];
+                cloudCurCnt ++;
             }
             
             completionHandler(mergeData, nil);
@@ -392,21 +407,16 @@
 ///请求删除多余数据
 - (void)requestDeleteDiscardChargeData
 {
-    [self mergeCategoryDataCompletionHandler:^(NSArray<ABCategoryModel *> *mergeData, NSError *error) {
-        
-        if(mergeData)
+    NSArray *mergeData = [self.centerCoreDataManager selectCategoryListData:YES];
+    for(ABCategoryModel *model in mergeData)
+    {
+        if(model.isRemoved)
         {
-            for(ABCategoryModel *model in mergeData)
-            {
-                if(model.isRemoved)
-                {
-                    [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
-                    
-                    [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID];
-                }
-            }
+            [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
+            
+            [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID];
         }
-    }];
+    }
 }
 
 @end

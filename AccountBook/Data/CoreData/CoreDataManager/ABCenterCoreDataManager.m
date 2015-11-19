@@ -156,6 +156,9 @@
                                                          inManagedObjectContext:self.coreDataHelper.context];
     [request setEntity:entityDescription];
     
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTimeInterval" ascending:YES];
+    [request setSortDescriptors:@[sortDescriptor]];
+    
     NSError *error = nil;
     NSArray *listItem = [self.coreDataHelper.context executeFetchRequest:request error:&error];
     
