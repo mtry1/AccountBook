@@ -9,9 +9,10 @@
 #ifndef AccountBook_ABDefine_h
 #define AccountBook_ABDefine_h
 
-#pragma mark - UserDefault
-
 ///超过结束时间红色字体
 #define ABUserDefaultKeyOutEndTimeRed @"ABUserDefaultKeyOutEndTimeRed"
+
+///是否iPad
+#define ABIsiPad [[UIDevice currentDevice] userInterfaceIdiom]
 
 #endif

@@ -115,7 +115,7 @@
     ABChargeListCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell)
     {
-        cell = [[ABChargeListCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[ABChargeListCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }

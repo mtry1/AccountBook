@@ -15,7 +15,8 @@
 CGFloat const ABCollectionViewCellSpace = 5.0f;
 CGFloat const ABCollectionViewSpacingForSection = 10.0f;
 CGFloat const ABCollectionViewSpacingForTop = 20.0f;
-NSInteger const ABCollectionViewColNumber = 4;
+
+#define ABCollectionViewColNumber (ABIsiPad ? 6 : 4)
 
 static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdentifier";
 
