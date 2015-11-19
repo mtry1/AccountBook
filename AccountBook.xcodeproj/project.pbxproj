@@ -18,6 +18,8 @@
 		933110991BCA46CA00C0F3BC /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 933110981BCA46CA00C0F3BC /* NSString+Category.m */; };
 		9331109C1BCA8FC700C0F3BC /* ABChargeEditDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9331109B1BCA8FC700C0F3BC /* ABChargeEditDataManager.m */; };
 		9331109F1BCA903C00C0F3BC /* ABChargeEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9331109E1BCA903C00C0F3BC /* ABChargeEditModel.m */; };
+		9356FB9F1BFCA7F200E76B6F /* lock_Fingerprint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356FB9D1BFCA7F200E76B6F /* lock_Fingerprint@2x.png */; };
+		9356FBA01BFCA7F200E76B6F /* lock_Fingerprint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356FB9E1BFCA7F200E76B6F /* lock_Fingerprint@3x.png */; };
 		93679C531BA3D811002B2401 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93679C521BA3D811002B2401 /* Images.xcassets */; };
 		93679C771BA44034002B2401 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C6D1BA44034002B2401 /* UIColor+Category.m */; };
 		93679C781BA44034002B2401 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C6F1BA44034002B2401 /* UIImage+Category.m */; };
@@ -85,6 +87,8 @@
 		9331109B1BCA8FC700C0F3BC /* ABChargeEditDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditDataManager.m; sourceTree = "<group>"; };
 		9331109D1BCA903C00C0F3BC /* ABChargeEditModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditModel.h; sourceTree = "<group>"; };
 		9331109E1BCA903C00C0F3BC /* ABChargeEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditModel.m; sourceTree = "<group>"; };
+		9356FB9D1BFCA7F200E76B6F /* lock_Fingerprint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock_Fingerprint@2x.png"; sourceTree = "<group>"; };
+		9356FB9E1BFCA7F200E76B6F /* lock_Fingerprint@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock_Fingerprint@3x.png"; sourceTree = "<group>"; };
 		93679C421BA3D811002B2401 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93679C461BA3D811002B2401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93679C521BA3D811002B2401 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AccountBook/Images.xcassets; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				9313E05C1BCE479F0068D8FA /* chargeList_arrowDown@3x.png */,
 				9313E0651BCE788C0068D8FA /* chargeList_arrowUp@2x.png */,
 				9313E0661BCE788C0068D8FA /* chargeList_arrowUp@3x.png */,
+				9356FB9D1BFCA7F200E76B6F /* lock_Fingerprint@2x.png */,
+				9356FB9E1BFCA7F200E76B6F /* lock_Fingerprint@3x.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -548,6 +554,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9356FB9F1BFCA7F200E76B6F /* lock_Fingerprint@2x.png in Resources */,
 				9313E0681BCE788C0068D8FA /* chargeList_arrowUp@3x.png in Resources */,
 				939690D11BADA8F3008C09C9 /* STXINGKA.ttf in Resources */,
 				93938FBC1BF330A6008CDDD4 /* AccountBook.entitlements in Resources */,
@@ -556,6 +563,7 @@
 				938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 				9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */,
+				9356FBA01BFCA7F200E76B6F /* lock_Fingerprint@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

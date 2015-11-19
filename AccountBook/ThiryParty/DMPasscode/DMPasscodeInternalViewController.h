@@ -11,6 +11,7 @@
 
 @protocol DMPasscodeInternalViewControllerDelegate <NSObject>
 
+- (void)fingerprintRecognitionSuccessed;
 - (void)enteredCode:(NSString *)code;
 - (void)canceled;
 

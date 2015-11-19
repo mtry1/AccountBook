@@ -10,6 +10,10 @@
 #import "DMPasscodeInternalField.h"
 #import "DMPasscodeConfig.h"
 
+#ifdef __IPHONE_8_0
+#import <LocalAuthentication/LocalAuthentication.h>
+#endif
+
 @interface DMPasscodeInternalViewController () <UITextFieldDelegate>
 @end
 
@@ -37,6 +41,15 @@
     [super viewDidLoad];
     self.view.backgroundColor = _config.backgroundColor;
     self.navigationController.navigationBar.barTintColor = _config.navigationBarBackgroundColor;
+    
+    LAContext* context = [[LAContext alloc] init];
+    if([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"lock_Fingerprint"]
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(touchUpInsideRightBarButtonItem:)];
+    }
     
     if(_config.isShowCloseButton)
     {
@@ -92,7 +105,8 @@
     _input.keyboardType = UIKeyboardTypeNumberPad;
     _input.keyboardAppearance = _config.inputKeyboardAppearance;
     [self.view addSubview:_input];
-    [_input becomeFirstResponder];
+    
+    [self showFingerprintRecognition];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
@@ -157,5 +171,30 @@
     _instructions.text = instructions;
 }
 
+- (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    [self showFingerprintRecognition];
+}
+
+- (void)showFingerprintRecognition{
+    
+    LAContext* context = [[LAContext alloc] init];
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                localizedReason:NSLocalizedString(@"dmpasscode_touchid_reason", nil)
+                          reply:^(BOOL success, NSError* error) {
+                              
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    [_delegate fingerprintRecognitionSuccessed];
+                } else {
+                    [_input becomeFirstResponder];
+                }
+            });
+        }];
+    } else {
+        [_input becomeFirstResponder];
+    }
+}
 
 @end
