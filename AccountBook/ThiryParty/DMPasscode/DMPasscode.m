@@ -110,7 +110,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 - (void)openPasscodeWithMode:(int)mode viewController:(UIViewController *)viewController animated:(BOOL)animated {
     _mode = mode;
     _count = 0;
-    _passcodeViewController = [[DMPasscodeInternalViewController alloc] initWithDelegate:self config:_config];
+    _passcodeViewController = [[DMPasscodeInternalViewController alloc] initWithDelegate:self mode:mode config:_config];
     DMPasscodeInternalNavigationController* nc = [[DMPasscodeInternalNavigationController alloc] initWithRootViewController:_passcodeViewController];
     [nc setModalPresentationStyle:UIModalPresentationFormSheet];
     [viewController presentViewController:nc animated:animated completion:nil];

@@ -23,12 +23,14 @@
     UITextField* _input;
     UILabel* _instructions;
     UILabel* _error;
+    NSInteger _mode;
     DMPasscodeConfig* _config;
 }
 
-- (id)initWithDelegate:(id<DMPasscodeInternalViewControllerDelegate>)delegate config:(DMPasscodeConfig *)config {
+- (id)initWithDelegate:(id<DMPasscodeInternalViewControllerDelegate>)delegate mode:(int)mode config:(DMPasscodeConfig *)config {
     if (self = [super init]) {
         _delegate = delegate;
+        _mode = mode;
         _config = config;
         _instructions = [[UILabel alloc] init];
         _error = [[UILabel alloc] init];
@@ -43,7 +45,7 @@
     self.navigationController.navigationBar.barTintColor = _config.navigationBarBackgroundColor;
     
     LAContext* context = [[LAContext alloc] init];
-    if([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
+    if(_mode && [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"lock_Fingerprint"]
                                                                                   style:UIBarButtonItemStylePlain
@@ -178,7 +180,7 @@
 
 - (void)showFingerprintRecognition{
     LAContext* context = [[LAContext alloc] init];
-    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+    if (_mode && [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
                 localizedReason:NSLocalizedString(@"dmpasscode_touchid_reason", nil)
                           reply:^(BOOL success, NSError* error) {
