@@ -750,8 +750,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME = "随身记";
 				CODE_SIGN_ENTITLEMENTS = AccountBook/Resouce/Other/AccountBook.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: rongqing zhou (47237LH7N7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rongqing zhou (47237LH7N7)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
@@ -760,7 +760,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "48339cf2-fd97-4885-aa24-b00ecf900e6b";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 			};
@@ -774,8 +774,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME = "随身记";
 				CODE_SIGN_ENTITLEMENTS = AccountBook/Resouce/Other/AccountBook.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/Utils/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
@@ -784,7 +784,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8e0d0341-8bf8-4664-8f46-cc4bd84ac83d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 			};

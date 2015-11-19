@@ -1,13 +1,16 @@
 PODS:
   - MJExtension (2.5.16)
   - SVProgressHUD (1.1.3)
+  - UMengAnalytics (3.6.4)
 
 DEPENDENCIES:
   - MJExtension (~> 2.5.16)
   - SVProgressHUD (~> 1.1.3)
+  - UMengAnalytics
 
 SPEC CHECKSUMS:
   MJExtension: b8c1321a77d91bcc007b94d38cbf5383c95ea30e
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  UMengAnalytics: d24fb5200e13d2874f36b6337bc129b96511c54e
 
 COCOAPODS: 0.38.2

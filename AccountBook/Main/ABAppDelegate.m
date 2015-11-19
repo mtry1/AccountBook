@@ -10,7 +10,7 @@
 #import "ABCategoryViewController.h"
 #import "ABCoreDataHelper.h"
 #import "DMPasscode.h"
-#import "DMPasscodeInternalViewController.h"
+#import "MobClick.h"
 
 @interface ABAppDelegate ()
 
@@ -40,11 +40,20 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [[ABNavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
     
+    //CoreData安装
     [[ABCoreDataHelper share] setupCoreData];
     
+    //弹窗初始化
     [self initSVProgressHUD];
     
+    //安全锁
     [self showDMPasscode];
+    
+    //友盟统计
+    [MobClick startWithAppkey:@"564d8b9667e58eeb6a00283c" reportPolicy:BATCH channelId:nil];
+    [MobClick setEncryptEnabled:YES];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
     
     return YES;
 }
