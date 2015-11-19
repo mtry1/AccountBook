@@ -10,8 +10,8 @@
 #import "DMPasscode.h"
 
 NSString *const ABSetTitleLock = @"安全锁";
-NSString *const ABSetTitleiCloud = @"合并iCloud";
-NSString *const ABSetTitleEndTimeRed = @"关闭超过结束时间红色显示";
+NSString *const ABSetTitleiCloud = @"合并iCloud数据";
+NSString *const ABSetTitleEndTimeRed = @"超过结束时间不显示红色";
 
 @interface ABSetDataManager ()
 
