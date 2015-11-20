@@ -348,7 +348,7 @@
     {
         [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
             
-            if(error && !model.isRemoved)
+            if(error)
             {
                 _uploadErrorCount ++;
             }
@@ -381,7 +381,7 @@
     {
         [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
             
-            if(error && !model.isRemoved)
+            if(error)
             {
                 _uploadErrorCount ++;
             }
@@ -407,6 +407,8 @@
 ///请求删除多余数据
 - (void)requestDeleteDiscardChargeData
 {
+    NSLog(@"上传完成");
+    
     NSArray *mergeData = [self.centerCoreDataManager selectCategoryListData:YES];
     for(ABCategoryModel *model in mergeData)
     {
@@ -418,6 +420,11 @@
                 if(isAllDeleted)
                 {
                     [self.centerCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES];
+                    NSLog(@"删除完成");
+                }
+                else
+                {
+                    NSLog(@"删除失败");
                 }
             }];
         }
