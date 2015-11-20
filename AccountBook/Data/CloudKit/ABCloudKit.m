@@ -256,21 +256,62 @@
 }
 
 ///请求删除消费纪录列表
-+ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID
++ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isAllDeleted))completionHandler
 {
     [self requestChargeListDataWithCategoryID:categoryID CompletionHandler:^(NSArray<ABChargeModel *> *results, NSError *error) {
         
-        for(ABChargeModel *model in results)
+        NSInteger cloudDataCount = results.count;
+        if(cloudDataCount == 0)
         {
-            CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
-            CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:model.chargeID];
-            [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
-                
-                if(error)
-                {
-                    NSLog(@"%@", error);
-                }
-            }];
+            [self requestDeleteCategoryDataWithCategoryID:categoryID completionHandler:completionHandler];
+        }
+        else
+        {
+            __block NSInteger curDeleteCnt = 0;
+            __block NSInteger curErrorCnt = 0;
+            for(ABChargeModel *model in results)
+            {
+                CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
+                CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:model.chargeID];
+                [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+                    
+                    curDeleteCnt ++;
+                    if(error)
+                    {
+                        curErrorCnt ++;
+                    }
+                    
+                    if(curDeleteCnt == cloudDataCount)
+                    {
+                        if(curErrorCnt)
+                        {
+                            completionHandler(NO);
+                        }
+                        else
+                        {
+                            [self requestDeleteCategoryDataWithCategoryID:categoryID completionHandler:completionHandler];
+                        }
+                    }
+                }];
+            }
+        }
+    }];
+}
+
+///删除分类数据
++ (void)requestDeleteCategoryDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isSuccess))completionHandler
+{
+    CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
+    CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:categoryID];
+    [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+        
+        if(error)
+        {
+            completionHandler(NO);
+        }
+        else
+        {
+            completionHandler(YES);
         }
     }];
 }

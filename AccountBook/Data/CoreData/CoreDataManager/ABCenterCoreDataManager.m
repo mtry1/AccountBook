@@ -105,12 +105,12 @@
 }
 
 #pragma mark 请求删除分类
-- (void)deleteCategoryCategoryID:(NSString *)categoryID
+- (void)deleteCategoryCategoryID:(NSString *)categoryID flag:(BOOL)flag
 {
     ABCategoryEntity *entity = [self selectCategoryEntityWithCategoryID:categoryID];
     if(entity)
     {
-        if([entity.isExistCloud boolValue])
+        if(!flag && [entity.isExistCloud boolValue])
         {
             entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
             entity.isRemoved = @(YES);

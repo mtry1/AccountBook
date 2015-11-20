@@ -29,6 +29,6 @@
 + (void)requestChargeListDataWithCompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *error))completionHandler;
 
 ///请求删除消费纪录列表
-+ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID;
++ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isAllDeleted))completionHandler;
 
 @end

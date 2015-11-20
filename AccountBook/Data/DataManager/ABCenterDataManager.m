@@ -66,7 +66,7 @@
 ///请求删除分类
 - (void)requestCategoryRemoveCategoryId:(NSString *)categoryId
 {
-    [self.centerCoreDataManager deleteCategoryCategoryID:categoryId];
+    [self.centerCoreDataManager deleteCategoryCategoryID:categoryId flag:NO];
 }
 
 ///请求修改分类
@@ -413,8 +413,13 @@
         if(model.isRemoved)
         {
             [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
-            
-            [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID];
+            [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID completionHandler:^(BOOL isAllDeleted) {
+                
+                if(isAllDeleted)
+                {
+                    [self.centerCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES];
+                }
+            }];
         }
     }
 }

@@ -16,8 +16,8 @@
 ///增加分类
 - (void)insertCategoryModel:(ABCategoryModel *)model;
 
-///删除分类
-- (void)deleteCategoryCategoryID:(NSString *)categoryID;
+///删除分类 flag为YES一定删除
+- (void)deleteCategoryCategoryID:(NSString *)categoryID flag:(BOOL)flag;
 
 ///修改分类(如果没有就插入)
 - (void)updateCategoryModel:(ABCategoryModel *)model;
