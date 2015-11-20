@@ -68,7 +68,7 @@
     self.imageLabel.frame = rect;
     self.imageLabel.layer.cornerRadius = CGRectGetHeight(self.imageLabel.frame) / 2;
     
-    CGFloat fontSize = [ABUtils fontSizeForHeight:CGRectGetHeight(self.frame) / 3 fontName:@"STXingkai"];
+    CGFloat fontSize = [ABUtils fontSizeForHeight:CGRectGetHeight(self.frame) / 2 fontName:@"STXingkai"];
     self.imageLabel.font = [UIFont fontWithName:@"STXingkai" size:fontSize];
     
     rect.origin.x = 5;
@@ -93,7 +93,7 @@
 - (void)reloadWithModel:(ABCategoryModel *)model
 {
     self.imageLabel.backgroundColor = [UIColor colorWithHexString:model.colorHexString];
-    self.imageLabel.text = model.name;
+    self.imageLabel.text = [model.name substringToIndex:1];
     self.titleLabel.text = model.name;
 }
 

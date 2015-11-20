@@ -19,6 +19,9 @@
 @end
 
 @implementation ABAppDelegate
+{
+    BOOL _isShowDMPasscode;
+}
 
 @synthesize backgroudView = _backgroudView;
 
@@ -47,7 +50,11 @@
     [self initSVProgressHUD];
     
     //安全锁
-    [self showDMPasscode];
+    if([DMPasscode isPasscodeSet])
+    {
+        [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
+        [self showDMPasscode];
+    }
     
     //友盟统计
     [MobClick startWithAppkey:@"564d8b9667e58eeb6a00283c" reportPolicy:BATCH channelId:nil];
@@ -60,45 +67,46 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [self showDMPasscode];
+    if([DMPasscode isPasscodeSet] && !_isShowDMPasscode)
+    {
+        [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
+    }
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    if([DMPasscode isPasscodeSet] && !_isShowDMPasscode)
+    {
+        [self showDMPasscode];
+    }
 }
 
 - (void)showDMPasscode
 {
-    if([DMPasscode isPasscodeSet])
-    {
-        static BOOL isShowing;
-        if(isShowing)
-        {
-            return;
-        }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
-            config.isShowCloseButton = NO;
-            config.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
-            [DMPasscode setConfig:config];
-            
-            isShowing = YES;
-            [DMPasscode showPasscodeInViewController:[ABUtils currentShowViewController]
-                                            animated:NO
-                                    willCloseHandler:^
+        DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
+        config.isShowCloseButton = NO;
+        config.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
+        [DMPasscode setConfig:config];
+        
+        _isShowDMPasscode = YES;
+        [DMPasscode showPasscodeInViewController:[ABUtils currentShowViewController]
+                                        animated:NO
+                                willCloseHandler:^
+         {
+             if(self.backgroudView.superview)
              {
-                 if(self.backgroudView.superview)
-                 {
-                     [self.backgroudView removeFromSuperview];
-                 }
-             }completion:^(BOOL success, NSError *error){
-                 
-                 if(success)
-                 {
-                     isShowing = NO;
-                 }
-             }];
-        });
-    }
+                 [self.backgroudView removeFromSuperview];
+             }
+         }completion:^(BOOL success, NSError *error){
+             
+             if(success)
+             {
+                 _isShowDMPasscode = NO;
+             }
+         }];
+    });
 }
 
 - (void)initSVProgressHUD

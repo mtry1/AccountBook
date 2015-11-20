@@ -210,7 +210,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"建议两个中文字哦"
+    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"创建标题，长按重命名"
                                                         message:nil
                                                        delegate:nil
                                               cancelButtonTitle:@"取消"

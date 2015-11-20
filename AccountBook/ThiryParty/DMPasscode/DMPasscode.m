@@ -171,6 +171,11 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 }
 
 - (void)canceled {
+    
+    if(_willClose)
+    {
+        _willClose();
+    }
     _completion(NO, nil);
 }
 
