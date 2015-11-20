@@ -125,6 +125,28 @@
                 }];
 }
 
+///删除分类数据
++ (void)requestDeleteCategoryDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isSuccess))completionHandler
+{
+    CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
+    CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:categoryID];
+    [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+        
+        if(error)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(NO);
+            });
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(YES);
+            });
+        }
+    }];
+}
+
 + (void)requestInsertChargeData:(ABChargeModel *)model completionHandler:(void(^)(NSError *error))completionHandler
 {
     [self requestChargeDataWithChargeID:model.chargeID completionHandler:^(CKRecord *record, NSError *error) {
@@ -255,6 +277,28 @@
     [self requestChargeListDataWithCategoryID:nil CompletionHandler:completionHandler];
 }
 
+///删除消费数据
++ (void)requestDeleteChargeDataWithChargeID:(NSString *)chargeID completionHandler:(void(^)(BOOL isSuccess))completionHandler
+{
+    CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
+    CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:chargeID];
+    [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+        
+        if(error)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(NO);
+            });
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(YES);
+            });
+        }
+    }];
+}
+
 ///请求删除消费纪录列表
 + (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isAllDeleted))completionHandler
 {
@@ -271,12 +315,10 @@
             __block NSInteger curErrorCnt = 0;
             for(ABChargeModel *model in results)
             {
-                CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
-                CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:model.chargeID];
-                [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+                [self requestDeleteChargeDataWithChargeID:model.chargeID completionHandler:^(BOOL isSuccess) {
                     
                     curDeleteCnt ++;
-                    if(error)
+                    if(!isSuccess)
                     {
                         curErrorCnt ++;
                     }
@@ -285,7 +327,9 @@
                     {
                         if(curErrorCnt)
                         {
-                            completionHandler(NO);
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completionHandler(NO);
+                            });
                         }
                         else
                         {
@@ -294,24 +338,6 @@
                     }
                 }];
             }
-        }
-    }];
-}
-
-///删除分类数据
-+ (void)requestDeleteCategoryDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isSuccess))completionHandler
-{
-    CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
-    CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:categoryID];
-    [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
-        
-        if(error)
-        {
-            completionHandler(NO);
-        }
-        else
-        {
-            completionHandler(YES);
         }
     }];
 }

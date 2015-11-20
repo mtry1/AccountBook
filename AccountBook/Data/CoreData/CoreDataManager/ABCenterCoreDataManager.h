@@ -32,8 +32,8 @@
 ///增加消费记录
 - (void)insertChargeModel:(ABChargeModel *)model;
 
-///删除消费记录
-- (void)deleteChargeChargeID:(NSString *)chargeID;
+///删除消费记录 flag为YES一定删除
+- (void)deleteChargeChargeID:(NSString *)chargeID flag:(BOOL)flag;
 
 ///删除消费列表纪录
 - (void)deleteChargeListDataWithCategoryID:(NSString *)categoryID;

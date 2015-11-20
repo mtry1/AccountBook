@@ -100,7 +100,7 @@
 ///请求删除消费记录
 - (void)requestChargeRemoveChargeId:(NSString *)chargeId
 {
-    [self.centerCoreDataManager deleteChargeChargeID:chargeId];
+    [self.centerCoreDataManager deleteChargeChargeID:chargeId flag:NO];
 }
 
 ///请求修改消费记录
@@ -120,14 +120,7 @@
 {
     [ABCloudKit requestIsOpenCloudCompletionHandler:^(CKAccountStatus accountStatus, NSError *error) {
         
-        if(accountStatus == CKAccountStatusNoAccount)
-        {
-            if(errorHandler)
-            {
-                errorHandler(accountStatus, error);
-            }
-        }
-        else if(accountStatus == CKAccountStatusAvailable)
+        if(accountStatus == CKAccountStatusAvailable)
         {
             _uploadErrorCount = 0;
             
@@ -140,7 +133,6 @@
                 {
                     for(ABCategoryModel *model in mergeData)
                     {
-                        model.isExistCloud = YES;
                         [self.centerCoreDataManager updateCategoryModel:model];
                     }
                     [self requestCategoryListData];
@@ -171,7 +163,6 @@
                 {
                     for(ABChargeModel *model in mergeData)
                     {
-                        model.isExistCloud = YES;
                         [self.centerCoreDataManager updateChargeModel:model];
                     }
                     
@@ -242,6 +233,11 @@
                 {
                     if(localModel.createTime < cloudModel.createTime)
                     {
+                        if(localModel.isExistCloud)
+                        {
+                            localModel.isRemoved = YES;
+                        }
+                        
                         [mergeData addObject:localModel];
                         localCurCnt ++;
                     }
@@ -255,7 +251,13 @@
             
             while(localCurCnt < localDataCount)
             {
-                [mergeData addObject:localData[localCurCnt]];
+                ABCategoryModel *localModel = localData[localCurCnt];
+                if(localModel.isExistCloud)
+                {
+                    localModel.isRemoved = YES;
+                }
+                
+                [mergeData addObject:localModel];
                 localCurCnt ++;
             }
             
@@ -310,6 +312,10 @@
                 {
                     if(localModel.startTimeInterval < cloudModel.startTimeInterval)
                     {
+                        if(localModel.isExistCloud)
+                        {
+                            localModel.isRemoved = YES;
+                        }
                         [mergeData addObject:localModel];
                         localCurCnt ++;
                     }
@@ -323,7 +329,12 @@
             
             while(localCurCnt < localDataCount)
             {
-                [mergeData addObject:localData[localCurCnt]];
+                ABChargeModel *localModel = localData[localCurCnt];
+                if(localModel.isExistCloud)
+                {
+                    localModel.isRemoved = YES;
+                }
+                [mergeData addObject:localModel];
                 localCurCnt ++;
             }
             
@@ -341,76 +352,162 @@
 ///请求上传分类数据
 - (void)requestUploadCategoryData:(NSArray *)categoryData
 {
-    __block NSInteger uploadCnt = 0;
-    _isFinishedUploadCategoryData = NO;
-    
-    for(ABCategoryModel *model in categoryData)
+    if(categoryData.count == 0)
     {
-        [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
-            
-            if(error)
+        _isFinishedUploadCategoryData = YES;
+        if(_isFinishedUploadChargeData)
+        {
+            [self requestDeleteDiscardData];
+        }
+    }
+    else
+    {
+        __block NSInteger uploadCnt = 0;
+        _isFinishedUploadCategoryData = NO;
+        
+        for(ABCategoryModel *model in categoryData)
+        {
+            if(model.isRemoved)
             {
-                _uploadErrorCount ++;
-            }
-            
-            uploadCnt ++;
-            if(uploadCnt == categoryData.count)
-            {
-                _isFinishedUploadCategoryData = YES;
-                if(_isFinishedUploadChargeData)
+                uploadCnt ++;
+                if(uploadCnt == categoryData.count)
                 {
-                    [self requestDeleteDiscardChargeData];
-                    
-                    if(_uploadErrorCount)
+                    _isFinishedUploadCategoryData = YES;
+                    if(_isFinishedUploadChargeData)
                     {
-                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                        [self requestDeleteDiscardData];
+                        
+                        if(_uploadErrorCount)
+                        {
+                            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                        }
                     }
                 }
             }
-        }];
+            else
+            {
+                model.isExistCloud = YES;
+                [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
+                    
+                    if(error)
+                    {
+                        _uploadErrorCount ++;
+                        model.isExistCloud = NO;
+                        model.modifyTime = [[NSDate date] timeIntervalSince1970];
+                    }
+                    else
+                    {
+                        model.isExistCloud = YES;
+                        
+                    }
+                    [self.centerCoreDataManager updateCategoryModel:model];
+                    
+                    uploadCnt ++;
+                    if(uploadCnt == categoryData.count)
+                    {
+                        _isFinishedUploadCategoryData = YES;
+                        if(_isFinishedUploadChargeData)
+                        {
+                            [self requestDeleteDiscardData];
+                            
+                            if(_uploadErrorCount)
+                            {
+                                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                            }
+                        }
+                    }
+                }];
+            }
+        }
     }
 }
 
 ///请求上传消费数据
 - (void)requestUploadChargeData:(NSArray *)chargeData
 {
-    __block NSInteger uploadCnt = 0;
-    _isFinishedUploadChargeData = NO;
-    
-    for(ABChargeModel *model in chargeData)
+    if(chargeData.count == 0)
     {
-        [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
-            
-            if(error)
+        _isFinishedUploadChargeData = YES;
+        if(_isFinishedUploadCategoryData)
+        {
+            [self requestDeleteDiscardData];
+        }
+    }
+    else
+    {
+        __block NSInteger uploadCnt = 0;
+        _isFinishedUploadChargeData = NO;
+        
+        for(ABChargeModel *model in chargeData)
+        {
+            if(model.isRemoved)
             {
-                _uploadErrorCount ++;
-            }
-            
-            uploadCnt ++;
-            if(uploadCnt == chargeData.count)
-            {
-                _isFinishedUploadChargeData = YES;
-                if(_isFinishedUploadCategoryData)
-                {
-                    [self requestDeleteDiscardChargeData];
+                uploadCnt ++;
+                
+                [ABCloudKit requestDeleteChargeDataWithChargeID:model.chargeID completionHandler:^(BOOL isSuccess) {
                     
-                    if(_uploadErrorCount)
+                    if(isSuccess)
                     {
-                        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                        [self.centerCoreDataManager deleteChargeChargeID:model.chargeID flag:YES];
                     }
-                }
+                    
+                    if(uploadCnt == chargeData.count)
+                    {
+                        _isFinishedUploadChargeData = YES;
+                        if(_isFinishedUploadCategoryData)
+                        {
+                            [self requestDeleteDiscardData];
+                            
+                            if(_uploadErrorCount)
+                            {
+                                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                            }
+                        }
+                    }
+                }];
             }
-        }];
+            else
+            {
+                model.isExistCloud = YES;
+                [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
+                    
+                    if(error)
+                    {
+                        _uploadErrorCount ++;
+                        model.isExistCloud = NO;
+                        model.modifyTime = [[NSDate date] timeIntervalSince1970];
+                    }
+                    else
+                    {
+                        model.isExistCloud = YES;
+                    }
+                    [self.centerCoreDataManager updateChargeModel:model];
+                    
+                    uploadCnt ++;
+                    if(uploadCnt == chargeData.count)
+                    {
+                        _isFinishedUploadChargeData = YES;
+                        if(_isFinishedUploadCategoryData)
+                        {
+                            [self requestDeleteDiscardData];
+                            
+                            if(_uploadErrorCount)
+                            {
+                                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                            }
+                        }
+                    }
+                }];
+            }
+        }
     }
 }
 
 ///请求删除多余数据
-- (void)requestDeleteDiscardChargeData
+- (void)requestDeleteDiscardData
 {
-    NSLog(@"上传完成");
-    
-    NSArray *mergeData = [self.centerCoreDataManager selectCategoryListData:YES];
-    for(ABCategoryModel *model in mergeData)
+    NSArray *mergeCategoryData = [self.centerCoreDataManager selectCategoryListData:YES];
+    for(ABCategoryModel *model in mergeCategoryData)
     {
         if(model.isRemoved)
         {
@@ -420,11 +517,6 @@
                 if(isAllDeleted)
                 {
                     [self.centerCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES];
-                    NSLog(@"删除完成");
-                }
-                else
-                {
-                    NSLog(@"删除失败");
                 }
             }];
         }

@@ -237,12 +237,12 @@
 }
 
 #pragma mark 删除消费记录
-- (void)deleteChargeChargeID:(NSString *)chargeID
+- (void)deleteChargeChargeID:(NSString *)chargeID flag:(BOOL)flag
 {
     ABChargeEntity *entity = [self selectChargeEntityWithChargeID:chargeID];
     if(entity)
     {
-        if([entity.isExistCloud boolValue])
+        if(!flag && [entity.isExistCloud boolValue])
         {
             entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
             entity.isRemoved = @(YES);

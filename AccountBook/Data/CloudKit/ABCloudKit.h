@@ -28,6 +28,9 @@
 ///请求消费纪录列表
 + (void)requestChargeListDataWithCompletionHandler:(void (^)(NSArray<ABChargeModel *> *results, NSError *error))completionHandler;
 
+///删除消费数据
++ (void)requestDeleteChargeDataWithChargeID:(NSString *)chargeID completionHandler:(void(^)(BOOL isSuccess))completionHandler;
+
 ///请求删除消费纪录列表
 + (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isAllDeleted))completionHandler;
 
