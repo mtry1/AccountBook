@@ -69,15 +69,7 @@
 {
     if([DMPasscode isPasscodeSet] && !_isShowDMPasscode)
     {
-        UIViewController *currentContoller = [ABUtils currentShowViewController];
-        if([currentContoller isKindOfClass:[UIAlertController class]])
-        {
-            [(UIAlertController *)currentContoller dismissViewControllerAnimated:NO completion:nil];
-        }
-        else
-        {
-            [currentContoller.navigationController.view addSubview:self.backgroudView];
-        }
+        [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
     }
 }
 
