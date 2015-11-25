@@ -47,6 +47,8 @@
         _tableView.sectionHeaderHeight = 10;
         _tableView.sectionFooterHeight = 0;
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 10)];
+        
+        _tableView.estimatedRowHeight = ABChargeEditCellDefaultHeight;
     }
     return _tableView;
 }
@@ -104,16 +106,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.editDataManager numberOfRowAtSection:section];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ABChargeEditModel *model = [self.editDataManager dataAtIndexPath:indexPath];
-    if(model)
-    {
-        return [ABChargeEditCell heightWithModel:model width:CGRectGetWidth(self.tableView.frame)];
-    }
-    return ABChargeEditCellDefaultHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

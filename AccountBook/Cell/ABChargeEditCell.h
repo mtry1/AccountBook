@@ -15,6 +15,4 @@ extern NSInteger const ABChargeEditCellDefaultHeight;
 
 - (void)reloadWithModel:(ABChargeEditModel *)model isEdit:(BOOL)isEdit;
 
-+ (CGFloat)heightWithModel:(ABChargeEditModel *)model width:(CGFloat)width;
-
 @end
