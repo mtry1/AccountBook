@@ -10,7 +10,7 @@
 
 #define ABChargeEditCellDefaultFont [UIFont systemFontOfSize:16]
 
-NSInteger const ABChargeEditCellDefaultHeight = 45;
+NSInteger const ABChargeEditCellDefaultHeight = 50;
 
 @interface ABChargeEditCell ()
 
@@ -78,16 +78,16 @@ NSInteger const ABChargeEditCellDefaultHeight = 45;
     }
     
     [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleLabel(70)]-(>=0)-[_descLabel]-|"
-                                                                              options:NSLayoutFormatAlignAllCenterY
+                                                                              options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(_titleLabel, _descLabel)]];
     
-    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_titleLabel]-|"
+    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_titleLabel]-15-|"
                                                                               options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(_titleLabel)]];
     
-    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_descLabel(>=_titleLabel)]-|"
+    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_descLabel(>=_titleLabel)]-15-|"
                                                                               options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(_descLabel, _titleLabel)]];
