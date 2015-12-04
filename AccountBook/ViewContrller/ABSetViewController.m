@@ -123,12 +123,11 @@
             if(accountStatus == CKAccountStatusNoAccount)
             {
                 [SVProgressHUD dismiss];
-                ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"请登录iCloud帐号"
-                                                                    message:@"确保 设置->iCloud->iCloud Drive 开启"
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"知道了"
-                                                          otherButtonTitles:nil, nil];
-                [alertView show];
+                UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"请登录iCloud帐号"
+                                                                                        message:@"确保 设置->iCloud->iCloud Drive 开启"
+                                                                                 preferredStyle:UIAlertControllerStyleAlert];
+                [alertContoller addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alertContoller animated:YES completion:nil];
             }
             else
             {

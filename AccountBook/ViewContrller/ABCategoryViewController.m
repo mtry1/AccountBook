@@ -152,50 +152,70 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
         if(model)
         {
             NSString *title = [NSString stringWithFormat:@"编辑“%@”", model.name];
-            ABActionSheet *actionSheet = [[ABActionSheet alloc] initWithTitle:title
-                                                                     delegate:nil
-                                                            cancelButtonTitle:@"取消"
-                                                       destructiveButtonTitle:@"删除"
-                                                            otherButtonTitles:@"重命名", nil];
-            [actionSheet showInView:self.navigationController.view clickButtonBlock:^(UIActionSheet *actionSheet, NSUInteger buttonIndex) {
-               
-                if(buttonIndex == 0)
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                                     message:nil
+                                                                              preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *renameAction = [UIAlertAction actionWithTitle:@"重命名"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * _Nonnull action)
+            {
+                NSString *title = [NSString stringWithFormat:@"重命名“%@”", model.name];
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:title
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                [controller addTextFieldWithConfigurationHandler:nil];
+                
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * _Nonnull action)
                 {
-                    NSString *title = [NSString stringWithFormat:@"重命名“%@”", model.name];
-                    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:title
-                                                                        message:nil
-                                                                       delegate:self
-                                                              cancelButtonTitle:@"取消"
-                                                              otherButtonTitles:@"确定", nil];
-                    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-                    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
-                        
-                        if(atIndex != alertView.cancelButtonIndex)
-                        {
-                            UITextField *textField = [alertView textFieldAtIndex:0];
-                            if(textField)
-                            {
-                                [self.dataManger requestRename:textField.text atIndex:indexPath.row];
-                            }
-                        }
-                    }];
-                }
-                else if(buttonIndex == 1)
-                {
-                    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"您确定要删除"
-                                                                        message:model.name
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"取消"
-                                                              otherButtonTitles:@"确定", nil];
-                    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
-                        
-                        if(atIndex != alertView.cancelButtonIndex)
-                        {
-                            [self.dataManger requestRemoveIndex:indexPath.row];
-                        }
-                    }];
-                }
+                    UITextField *textField = [[controller textFields] firstObject];
+                    if(textField)
+                    {
+                        [self.dataManger requestRename:textField.text atIndex:indexPath.row];
+                    }
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                       style:UIAlertActionStyleCancel
+                                                                     handler:nil];
+                [controller addAction:okAction];
+                [controller addAction:cancelAction];
+                [self presentViewController:controller animated:YES completion:nil];
             }];
+            
+            UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除"
+                                                                   style:UIAlertActionStyleDestructive
+                                                                 handler:^(UIAlertAction * _Nonnull action)
+            {
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您确定要删除"
+                                                                                    message:model.name
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * _Nonnull action)
+                {
+                    [self.dataManger requestRemoveIndex:indexPath.row];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                       style:UIAlertActionStyleCancel
+                                                                     handler:nil];
+                [controller addAction:okAction];
+                [controller addAction:cancelAction];
+                [self presentViewController:controller animated:YES completion:nil];
+            }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction * _Nonnull action) {
+                                                                     NSLog(@"cancel");
+                                                                 }];
+            
+            [alertController addAction:renameAction];
+            [alertController addAction:deleteAction];
+            [alertController addAction:cancelAction];
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }
 }
@@ -210,23 +230,20 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"创建标题，长按重命名"
-                                                        message:nil
-                                                       delegate:nil
-                                              cancelButtonTitle:@"取消"
-                                              otherButtonTitles:@"确定", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
+    UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"创建标题，长按重命名"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+    [alertContoller addTextFieldWithConfigurationHandler:nil];
+    [alertContoller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alertContoller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        if(atIndex != alertView.cancelButtonIndex)
+        UITextField *textField = [[alertContoller textFields] firstObject];
+        if(textField && textField.text.length)
         {
-            UITextField *textField = [alertView textFieldAtIndex:0];
-            if(textField && textField.text.length)
-            {
-                [self.dataManger requestAddObjectWithText:textField.text];
-            }
+            [self.dataManger requestAddObjectWithText:textField.text];
         }
-    }];
+    }]];
+    [self presentViewController:alertContoller animated:YES completion:nil];
 }
 
 #pragma mark - 数据处理

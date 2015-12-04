@@ -11,6 +11,7 @@
 #import "ABCoreDataHelper.h"
 #import "DMPasscode.h"
 #import "MobClick.h"
+#import "DMPasscodeInternalViewController.h"
 
 @interface ABAppDelegate ()
 
@@ -69,7 +70,13 @@
 {
     if([DMPasscode isPasscodeSet] && !_isShowDMPasscode)
     {
-        [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
+        UIViewController *currentViewController = [ABUtils currentShowViewController];
+        if([currentViewController isKindOfClass:[UIAlertController class]])
+        {
+            [(UIAlertController *)currentViewController dismissViewControllerAnimated:NO completion:^{
+                [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
+            }];
+        }
     }
 }
 

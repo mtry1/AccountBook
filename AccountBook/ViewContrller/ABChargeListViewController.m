@@ -141,18 +141,14 @@
         ABChargeModel *model = [self.dataManager dataAtIndex:indexPath.row];
         if(model)
         {
-            ABAlertView *alertView = [[ABAlertView alloc] initWithTitle:@"您确定要删除"
-                                                                message:nil
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"取消"
-                                                      otherButtonTitles:@"确定", nil];
-            [alertView showUsingClickButtonBlock:^(UIAlertView *alertView, NSUInteger atIndex) {
-                
-                if(atIndex != alertView.cancelButtonIndex)
-                {
-                    [self.dataManager requestRemoveIndex:indexPath.row];
-                }
-            }];
+            UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"你确定要删除"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+            [alertContoller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            [alertContoller addAction:[UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.dataManager requestRemoveIndex:indexPath.row];
+            }]];
+            [self presentViewController:alertContoller animated:YES completion:nil];
         }
     }
 }

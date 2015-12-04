@@ -67,7 +67,7 @@
 }
 
 ///当前显示的控制器
-+ (UIViewController *)currentShowViewController
++ (__kindof UIViewController *)currentShowViewController
 {
     UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     return [self findBestViewController:viewController];
@@ -75,7 +75,7 @@
 }
 
 ///当前显示的控制器
-+ (UIViewController*)findBestViewController:(UIViewController *)viewController
++ (__kindof UIViewController *)findBestViewController:(__kindof UIViewController *)viewController
 {
     if(viewController.presentedViewController)
     {
@@ -83,7 +83,7 @@
     }
     else if ([viewController isKindOfClass:[UISplitViewController class]])
     {
-        UISplitViewController *splitViewController = (UISplitViewController *)viewController;
+        UISplitViewController *splitViewController = viewController;
         if(splitViewController.viewControllers.count > 0)
         {
             return [self findBestViewController:splitViewController.viewControllers.lastObject];
@@ -95,7 +95,7 @@
     }
     else if([viewController isKindOfClass:[UINavigationController class]])
     {
-        UINavigationController *navigationController = (UINavigationController *)viewController;
+        UINavigationController *navigationController = viewController;
         if(navigationController.viewControllers.count > 0)
         {
             return [self findBestViewController:navigationController.topViewController];
@@ -107,7 +107,7 @@
     }
     else if ([viewController isKindOfClass:[UITabBarController class]])
     {
-        UITabBarController *tabBarController = (UITabBarController *)viewController;
+        UITabBarController *tabBarController = viewController;
         if (tabBarController.viewControllers.count > 0)
         {
             return [self findBestViewController:tabBarController.selectedViewController];

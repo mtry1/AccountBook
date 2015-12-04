@@ -30,8 +30,6 @@
 		93679C941BA46420002B2401 /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93679C931BA46420002B2401 /* ABSetViewController.m */; };
 		937FCC4B1BCFD27C00E4297D /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */; };
 		938695D71BC4E34300F4B1A9 /* ABChargeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */; };
-		938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D901BAE8E3E0042B86B /* ABActionSheet.m */; };
-		938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D921BAE8E3E0042B86B /* ABAlertView.m */; };
 		938A2D981BAE8E510042B86B /* ABCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D971BAE8E510042B86B /* ABCategoryCell.m */; };
 		938A2DA41BAE8E630042B86B /* ABDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D9C1BAE8E630042B86B /* ABDataManager.m */; };
 		938A2DA51BAE8E630042B86B /* ABCategoryDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A2D9E1BAE8E630042B86B /* ABCategoryDataManger.m */; };
@@ -112,10 +110,6 @@
 		937FCC4A1BCFD27C00E4297D /* ABCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterDataManager.m; sourceTree = "<group>"; };
 		938695D51BC4E34300F4B1A9 /* ABChargeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditCell.h; sourceTree = "<group>"; };
 		938695D61BC4E34300F4B1A9 /* ABChargeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditCell.m; sourceTree = "<group>"; };
-		938A2D8F1BAE8E3E0042B86B /* ABActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABActionSheet.h; sourceTree = "<group>"; };
-		938A2D901BAE8E3E0042B86B /* ABActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABActionSheet.m; sourceTree = "<group>"; };
-		938A2D911BAE8E3E0042B86B /* ABAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAlertView.h; sourceTree = "<group>"; };
-		938A2D921BAE8E3E0042B86B /* ABAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAlertView.m; sourceTree = "<group>"; };
 		938A2D961BAE8E510042B86B /* ABCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryCell.h; sourceTree = "<group>"; };
 		938A2D971BAE8E510042B86B /* ABCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCategoryCell.m; sourceTree = "<group>"; };
 		938A2D9B1BAE8E630042B86B /* ABDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDataManager.h; sourceTree = "<group>"; };
@@ -362,10 +356,6 @@
 			children = (
 				93F5ADCA1BBB732D008A1539 /* ABTableView.h */,
 				93F5ADCB1BBB732D008A1539 /* ABTableView.m */,
-				938A2D8F1BAE8E3E0042B86B /* ABActionSheet.h */,
-				938A2D901BAE8E3E0042B86B /* ABActionSheet.m */,
-				938A2D911BAE8E3E0042B86B /* ABAlertView.h */,
-				938A2D921BAE8E3E0042B86B /* ABAlertView.m */,
 				93F5ADD01BBBCE8E008A1539 /* ABDatePicker.h */,
 				93F5ADD11BBBCE8E008A1539 /* ABDatePicker.m */,
 				9313E0621BCE6DF40068D8FA /* ABStatisticsView.h */,
@@ -608,7 +598,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				933110991BCA46CA00C0F3BC /* NSString+Category.m in Sources */,
-				938A2D941BAE8E3E0042B86B /* ABAlertView.m in Sources */,
 				938A2DA61BAE8E630042B86B /* ABCategoryModel.m in Sources */,
 				93679C861BA44288002B2401 /* ABViewController.m in Sources */,
 				938D7CF11BEEE0C500DDA2C8 /* DMPasscode.m in Sources */,
@@ -647,7 +636,6 @@
 				9331109F1BCA903C00C0F3BC /* ABChargeEditModel.m in Sources */,
 				938A2DA41BAE8E630042B86B /* ABDataManager.m in Sources */,
 				938A2DB81BAF01740042B86B /* ABChargeListCell.m in Sources */,
-				938A2D931BAE8E3E0042B86B /* ABActionSheet.m in Sources */,
 				939690C91BAD2EB5008C09C9 /* ABUtils.m in Sources */,
 				938A4D8E1BD0E8C200EE0630 /* ABChargeEntity.m in Sources */,
 				93679C781BA44034002B2401 /* UIImage+Category.m in Sources */,
