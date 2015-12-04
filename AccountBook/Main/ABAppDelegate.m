@@ -77,6 +77,10 @@
                 [[ABUtils currentShowViewController].navigationController.view addSubview:self.backgroudView];
             }];
         }
+        else
+        {
+            [currentViewController.navigationController.view addSubview:self.backgroudView];
+        }
     }
 }
 
