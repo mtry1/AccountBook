@@ -14,12 +14,12 @@
 {
     id selfCopy = [[[self class] alloc] init];
     
-    NSMutableDictionary *dict = self.keyValues;
+    NSMutableDictionary *dict = self.mj_keyValues;
     if(dict)
     {
         [dict removeObjectForKey:@"isTimeOut"];
         
-        selfCopy = [[self class] objectWithKeyValues:dict];
+        selfCopy = [[self class] mj_objectWithKeyValues:dict];
     }
     
     return selfCopy;

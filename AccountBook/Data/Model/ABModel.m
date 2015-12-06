@@ -14,10 +14,10 @@
 {
     id selfCopy = [[[self class] alloc] init];
     
-    NSDictionary *dict = self.keyValues;
+    NSDictionary *dict = self.mj_keyValues;
     if(dict)
     {
-        selfCopy = [[self class] objectWithKeyValues:dict];
+        selfCopy = [[self class] mj_objectWithKeyValues:dict];
     }
     
     return selfCopy;
