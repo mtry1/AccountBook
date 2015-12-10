@@ -234,8 +234,8 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
                                                                             message:nil
                                                                      preferredStyle:UIAlertControllerStyleAlert];
     [alertContoller addTextFieldWithConfigurationHandler:nil];
-    [alertContoller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [alertContoller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ABCancel", nil) style:UIAlertActionStyleCancel handler:nil]];
+    [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ABOK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         UITextField *textField = [[alertContoller textFields] firstObject];
         if(textField && textField.text.length)

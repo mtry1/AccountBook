@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  AccountBook
+
+  Created by zhourongqing on 15/12/10.
+  Copyright © 2015年 mtry. All rights reserved.
+*/
+
+"ABCancel" = "Cancel";
+"ABOK" = "OK";
