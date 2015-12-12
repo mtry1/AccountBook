@@ -208,9 +208,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                                    style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                     NSLog(@"cancel");
-                                                                 }];
+                                                                 handler:nil];
             
             [alertController addAction:renameAction];
             [alertController addAction:deleteAction];

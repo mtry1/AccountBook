@@ -6,5 +6,5 @@
   Copyright © 2015年 mtry. All rights reserved.
 */
 
-"ABCancel" = "取消";
-"ABOK" = "确定";
+"cancel" = "取消";
+"OK" = "确定";

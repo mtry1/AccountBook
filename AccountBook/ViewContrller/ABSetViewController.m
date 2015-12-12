@@ -55,14 +55,6 @@
     [self.setDataManager.callBackUtils addDelegate:self];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    //弹窗关闭密码锁，进入后台，再进前台
-    [self.tableView reloadData];
-}
-
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -169,8 +161,6 @@
                 {
                     [sender setOn:!sender.isOn];
                 }
-                
-                [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
             }];
         }
         else
@@ -188,8 +178,6 @@
                 {
                     [sender setOn:!sender.isOn];
                 }
-                
-                [self.setDataManager requestUpdateSwitchStatus:sender.on title:title];
             }];
         }
     }
