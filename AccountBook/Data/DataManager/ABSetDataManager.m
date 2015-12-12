@@ -9,10 +9,6 @@
 #import "ABSetDataManager.h"
 #import "DMPasscode.h"
 
-NSString *const ABSetTitleLock = @"安全锁";
-NSString *const ABSetTitleiCloud = @"合并iCloud数据";
-NSString *const ABSetTitleEndTimeRed = @"超过结束时间不显示红色";
-
 @interface ABSetDataManager ()
 
 @property (nonatomic, strong) NSArray *listItem;

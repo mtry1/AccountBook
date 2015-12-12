@@ -47,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"设置";
+    self.title = NSLocalizedString(@"set", nil);
     
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
@@ -113,7 +113,6 @@
     if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
     {
         [SVProgressHUD show];
-        
         [[ABCenterDataManager share] mergeCouldDataFinishedHandler:^{
             
             [SVProgressHUD dismiss];
@@ -123,15 +122,13 @@
             if(accountStatus == CKAccountStatusNoAccount)
             {
                 [SVProgressHUD dismiss];
-                UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"请登录iCloud帐号"
-                                                                                        message:@"确保 设置->iCloud->iCloud Drive 开启"
-                                                                                 preferredStyle:UIAlertControllerStyleAlert];
-                [alertContoller addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
+                UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"login_iCloud", nil) message:NSLocalizedString(@"iCloud_is_open", nil) preferredStyle:UIAlertControllerStyleAlert];
+                [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil) style:UIAlertActionStyleDefault handler:nil]];
                 [self presentViewController:alertContoller animated:YES completion:nil];
             }
             else
             {
-                [SVProgressHUD showInfoWithStatus:@"合并失败，请稍后再试"];
+                [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"merge_failure", nil)];
             }
         }];
     }

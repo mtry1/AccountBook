@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#undef NSLocalizedString
-#define NSLocalizedString(key, comment) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:@"DMPasscodeLocalisation"]
-
 @interface DMPasscodeConfig : NSObject
 
 /**

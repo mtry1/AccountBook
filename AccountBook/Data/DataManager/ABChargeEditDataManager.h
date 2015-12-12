@@ -11,15 +11,15 @@
 #import "ABChargeDataManger.h"
 
 ///开始日期
-extern NSString *const ABChargeEditStartDate;
+#define ABChargeEditStartDate NSLocalizedString(@"sta_date", nil)
 ///结束日期
-extern NSString *const ABChargeEditEndDate;
+#define ABChargeEditEndDate NSLocalizedString(@"end_date", nil)
 ///名称
-extern NSString *const ABChargeEditTitle;
+#define ABChargeEditTitle NSLocalizedString(@"name", nil)
 ///额度
-extern NSString *const ABChargeEditAmount;
+#define ABChargeEditAmount NSLocalizedString(@"amount", nil)
 ///备注
-extern NSString *const ABChargeEditNotes;
+#define ABChargeEditNotes NSLocalizedString(@"notes", nil)
 
 @interface ABChargeEditDataManager : ABDataManager
 

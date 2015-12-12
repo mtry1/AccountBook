@@ -77,7 +77,7 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
         [_constraints removeAllObjects];
     }
     
-    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleLabel(70)]-(>=0)-[_descLabel]-|"
+    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleLabel(80)]-(>=0)-[_descLabel]-|"
                                                                               options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(_titleLabel, _descLabel)]];
@@ -122,7 +122,7 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
         {
             [text appendString:model.desc];
         }
-        [text appendString:isEdit ? @"（必填）": @""];
+        [text appendString:isEdit ? NSLocalizedString(@"required", nil): @""];
         self.descLabel.text = text;
     }
     else if([model.title isEqualToString:ABChargeEditNotes])

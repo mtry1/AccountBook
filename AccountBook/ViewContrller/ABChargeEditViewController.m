@@ -74,7 +74,7 @@
     if(self.editDataManager.isModify)
     {
         _isEdit = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"edit", nil)
                                                                                   style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(touchRightBarButtonItem:)];
@@ -82,11 +82,11 @@
     else
     {
         _isEdit = YES;
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭"
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"close", nil)
                                                                                  style:UIBarButtonItemStylePlain
                                                                                 target:self
                                                                                 action:@selector(touchLeftBarButtonItem:)];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成"
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"finish", nil)
                                                                                   style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(touchRightBarButtonItem:)];
@@ -242,7 +242,7 @@
         {
             if([self.editDataManager finishEdited])
             {
-                self.navigationItem.rightBarButtonItem.title = @"编辑";
+                self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"edit", nil);
                 
             }
             else
@@ -252,7 +252,7 @@
         }
         else
         {
-            self.navigationItem.rightBarButtonItem.title = @"完成";
+            self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"finish", nil);
         }
         
         _isEdit = !_isEdit;

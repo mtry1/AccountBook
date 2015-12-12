@@ -8,12 +8,6 @@
 
 #import "ABChargeEditDataManager.h"
 
-NSString *const ABChargeEditStartDate = @"开始日期";
-NSString *const ABChargeEditEndDate = @"结束日期";
-NSString *const ABChargeEditTitle = @"名称";
-NSString *const ABChargeEditAmount = @"额度";
-NSString *const ABChargeEditNotes = @"备注";
-
 @interface ABChargeEditDataManager ()
 
 @property (nonatomic, strong) NSMutableArray *listItem;
@@ -151,7 +145,7 @@ NSString *const ABChargeEditNotes = @"备注";
     ABChargeEditModel *model = [self dataForTitle:ABChargeEditTitle];
     if(model.desc.length == 0)
     {
-        NSString *message = [NSString stringWithFormat:@"请输入%@", ABChargeEditTitle];
+        NSString *message = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"please_input", nil), ABChargeEditTitle];
         [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
         return NO;
     }
@@ -159,7 +153,7 @@ NSString *const ABChargeEditNotes = @"备注";
     model = [self dataForTitle:ABChargeEditAmount];
     if(model.desc.length == 0)
     {
-        NSString *message = [NSString stringWithFormat:@"请输入%@", ABChargeEditAmount];
+        NSString *message = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"please_input", nil), ABChargeEditAmount];
         [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
         return NO;
     }

@@ -9,11 +9,11 @@
 #import "ABDataManager.h"
 
 ///安全锁
-extern NSString *const ABSetTitleLock;
+#define ABSetTitleLock NSLocalizedString(@"safe_lock", nil)
 ///合并iCloud
-extern NSString *const ABSetTitleiCloud;
+#define ABSetTitleiCloud NSLocalizedString(@"merge_iCloud_data", nil)
 ///超过结束时间红色
-extern NSString *const ABSetTitleEndTimeRed;
+#define ABSetTitleEndTimeRed NSLocalizedString(@"overtime_red", nil)
 
 @interface ABSetDataManager : ABDataManager
 

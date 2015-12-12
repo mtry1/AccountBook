@@ -49,7 +49,7 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.textColor = [UIColor colorWithUInt:0x666666];
         _timeLabel.font = ABStatisticsViewDefaultFont;
-        _timeLabel.text = @"时间:";
+        _timeLabel.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"time", nil)];
     }
     return _timeLabel;
 }
@@ -61,7 +61,7 @@
         _toLabel = [[UILabel alloc] init];
         _toLabel.textColor = [UIColor colorWithUInt:0x666666];
         _toLabel.font = ABStatisticsViewDefaultFont;
-        _toLabel.text = @"至";
+        _toLabel.text = NSLocalizedString(@"to", nil);
         _toLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _toLabel;
@@ -75,7 +75,7 @@
         _amountLabel.textColor = [UIColor colorWithUInt:0x666666];
         _amountLabel.font = ABStatisticsViewDefaultFont;
         _amountLabel.textAlignment = NSTextAlignmentRight;
-        _amountLabel.text = @"合计:0元";
+        _amountLabel.text = [NSString stringWithFormat:@"%@:0%@", NSLocalizedString(@"total", nil), NSLocalizedString(@"usd", nil)];
     }
     return _amountLabel;
 }
@@ -273,7 +273,7 @@
 
 - (void)updateStatisticsAmount:(CGFloat)amount
 {
-    self.amountLabel.text = [NSString stringWithFormat:@"合计:%.lf元", amount];
+    self.amountLabel.text = [NSString stringWithFormat:@"%@:%.lf%@", NSLocalizedString(@"total", nil), amount,NSLocalizedString(@"usd", nil)];
     [self setNeedsLayout];
 }
 

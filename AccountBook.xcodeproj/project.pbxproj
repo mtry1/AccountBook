@@ -52,7 +52,6 @@
 		938D7CF31BEEE0C500DDA2C8 /* DMPasscodeInternalField.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEA1BEEE0C500DDA2C8 /* DMPasscodeInternalField.m */; };
 		938D7CF41BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */; };
 		938D7CF51BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */; };
-		938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */; };
 		938F9EC71BDC79B9007F1778 /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */; };
 		93938FBA1BF32E6D008CDDD4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93938FB91BF32E6D008CDDD4 /* CloudKit.framework */; };
 		93938FBC1BF330A6008CDDD4 /* AccountBook.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 93938FBB1BF330A6008CDDD4 /* AccountBook.entitlements */; };
@@ -154,7 +153,6 @@
 		938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscodeInternalNavigationController.m; sourceTree = "<group>"; };
 		938D7CED1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPasscodeInternalViewController.h; sourceTree = "<group>"; };
 		938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPasscodeInternalViewController.m; sourceTree = "<group>"; };
-		938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = DMPasscodeLocalisation.strings; sourceTree = "<group>"; };
 		938F9EC51BDC79B9007F1778 /* ABSetDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetDataManager.h; sourceTree = "<group>"; };
 		938F9EC61BDC79B9007F1778 /* ABSetDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetDataManager.m; sourceTree = "<group>"; };
 		93938FB91BF32E6D008CDDD4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -452,7 +450,6 @@
 				938D7CEC1BEEE0C500DDA2C8 /* DMPasscodeInternalNavigationController.m */,
 				938D7CED1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.h */,
 				938D7CEE1BEEE0C500DDA2C8 /* DMPasscodeInternalViewController.m */,
-				938D7CEF1BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings */,
 			);
 			path = DMPasscode;
 			sourceTree = "<group>";
@@ -557,7 +554,6 @@
 				93938FBC1BF330A6008CDDD4 /* AccountBook.entitlements in Resources */,
 				9313E05E1BCE479F0068D8FA /* chargeList_arrowDown@3x.png in Resources */,
 				9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */,
-				938D7CF61BEEE0C500DDA2C8 /* DMPasscodeLocalisation.strings in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 				9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */,
 				9356FBA01BFCA7F200E76B6F /* lock_Fingerprint@3x.png in Resources */,
