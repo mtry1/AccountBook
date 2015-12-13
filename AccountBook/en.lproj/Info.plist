@@ -4,8 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
+	<key>LSHasLocalizedDisplayName</key>
+	<true/>
 	<key>CFBundleDisplayName</key>
-	<string>$(CFBundleDisplayName)</string>
+	<string>$(BUNDLE_DISPLAY_NAME_EN)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

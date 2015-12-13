@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EE8A649B2FB20943CBD75E6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53436FEF700FB78AB4A621FF /* libPods.a */; };
+		26364A4B1C1D384800F24D5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26364A4D1C1D384800F24D5D /* InfoPlist.strings */; };
 		930A36DA1BCD1D9900521A4E /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 930A36D91BCD1D9900521A4E /* NSDate+Category.m */; };
 		9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05B1BCE479F0068D8FA /* chargeList_arrowDown@2x.png */; };
 		9313E05E1BCE479F0068D8FA /* chargeList_arrowDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9313E05C1BCE479F0068D8FA /* chargeList_arrowDown@3x.png */; };
@@ -66,6 +67,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26364A4C1C1D384800F24D5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		26364A4E1C1D384A00F24D5D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		26364A4F1C1D384B00F24D5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52ABED0AE7CB5C55BEC49945 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		53436FEF700FB78AB4A621FF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2781DD69BA9EB5951B2653 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 			children = (
 				93679C461BA3D811002B2401 /* Info.plist */,
 				938A2DA81BAE8EB90042B86B /* main.m */,
+				26364A4D1C1D384800F24D5D /* InfoPlist.strings */,
 				935730B01C19ADEE00E6E552 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -556,6 +561,7 @@
 				9313E0671BCE788C0068D8FA /* chargeList_arrowUp@2x.png in Resources */,
 				93679C531BA3D811002B2401 /* Images.xcassets in Resources */,
 				9313E05D1BCE479F0068D8FA /* chargeList_arrowDown@2x.png in Resources */,
+				26364A4B1C1D384800F24D5D /* InfoPlist.strings in Resources */,
 				9356FBA01BFCA7F200E76B6F /* lock_Fingerprint@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +656,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		26364A4D1C1D384800F24D5D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26364A4C1C1D384800F24D5D /* Base */,
+				26364A4E1C1D384A00F24D5D /* zh-Hans */,
+				26364A4F1C1D384B00F24D5D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		935730B01C19ADEE00E6E552 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -752,7 +768,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				BUNDLE_DISPLAY_NAME = "随身记";
 				CODE_SIGN_ENTITLEMENTS = AccountBook/Resouce/Other/AccountBook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: rongqing zhou (47237LH7N7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rongqing zhou (47237LH7N7)";
@@ -776,7 +791,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				BUNDLE_DISPLAY_NAME = "随身记";
 				CODE_SIGN_ENTITLEMENTS = AccountBook/Resouce/Other/AccountBook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
