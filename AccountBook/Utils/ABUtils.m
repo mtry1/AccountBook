@@ -66,6 +66,16 @@
     return [formatter stringFromDate:date];
 }
 
+///打开appstore评价
++ (void)openAppStoreAndEvaluate
+{
+    NSString *URLString = @"itms-apps://itunes.apple.com/app/id1060542316";
+    if(![[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]])
+    {
+        NSLog(@"open error");
+    }
+}
+
 ///当前显示的控制器
 + (__kindof UIViewController *)currentShowViewController
 {

@@ -24,6 +24,9 @@
 ///本地化时间
 + (NSString *)localDateString:(NSDate *)date;
 
+///打开appstore评价
++ (void)openAppStoreAndEvaluate;
+
 ///当前显示的控制器
 + (__kindof UIViewController *)currentShowViewController;
 

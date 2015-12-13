@@ -35,6 +35,7 @@
 "safe_lock" = "Safety Lock";
 "merge_iCloud_data" = "Merge iCloud Data";
 "overtime_red" = "Close End Date Overtime Red Color";
+"go_appraise" = "Go Appraise";
 
 "dmpasscode_enter_new_code" = "input new code";
 "dmpasscode_enter_to_unlock" = "input code";

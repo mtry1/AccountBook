@@ -14,6 +14,8 @@
 #define ABSetTitleiCloud NSLocalizedString(@"merge_iCloud_data", nil)
 ///超过结束时间红色
 #define ABSetTitleEndTimeRed NSLocalizedString(@"overtime_red", nil)
+///去评价
+#define ABSetTitleGoAppraise NSLocalizedString(@"go_appraise", nil)
 
 @interface ABSetDataManager : ABDataManager
 

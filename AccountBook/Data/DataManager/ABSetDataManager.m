@@ -25,6 +25,7 @@
                       @[ABSetTitleLock,
                         ABSetTitleEndTimeRed],
                       @[ABSetTitleiCloud],
+                      @[ABSetTitleGoAppraise],
                       ];
     }
     return _listItem;

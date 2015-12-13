@@ -81,7 +81,7 @@
     NSString *title = [self.setDataManager titleAtIndexPath:indexPath];
     cell.textLabel.text = title;
     
-    if([title isEqualToString:ABSetTitleiCloud])
+    if([title isEqualToString:ABSetTitleiCloud] || [title isEqualToString:ABSetTitleGoAppraise])
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -131,6 +131,10 @@
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"merge_failure", nil)];
             }
         }];
+    }
+    else if([cell.textLabel.text isEqualToString:ABSetTitleGoAppraise])
+    {
+        [ABUtils openAppStoreAndEvaluate];
     }
 }
 
