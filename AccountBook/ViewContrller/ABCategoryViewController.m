@@ -209,7 +209,18 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
             [alertController addAction:renameAction];
             [alertController addAction:deleteAction];
             [alertController addAction:cancelAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+            
+            if(ABIsiPad)
+            {
+                UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+                popPresenter.sourceView = cell;
+                popPresenter.sourceRect = cell.bounds;
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+            else
+            {
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
         }
     }
 }
