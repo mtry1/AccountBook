@@ -85,8 +85,6 @@
     if(!_startButton)
     {
         _startButton = [[UIButton alloc] init];
-        _startButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        _startButton.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
         _startButton.titleLabel.font = ABStatisticsViewDefaultFont;
         [_startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_startButton setImage:[UIImage imageNamed:@"chargeList_arrowDown"] forState:UIControlStateNormal];
@@ -100,8 +98,6 @@
     if(!_endButton)
     {
         _endButton = [[UIButton alloc] init];
-        _endButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        _endButton.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
         _endButton.titleLabel.font = ABStatisticsViewDefaultFont;
         [_endButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_endButton setImage:[UIImage imageNamed:@"chargeList_arrowDown"] forState:UIControlStateNormal];
@@ -168,22 +164,23 @@
     self.timeLabel.frame = rect;
     
     rect.origin.x = CGRectGetMaxX(self.timeLabel.frame);
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.startButton.titleLabel.text font:self.startButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame) + 5;
+    rect.origin.y = 3.0f;
+    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.startButton.titleLabel.text font:self.startButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame);
     self.startButton.frame = rect;
-    [self.startButton setTitleEdgeInsets:UIEdgeInsetsMake((CGRectGetHeight(self.startButton.frame) - self.startButton.titleLabel.font.lineHeight) / 2, (CGRectGetWidth(self.startButton.frame) - CGRectGetWidth(self.startButton.titleLabel.frame)) / 2 - CGRectGetWidth(self.startButton.imageView.frame), 0, 0)];
-    [self.startButton setImageEdgeInsets:UIEdgeInsetsMake(CGRectGetMaxY(self.startButton.titleLabel.frame) + 2, (self.startButton.frame.size.width - self.startButton.imageView.frame.size.width)/2, 0, 0)];
+    [self.startButton alignTitleAndImageWithSpace:2];
     
+    rect = self.timeLabel.bounds;
     rect.origin.x = CGRectGetMaxX(self.startButton.frame);
     rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.toLabel.text font:self.toLabel.font];;
     self.toLabel.frame = rect;
     
     rect = self.startButton.frame;
     rect.origin.x = CGRectGetMaxX(self.toLabel.frame);
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.endButton.titleLabel.text font:self.endButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame) + 5;
+    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.endButton.titleLabel.text font:self.endButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame);
     self.endButton.frame = rect;
-    [self.endButton setTitleEdgeInsets:UIEdgeInsetsMake((CGRectGetHeight(self.endButton.frame) - self.endButton.titleLabel.font.lineHeight) / 2, (CGRectGetWidth(self.endButton.frame) - CGRectGetWidth(self.endButton.titleLabel.frame)) / 2 - CGRectGetWidth(self.endButton.imageView.frame), 0, 0)];
-    [self.endButton setImageEdgeInsets:UIEdgeInsetsMake(CGRectGetMaxY(self.endButton.titleLabel.frame) + 2, (self.endButton.frame.size.width - self.endButton.imageView.frame.size.width)/2, 0, 0)];
+    [self.endButton alignTitleAndImageWithSpace:2];
     
+    rect = self.toLabel.bounds;
     rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.amountLabel.text font:self.amountLabel.font];;
     rect.origin.x = CGRectGetWidth(self.frame) - rect.size.width - 5;
     self.amountLabel.frame = rect;
