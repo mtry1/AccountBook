@@ -140,7 +140,7 @@
         {
             UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"you_want_to_delete", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
             [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil) style:UIAlertActionStyleCancel handler:nil]];
-            [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"del", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self.dataManager requestRemoveIndex:indexPath.row];
             }]];
             [self presentViewController:alertContoller animated:YES completion:nil];
