@@ -49,6 +49,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
+        self.backgroundColor = ABDefaultBackgroudColor;
+        
         self.textLabel.font = [UIFont systemFontOfSize:18];
         self.textLabel.textColor = [UIColor blackColor];
         

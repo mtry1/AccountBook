@@ -14,7 +14,7 @@
 
 @interface ABChargeListViewController ()<UITableViewDelegate, UITableViewDataSource, ABChargeDataMangerDelegate, ABStatisticsViewDelegate>
 
-@property (nonatomic, readonly) ABTableView *tableView;
+@property (nonatomic, readonly) UITableView *tableView;
 
 @property (nonatomic, readonly) ABStatisticsView *statisticsView;
 
@@ -28,7 +28,7 @@
 @synthesize statisticsView  = _statisticsView;
 @synthesize dataManager = _dataManager;
 
-- (ABTableView *)tableView
+- (UITableView *)tableView
 {
     if(!_tableView)
     {
@@ -36,8 +36,9 @@
         rect.origin.y = CGRectGetMaxY(self.statisticsView.frame);
         rect.size.height = CGRectGetHeight(self.view.frame) - CGRectGetMaxY(self.statisticsView.frame);
         
-        _tableView = [[ABTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _tableView.backgroundColor = ABDefaultBackgroudColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
@@ -75,7 +76,7 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"add", nil) style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
     
-    [self.dataManager.callBackUtils addDelegate:self];
+    [self.dataManager.multiTargetCallBack addTarget:self];
     [self.dataManager requestChargeDataWithCategoryID:self.categoryID];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;

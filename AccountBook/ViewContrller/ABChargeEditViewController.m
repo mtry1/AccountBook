@@ -15,7 +15,7 @@
 
 @interface ABChargeEditViewController ()<UITableViewDelegate, UITableViewDataSource, ABDatePickerDeleage, ABTextViewControllerDelegate, ABDataManagerTableCallBackDelegate, ABDataManagerMessageCallBackDelegate>
 
-@property (nonatomic, readonly) ABTableView *tableView;
+@property (nonatomic, readonly) UITableView *tableView;
 
 @property (nonatomic, readonly) ABDatePicker *datePicker;
 
@@ -36,12 +36,13 @@
 @synthesize datePicker = _datePicker;
 @synthesize editDataManager = _editDataManager;
 
-- (ABTableView *)tableView
+- (UITableView *)tableView
 {
     if(!_tableView)
     {
-        _tableView = [[ABTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _tableView.backgroundColor = ABDefaultBackgroudColor;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.sectionHeaderHeight = 10;
@@ -69,7 +70,7 @@
     
     _editDataManager = [[ABChargeEditDataManager alloc] initWithChargeDataManger:self.chargeDataManager
                                                                            index:self.editIndex];
-    [_editDataManager.callBackUtils addDelegate:self];
+    [_editDataManager.multiTargetCallBack addTarget:self];
     
     if(self.editDataManager.isModify)
     {
@@ -272,7 +273,7 @@
 
 - (void)dataManager:(ABDataManager *)manager infoMessge:(NSString *)message
 {
-    [SVProgressHUD showInfoWithStatus:message];
+    [MTProgressHUD showInfoWithMessage:message];
 }
 
 @end

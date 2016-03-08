@@ -27,7 +27,7 @@
     self = [super init];
     if(self)
     {
-        [[ABCenterDataManager share].callBackUtils addDelegate:self];
+        [[ABCenterDataManager share].multiTargetCallBack addTarget:self];
     }
     return self;
 }
@@ -71,7 +71,7 @@
         [self.listItem insertObject:model atIndex:i + 1];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i + 1 inSection:0];
-        [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
         
         [self requestUpdateAmountWithModel:model];
     }
@@ -92,7 +92,7 @@
     //删除
     [self.listItem removeObjectAtIndex:index];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    [self.callBackUtils callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
+    [self.multiTargetCallBack callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
     
     //添加
     NSInteger i;
@@ -106,7 +106,7 @@
     }
     [self.listItem insertObject:modelCopy atIndex:i + 1];
     indexPath = [NSIndexPath indexPathForRow:i + 1 inSection:0];
-    [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+    [self.multiTargetCallBack callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
     
     [self requestUpdateAmountWithModel:model];
 }
@@ -122,7 +122,7 @@
         
         [self.listItem removeObjectAtIndex:index];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.callBackUtils callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
         
         [self requestUpdateAmountWithModel:model];
     }
@@ -162,11 +162,11 @@
         }
     }
     
-    [self.callBackUtils callBackAction:@selector(chargeDataManger:didCalculateAmount:startDate:endDate:)
-                               object1:self
-                               object2:@(amount)
-                               object3:startDate
-                               object4:endDate];
+    [self.multiTargetCallBack callBackAction:@selector(chargeDataManger:didCalculateAmount:startDate:endDate:)
+                                     object1:self
+                                     object2:@(amount)
+                                     object3:startDate
+                                     object4:endDate];
 }
 
 - (NSInteger)numberOfItem
@@ -193,7 +193,7 @@
         [self.listItem addObjectsFromArray:data];
     }
     
-    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
+    [self.multiTargetCallBack callBackAction:@selector(dataManagerReloadData:) object1:self];
     
     if(self.numberOfItem)
     {

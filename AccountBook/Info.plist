@@ -32,9 +32,7 @@
 		<true/>
 	</dict>
 	<key>UIAppFonts</key>
-	<array>
-		<string>STXINGKA.ttf</string>
-	</array>
+	<array/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

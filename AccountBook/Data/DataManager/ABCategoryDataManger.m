@@ -21,7 +21,7 @@
     self = [super init];
     if(self)
     {
-        [[ABCenterDataManager share].callBackUtils addDelegate:self];
+        [[ABCenterDataManager share].multiTargetCallBack addTarget:self];
     }
     return self;
 }
@@ -68,7 +68,7 @@
         [self.listItem addObject:model];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
-        [self.callBackUtils callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:addIndexPath:) object1:self object2:indexPath];
     }
 }
 
@@ -82,7 +82,7 @@
         [self.listItem removeObjectAtIndex:index];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.callBackUtils callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:removeIndexPath:) object1:self object2:indexPath];
     }
 }
 
@@ -100,7 +100,7 @@
         model.name = text;
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.callBackUtils callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:updateIndexPath:) object1:self object2:indexPath];
         
         [[ABCenterDataManager share] requestCategoryUpdateModel:model.copy];
     }
@@ -114,7 +114,7 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex inSection:0];
-    [self.callBackUtils callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
+    [self.multiTargetCallBack callBackAction:@selector(categoryDataManger:moveItemAtIndexPath:toIndexPath:) object1:self object2:indexPath object3:toIndexPath];
 }
 
 - (NSString *)colorHexStringAtIndex:(NSInteger)index
@@ -131,7 +131,7 @@
     [self.listItem removeAllObjects];
     [self.listItem addObjectsFromArray:data];
     
-    [self.callBackUtils callBackAction:@selector(dataManagerReloadData:) object1:self];
+    [self.multiTargetCallBack callBackAction:@selector(dataManagerReloadData:) object1:self];
 }
 
 @end

@@ -36,6 +36,7 @@
 "merge_iCloud_data" = "合并iCloud数据";
 "overtime_red" = "关闭超过结束日期显示红色";
 "go_appraise" = "去评价";
+"merging" = "合并中";
 
 "dmpasscode_enter_new_code" = "输入新的密码";
 "dmpasscode_enter_to_unlock" = "输入密码";

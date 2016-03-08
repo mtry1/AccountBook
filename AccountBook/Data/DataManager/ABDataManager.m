@@ -14,15 +14,15 @@
 
 @implementation ABDataManager
 
-@synthesize callBackUtils = _callBackUtils;
+@synthesize multiTargetCallBack = _multiTargetCallBack;
 
-- (ABCallBackUtils *)callBackUtils
+- (MTMultiTargetCallBack *)multiTargetCallBack
 {
-    if(!_callBackUtils)
+    if(!_multiTargetCallBack)
     {
-        _callBackUtils = [[ABCallBackUtils alloc] init];
+        _multiTargetCallBack = [[MTMultiTargetCallBack alloc] init];
     }
-    return _callBackUtils;
+    return _multiTargetCallBack;
 }
 
 @end

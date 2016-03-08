@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ABCallBackUtils.h"
 
 @class ABDataManager;
 
@@ -50,6 +49,6 @@
 
 @interface ABDataManager : NSObject
 
-@property (nonatomic, readonly) ABCallBackUtils *callBackUtils;
+@property (nonatomic, readonly) MTMultiTargetCallBack *multiTargetCallBack;
 
 @end

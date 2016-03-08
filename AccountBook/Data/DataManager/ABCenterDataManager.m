@@ -49,7 +49,7 @@
 - (void)requestCategoryListData
 {
     NSArray *array = [self.centerCoreDataManager selectCategoryListData:NO];
-    [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestCategoryListData:) object1:self object2:array];
+    [self.multiTargetCallBack callBackAction:@selector(centerDataManager:successRequestCategoryListData:) object1:self object2:array];
 }
 
 ///请求增加分类
@@ -83,7 +83,7 @@
     NSArray *array = [self.centerCoreDataManager selectChargeListDateWithCategoryID:categoryId];
     if(array)
     {
-        [self.callBackUtils callBackAction:@selector(centerDataManager:successRequestChargeListData:) object1:self object2:array];
+        [self.multiTargetCallBack callBackAction:@selector(centerDataManager:successRequestChargeListData:) object1:self object2:array];
     }
 }
 
@@ -379,7 +379,7 @@
                         
                         if(_uploadErrorCount)
                         {
-                            [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                            [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
                         }
                     }
                 }
@@ -412,7 +412,7 @@
                             
                             if(_uploadErrorCount)
                             {
-                                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                                [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
                             }
                         }
                     }
@@ -460,7 +460,7 @@
                             
                             if(_uploadErrorCount)
                             {
-                                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                                [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
                             }
                         }
                     }
@@ -493,7 +493,7 @@
                             
                             if(_uploadErrorCount)
                             {
-                                [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
+                                [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
                             }
                         }
                     }

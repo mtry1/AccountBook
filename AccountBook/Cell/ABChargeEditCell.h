@@ -11,7 +11,7 @@
 
 extern NSInteger const ABChargeEditCellDefaultHeight;
 
-@interface ABChargeEditCell : ABTableViewCell
+@interface ABChargeEditCell : UITableViewCell
 
 - (void)reloadWithModel:(ABChargeEditModel *)model isEdit:(BOOL)isEdit;
 

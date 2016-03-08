@@ -146,7 +146,7 @@
     if(model.desc.length == 0)
     {
         NSString *message = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"please_input", nil), ABChargeEditTitle];
-        [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
         return NO;
     }
     
@@ -154,7 +154,7 @@
     if(model.desc.length == 0)
     {
         NSString *message = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"please_input", nil), ABChargeEditAmount];
-        [self.callBackUtils callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
+        [self.multiTargetCallBack callBackAction:@selector(dataManager:infoMessge:) object1:self object2:message];
         return NO;
     }
     

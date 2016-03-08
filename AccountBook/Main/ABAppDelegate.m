@@ -123,9 +123,9 @@
 
 - (void)initSVProgressHUD
 {
-    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
-    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [MTProgressHUD setBackgroudColor:[UIColor blackColor]];
+    [MTProgressHUD setForegroudColor:[UIColor whiteColor]];
+    [MTProgressHUD setMaskType:MTProgressHUDMaskTypeClear];
 }
 
 @end

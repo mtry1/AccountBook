@@ -21,9 +21,6 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
 @end
 
 @implementation ABChargeEditCell
-{
-    NSMutableArray  *_constraints;
-}
 
 @synthesize titleLabel = _titleLabel;
 @synthesize descLabel = _descLabel;
@@ -61,8 +58,6 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
         
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.descLabel];
-        
-        _constraints = [NSMutableArray array];
     }
     return self;
 }
@@ -71,28 +66,19 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
 {
     [super updateConstraints];
     
-    if(_constraints.count)
+    if(self.contentView.customConstraints.count)
     {
-        [self.contentView removeConstraints:_constraints];
-        [_constraints removeAllObjects];
+        [self.contentView removeConstraints:self.contentView.customConstraints];
+        [self.contentView.customConstraints removeAllObjects];
     }
     
-    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleLabel(80)]-(>=0)-[_descLabel]-|"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:NSDictionaryOfVariableBindings(_titleLabel, _descLabel)]];
+    [self.contentView.customConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleLabel(80)]-(>=0)-[_descLabel]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel, _descLabel)]];
     
-    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_titleLabel]-15-|"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:NSDictionaryOfVariableBindings(_titleLabel)]];
+    [self.contentView.customConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_titleLabel]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
     
-    [_constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_descLabel(>=_titleLabel)]-15-|"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:NSDictionaryOfVariableBindings(_descLabel, _titleLabel)]];
+    [self.contentView.customConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_descLabel(>=_titleLabel)]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_descLabel, _titleLabel)]];
     
-    [self.contentView addConstraints:_constraints];
+    [self.contentView addConstraints:self.contentView.customConstraints];
 }
 
 - (void)reloadWithModel:(ABChargeEditModel *)model isEdit:(BOOL)isEdit

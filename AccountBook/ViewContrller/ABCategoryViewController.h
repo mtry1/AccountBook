@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
+#import "ABViewController.h"
 
 @interface ABCategoryViewController : ABViewController
 

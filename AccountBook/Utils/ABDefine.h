@@ -15,6 +15,9 @@
 ///是否iPad
 #define ABIsiPad [[UIDevice currentDevice] userInterfaceIdiom]
 
+///默认背景颜色
+#define ABDefaultBackgroudColor [UIColor colorWithUInt:0xf4f4f4]
+
 #ifdef DEBUG
 #define LogPoint(p) NSLog(@"%s [Line %d]:%f,%f";__PRETTY_FUNCTION__, __LINE__,p.x, p.y)
 #define LogSize(p) NSLog(@"%s [Line %d]:%f,%f", __PRETTY_FUNCTION__, __LINE__,p.width, p.height)

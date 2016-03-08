@@ -12,7 +12,7 @@
 
 @interface ABSetViewController ()<UITableViewDelegate, UITableViewDataSource, ABDataManagerTableCallBackDelegate>
 
-@property (nonatomic, strong) ABTableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, readonly) ABSetDataManager *setDataManager;
 
@@ -23,11 +23,12 @@
 @synthesize tableView = _tableView;
 @synthesize setDataManager = _setDataManager;
 
-- (ABTableView *)tableView
+- (UITableView *)tableView
 {
     if(!_tableView)
     {
-        _tableView = [[ABTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = ABDefaultBackgroudColor;
         _tableView.dataSource = self;
         _tableView.delegate = self;
     }
@@ -52,7 +53,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
     
-    [self.setDataManager.callBackUtils addDelegate:self];
+    [self.setDataManager.multiTargetCallBack addTarget:self];
 }
 
 #pragma mark - UITableViewDelegate
@@ -112,23 +113,23 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
     {
-        [SVProgressHUD show];
+        [MTProgressHUD showLoadingWithMessage:NSLocalizedString(@"merging", nil)];
         [[ABCenterDataManager share] mergeCouldDataFinishedHandler:^{
             
-            [SVProgressHUD dismiss];
+            [MTProgressHUD close];
         } errorHandler:^(CKAccountStatus accountStatus, NSError *error) {
             
-            [SVProgressHUD dismiss];
+            [MTProgressHUD close];
             if(accountStatus == CKAccountStatusNoAccount)
             {
-                [SVProgressHUD dismiss];
+                [MTProgressHUD close];
                 UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"login_iCloud", nil) message:NSLocalizedString(@"iCloud_is_open", nil) preferredStyle:UIAlertControllerStyleAlert];
                 [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil) style:UIAlertActionStyleDefault handler:nil]];
                 [self presentViewController:alertContoller animated:YES completion:nil];
             }
             else
             {
-                [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"merge_failure", nil)];
+                [MTProgressHUD showInfoWithMessage:NSLocalizedString(@"merge_failure", nil)];
             }
         }];
     }
