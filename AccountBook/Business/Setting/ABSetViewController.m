@@ -9,7 +9,7 @@
 #import "ABSetViewController.h"
 #import "ABSetDataManager.h"
 #import "ABMergeDataCenter.h"
-#import "DMPasscode.h"
+#import "ABPasscodeHelper.h"
 
 @interface ABSetViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -143,18 +143,9 @@
     NSString *title = [self.setDataManager titleAtIndexPath:indexPath];
     if([title isEqualToString:ABSetTitleLock])
     {
-        DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
-        config.isShowCloseButton = YES;
-        config.backgroundColor = [UIColor colorWithUInt:0xf4f4f4];
-        [DMPasscode setConfig:config];
-        
         if(sender.on)
         {
-            [DMPasscode setupPasscodeInViewController:self
-                                             animated:YES
-                                     willCloseHandler:nil
-                                           completion:^(BOOL success, NSError *error)
-            {
+            [ABPasscodeHelper setupPasscodeCompleteHandler:^(BOOL success) {
                 if(!success)
                 {
                     [sender setOn:!sender.isOn];
@@ -163,16 +154,8 @@
         }
         else
         {
-            [DMPasscode showPasscodeInViewController:self
-                                            animated:YES
-                                    willCloseHandler:nil
-                                          completion:^(BOOL success, NSError *error)
-            {
-                if(success)
-                {
-                    [DMPasscode removePasscode];
-                }
-                else
+            [ABPasscodeHelper showPasscodeCompleteHandler:^(BOOL success) {
+                if(!success)
                 {
                     [sender setOn:!sender.isOn];
                 }

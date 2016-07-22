@@ -28,23 +28,13 @@
 
 @property (nonatomic, readonly) NSString *categoryID;
 
-///请求列表数据
 - (void)requestChargeDataWithCategoryID:(NSString *)categoryID;
-
-///请求添加
 - (void)requestAddModel:(ABChargeModel *)model;
-
-///请求修改
 - (void)requestUpdateModel:(ABChargeModel *)model atIndex:(NSInteger)index;
-
-///请求删除
 - (void)requestRemoveIndex:(NSInteger)index;
-
-///请求计算额度
 - (void)requestCalculateAmountWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 - (NSInteger)numberOfItem;
-
 - (ABChargeModel *)dataAtIndex:(NSInteger)index;
 
 @end

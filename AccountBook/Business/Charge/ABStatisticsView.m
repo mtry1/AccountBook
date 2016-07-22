@@ -8,7 +8,7 @@
 
 #import "ABStatisticsView.h"
 #import "ABDatePicker.h"
-#import "UIButton+Category.h"
+#import "UIButton+MTEdgeInsets.h"
 
 #define ABStatisticsViewDefaultFont [UIFont systemFontOfSize:12]
 
@@ -168,7 +168,7 @@
     rect.origin.y = 3.0f;
     rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.startButton.titleLabel.text font:self.startButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame);
     self.startButton.frame = rect;
-    [self.startButton alignTitleAndImageWithSpace:2];
+    [self.startButton centerLabelTopAndImageBottomSpacing:2];
     
     rect = self.timeLabel.bounds;
     rect.origin.x = CGRectGetMaxX(self.startButton.frame);
@@ -179,7 +179,7 @@
     rect.origin.x = CGRectGetMaxX(self.toLabel.frame);
     rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.endButton.titleLabel.text font:self.endButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame);
     self.endButton.frame = rect;
-    [self.endButton alignTitleAndImageWithSpace:2];
+    [self.endButton centerLabelTopAndImageBottomSpacing:2];
     
     rect = self.toLabel.bounds;
     rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.amountLabel.text font:self.amountLabel.font];;

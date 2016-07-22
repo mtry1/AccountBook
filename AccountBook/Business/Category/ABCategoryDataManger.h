@@ -23,20 +23,12 @@
 
 @property (nonatomic, weak) id<ABCategoryDataMangerDelegate>delegate;
 
-///请求初始数据
 - (void)requestInitData;
-
-///请求添加
 - (void)requestAddObjectWithText:(NSString *)text;
-
-///请求删除
 - (void)requestRemoveIndex:(NSInteger)index;
-
-///请求重命名
 - (void)requestRename:(NSString *)text atIndex:(NSInteger)index;
 
 - (NSInteger)numberOfItem;
-
 - (ABCategoryModel *)dataAtIndex:(NSInteger)index;
 
 @end

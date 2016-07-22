@@ -16,7 +16,7 @@ CGFloat const ABCollectionViewCellSpace = 5.0f;
 CGFloat const ABCollectionViewSpacingForSection = 10.0f;
 CGFloat const ABCollectionViewSpacingForTop = 20.0f;
 
-#define ABCollectionViewColNumber (ABIPad ? 6 : 4)
+#define ABCollectionViewColNumber ([[UIDevice currentDevice] userInterfaceIdiom] ? 6 : 4)
 
 static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdentifier";
 
@@ -207,7 +207,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
             [alertController addAction:deleteAction];
             [alertController addAction:cancelAction];
             
-            if(ABIPad)
+            if([[UIDevice currentDevice] userInterfaceIdiom])
             {
                 UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
                 popPresenter.sourceView = cell;

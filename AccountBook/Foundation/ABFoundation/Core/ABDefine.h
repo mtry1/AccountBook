@@ -12,9 +12,6 @@
 ///超过结束时间红色字体
 #define ABUserDefaultKeyOutEndTimeRed @"ABUserDefaultKeyOutEndTimeRed"
 
-///是否iPad
-#define ABIPad [[UIDevice currentDevice] userInterfaceIdiom]
-
 ///默认背景颜色
 #define ABDefaultBackgroudColor [UIColor colorWithUInt:0xf4f4f4]
 

@@ -7,7 +7,7 @@
 //
 
 #import "ABSetDataManager.h"
-#import "DMPasscode.h"
+#import "ABPasscodeHelper.h"
 
 @interface ABSetDataManager ()
 
@@ -66,7 +66,7 @@
 {
     if([title isEqualToString:ABSetTitleLock])
     {
-        return [DMPasscode isPasscodeSet];
+        return [ABPasscodeHelper isPasscodeSet];
     }
     else if([title isEqualToString:ABSetTitleEndTimeRed])
     {

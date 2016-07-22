@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1A4F25BE00785433E2C97B78EAE769ED15ACDC4A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "85523BEB64E7974437CDD340AF36A6D57649665A" : 0,
+    "1A4F25BE00785433E2C97B78EAE769ED15ACDC4A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "33DC57F9-C7F5-4985-8102-87991E0F1561",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "85523BEB64E7974437CDD340AF36A6D57649665A" : "AccountBook\/AccountBook\/Foundation\/MTFoundation\/MTButtonEdgeInsets\/",
+    "1A4F25BE00785433E2C97B78EAE769ED15ACDC4A" : "AccountBook"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AccountBook",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AccountBook.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zhourongqing\/AccountBook.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1A4F25BE00785433E2C97B78EAE769ED15ACDC4A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mtry1\/MTButtonEdgeInsets.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "85523BEB64E7974437CDD340AF36A6D57649665A"
+    }
+  ]
+}

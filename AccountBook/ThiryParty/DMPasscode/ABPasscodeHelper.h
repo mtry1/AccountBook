@@ -10,4 +10,8 @@
 
 @interface ABPasscodeHelper : NSObject
 
++ (BOOL)isPasscodeSet;
++ (void)setupPasscodeCompleteHandler:(void(^)(BOOL success))completeHandler;
++ (void)showPasscodeCompleteHandler:(void(^)(BOOL success))completeHandler;
+
 @end

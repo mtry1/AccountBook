@@ -23,7 +23,7 @@ static BOOL isShowDMPasscode;
                                                           object:nil
                                                            queue:[NSOperationQueue currentQueue]
                                                       usingBlock:^(NSNotification * _Nonnull note) {
-                                                          [self didFinishLaunchingWithOptionsNotification];
+                                                          [self applicationDidFinishLaunchingWithOptionsNotification];
                                                       }];
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification
                                                           object:nil
@@ -40,7 +40,9 @@ static BOOL isShowDMPasscode;
     });
 }
 
-+ (void)didFinishLaunchingWithOptionsNotification
+#pragma mark - private
+
++ (void)applicationDidFinishLaunchingWithOptionsNotification
 {
     if([DMPasscode isPasscodeSet])
     {
@@ -111,6 +113,47 @@ static BOOL isShowDMPasscode;
         maskView.backgroundColor = [UIColor whiteColor];
     }
     return maskView;
+}
+
+#pragma mark - public
+
++ (BOOL)isPasscodeSet
+{
+    return [DMPasscode isPasscodeSet];
+}
+
++ (void)setupPasscodeCompleteHandler:(void(^)(BOOL success))completeHandler
+{
+    DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
+    config.isShowCloseButton = YES;
+    config.backgroundColor = ABDefaultBackgroudColor;
+    [DMPasscode setConfig:config];
+    
+    [DMPasscode setupPasscodeInViewController:[ABUtils currentShowViewController]
+                                     animated:YES
+                             willCloseHandler:nil
+                                   completion:^(BOOL success, NSError *error){
+                                       completeHandler(success);
+     }];
+}
+
++ (void)showPasscodeCompleteHandler:(void(^)(BOOL success))completeHandler
+{
+    DMPasscodeConfig *config = [[DMPasscodeConfig alloc] init];
+    config.isShowCloseButton = YES;
+    config.backgroundColor = ABDefaultBackgroudColor;
+    [DMPasscode setConfig:config];
+    
+    [DMPasscode showPasscodeInViewController:[ABUtils currentShowViewController]
+                                    animated:YES
+                            willCloseHandler:nil
+                                  completion:^(BOOL success, NSError *error){
+                                      if(success)
+                                      {
+                                          [DMPasscode removePasscode];
+                                      }
+                                      completeHandler(success);
+     }];
 }
 
 @end
