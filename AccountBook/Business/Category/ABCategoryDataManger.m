@@ -23,7 +23,7 @@
     self = [super init];
     if(self)
     {
-        [[ABCenterDataManager share] addDelegate:self];
+        [[ABCenterDataManager sharedInstance] addDelegate:self];
     }
     return self;
 }
@@ -39,7 +39,7 @@
 
 - (void)requestInitData;
 {
-    [[ABCenterDataManager share] requestCategoryListData];
+    [[ABCenterDataManager sharedInstance] requestCategoryListData];
 }
 
 - (NSInteger)numberOfItem
@@ -69,7 +69,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
         [self.delegate categoryDataManger:self addIndexPath:indexPath];
         
-        [[ABCenterDataManager share] requestCategoryAddModel:[model copy]];
+        [[ABCenterDataManager sharedInstance] requestCategoryAddModel:[model copy]];
     }
 }
 
@@ -83,7 +83,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         [self.delegate categoryDataManger:self removeIndexPath:indexPath];
         
-        [[ABCenterDataManager share] requestCategoryRemoveCategoryId:model.categoryID];
+        [[ABCenterDataManager sharedInstance] requestCategoryRemoveCategoryId:model.categoryID];
     }
 }
 
@@ -102,7 +102,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         [self.delegate categoryDataManger:self updateIndexPath:indexPath];
         
-        [[ABCenterDataManager share] requestCategoryUpdateModel:model.copy];
+        [[ABCenterDataManager sharedInstance] requestCategoryUpdateModel:model.copy];
     }
 }
 

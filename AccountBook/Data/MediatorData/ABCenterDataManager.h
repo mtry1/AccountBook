@@ -26,7 +26,7 @@
 
 @interface ABCenterDataManager : NSObject
 
-+ (ABCenterDataManager *)share;
++ (instancetype)sharedInstance;
 
 - (void)addDelegate:(id<ABCenterDataManagerDelegate>)delegate;
 

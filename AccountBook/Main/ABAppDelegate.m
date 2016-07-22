@@ -19,7 +19,7 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
     [self.window makeKeyAndVisible];
     
-    [[ABCoreDataHelper share] setupCoreData];
+    [[ABCoreDataHelper sharedInstance] setupCoreData];
 
     [MTProgressHUD setBackgroudColor:[UIColor blackColor]];
     [MTProgressHUD setForegroudColor:[UIColor whiteColor]];

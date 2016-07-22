@@ -6,9 +6,10 @@
 //  Copyright (c) 2015年 mtry. All rights reserved.
 //
 
-#import "ABModel.h"
+#import <Foundation/Foundation.h>
+#import "ABSyncProtocol.h"
 
-@interface ABChargeModel : ABModel
+@interface ABChargeModel : NSObject<ABSyncProtocol, NSCopying>
 
 ///分类ID
 @property (nonatomic, strong) NSString *categoryID;
@@ -26,12 +27,5 @@
 @property (nonatomic, strong) NSString *notes;
 ///是否已经超过指定时间
 @property (nonatomic, readonly) BOOL isTimeOut;
-
-///是否已经删除
-@property (nonatomic) BOOL isRemoved;
-///是否在云端存在
-@property (nonatomic) BOOL isExistCloud;
-///修改时间
-@property (nonatomic) NSTimeInterval modifyTime;
 
 @end

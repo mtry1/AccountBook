@@ -27,10 +27,10 @@
 "sta_date" = "Start Date";
 "end_date" = "End   Date";
 "please_input" = "Please Input";
-"you_want_to_delete" = "You sure you want to delete";
+"you_want_to_delete" = "Are you sure you want to delete";
 "crete_title" = "Create Title, Long Press Rename";
 "login_iCloud" = "Please Login iCloud Account";
-"iCloud_is_open" = "Please Confirm Settings->iCloud->iCloud Drive is Open";
+"iCloud_is_open" = "Settings->iCloud->iCloud Drive";
 "merge_failure" = "Merge Failure, Please Retry Later";
 "safe_lock" = "Safety Lock";
 "merge_iCloud_data" = "Merge iCloud Data";

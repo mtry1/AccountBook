@@ -6,9 +6,9 @@
 //  Copyright © 2015年 mtry. All rights reserved.
 //
 
-#import "ABModel.h"
+#import <Foundation/Foundation.h>
 
-@interface ABChargeEditModel : ABModel
+@interface ABChargeEditModel : NSObject
 
 @property (nonatomic, strong) NSString *title;
 

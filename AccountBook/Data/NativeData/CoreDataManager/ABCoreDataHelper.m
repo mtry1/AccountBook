@@ -18,7 +18,7 @@ NSString *const ABCoreDataHelperFileName = @"CoreData.splite";
 @synthesize model = _model;
 @synthesize store = _store;
 
-+ (ABCoreDataHelper *)share
++ (instancetype)sharedInstance
 {
     static id shareObject;
     static dispatch_once_t once;
@@ -83,7 +83,7 @@ NSString *const ABCoreDataHelperFileName = @"CoreData.splite";
     }
 }
 
-- (void)saveContext
+- (BOOL)saveContext
 {
     if([_context hasChanges])
     {
@@ -91,8 +91,10 @@ NSString *const ABCoreDataHelperFileName = @"CoreData.splite";
         if(![_context save:&error])
         {
             NSLog(@"save error: %@", error);
+            return NO;
         }
     }
+    return YES;
 }
 
 @end

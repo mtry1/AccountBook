@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		936FDD071D41BDB9007E3489 /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD061D41BDB9007E3489 /* ABCenterDataManager.m */; };
 		936FDD321D41BF4E007E3489 /* UIButton+MTEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD311D41BF4E007E3489 /* UIButton+MTEdgeInsets.m */; };
 		936FDD351D41C00A007E3489 /* ABTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD341D41C00A007E3489 /* ABTextViewController.m */; };
+		936FDD3A1D41FC40007E3489 /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD391D41FC40007E3489 /* ABCenterDataManager.m */; };
+		936FDD3E1D420EEB007E3489 /* ABCategoryCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD3D1D420EEB007E3489 /* ABCategoryCoreDataManager.m */; };
+		936FDD411D420F07007E3489 /* ABChargeCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD401D420F07007E3489 /* ABChargeCoreDataManager.m */; };
+		936FDD441D421757007E3489 /* ABMergeDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD431D421757007E3489 /* ABMergeDataCenter.m */; };
 		937236CF1D4109910068C30A /* AccountBook.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 937236301D4109910068C30A /* AccountBook.entitlements */; };
 		937236D11D4109910068C30A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 937236331D4109910068C30A /* InfoPlist.strings */; };
 		937236D21D4109910068C30A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 937236351D4109910068C30A /* Localizable.strings */; };
-		937236D31D4109910068C30A /* ABModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372363A1D4109910068C30A /* ABModel.m */; };
 		937236D41D4109910068C30A /* ABViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372363C1D4109910068C30A /* ABViewController.m */; };
 		937236D51D4109910068C30A /* ABCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372363F1D4109910068C30A /* ABCategoryCell.m */; };
 		937236D61D4109910068C30A /* ABCategoryDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236411D4109910068C30A /* ABCategoryDataManger.m */; };
@@ -30,8 +32,6 @@
 		937236E21D4109910068C30A /* ABStatisticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372365A1D4109910068C30A /* ABStatisticsView.m */; };
 		937236E31D4109910068C30A /* ABSetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372365D1D4109910068C30A /* ABSetDataManager.m */; };
 		937236E41D4109910068C30A /* ABSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372365F1D4109910068C30A /* ABSetViewController.m */; };
-		937236E61D4109910068C30A /* ABMergeDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236691D4109910068C30A /* ABMergeDataCenter.m */; };
-		937236E71D4109910068C30A /* ABCenterCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372366D1D4109910068C30A /* ABCenterCoreDataManager.m */; };
 		937236E81D4109910068C30A /* ABCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372366F1D4109910068C30A /* ABCoreDataHelper.m */; };
 		937236E91D4109910068C30A /* ABCategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236721D4109910068C30A /* ABCategoryEntity.m */; };
 		937236EA1D4109910068C30A /* ABChargeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236741D4109910068C30A /* ABChargeEntity.m */; };
@@ -73,18 +73,23 @@
 
 /* Begin PBXFileReference section */
 		93679C421BA3D811002B2401 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		936FDD051D41BDB9007E3489 /* ABCenterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterDataManager.h; sourceTree = "<group>"; };
-		936FDD061D41BDB9007E3489 /* ABCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterDataManager.m; sourceTree = "<group>"; };
 		936FDD301D41BF4E007E3489 /* UIButton+MTEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MTEdgeInsets.h"; sourceTree = "<group>"; };
 		936FDD311D41BF4E007E3489 /* UIButton+MTEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MTEdgeInsets.m"; sourceTree = "<group>"; };
 		936FDD331D41C00A007E3489 /* ABTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTextViewController.h; sourceTree = "<group>"; };
 		936FDD341D41C00A007E3489 /* ABTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTextViewController.m; sourceTree = "<group>"; };
+		936FDD371D41FBA7007E3489 /* ABSyncProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABSyncProtocol.h; sourceTree = "<group>"; };
+		936FDD381D41FC40007E3489 /* ABCenterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterDataManager.h; sourceTree = "<group>"; };
+		936FDD391D41FC40007E3489 /* ABCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterDataManager.m; sourceTree = "<group>"; };
+		936FDD3C1D420EEB007E3489 /* ABCategoryCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryCoreDataManager.h; sourceTree = "<group>"; };
+		936FDD3D1D420EEB007E3489 /* ABCategoryCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCategoryCoreDataManager.m; sourceTree = "<group>"; };
+		936FDD3F1D420F07007E3489 /* ABChargeCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeCoreDataManager.h; sourceTree = "<group>"; };
+		936FDD401D420F07007E3489 /* ABChargeCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeCoreDataManager.m; sourceTree = "<group>"; };
+		936FDD421D421757007E3489 /* ABMergeDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABMergeDataCenter.h; sourceTree = "<group>"; };
+		936FDD431D421757007E3489 /* ABMergeDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABMergeDataCenter.m; sourceTree = "<group>"; };
 		9372362F1D4109910068C30A /* ABPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABPrefixHeader.pch; path = AccountBook/ABPrefixHeader.pch; sourceTree = "<group>"; };
 		937236301D4109910068C30A /* AccountBook.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AccountBook.entitlements; path = AccountBook/AccountBook.entitlements; sourceTree = "<group>"; };
 		937236341D4109910068C30A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		937236361D4109910068C30A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		937236391D4109910068C30A /* ABModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABModel.h; sourceTree = "<group>"; };
-		9372363A1D4109910068C30A /* ABModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABModel.m; sourceTree = "<group>"; };
 		9372363B1D4109910068C30A /* ABViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABViewController.h; sourceTree = "<group>"; };
 		9372363C1D4109910068C30A /* ABViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABViewController.m; sourceTree = "<group>"; };
 		9372363E1D4109910068C30A /* ABCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryCell.h; sourceTree = "<group>"; };
@@ -117,10 +122,6 @@
 		9372365D1D4109910068C30A /* ABSetDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetDataManager.m; sourceTree = "<group>"; };
 		9372365E1D4109910068C30A /* ABSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSetViewController.h; sourceTree = "<group>"; };
 		9372365F1D4109910068C30A /* ABSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSetViewController.m; sourceTree = "<group>"; };
-		937236681D4109910068C30A /* ABMergeDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABMergeDataCenter.h; sourceTree = "<group>"; };
-		937236691D4109910068C30A /* ABMergeDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABMergeDataCenter.m; sourceTree = "<group>"; };
-		9372366C1D4109910068C30A /* ABCenterCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCenterCoreDataManager.h; sourceTree = "<group>"; };
-		9372366D1D4109910068C30A /* ABCenterCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCenterCoreDataManager.m; sourceTree = "<group>"; };
 		9372366E1D4109910068C30A /* ABCoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCoreDataHelper.h; sourceTree = "<group>"; };
 		9372366F1D4109910068C30A /* ABCoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCoreDataHelper.m; sourceTree = "<group>"; };
 		937236711D4109910068C30A /* ABCategoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCategoryEntity.h; sourceTree = "<group>"; };
@@ -243,8 +244,6 @@
 		936FDD041D41BDB9007E3489 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				936FDD051D41BDB9007E3489 /* ABCenterDataManager.h */,
-				936FDD061D41BDB9007E3489 /* ABCenterDataManager.m */,
 				936FDD331D41C00A007E3489 /* ABTextViewController.h */,
 				936FDD341D41C00A007E3489 /* ABTextViewController.m */,
 			);
@@ -258,6 +257,18 @@
 				936FDD311D41BF4E007E3489 /* UIButton+MTEdgeInsets.m */,
 			);
 			path = MTButtonEdgeInsets;
+			sourceTree = "<group>";
+		};
+		936FDD361D41FB54007E3489 /* MediatorData */ = {
+			isa = PBXGroup;
+			children = (
+				936FDD371D41FBA7007E3489 /* ABSyncProtocol.h */,
+				936FDD381D41FC40007E3489 /* ABCenterDataManager.h */,
+				936FDD391D41FC40007E3489 /* ABCenterDataManager.m */,
+				936FDD421D421757007E3489 /* ABMergeDataCenter.h */,
+				936FDD431D421757007E3489 /* ABMergeDataCenter.m */,
+			);
+			path = MediatorData;
 			sourceTree = "<group>";
 		};
 		9372362E1D4109910068C30A /* AccountBook */ = {
@@ -288,8 +299,6 @@
 		937236381D4109910068C30A /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				937236391D4109910068C30A /* ABModel.h */,
-				9372363A1D4109910068C30A /* ABModel.m */,
 				9372363B1D4109910068C30A /* ABViewController.h */,
 				9372363C1D4109910068C30A /* ABViewController.m */,
 			);
@@ -352,20 +361,11 @@
 		937236631D4109910068C30A /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				937236671D4109910068C30A /* MergeData */,
+				936FDD361D41FB54007E3489 /* MediatorData */,
 				9372366A1D4109910068C30A /* NativeData */,
 				937236771D4109910068C30A /* ServiceData */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		937236671D4109910068C30A /* MergeData */ = {
-			isa = PBXGroup;
-			children = (
-				937236681D4109910068C30A /* ABMergeDataCenter.h */,
-				937236691D4109910068C30A /* ABMergeDataCenter.m */,
-			);
-			path = MergeData;
 			sourceTree = "<group>";
 		};
 		9372366A1D4109910068C30A /* NativeData */ = {
@@ -381,8 +381,10 @@
 		9372366B1D4109910068C30A /* CoreDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				9372366C1D4109910068C30A /* ABCenterCoreDataManager.h */,
-				9372366D1D4109910068C30A /* ABCenterCoreDataManager.m */,
+				936FDD3C1D420EEB007E3489 /* ABCategoryCoreDataManager.h */,
+				936FDD3D1D420EEB007E3489 /* ABCategoryCoreDataManager.m */,
+				936FDD3F1D420F07007E3489 /* ABChargeCoreDataManager.h */,
+				936FDD401D420F07007E3489 /* ABChargeCoreDataManager.m */,
 				9372366E1D4109910068C30A /* ABCoreDataHelper.h */,
 				9372366F1D4109910068C30A /* ABCoreDataHelper.m */,
 			);
@@ -690,10 +692,10 @@
 				937237021D4109910068C30A /* MJPropertyType.m in Sources */,
 				937236D71D4109910068C30A /* ABCategoryModel.m in Sources */,
 				937236F51D4109910068C30A /* ABAppDelegate.m in Sources */,
-				937236D31D4109910068C30A /* ABModel.m in Sources */,
 				937237061D4109910068C30A /* NSObject+MJProperty.m in Sources */,
 				937236F11D4109910068C30A /* UIView+MTAutoLayout.m in Sources */,
 				9372370F1D410AF20068C30A /* main.m in Sources */,
+				936FDD3A1D41FC40007E3489 /* ABCenterDataManager.m in Sources */,
 				937237001D4109910068C30A /* MJProperty.m in Sources */,
 				937236E21D4109910068C30A /* ABStatisticsView.m in Sources */,
 				937236E01D4109910068C30A /* ABChargeModel.m in Sources */,
@@ -708,17 +710,17 @@
 				937236FD1D4109910068C30A /* MJDictionaryCache.m in Sources */,
 				936FDD351D41C00A007E3489 /* ABTextViewController.m in Sources */,
 				937237041D4109910068C30A /* NSObject+MJCoding.m in Sources */,
+				936FDD411D420F07007E3489 /* ABChargeCoreDataManager.m in Sources */,
 				937236E41D4109910068C30A /* ABSetViewController.m in Sources */,
 				937237071D4109910068C30A /* NSString+MJExtension.m in Sources */,
 				937236D91D4109910068C30A /* ABChargeDataManger.m in Sources */,
-				937236E71D4109910068C30A /* ABCenterCoreDataManager.m in Sources */,
+				936FDD3E1D420EEB007E3489 /* ABCategoryCoreDataManager.m in Sources */,
 				937236D81D4109910068C30A /* ABCategoryViewController.m in Sources */,
-				937236E61D4109910068C30A /* ABMergeDataCenter.m in Sources */,
 				937237081D4109910068C30A /* ABUMengHelper.m in Sources */,
 				937236F91D4109910068C30A /* DMPasscodeConfig.m in Sources */,
-				936FDD071D41BDB9007E3489 /* ABCenterDataManager.m in Sources */,
 				937236DD1D4109910068C30A /* ABChargeEditViewController.m in Sources */,
 				937236FE1D4109910068C30A /* MJExtensionConst.m in Sources */,
+				936FDD441D421757007E3489 /* ABMergeDataCenter.m in Sources */,
 				937237051D4109910068C30A /* NSObject+MJKeyValue.m in Sources */,
 				937236FB1D4109910068C30A /* DMPasscodeInternalNavigationController.m in Sources */,
 				937236EC1D4109910068C30A /* ABCloudKit.m in Sources */,

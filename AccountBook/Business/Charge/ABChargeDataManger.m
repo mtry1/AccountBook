@@ -28,7 +28,7 @@
     self = [super init];
     if(self)
     {
-        [[ABCenterDataManager share] addDelegate:self];
+        [[ABCenterDataManager sharedInstance] addDelegate:self];
     }
     return self;
 }
@@ -46,7 +46,7 @@
 - (void)requestChargeDataWithCategoryID:(NSString *)categoryID
 {
     _categoryID = categoryID;
-    [[ABCenterDataManager share] requestChargeListDateWithCategoryId:categoryID];
+    [[ABCenterDataManager sharedInstance] requestChargeListDateWithCategoryId:categoryID];
 }
 
 ///请求添加
@@ -57,7 +57,7 @@
         model.categoryID = self.categoryID;
         model.chargeID = [ABUtils uuid];
         
-        [[ABCenterDataManager share] requestChargeAddModel:model];
+        [[ABCenterDataManager sharedInstance] requestChargeAddModel:model];
         
         NSInteger i;
         for(i = self.numberOfItem - 1; i >= 0; i--)
@@ -88,7 +88,7 @@
     modelCopy.endTimeInterval = model.endTimeInterval;
     modelCopy.notes = model.notes;
     
-    [[ABCenterDataManager share] requestChargeUpdateModel:modelCopy];
+    [[ABCenterDataManager sharedInstance] requestChargeUpdateModel:modelCopy];
     
     //删除
     [self.listItem removeObjectAtIndex:index];
@@ -119,7 +119,7 @@
     {
         ABChargeModel *model = [self dataAtIndex:index];
         
-        [[ABCenterDataManager share] requestChargeRemoveChargeId:model.chargeID];
+        [[ABCenterDataManager sharedInstance] requestChargeRemoveChargeId:model.chargeID];
         
         [self.listItem removeObjectAtIndex:index];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];

@@ -7,7 +7,8 @@
 //
 
 #import "ABMergeDataCenter.h"
-#import "ABCenterCoreDataManager.h"
+#import "ABCategoryCoreDataManager.h"
+#import "ABChargeCoreDataManager.h"
 
 @interface ABMergeDataCenter ()
 {
@@ -15,8 +16,6 @@
     BOOL _isFinishedUploadChargeData;
     NSInteger _uploadErrorCount;
 }
-
-@property (nonatomic, strong) ABCenterCoreDataManager *centerCoreDataManager;
 
 @end
 
@@ -30,15 +29,6 @@
         shareObject = [ABMergeDataCenter new];
     });
     return shareObject;
-}
-
-- (ABCenterCoreDataManager *)centerCoreDataManager
-{
-    if(!_centerCoreDataManager)
-    {
-        _centerCoreDataManager = [[ABCenterCoreDataManager alloc] init];
-    }
-    return _centerCoreDataManager;
 }
 
 ///同步iCould数据
@@ -60,7 +50,7 @@
                 {
                     for(ABCategoryModel *model in mergeData)
                     {
-                        [self.centerCoreDataManager updateCategoryModel:model];
+                        [ABCategoryCoreDataManager updateCategoryModel:model completeHandler:nil];
                     }
                     
 #warning 同步完成需要刷新界面
@@ -91,7 +81,7 @@
                 {
                     for(ABChargeModel *model in mergeData)
                     {
-                        [self.centerCoreDataManager updateChargeModel:model];
+                        [ABChargeCoreDataManager updateChargeModel:model completeHandler:nil];
                     }
                     
                     isChargeFinidshed = YES;
@@ -132,70 +122,73 @@
         }
         else
         {
-            NSMutableArray *mergeData = [NSMutableArray array];
-            NSArray *localData = [self.centerCoreDataManager selectCategoryListData:YES];
-            NSArray *cloudData = results;
-            NSInteger localDataCount = localData.count;
-            NSInteger cloudDataCount = cloudData.count;
-            NSInteger localCurCnt = 0, cloudCurCnt = 0;
-            while (localCurCnt < localDataCount && cloudCurCnt < cloudDataCount)
-            {
-                ABCategoryModel *localModel = localData[localCurCnt];
-                ABCategoryModel *cloudModel = cloudData[cloudCurCnt];
+            [ABCategoryCoreDataManager selectCategoryListData:YES completeHandler:^(NSArray<ABCategoryModel *> *array) {
+                NSMutableArray *mergeData = [NSMutableArray array];
                 
-                if([localModel.categoryID isEqualToString:cloudModel.categoryID])
+                NSArray *localData = array;
+                NSArray *cloudData = results;
+                NSInteger localDataCount = localData.count;
+                NSInteger cloudDataCount = cloudData.count;
+                NSInteger localCurCnt = 0, cloudCurCnt = 0;
+                while (localCurCnt < localDataCount && cloudCurCnt < cloudDataCount)
                 {
-                    if(localModel.modifyTime < cloudModel.modifyTime)
-                    {
-                        [mergeData addObject:cloudModel];
-                    }
-                    else
-                    {
-                        [mergeData addObject:localModel];
-                    }
+                    ABCategoryModel *localModel = localData[localCurCnt];
+                    ABCategoryModel *cloudModel = cloudData[cloudCurCnt];
                     
-                    localCurCnt ++;
-                    cloudCurCnt ++;
-                }
-                else
-                {
-                    if(localModel.createTime < cloudModel.createTime)
+                    if([localModel.categoryID isEqualToString:cloudModel.categoryID])
                     {
-                        if(localModel.isExistCloud)
+                        if(localModel.modifyTime < cloudModel.modifyTime)
                         {
-                            localModel.isRemoved = YES;
+                            [mergeData addObject:cloudModel];
+                        }
+                        else
+                        {
+                            [mergeData addObject:localModel];
                         }
                         
-                        [mergeData addObject:localModel];
                         localCurCnt ++;
+                        cloudCurCnt ++;
                     }
                     else
                     {
-                        [mergeData addObject:cloudModel];
-                        cloudCurCnt ++;
+                        if(localModel.createTime < cloudModel.createTime)
+                        {
+                            if(localModel.isExistCloud)
+                            {
+                                localModel.isRemoved = YES;
+                            }
+                            
+                            [mergeData addObject:localModel];
+                            localCurCnt ++;
+                        }
+                        else
+                        {
+                            [mergeData addObject:cloudModel];
+                            cloudCurCnt ++;
+                        }
                     }
                 }
-            }
-            
-            while(localCurCnt < localDataCount)
-            {
-                ABCategoryModel *localModel = localData[localCurCnt];
-                if(localModel.isExistCloud)
+                
+                while(localCurCnt < localDataCount)
                 {
-                    localModel.isRemoved = YES;
+                    ABCategoryModel *localModel = localData[localCurCnt];
+                    if(localModel.isExistCloud)
+                    {
+                        localModel.isRemoved = YES;
+                    }
+                    
+                    [mergeData addObject:localModel];
+                    localCurCnt ++;
                 }
                 
-                [mergeData addObject:localModel];
-                localCurCnt ++;
-            }
-            
-            while(cloudCurCnt < cloudDataCount)
-            {
-                [mergeData addObject:cloudData[cloudCurCnt]];
-                cloudCurCnt ++;
-            }
-            
-            completionHandler(mergeData, nil);
+                while(cloudCurCnt < cloudDataCount)
+                {
+                    [mergeData addObject:cloudData[cloudCurCnt]];
+                    cloudCurCnt ++;
+                }
+                
+                completionHandler(mergeData, nil);
+            }];
         }
     }];
 }
@@ -211,68 +204,70 @@
         }
         else
         {
-            NSMutableArray *mergeData = [NSMutableArray array];
-            NSArray *localData = [self.centerCoreDataManager selectChargeListData];
-            NSArray *cloudData = results;
-            NSInteger localDataCount = localData.count;
-            NSInteger cloudDataCount = cloudData.count;
-            NSInteger localCurCnt = 0, cloudCurCnt = 0;
-            while(localCurCnt < localDataCount && cloudCurCnt < cloudDataCount)
-            {
-                ABChargeModel *localModel = localData[localCurCnt];
-                ABChargeModel *cloudModel = cloudData[cloudCurCnt];
-                
-                if([localModel.chargeID isEqualToString:cloudModel.chargeID])
+            [ABChargeCoreDataManager selectAllChargeListDataCompleteHandler:^(NSArray<ABChargeModel *> *array) {
+                NSMutableArray *mergeData = [NSMutableArray array];
+                NSArray *localData = array;
+                NSArray *cloudData = results;
+                NSInteger localDataCount = localData.count;
+                NSInteger cloudDataCount = cloudData.count;
+                NSInteger localCurCnt = 0, cloudCurCnt = 0;
+                while(localCurCnt < localDataCount && cloudCurCnt < cloudDataCount)
                 {
-                    if(localModel.modifyTime < cloudModel.modifyTime)
-                    {
-                        [mergeData addObject:cloudModel];
-                    }
-                    else
-                    {
-                        [mergeData addObject:localModel];
-                    }
+                    ABChargeModel *localModel = localData[localCurCnt];
+                    ABChargeModel *cloudModel = cloudData[cloudCurCnt];
                     
-                    localCurCnt ++;
-                    cloudCurCnt ++;
-                }
-                else
-                {
-                    if(localModel.startTimeInterval < cloudModel.startTimeInterval)
+                    if([localModel.chargeID isEqualToString:cloudModel.chargeID])
                     {
-                        if(localModel.isExistCloud)
+                        if(localModel.modifyTime < cloudModel.modifyTime)
                         {
-                            localModel.isRemoved = YES;
+                            [mergeData addObject:cloudModel];
                         }
-                        [mergeData addObject:localModel];
+                        else
+                        {
+                            [mergeData addObject:localModel];
+                        }
+                        
                         localCurCnt ++;
-                    }
-                    else
-                    {
-                        [mergeData addObject:cloudModel];
                         cloudCurCnt ++;
                     }
+                    else
+                    {
+                        if(localModel.startTimeInterval < cloudModel.startTimeInterval)
+                        {
+                            if(localModel.isExistCloud)
+                            {
+                                localModel.isRemoved = YES;
+                            }
+                            [mergeData addObject:localModel];
+                            localCurCnt ++;
+                        }
+                        else
+                        {
+                            [mergeData addObject:cloudModel];
+                            cloudCurCnt ++;
+                        }
+                    }
                 }
-            }
-            
-            while(localCurCnt < localDataCount)
-            {
-                ABChargeModel *localModel = localData[localCurCnt];
-                if(localModel.isExistCloud)
+                
+                while(localCurCnt < localDataCount)
                 {
-                    localModel.isRemoved = YES;
+                    ABChargeModel *localModel = localData[localCurCnt];
+                    if(localModel.isExistCloud)
+                    {
+                        localModel.isRemoved = YES;
+                    }
+                    [mergeData addObject:localModel];
+                    localCurCnt ++;
                 }
-                [mergeData addObject:localModel];
-                localCurCnt ++;
-            }
-            
-            while(cloudCurCnt < cloudDataCount)
-            {
-                [mergeData addObject:cloudData[cloudCurCnt]];
-                cloudCurCnt ++;
-            }
-            
-            completionHandler(mergeData, nil);
+                
+                while(cloudCurCnt < cloudDataCount)
+                {
+                    [mergeData addObject:cloudData[cloudCurCnt]];
+                    cloudCurCnt ++;
+                }
+                
+                completionHandler(mergeData, nil);
+            }];
         }
     }];
 }
@@ -328,7 +323,8 @@
                         model.isExistCloud = YES;
                         
                     }
-                    [self.centerCoreDataManager updateCategoryModel:model];
+                    
+                    [ABCategoryCoreDataManager updateCategoryModel:model completeHandler:nil];
                     
                     uploadCnt ++;
                     if(uploadCnt == categoryData.count)
@@ -376,7 +372,7 @@
                     
                     if(isSuccess)
                     {
-                        [self.centerCoreDataManager deleteChargeChargeID:model.chargeID flag:YES];
+                        [ABChargeCoreDataManager deleteChargeChargeID:model.chargeID flag:YES completeHandler:nil];
                     }
                     
                     if(uploadCnt == chargeData.count)
@@ -409,7 +405,8 @@
                     {
                         model.isExistCloud = YES;
                     }
-                    [self.centerCoreDataManager updateChargeModel:model];
+                    
+                    [ABChargeCoreDataManager updateChargeModel:model completeHandler:nil];
                     
                     uploadCnt ++;
                     if(uploadCnt == chargeData.count)
@@ -434,21 +431,21 @@
 ///请求删除多余数据
 - (void)requestDeleteDiscardData
 {
-    NSArray *mergeCategoryData = [self.centerCoreDataManager selectCategoryListData:YES];
-    for(ABCategoryModel *model in mergeCategoryData)
-    {
-        if(model.isRemoved)
+    [ABCategoryCoreDataManager selectCategoryListData:YES completeHandler:^(NSArray<ABCategoryModel *> *array) {
+        NSArray *mergeCategoryData = array;
+        for(ABCategoryModel *model in mergeCategoryData)
         {
-            [self.centerCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID];
-            [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID completionHandler:^(BOOL isAllDeleted) {
-                
-                if(isAllDeleted)
-                {
-                    [self.centerCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES];
-                }
-            }];
+            if(model.isRemoved)
+            {
+                [ABChargeCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID completeHandler:nil];
+                [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID completionHandler:^(BOOL isAllDeleted) {
+                    if(isAllDeleted)
+                    {
+                        [ABCategoryCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES completeHandler:nil];
+                    }
+                }];
+            }
         }
-    }
+    }];
 }
-
 @end

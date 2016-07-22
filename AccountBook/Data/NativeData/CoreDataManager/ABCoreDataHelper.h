@@ -11,7 +11,7 @@
 
 @interface ABCoreDataHelper : NSObject
 
-+ (ABCoreDataHelper *)share;
++ (instancetype)sharedInstance;
 
 @property (nonatomic, readonly) NSManagedObjectContext *context;
 
@@ -23,6 +23,6 @@
 
 - (void)setupCoreData;
 
-- (void)saveContext;
+- (BOOL)saveContext;
 
 @end

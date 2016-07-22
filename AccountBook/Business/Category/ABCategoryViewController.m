@@ -32,6 +32,8 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 @synthesize collectionView = _collectionView;
 @synthesize dataManger = _dataManger;
 
+#pragma mark - 属性
+
 - (UICollectionView *)collectionView
 {
     if(!_collectionView)
@@ -57,6 +59,8 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     }
     return _dataManger;
 }
+
+#pragma mark - 生命周期
 
 - (void)viewDidLoad
 {
@@ -222,7 +226,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     }
 }
 
-#pragma mark - 其它
+#pragma mark - 事件响应
 
 - (void)touchUpInsideLeftBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
@@ -249,7 +253,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     [self presentViewController:alertContoller animated:YES completion:nil];
 }
 
-#pragma mark - 数据处理
+#pragma mark - ABCategoryDataMangerDelegate
 
 - (void)categoryDataMangerReloadData:(ABCategoryDataManger *)manager
 {

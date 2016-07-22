@@ -7,21 +7,24 @@
 //
 
 #import "ABChargeModel.h"
+#import "MJExtension.h"
 
 @implementation ABChargeModel
+
+@synthesize isRemoved = _isRemoved;
+@synthesize isExistCloud = _isExistCloud;
+@synthesize createTime = _createTime;
+@synthesize modifyTime = _modifyTime;
 
 - (id)copyWithZone:(nullable NSZone *)zone
 {
     id selfCopy = [[[self class] alloc] init];
-    
     NSMutableDictionary *dict = self.mj_keyValues;
     if(dict)
     {
         [dict removeObjectForKey:@"isTimeOut"];
-        
         selfCopy = [[self class] mj_objectWithKeyValues:dict];
     }
-    
     return selfCopy;
 }
 

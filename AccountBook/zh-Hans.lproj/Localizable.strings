@@ -30,7 +30,7 @@
 "you_want_to_delete" = "您确定要删除";
 "crete_title" = "创建标题，长按重命名";
 "login_iCloud" = "请登录iCloud帐号";
-"iCloud_is_open" = "确保 设置->iCloud->iCloud Drive 开启";
+"iCloud_is_open" = "设置->iCloud->iCloud Drive";
 "merge_failure" = "合并失败，请稍后再试";
 "safe_lock" = "安全锁";
 "merge_iCloud_data" = "合并iCloud数据";
