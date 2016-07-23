@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CloudKit/CloudKit.h>
 #import "ABCategoryModel.h"
 #import "ABChargeModel.h"
 
 @interface ABCloudKit : NSObject
 
 ///请求判断是否开启iCloud帐号
-+ (void)requestIsOpenCloudCompletionHandler:(void(^)(CKAccountStatus accountStatus, NSError *error))completionHandler;
++ (void)requestIsOpenCloudCompletionHandler:(void(^)(BOOL success, NSString *errorMessage))completionHandler;
 
 ///请求插入分类数据
 + (void)requestInsertCategoryData:(ABCategoryModel *)model completionHandler:(void(^)(NSError *error))completionHandler;

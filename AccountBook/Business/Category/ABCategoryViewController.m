@@ -12,13 +12,11 @@
 #import "ABCategoryCell.h"
 #import "ABCategoryDataManger.h"
 
-CGFloat const ABCollectionViewCellSpace = 5.0f;
-CGFloat const ABCollectionViewSpacingForSection = 10.0f;
-CGFloat const ABCollectionViewSpacingForTop = 20.0f;
-
-#define ABCollectionViewColNumber ([[UIDevice currentDevice] userInterfaceIdiom] ? 6 : 4)
-
+static CGFloat ABCollectionViewCellSpace = 5.0f;
+static CGFloat ABCollectionViewSpacingForSection = 10.0f;
+static CGFloat ABCollectionViewSpacingForTop = 20.0f;
 static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdentifier";
+#define ABCollectionViewColNumber ([[UIDevice currentDevice] userInterfaceIdiom] ? 6 : 4)
 
 @interface ABCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ABCategoryDataMangerDelegate, ABCategoryCellDelegate>
 
@@ -72,6 +70,13 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     
     [self.view addSubview:self.collectionView];
     [self.dataManger requestInitData];
+    
+    [self registerNotificaton];
+}
+
+- (void)dealloc
+{
+    [self removeNotification];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -251,6 +256,23 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
         }
     }]];
     [self presentViewController:alertContoller animated:YES completion:nil];
+}
+
+#pragma mark - 通知
+
+- (void)registerNotificaton
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSuccessNotification:) name:ABMergeSuccessNotification object:nil];
+}
+
+- (void)removeNotification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)mergeSuccessNotification:(NSNotification *)notification
+{
+    [self.dataManger requestInitData];
 }
 
 #pragma mark - ABCategoryDataMangerDelegate

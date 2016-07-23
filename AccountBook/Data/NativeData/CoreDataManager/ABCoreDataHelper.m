@@ -18,6 +18,19 @@ NSString *const ABCoreDataHelperFileName = @"CoreData.splite";
 @synthesize model = _model;
 @synthesize store = _store;
 
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
+                                                          object:nil
+                                                           queue:[NSOperationQueue currentQueue]
+                                                      usingBlock:^(NSNotification * _Nonnull note) {
+                                                          [[ABCoreDataHelper sharedInstance] setupCoreData];
+                                                      }];
+    });
+}
+
 + (instancetype)sharedInstance
 {
     static id shareObject;

@@ -112,20 +112,18 @@
     if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
     {
         [MTProgressHUD showLoadingWithMessage:NSLocalizedString(@"merging", nil)];
-        [[ABMergeDataCenter sharedInstance] mergeCouldDataSuccessedHandler:^{
+        [[ABMergeDataCenter sharedInstance] mergeCloudDataFinishedHandler:^(BOOL success, NSString *errorMessage) {
             [MTProgressHUD close];
-        } errorHandler:^(CKAccountStatus accountStatus, NSError *error) {
-            [MTProgressHUD close];
-            if(accountStatus == CKAccountStatusNoAccount)
+            if(success)
             {
-                [MTProgressHUD close];
-                UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"login_iCloud", nil) message:NSLocalizedString(@"iCloud_is_open", nil) preferredStyle:UIAlertControllerStyleAlert];
-                [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil) style:UIAlertActionStyleDefault handler:nil]];
-                [self presentViewController:alertContoller animated:YES completion:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:ABMergeSuccessNotification object:nil];
             }
             else
             {
-                [MTProgressHUD showInfoWithMessage:NSLocalizedString(@"merge_failure", nil)];
+                if(errorMessage)
+                {
+                    [MTProgressHUD showErrorWithMessge:errorMessage];
+                }
             }
         }];
     }

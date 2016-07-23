@@ -15,4 +15,7 @@
 ///默认背景颜色
 #define ABDefaultBackgroudColor [UIColor colorWithUInt:0xf4f4f4]
 
+///合并成功通知
+#define ABMergeSuccessNotification @"ABMergeSuccessNotification"
+
 #endif

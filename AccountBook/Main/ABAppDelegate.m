@@ -8,7 +8,6 @@
 
 #import "ABAppDelegate.h"
 #import "ABCategoryViewController.h"
-#import "ABCoreDataHelper.h"
 
 @implementation ABAppDelegate
 
@@ -18,8 +17,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ABCategoryViewController alloc] init]];
     [self.window makeKeyAndVisible];
-    
-    [[ABCoreDataHelper sharedInstance] setupCoreData];
 
     [MTProgressHUD setBackgroudColor:[UIColor blackColor]];
     [MTProgressHUD setForegroudColor:[UIColor whiteColor]];

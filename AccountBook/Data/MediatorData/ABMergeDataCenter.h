@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ABCloudKit.h"
 
 @interface ABMergeDataCenter : NSObject
 
 + (instancetype)sharedInstance;
-- (void)mergeCouldDataSuccessedHandler:(void(^)(void))successedHandler
-                          errorHandler:(void(^)(CKAccountStatus accountStatus, NSError *error))errorHandler;
+- (void)mergeCloudDataFinishedHandler:(void(^)(BOOL success, NSString *errorMessage))finishedHandler;
 
 @end

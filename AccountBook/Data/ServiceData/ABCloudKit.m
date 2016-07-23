@@ -7,16 +7,28 @@
 //
 
 #import "ABCloudKit.h"
+#import <CloudKit/CloudKit.h>
 
 @implementation ABCloudKit
 
-+ (void)requestIsOpenCloudCompletionHandler:(void(^)(CKAccountStatus accountStatus, NSError *error))completionHandler
++ (void)requestIsOpenCloudCompletionHandler:(void(^)(BOOL success, NSString *errorMessage))completionHandler
 {
     [[CKContainer defaultContainer] accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError *error) {
         if(completionHandler)
         {
+            NSString *errorMessge;
+            BOOL success;
+            if(accountStatus == CKAccountStatusAvailable)
+            {
+                success = YES;
+            }
+            else
+            {
+                success = NO;
+                errorMessge = NSLocalizedString(@"iCloud_is_open", nil);
+            }
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(accountStatus, error);
+                completionHandler(success, errorMessge);
             });
         }
     }];
