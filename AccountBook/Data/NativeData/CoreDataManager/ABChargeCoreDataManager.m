@@ -96,7 +96,7 @@
     ABChargeEntity *entity = [self selectChargeEntityWithChargeID:chargeID];
     if(entity)
     {
-        if(!flag && [entity.isExistCloud boolValue])
+        if(!flag)
         {
             entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
             entity.isRemoved = @(YES);
@@ -122,7 +122,8 @@
                 ABChargeEntity *entity = [self selectChargeEntityWithChargeID:model.chargeID];
                 if(entity)
                 {
-                    [[ABCoreDataHelper sharedInstance].context deleteObject:entity];
+                    entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+                    entity.isRemoved = @(YES);
                 }
             }
             

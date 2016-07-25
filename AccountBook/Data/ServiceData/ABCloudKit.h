@@ -18,6 +18,9 @@
 ///请求插入分类数据
 + (void)requestInsertCategoryData:(ABCategoryModel *)model completionHandler:(void(^)(NSError *error))completionHandler;
 
+///请求删除分类数据
++ (void)requestDeleteCategoryDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isSuccess))completionHandler;
+
 ///请求分类数据列表
 + (void)requestCategoryListDataCompletionHandler:(void(^)(NSArray<ABCategoryModel *> *results, NSError *error))completionHandler;
 
@@ -29,8 +32,5 @@
 
 ///删除消费数据
 + (void)requestDeleteChargeDataWithChargeID:(NSString *)chargeID completionHandler:(void(^)(BOOL isSuccess))completionHandler;
-
-///请求删除消费纪录列表
-+ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isAllDeleted))completionHandler;
 
 @end

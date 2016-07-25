@@ -64,7 +64,12 @@
 
 - (void)requestCategoryRemoveCategoryId:(NSString *)categoryId
 {
-    [ABCategoryCoreDataManager deleteCategoryCategoryID:categoryId flag:NO completeHandler:nil];
+    [ABCategoryCoreDataManager deleteCategoryCategoryID:categoryId flag:NO completeHandler:^(BOOL success) {
+        if(success)
+        {
+            [ABChargeCoreDataManager deleteChargeListDataWithCategoryID:categoryId completeHandler:nil];
+        }
+    }];
 }
 
 - (void)requestCategoryUpdateModel:(ABCategoryModel *)model

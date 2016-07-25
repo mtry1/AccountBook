@@ -34,6 +34,8 @@
     }];
 }
 
+#pragma mark - 分类
+
 + (void)requestInsertCategoryData:(ABCategoryModel *)model completionHandler:(void(^)(NSError *error))completionHandler
 {
     [self requestCategoryDataWithCategoryID:model.categoryID completionHandler:^(CKRecord *record, NSError *error) {
@@ -59,14 +61,9 @@
         
         CKDatabase *privateContainer = [[CKContainer defaultContainer] privateCloudDatabase];
         [privateContainer saveRecord:newRecord completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-            
-            if(completionHandler)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionHandler(error);
-                });
-                
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(completionHandler) completionHandler(error);
+            });
         }];
     }];
 }
@@ -91,6 +88,26 @@
                         }
                     }
                 }];
+}
+
++ (void)requestDeleteCategoryDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isSuccess))completionHandler
+{
+    CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
+    CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:categoryID];
+    [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+        if(error)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(NO);
+            });
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(YES);
+            });
+        }
+    }];
 }
 
 + (void)requestCategoryListDataCompletionHandler:(void(^)(NSArray<ABCategoryModel *> *results, NSError *error))completionHandler
@@ -137,27 +154,7 @@
                 }];
 }
 
-///删除分类数据
-+ (void)requestDeleteCategoryDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isSuccess))completionHandler
-{
-    CKDatabase *privateDatabase = [[CKContainer defaultContainer] privateCloudDatabase];
-    CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:categoryID];
-    [privateDatabase deleteRecordWithID:recordID completionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
-        
-        if(error)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(NO);
-            });
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(YES);
-            });
-        }
-    }];
-}
+#pragma mark - 消费
 
 + (void)requestInsertChargeData:(ABChargeModel *)model completionHandler:(void(^)(NSError *error))completionHandler
 {
@@ -307,49 +304,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionHandler(YES);
             });
-        }
-    }];
-}
-
-///请求删除消费纪录列表
-+ (void)requestDeleteChargeListDataWithCategoryID:(NSString *)categoryID completionHandler:(void(^)(BOOL isAllDeleted))completionHandler
-{
-    [self requestChargeListDataWithCategoryID:categoryID CompletionHandler:^(NSArray<ABChargeModel *> *results, NSError *error) {
-        
-        NSInteger cloudDataCount = results.count;
-        if(cloudDataCount == 0)
-        {
-            [self requestDeleteCategoryDataWithCategoryID:categoryID completionHandler:completionHandler];
-        }
-        else
-        {
-            __block NSInteger curDeleteCnt = 0;
-            __block NSInteger curErrorCnt = 0;
-            for(ABChargeModel *model in results)
-            {
-                [self requestDeleteChargeDataWithChargeID:model.chargeID completionHandler:^(BOOL isSuccess) {
-                    
-                    curDeleteCnt ++;
-                    if(!isSuccess)
-                    {
-                        curErrorCnt ++;
-                    }
-                    
-                    if(curDeleteCnt == cloudDataCount)
-                    {
-                        if(curErrorCnt)
-                        {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                completionHandler(NO);
-                            });
-                        }
-                        else
-                        {
-                            [self requestDeleteCategoryDataWithCategoryID:categoryID completionHandler:completionHandler];
-                        }
-                    }
-                }];
-            }
         }
     }];
 }

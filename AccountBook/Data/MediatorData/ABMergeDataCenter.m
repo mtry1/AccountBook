@@ -13,19 +13,10 @@
 
 /*
  合并流程
- 第一步：合并Cloud和本地数据至本地
- 第二步：上传本地数据至Cloud
- 第三步：删除数据
+ 第一步：同步本地的数据
+ 第二步：调整本地废弃数据
+ 第三步：同步Cloud的数据
  */
-
-@interface ABMergeDataCenter ()
-{
-    BOOL _isFinishedUploadCategoryData;
-    BOOL _isFinishedUploadChargeData;
-    NSInteger _uploadErrorCount;
-}
-
-@end
 
 @implementation ABMergeDataCenter
 
@@ -49,7 +40,7 @@
             dispatch_group_t group = dispatch_group_create();
             dispatch_group_async(group, dispatch_get_main_queue(), ^{
                 dispatch_group_enter(group);
-                [self mergeCategoryDataCompletionHandler:^(NSArray<ABCategoryModel *> *mergeData, NSError *error) {
+                [self syncLoaclCategoryDataCompletionHandler:^(NSArray<ABCategoryModel *> *mergeData, NSError *error) {
                     if(!error)
                     {
                         for(ABCategoryModel *model in mergeData)
@@ -74,7 +65,7 @@
             
             dispatch_group_async(group, dispatch_get_main_queue(), ^{
                 dispatch_group_enter(group);
-                [self mergeChargeDataCompletionHandler:^(NSArray<ABChargeModel *> *mergeData, NSError *error) {
+                [self syncLoaclChargeDataCompletionHandler:^(NSArray<ABChargeModel *> *mergeData, NSError *error) {
                     if(!error)
                     {
                         for(ABChargeModel *model in mergeData)
@@ -105,7 +96,7 @@
                 else
                 {
                     finishedHandler(YES, nil);
-                    [self requestUploadData];
+                    [self discardData];
                 }
             });
         }
@@ -119,10 +110,10 @@
     }];
 }
 
-#pragma mark - merge
+#pragma mark - SyncLoaclData
 
-///合并分类数据至本地
-- (void)mergeCategoryDataCompletionHandler:(void(^)(NSArray<ABCategoryModel *> *mergeData, NSError *error))completionHandler
+///同步分类数据至本地
+- (void)syncLoaclCategoryDataCompletionHandler:(void(^)(NSArray<ABCategoryModel *> *mergeData, NSError *error))completionHandler
 {
     [ABCloudKit requestCategoryListDataCompletionHandler:^(NSArray<ABCategoryModel *> *results, NSError *error) {
         if(error)
@@ -132,14 +123,14 @@
         else
         {
             [ABCategoryCoreDataManager selectCategoryListData:YES completeHandler:^(NSArray<ABCategoryModel *> *array) {
-                completionHandler([self mergeLoaclData:array cloudData:results], nil);
+                completionHandler([self syncLoaclData:array cloudData:results], nil);
             }];
         }
     }];
 }
 
-///合并消费数据至本地
-- (void)mergeChargeDataCompletionHandler:(void(^)(NSArray<ABChargeModel *> *mergeData, NSError *error))completionHandler
+///同步消费数据至本地
+- (void)syncLoaclChargeDataCompletionHandler:(void(^)(NSArray<ABChargeModel *> *mergeData, NSError *error))completionHandler
 {
     [ABCloudKit requestChargeListDataWithCompletionHandler:^(NSArray<ABChargeModel *> *results, NSError *error) {
         if(error)
@@ -149,13 +140,13 @@
         else
         {
             [ABChargeCoreDataManager selectAllChargeListDataCompleteHandler:^(NSArray<ABChargeModel *> *array) {
-                completionHandler([self mergeLoaclData:array cloudData:results], nil);
+                completionHandler([self syncLoaclData:array cloudData:results], nil);
             }];
         }
     }];
 }
 
-- (NSArray *)mergeLoaclData:(NSArray *)localData cloudData:(NSArray *)cloudData
+- (NSArray *)syncLoaclData:(NSArray *)localData cloudData:(NSArray *)cloudData
 {
     NSMutableArray *mergeData = [NSMutableArray array];
     
@@ -219,207 +210,156 @@
     return mergeData;
 }
 
-#pragma mark - Upload
+#pragma mark - DiscardData
 
-- (void)requestUploadData
+- (void)discardData
 {
+    [ABCategoryCoreDataManager selectCategoryListData:YES completeHandler:^(NSArray<ABCategoryModel *> *categoryArray) {
+        [ABChargeCoreDataManager selectAllChargeListDataCompleteHandler:^(NSArray<ABChargeModel *> *chargeArray) {
+            
+            dispatch_group_t group = dispatch_group_create();
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            for(ABChargeModel *chargeModel in chargeArray)
+            {
+                BOOL finded = NO;
+                for(ABCategoryModel *categoryModel in categoryArray)
+                {
+                    if([chargeModel.categoryID isEqualToString:categoryModel.categoryID])
+                    {
+                        finded = YES;
+                        break;
+                    }
+                }
+                if(!finded)
+                {
+                    chargeModel.isRemoved = YES;
+                    chargeModel.modifyTime = [[NSDate date] timeIntervalSince1970];
+                    dispatch_group_async(group, queue, ^{
+                        dispatch_group_enter(group);
+                        [ABChargeCoreDataManager updateChargeModel:chargeModel completeHandler:^(BOOL success) {
+                            dispatch_group_leave(group);
+                        }];
+                    });
+                    
+                }
+            }
+            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                [self syncCouldData];
+            });
+        }];
+    }];
+}
+
+#pragma mark - SyncCouldData
+
+- (void)syncCouldData
+{
+    __block NSInteger syncErrorCount = 0;
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(group, queue, ^{
-        
+        dispatch_group_enter(group);
+        [self syncCouldCategoryDataCompleteHandler:^(NSInteger errorCount) {
+            syncErrorCount += errorCount;
+            dispatch_group_leave(group);
+        }];
     });
     dispatch_group_async(group, queue, ^{
-        
+        dispatch_group_enter(group);
+        [self syncCouldChargeDataCompleteHandler:^(NSInteger errorCount) {
+            syncErrorCount += errorCount;
+            dispatch_group_leave(group);
+        }];
     });
-    dispatch_group_notify(group, queue, ^{
-        
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        if(syncErrorCount)
+        {
+            [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", syncErrorCount]];
+        }
     });
-    
 }
 
-- (void)requestUploadCategoryDataCompleteHandler:(void(^)(BOOL success, NSInteger errorCount))completeHandler
-{
-    
-}
-
-- (void)requestUploadChargeDataCompleteHandler:(void(^)(BOOL success, NSInteger errorCount))completeHandler
-{
-    
-}
-
-- (void)requestUploadCategoryData:(NSArray *)categoryData
-{
-    if(categoryData.count == 0)
-    {
-        _isFinishedUploadCategoryData = YES;
-        if(_isFinishedUploadChargeData)
-        {
-            [self requestDeleteDiscardData];
-        }
-    }
-    else
-    {
-        __block NSInteger uploadCnt = 0;
-        _isFinishedUploadCategoryData = NO;
-        
-        for(ABCategoryModel *model in categoryData)
-        {
-            if(model.isRemoved)
-            {
-                uploadCnt ++;
-                if(uploadCnt == categoryData.count)
-                {
-                    _isFinishedUploadCategoryData = YES;
-                    if(_isFinishedUploadChargeData)
-                    {
-                        [self requestDeleteDiscardData];
-                        
-                        if(_uploadErrorCount)
-                        {
-                            [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
-                        }
-                    }
-                }
-            }
-            else
-            {
-                model.isExistCloud = YES;
-                [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
-                    
-                    if(error)
-                    {
-                        _uploadErrorCount ++;
-                        model.isExistCloud = NO;
-                        model.modifyTime = [[NSDate date] timeIntervalSince1970];
-                    }
-                    else
-                    {
-                        model.isExistCloud = YES;
-                        
-                    }
-                    
-                    [ABCategoryCoreDataManager updateCategoryModel:model completeHandler:nil];
-                    
-                    uploadCnt ++;
-                    if(uploadCnt == categoryData.count)
-                    {
-                        _isFinishedUploadCategoryData = YES;
-                        if(_isFinishedUploadChargeData)
-                        {
-                            [self requestDeleteDiscardData];
-                            
-                            if(_uploadErrorCount)
-                            {
-                                [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
-                            }
-                        }
-                    }
-                }];
-            }
-        }
-    }
-}
-
-- (void)requestUploadChargeData:(NSArray *)chargeData
-{
-    if(chargeData.count == 0)
-    {
-        _isFinishedUploadChargeData = YES;
-        if(_isFinishedUploadCategoryData)
-        {
-            [self requestDeleteDiscardData];
-        }
-    }
-    else
-    {
-        __block NSInteger uploadCnt = 0;
-        _isFinishedUploadChargeData = NO;
-        
-        for(ABChargeModel *model in chargeData)
-        {
-            if(model.isRemoved)
-            {
-                uploadCnt ++;
-                
-                [ABCloudKit requestDeleteChargeDataWithChargeID:model.chargeID completionHandler:^(BOOL isSuccess) {
-                    
-                    if(isSuccess)
-                    {
-                        [ABChargeCoreDataManager deleteChargeChargeID:model.chargeID flag:YES completeHandler:nil];
-                    }
-                    
-                    if(uploadCnt == chargeData.count)
-                    {
-                        _isFinishedUploadChargeData = YES;
-                        if(_isFinishedUploadCategoryData)
-                        {
-                            [self requestDeleteDiscardData];
-                            
-                            if(_uploadErrorCount)
-                            {
-                                [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
-                            }
-                        }
-                    }
-                }];
-            }
-            else
-            {
-                model.isExistCloud = YES;
-                [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
-                    
-                    if(error)
-                    {
-                        _uploadErrorCount ++;
-                        model.isExistCloud = NO;
-                        model.modifyTime = [[NSDate date] timeIntervalSince1970];
-                    }
-                    else
-                    {
-                        model.isExistCloud = YES;
-                    }
-                    
-                    [ABChargeCoreDataManager updateChargeModel:model completeHandler:nil];
-                    
-                    uploadCnt ++;
-                    if(uploadCnt == chargeData.count)
-                    {
-                        _isFinishedUploadChargeData = YES;
-                        if(_isFinishedUploadCategoryData)
-                        {
-                            [self requestDeleteDiscardData];
-                            
-                            if(_uploadErrorCount)
-                            {
-                                [MTProgressHUD showInfoWithMessage:[NSString stringWithFormat:@"有 %ld 条数据上传Cloud失败", _uploadErrorCount]];
-                            }
-                        }
-                    }
-                }];
-            }
-        }
-    }
-}
-
-#pragma mark - Delete
-
-- (void)requestDeleteDiscardData
+- (void)syncCouldCategoryDataCompleteHandler:(void(^)(NSInteger errorCount))completeHandler
 {
     [ABCategoryCoreDataManager selectCategoryListData:YES completeHandler:^(NSArray<ABCategoryModel *> *array) {
-        NSArray *mergeCategoryData = array;
-        for(ABCategoryModel *model in mergeCategoryData)
-        {
-            if(model.isRemoved)
+        __block NSInteger errorCount = 0;
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_group_async(group, queue, ^{
+            for(ABCategoryModel *model in array)
             {
-                [ABChargeCoreDataManager deleteChargeListDataWithCategoryID:model.categoryID completeHandler:nil];
-                [ABCloudKit requestDeleteChargeListDataWithCategoryID:model.categoryID completionHandler:^(BOOL isAllDeleted) {
-                    if(isAllDeleted)
-                    {
-                        [ABCategoryCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES completeHandler:nil];
-                    }
-                }];
+                dispatch_group_enter(group);
+                if(model.isRemoved)
+                {
+                    [ABCloudKit requestDeleteCategoryDataWithCategoryID:model.categoryID completionHandler:^(BOOL isSuccess) {
+                        if(isSuccess)
+                        {
+                            [ABCategoryCoreDataManager deleteCategoryCategoryID:model.categoryID flag:YES completeHandler:nil];
+                        }
+                        dispatch_group_leave(group);
+                    }];
+                }
+                else
+                {
+                    model.isExistCloud = YES;
+                    [ABCloudKit requestInsertCategoryData:model completionHandler:^(NSError *error) {
+                        if(error)
+                        {
+                            errorCount ++;
+                            model.isExistCloud = NO;
+                            model.modifyTime = [[NSDate date] timeIntervalSince1970];
+                        }
+                        [ABCategoryCoreDataManager updateCategoryModel:model completeHandler:nil];
+                        dispatch_group_leave(group);
+                    }];
+                }
             }
-        }
+        });
+        dispatch_group_notify(group, queue, ^{
+            completeHandler(errorCount);
+        });
+    }];
+}
+
+- (void)syncCouldChargeDataCompleteHandler:(void(^)(NSInteger errorCount))completeHandler
+{
+    [ABChargeCoreDataManager selectAllChargeListDataCompleteHandler:^(NSArray<ABChargeModel *> *array) {
+        __block NSInteger errorCount = 0;
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_group_async(group, queue, ^{
+            for(ABChargeModel *model in array)
+            {
+                dispatch_group_enter(group);
+                if(model.isRemoved)
+                {
+                    [ABCloudKit requestDeleteChargeDataWithChargeID:model.chargeID completionHandler:^(BOOL isSuccess) {
+                        if(isSuccess)
+                        {
+                            [ABChargeCoreDataManager deleteChargeChargeID:model.chargeID flag:YES completeHandler:nil];
+                        }
+                        dispatch_group_leave(group);
+                    }];
+                }
+                else
+                {
+                    model.isExistCloud = YES;
+                    [ABCloudKit requestInsertChargeData:model completionHandler:^(NSError *error) {
+                        if(error)
+                        {
+                            errorCount ++;
+                            model.isExistCloud = NO;
+                            model.modifyTime = [[NSDate date] timeIntervalSince1970];
+                        }
+                        [ABChargeCoreDataManager updateChargeModel:model completeHandler:nil];
+                        dispatch_group_leave(group);
+                    }];
+                }
+            }
+        });
+        dispatch_group_notify(group, queue, ^{
+            completeHandler(errorCount);
+        });
     }];
 }
 

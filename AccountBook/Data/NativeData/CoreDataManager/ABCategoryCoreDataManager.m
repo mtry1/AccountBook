@@ -110,7 +110,7 @@
     ABCategoryEntity *entity = [self selectCategoryEntityWithCategoryID:categoryID];
     if(entity)
     {
-        if(!flag && [entity.isExistCloud boolValue])
+        if(!flag)
         {
             entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
             entity.isRemoved = @(YES);
