@@ -28,6 +28,11 @@
     return selfCopy;
 }
 
+- (NSString *)ID
+{
+    return self.chargeID;
+}
+
 - (BOOL)isTimeOut
 {
     if(self.endTimeInterval)

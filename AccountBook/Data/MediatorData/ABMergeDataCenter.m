@@ -156,8 +156,7 @@
     {
         NSObject<ABSyncProtocol> *localModel = localData[localCurCnt];
         NSObject<ABSyncProtocol> *cloudModel = cloudData[cloudCurCnt];
-        
-        if([self isEqualObj1:localModel obj2:cloudModel])
+        if([localModel.ID isEqualToString:cloudModel.ID])
         {
             if(localModel.modifyTime < cloudModel.modifyTime)
             {
@@ -232,11 +231,9 @@
                 }
                 if(!finded)
                 {
-                    chargeModel.isRemoved = YES;
-                    chargeModel.modifyTime = [[NSDate date] timeIntervalSince1970];
                     dispatch_group_async(group, queue, ^{
                         dispatch_group_enter(group);
-                        [ABChargeCoreDataManager updateChargeModel:chargeModel completeHandler:^(BOOL success) {
+                        [ABChargeCoreDataManager deleteChargeChargeID:chargeModel.ID flag:NO completeHandler:^(BOOL success) {
                             dispatch_group_leave(group);
                         }];
                     });
@@ -361,21 +358,6 @@
             completeHandler(errorCount);
         });
     }];
-}
-
-#pragma mark - Helper
-
-- (BOOL)isEqualObj1:(NSObject<ABSyncProtocol> *)obj1 obj2:(NSObject<ABSyncProtocol> *)obj2
-{
-    if([obj1 isKindOfClass:[ABCategoryModel class]] && [obj2 isKindOfClass:[ABCategoryModel class]])
-    {
-        return [[(ABCategoryModel *)obj1 categoryID] isEqualToString:[(ABCategoryModel *)obj2 categoryID]];
-    }
-    else if([obj1 isKindOfClass:[ABChargeModel class]] && [obj2 isKindOfClass:[ABChargeModel class]])
-    {
-        return [[(ABChargeModel *)obj1 chargeID] isEqualToString:[(ABChargeModel *)obj2 chargeID]];
-    }
-    return NO;
 }
 
 @end

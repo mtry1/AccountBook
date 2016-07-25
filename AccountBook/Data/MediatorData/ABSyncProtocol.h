@@ -8,6 +8,7 @@
 
 @protocol ABSyncProtocol <NSObject>
 
+- (NSString *)ID;
 ///是否已经删除
 @property (nonatomic) BOOL isRemoved;
 ///是否在云端存在

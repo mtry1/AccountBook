@@ -27,4 +27,9 @@
     return selfCopy;
 }
 
+- (NSString *)ID
+{
+    return self.categoryID;
+}
+
 @end
