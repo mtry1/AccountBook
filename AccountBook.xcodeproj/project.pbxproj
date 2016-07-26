@@ -871,7 +871,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "48339cf2-fd97-4885-aa24-b00ecf900e6b";
+				PROVISIONING_PROFILE = "2d2afe41-d930-4131-85e2-fb26bdb53394";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 			};
@@ -896,7 +896,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "41c81ca9-d8d7-4a0f-a9b5-af5eee6550e5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 			};

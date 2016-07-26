@@ -17,29 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="随身记" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EL9-0e-HhZ">
-                                <rect key="frame" x="240" y="276" width="120" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="100" text="随身记" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EL9-0e-HhZ">
+                                <rect key="frame" x="200" y="270" width="200" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="28f-yT-cp6"/>
                                     <constraint firstAttribute="width" constant="200" id="4tk-w0-jWC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.19215686274509805" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="PDF_LauchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-24-cW7">
-                                <rect key="frame" x="225" y="145" width="150" height="150"/>
+                                <rect key="frame" x="225" y="139" width="150" height="150"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="9E6-0B-gxG"/>
                                     <constraint firstAttribute="width" constant="250" id="9wu-aV-pNZ"/>
                                     <constraint firstAttribute="width" constant="150" id="Ccq-70-DNz"/>
                                     <constraint firstAttribute="height" constant="150" id="TGp-Iw-98a"/>
+                                    <constraint firstAttribute="width" constant="150" id="UMM-QL-PX0"/>
+                                    <constraint firstAttribute="height" constant="150" id="v1W-us-FcT"/>
                                     <constraint firstAttribute="height" constant="250" id="wGn-eu-ytv"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="9E6-0B-gxG"/>
                                         <exclude reference="9wu-aV-pNZ"/>
                                         <exclude reference="Ccq-70-DNz"/>
                                         <exclude reference="TGp-Iw-98a"/>
+                                        <exclude reference="UMM-QL-PX0"/>
+                                        <exclude reference="v1W-us-FcT"/>
                                         <exclude reference="wGn-eu-ytv"/>
                                     </mask>
                                 </variation>
@@ -51,7 +57,8 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="9wu-aV-pNZ"/>
+                                        <include reference="9E6-0B-gxG"/>
+                                        <exclude reference="9wu-aV-pNZ"/>
                                         <include reference="wGn-eu-ytv"/>
                                     </mask>
                                 </variation>
@@ -61,17 +68,24 @@
                         <constraints>
                             <constraint firstItem="8Sx-24-cW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3cS-bU-bea"/>
                             <constraint firstItem="EL9-0e-HhZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Sx-jt-ve5"/>
+                            <constraint firstItem="EL9-0e-HhZ" firstAttribute="top" secondItem="8Sx-24-cW7" secondAttribute="bottom" constant="-19" id="HHL-4B-0TD"/>
+                            <constraint firstItem="8Sx-24-cW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IO1-XC-RaJ"/>
                             <constraint firstItem="8Sx-24-cW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IYA-Oj-r5I"/>
+                            <constraint firstItem="8Sx-24-cW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="P6x-mK-xy3"/>
                             <constraint firstItem="EL9-0e-HhZ" firstAttribute="top" secondItem="8Sx-24-cW7" secondAttribute="bottom" constant="-19" id="Q28-Pj-hGM"/>
                             <constraint firstItem="EL9-0e-HhZ" firstAttribute="top" secondItem="8Sx-24-cW7" secondAttribute="bottom" constant="-19" id="ebG-kF-p1N"/>
                             <constraint firstItem="EL9-0e-HhZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="f5E-Uf-b0u"/>
+                            <constraint firstItem="EL9-0e-HhZ" firstAttribute="top" secondItem="8Sx-24-cW7" secondAttribute="bottom" constant="-19" id="xlX-dY-yDY"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="3cS-bU-bea"/>
+                                <exclude reference="IO1-XC-RaJ"/>
                                 <exclude reference="IYA-Oj-r5I"/>
+                                <exclude reference="HHL-4B-0TD"/>
                                 <exclude reference="Q28-Pj-hGM"/>
                                 <exclude reference="ebG-kF-p1N"/>
+                                <exclude reference="xlX-dY-yDY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -83,7 +97,9 @@
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="3cS-bU-bea"/>
-                                <include reference="Q28-Pj-hGM"/>
+                                <include reference="IO1-XC-RaJ"/>
+                                <exclude reference="Q28-Pj-hGM"/>
+                                <include reference="xlX-dY-yDY"/>
                             </mask>
                         </variation>
                     </view>
