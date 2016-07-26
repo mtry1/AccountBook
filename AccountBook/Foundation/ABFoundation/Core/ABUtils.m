@@ -56,14 +56,6 @@
     return [NSString stringWithFormat:@"%04ld-%02ld-%02ld", y, m, d];
 }
 
-///本地化时间
-+ (NSString *)localDateString:(NSDate *)date
-{
-    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd"];
-    return [formatter stringFromDate:date];
-}
-
 ///打开appstore评价
 + (void)openAppStoreAndEvaluate
 {

@@ -21,9 +21,6 @@
 ///时间转换
 + (NSString *)dateString:(NSTimeInterval)timeInterval;
 
-///本地化时间
-+ (NSString *)localDateString:(NSDate *)date;
-
 ///打开appstore评价
 + (void)openAppStoreAndEvaluate;
 
