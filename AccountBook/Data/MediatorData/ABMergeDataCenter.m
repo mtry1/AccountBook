@@ -92,14 +92,7 @@
             dispatch_group_notify(group, dispatch_get_main_queue(), ^{
                 if(existUpdateLocalFailure || mergeFailure)
                 {
-                    if(mergeFailure)
-                    {
-                        finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
-                    }
-                    else
-                    {
-                        finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
-                    }
+                    finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
                 }
                 else
                 {
@@ -154,7 +147,7 @@
     }];
 }
 
-- (NSArray *)syncLoaclData:(NSArray *)localData cloudData:(NSArray *)cloudData
+- (NSArray *)syncLoaclData:(NSArray<NSObject<ABSyncProtocol> *> *)localData cloudData:(NSArray<NSObject<ABSyncProtocol> *> *)cloudData
 {
     NSMutableArray *mergeData = [NSMutableArray array];
     
