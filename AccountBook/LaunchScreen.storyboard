@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tg8-p8-E22"/>
+                        <viewControllerLayoutGuide type="bottom" id="gXv-7S-j0u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="随身记" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EL9-0e-HhZ">
+                                <rect key="frame" x="240" y="276" width="120" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="28f-yT-cp6"/>
+                                    <constraint firstAttribute="width" constant="120" id="4tk-w0-jWC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.19215686274509805" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="PDF_LauchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-24-cW7">
+                                <rect key="frame" x="225" y="145" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="9wu-aV-pNZ"/>
+                                    <constraint firstAttribute="width" constant="150" id="Ccq-70-DNz"/>
+                                    <constraint firstAttribute="height" constant="150" id="TGp-Iw-98a"/>
+                                    <constraint firstAttribute="height" constant="250" id="wGn-eu-ytv"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9wu-aV-pNZ"/>
+                                        <exclude reference="Ccq-70-DNz"/>
+                                        <exclude reference="TGp-Iw-98a"/>
+                                        <exclude reference="wGn-eu-ytv"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Ccq-70-DNz"/>
+                                        <include reference="TGp-Iw-98a"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="9wu-aV-pNZ"/>
+                                        <include reference="wGn-eu-ytv"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Sx-24-cW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3cS-bU-bea"/>
+                            <constraint firstItem="EL9-0e-HhZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Sx-jt-ve5"/>
+                            <constraint firstItem="8Sx-24-cW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IYA-Oj-r5I"/>
+                            <constraint firstItem="EL9-0e-HhZ" firstAttribute="top" secondItem="8Sx-24-cW7" secondAttribute="bottom" constant="-19" id="Q28-Pj-hGM"/>
+                            <constraint firstItem="EL9-0e-HhZ" firstAttribute="top" secondItem="8Sx-24-cW7" secondAttribute="bottom" constant="-19" id="ebG-kF-p1N"/>
+                            <constraint firstItem="EL9-0e-HhZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="f5E-Uf-b0u"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3cS-bU-bea"/>
+                                <exclude reference="IYA-Oj-r5I"/>
+                                <exclude reference="Q28-Pj-hGM"/>
+                                <exclude reference="ebG-kF-p1N"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="IYA-Oj-r5I"/>
+                                <include reference="ebG-kF-p1N"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="3cS-bU-bea"/>
+                                <include reference="Q28-Pj-hGM"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <keyCommands/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50" y="374"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="PDF_LauchScreen" width="100" height="100"/>
+    </resources>
+</document>

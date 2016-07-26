@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93562DB11D45E7FE00E6B27A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93562DB01D45E7FE00E6B27A /* LaunchScreen.storyboard */; };
 		936FDD321D41BF4E007E3489 /* UIButton+MTEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD311D41BF4E007E3489 /* UIButton+MTEdgeInsets.m */; };
 		936FDD351D41C00A007E3489 /* ABTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD341D41C00A007E3489 /* ABTextViewController.m */; };
 		936FDD3A1D41FC40007E3489 /* ABCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD391D41FC40007E3489 /* ABCenterDataManager.m */; };
@@ -72,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93562DB01D45E7FE00E6B27A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AccountBook/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93679C421BA3D811002B2401 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936FDD301D41BF4E007E3489 /* UIButton+MTEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MTEdgeInsets.h"; sourceTree = "<group>"; };
 		936FDD311D41BF4E007E3489 /* UIButton+MTEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MTEdgeInsets.m"; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 				9372362F1D4109910068C30A /* ABPrefixHeader.pch */,
 				937236301D4109910068C30A /* AccountBook.entitlements */,
 				937236941D4109910068C30A /* Images.xcassets */,
+				93562DB01D45E7FE00E6B27A /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
 			path = ..;
@@ -668,6 +671,7 @@
 				937236F41D4109910068C30A /* Images.xcassets in Resources */,
 				937236D21D4109910068C30A /* Localizable.strings in Resources */,
 				937236D11D4109910068C30A /* InfoPlist.strings in Resources */,
+				93562DB11D45E7FE00E6B27A /* LaunchScreen.storyboard in Resources */,
 				937236CF1D4109910068C30A /* AccountBook.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,7 +856,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AccountBook/AccountBook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: rongqing zhou (47237LH7N7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rongqing zhou (47237LH7N7)";
@@ -878,7 +881,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AccountBook/AccountBook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
