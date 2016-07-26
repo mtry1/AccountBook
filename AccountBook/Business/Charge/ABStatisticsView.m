@@ -88,7 +88,7 @@
         _startButton = [[UIButton alloc] init];
         _startButton.titleLabel.font = ABStatisticsViewDefaultFont;
         [_startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_startButton setImage:[UIImage imageNamed:@"chargeList_arrowDown"] forState:UIControlStateNormal];
+        [_startButton setImage:[UIImage imageNamed:@"PDF_ArrowDown"] forState:UIControlStateNormal];
         [_startButton addTarget:self action:@selector(touchUpInsideStartButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _startButton;
@@ -101,7 +101,7 @@
         _endButton = [[UIButton alloc] init];
         _endButton.titleLabel.font = ABStatisticsViewDefaultFont;
         [_endButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_endButton setImage:[UIImage imageNamed:@"chargeList_arrowDown"] forState:UIControlStateNormal];
+        [_endButton setImage:[UIImage imageNamed:@"PDF_ArrowDown"] forState:UIControlStateNormal];
         [_endButton addTarget:self action:@selector(touchUpInsideEndButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _endButton;
@@ -277,7 +277,7 @@
 
 - (void)updateDateImageButton:(UIButton *)button
 {
-    NSString *imageName = button.selected ? @"chargeList_arrowUp" : @"chargeList_arrowDown";
+    NSString *imageName = button.selected ? @"PDF_ArrowUp" : @"PDF_ArrowDown";
     [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
