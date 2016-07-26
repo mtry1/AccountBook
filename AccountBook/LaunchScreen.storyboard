@@ -20,10 +20,10 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="随身记" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EL9-0e-HhZ">
                                 <rect key="frame" x="240" y="276" width="120" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="28f-yT-cp6"/>
-                                    <constraint firstAttribute="width" constant="120" id="4tk-w0-jWC"/>
+                                    <constraint firstAttribute="height" constant="60" id="28f-yT-cp6"/>
+                                    <constraint firstAttribute="width" constant="200" id="4tk-w0-jWC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.19215686274509805" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
