@@ -36,6 +36,7 @@
     [ABCloudKit requestIsOpenCloudCompletionHandler:^(BOOL success, NSString *errorMessage) {
         if(success)
         {
+            __block BOOL mergeFailure = NO;
             __block BOOL existUpdateLocalFailure = NO;
             dispatch_group_t group = dispatch_group_create();
             dispatch_group_async(group, dispatch_get_main_queue(), ^{
@@ -54,12 +55,12 @@
                                 dispatch_group_leave(group);
                             }];
                         }
-                        dispatch_group_leave(group);
                     }
                     else
                     {
-                        finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
+                        mergeFailure = YES;
                     }
+                    dispatch_group_leave(group);
                 }];
             });
             
@@ -79,19 +80,26 @@
                                 dispatch_group_leave(group);
                             }];
                         }
-                        dispatch_group_leave(group);
+                    }
+                    else
+                    {
+                        mergeFailure = YES;
+                    }
+                    dispatch_group_leave(group);
+                }];
+            });
+            
+            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                if(existUpdateLocalFailure || mergeFailure)
+                {
+                    if(mergeFailure)
+                    {
+                        finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
                     }
                     else
                     {
                         finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
                     }
-                }];
-            });
-            
-            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-                if(existUpdateLocalFailure)
-                {
-                    finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
                 }
                 else
                 {

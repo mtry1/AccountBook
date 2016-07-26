@@ -113,9 +113,10 @@
     {
         [MTProgressHUD showLoadingWithMessage:NSLocalizedString(@"merging", nil)];
         [[ABMergeDataCenter sharedInstance] mergeCloudDataFinishedHandler:^(BOOL success, NSString *errorMessage) {
-            [MTProgressHUD close];
+            
             if(success)
             {
+                [MTProgressHUD close];
                 [[NSNotificationCenter defaultCenter] postNotificationName:ABMergeSuccessNotification object:nil];
             }
             else
@@ -123,6 +124,10 @@
                 if(errorMessage)
                 {
                     [MTProgressHUD showErrorWithMessge:errorMessage];
+                }
+                else
+                {
+                    [MTProgressHUD close];
                 }
             }
         }];
