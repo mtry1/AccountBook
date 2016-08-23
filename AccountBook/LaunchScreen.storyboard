@@ -111,14 +111,14 @@
                                 <exclude reference="Dk4-Nz-Caz"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="QaT-TL-Ebt"/>
+                                <exclude reference="lWl-Wb-1uv"/>
+                                <exclude reference="lrI-n7-MMe"/>
                                 <exclude reference="8KJ-S1-nMR"/>
                                 <exclude reference="9TL-N4-z6K"/>
                                 <exclude reference="WaC-au-hNh"/>
                                 <exclude reference="1Yc-05-jJ3"/>
                                 <exclude reference="IYA-Oj-r5I"/>
-                                <exclude reference="QaT-TL-Ebt"/>
-                                <exclude reference="lWl-Wb-1uv"/>
-                                <exclude reference="lrI-n7-MMe"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -137,11 +137,11 @@
                                 <include reference="Dk4-Nz-Caz"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="1Yc-05-jJ3"/>
-                                <exclude reference="P6x-mK-xy3"/>
                                 <include reference="QaT-TL-Ebt"/>
                                 <include reference="lWl-Wb-1uv"/>
                                 <include reference="lrI-n7-MMe"/>
+                                <include reference="1Yc-05-jJ3"/>
+                                <exclude reference="P6x-mK-xy3"/>
                             </mask>
                         </variation>
                     </view>
