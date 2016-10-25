@@ -10,7 +10,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "33DC57F9-C7F5-4985-8102-87991E0F1561",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "85523BEB64E7974437CDD340AF36A6D57649665A" : "AccountBook\/AccountBook\/Foundation\/MTFoundation\/MTButtonEdgeInsets\/",
-    "1A4F25BE00785433E2C97B78EAE769ED15ACDC4A" : "AccountBook"
+    "1A4F25BE00785433E2C97B78EAE769ED15ACDC4A" : "AccountBook\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "AccountBook",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
