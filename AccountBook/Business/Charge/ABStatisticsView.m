@@ -161,28 +161,28 @@
     
     CGRect rect = self.bounds;
     rect.origin.x = 5;
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.timeLabel.text font:self.timeLabel.font];
+    rect.size.width = self.timeLabel.attributedText.size.width;
     self.timeLabel.frame = rect;
     
     rect.origin.x = CGRectGetMaxX(self.timeLabel.frame);
     rect.origin.y = 3.0f;
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.startButton.titleLabel.text font:self.startButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame);
+    rect.size.width = self.startButton.titleLabel.attributedText.size.width + self.startButton.imageView.image.size.width;
     self.startButton.frame = rect;
     [self.startButton centerLabelTopAndImageBottomSpacing:2];
     
     rect = self.timeLabel.bounds;
     rect.origin.x = CGRectGetMaxX(self.startButton.frame);
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.toLabel.text font:self.toLabel.font];;
+    rect.size.width = self.toLabel.attributedText.size.width;
     self.toLabel.frame = rect;
     
     rect = self.startButton.frame;
     rect.origin.x = CGRectGetMaxX(self.toLabel.frame);
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.endButton.titleLabel.text font:self.endButton.titleLabel.font] + CGRectGetWidth(self.startButton.imageView.frame);
+    rect.size.width = self.endButton.titleLabel.attributedText.size.width + self.endButton.imageView.image.size.width;
     self.endButton.frame = rect;
     [self.endButton centerLabelTopAndImageBottomSpacing:2];
     
     rect = self.toLabel.bounds;
-    rect.size.width = [ABUtils calculateWidthForHeight:rect.size.height text:self.amountLabel.text font:self.amountLabel.font];;
+    rect.size.width = self.amountLabel.attributedText.size.width;
     rect.origin.x = CGRectGetWidth(self.frame) - rect.size.width - 5;
     self.amountLabel.frame = rect;
 }
