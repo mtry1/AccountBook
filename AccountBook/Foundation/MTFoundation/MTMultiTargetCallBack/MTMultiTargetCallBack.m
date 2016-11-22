@@ -96,7 +96,11 @@
     invocation.target = target;
     invocation.selector = selector;
     
-    [invocation setArgument:&startParam atIndex:2];
+    if(methodSignature.numberOfArguments > 2)
+    {
+        [invocation setArgument:&startParam atIndex:2];
+    }
+    
     for(NSInteger index = 3; index < methodSignature.numberOfArguments; index++)
     {
         const char *type = [methodSignature getArgumentTypeAtIndex:index];
