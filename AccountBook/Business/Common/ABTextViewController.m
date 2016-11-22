@@ -33,7 +33,7 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.textView];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"finish", nil)
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(touchUpInsideRightBarButtonItem:)];

@@ -9,16 +9,11 @@
 #import "ABChargeEditModel.h"
 #import "ABChargeDataManger.h"
 
-///开始日期
-#define ABChargeEditStartDate NSLocalizedString(@"sta_date", nil)
-///结束日期
-#define ABChargeEditEndDate NSLocalizedString(@"end_date", nil)
-///名称
-#define ABChargeEditTitle NSLocalizedString(@"name", nil)
-///额度
-#define ABChargeEditAmount NSLocalizedString(@"amount", nil)
-///备注
-#define ABChargeEditNotes NSLocalizedString(@"notes", nil)
+extern NSString *const ABChargeEditStartDate;
+extern NSString *const ABChargeEditEndDate;
+extern NSString *const ABChargeEditTitle;
+extern NSString *const ABChargeEditAmount;
+extern NSString *const ABChargeEditNotes;
 
 @class ABChargeEditDataManager;
 

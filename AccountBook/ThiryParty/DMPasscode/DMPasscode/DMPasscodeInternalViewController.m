@@ -182,7 +182,7 @@
     LAContext* context = [[LAContext alloc] init];
     if (_mode && [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                localizedReason:NSLocalizedString(@"dmpasscode_touchid_reason", nil)
+                localizedReason:@"通过Home键验证已有手机指纹"
                           reply:^(BOOL success, NSError* error) {
                               
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -71,7 +71,7 @@
         _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 80, 44)];
         _cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [_cancelButton setTitleColor:[UIColor colorWithUInt:0x007aff] forState:UIControlStateNormal];
-        [_cancelButton setTitle:NSLocalizedString(@"cancel", nil) forState:UIControlStateNormal];
+        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelButton;
@@ -84,7 +84,7 @@
         _confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.contentView.frame) - 80- 10, 0, 80, 44)];
         _confirmButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [_confirmButton setTitleColor:[UIColor colorWithUInt:0x007aff] forState:UIControlStateNormal];
-        [_confirmButton setTitle:NSLocalizedString(@"ok", nil) forState:UIControlStateNormal];
+        [_confirmButton setTitle:@"确定" forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(touchUpInsideConfirmButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmButton;

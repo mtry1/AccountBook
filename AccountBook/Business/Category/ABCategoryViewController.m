@@ -64,9 +64,9 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"qmemo", nil);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"add", nil) style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"set", nil) style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideLeftBarButtonItem:)];
+    self.title = @"MT记账";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideLeftBarButtonItem:)];
     
     [self.view addSubview:self.collectionView];
     [self.dataManger requestInitData];
@@ -153,22 +153,22 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
         if(model)
         {
             NSMutableString *title = [NSMutableString string];
-            [title appendString:NSLocalizedString(@"edit", nil)];
+            [title appendString:@"编辑"];
             [title appendFormat:@" %@", model.name];
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                                      message:nil
                                                                               preferredStyle:UIAlertControllerStyleActionSheet];
             
-            UIAlertAction *renameAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"rename", nil)
+            UIAlertAction *renameAction = [UIAlertAction actionWithTitle:@"重命名"
                                                                    style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * _Nonnull action)
             {
-                UIAlertController *controller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"rename", nil)
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"重命名"
                                                                                     message:model.name
                                                                              preferredStyle:UIAlertControllerStyleAlert];
                 [controller addTextFieldWithConfigurationHandler:nil];
                 
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil)
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
                                                                    style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * _Nonnull action)
                 {
@@ -178,7 +178,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
                         [self.dataManger requestRename:textField.text atIndex:indexPath.row];
                     }
                 }];
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil)
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                                        style:UIAlertActionStyleCancel
                                                                      handler:nil];
                 [controller addAction:okAction];
@@ -186,20 +186,20 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
                 [self presentViewController:controller animated:YES completion:nil];
             }];
             
-            UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"del", nil)
+            UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除"
                                                                    style:UIAlertActionStyleDestructive
                                                                  handler:^(UIAlertAction * _Nonnull action)
             {
-                UIAlertController *controller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"you_want_to_delete", nil) message:model.name preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您确定要删除" message:model.name preferredStyle:UIAlertControllerStyleAlert];
                 
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil)
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
                                                                    style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * _Nonnull action)
                 {
                     [self.dataManger requestRemoveIndex:indexPath.row];
                 }];
                 
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil)
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                                        style:UIAlertActionStyleCancel
                                                                      handler:nil];
                 
@@ -208,7 +208,7 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
                 [self presentViewController:controller animated:YES completion:nil];
             }];
             
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil)
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                                    style:UIAlertActionStyleCancel
                                                                  handler:nil];
             
@@ -241,12 +241,12 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
 
 - (void)touchUpInsideRightBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"crete_title", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"创建标题，长按重命名" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertContoller addTextFieldWithConfigurationHandler:nil];
-    [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil)
+    [alertContoller addAction:[UIAlertAction actionWithTitle:@"取消"
                                                        style:UIAlertActionStyleCancel
                                                      handler:nil]];
-    [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil)
+    [alertContoller addAction:[UIAlertAction actionWithTitle:@"确定"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
         UITextField *textField = [[alertContoller textFields] firstObject];

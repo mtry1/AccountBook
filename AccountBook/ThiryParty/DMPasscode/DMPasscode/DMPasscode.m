@@ -115,9 +115,9 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     [nc setModalPresentationStyle:UIModalPresentationFormSheet];
     [viewController presentViewController:nc animated:animated completion:nil];
     if (_mode == 0) {
-        [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_enter_new_code", nil)];
+        [_passcodeViewController setInstructions:@"输入新的密码"];
     } else if (_mode == 1) {
-        [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_enter_to_unlock", nil)];
+        [_passcodeViewController setInstructions:@"输入密码"];
     }
 }
 
@@ -143,7 +143,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     if (_mode == 0) {
         if (_count == 0) {
             _prevCode = code;
-            [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_repeat", nil)];
+            [_passcodeViewController setInstructions:@"重新输入"];
             [_passcodeViewController setErrorMessage:@""];
             [_passcodeViewController reset];
         } else {
@@ -152,8 +152,8 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
                 [self closeAndNotify:YES withError:nil];
                 _count = 0;
             } else {
-                [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_enter_new_code", nil)];
-                [_passcodeViewController setErrorMessage:NSLocalizedString(@"dmpasscode_not_match", nil)];
+                [_passcodeViewController setInstructions:@"输入新的密码"];
+                [_passcodeViewController setErrorMessage:@"密码错误，重新输入"];
                 [_passcodeViewController reset];
                 _count = 0;
                 return;
@@ -163,7 +163,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
         if ([code isEqualToString:[[DMKeychain defaultKeychain] objectForKey:KEYCHAIN_NAME]]) {
             [self closeAndNotify:YES withError:nil];
         } else {
-            [_passcodeViewController setErrorMessage:NSLocalizedString(@"dmpasscode_n_left", nil)];
+            [_passcodeViewController setErrorMessage:@"密码错误"];
             [_passcodeViewController reset];
         }
     }

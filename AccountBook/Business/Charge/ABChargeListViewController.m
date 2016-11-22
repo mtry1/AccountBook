@@ -75,7 +75,7 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.statisticsView];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"add", nil) style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpInsideRightBarButtonItem:)];
     
     [self.dataManager requestChargeDataWithCategoryID:self.categoryID];
     
@@ -139,9 +139,9 @@
         ABChargeModel *model = [self.dataManager dataAtIndex:indexPath.row];
         if(model)
         {
-            UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"you_want_to_delete", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
-            [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil) style:UIAlertActionStyleCancel handler:nil]];
-            [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"del", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"您确定要删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alertContoller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            [alertContoller addAction:[UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self.dataManager requestRemoveIndex:indexPath.row];
             }]];
             [self presentViewController:alertContoller animated:YES completion:nil];
@@ -151,7 +151,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"del", nil);
+    return @"删除";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,7 +161,7 @@
     ABChargeEditViewController *controller = [[ABChargeEditViewController alloc] init];
     controller.chargeDataManager = self.dataManager;
     controller.editIndex = indexPath.row;
-    controller.title = NSLocalizedString(@"details", nil);
+    controller.title = @"详情";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -179,7 +179,7 @@
     ABChargeEditViewController *controller = [[ABChargeEditViewController alloc] init];
     controller.chargeDataManager = self.dataManager;
     controller.editIndex = -1;
-    controller.title = NSLocalizedString(@"add", nil);
+    controller.title = @"添加";
     
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navigation animated:YES completion:nil];

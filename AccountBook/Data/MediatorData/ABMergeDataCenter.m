@@ -92,7 +92,7 @@
             dispatch_group_notify(group, dispatch_get_main_queue(), ^{
                 if(existUpdateLocalFailure || mergeFailure)
                 {
-                    finishedHandler(NO, NSLocalizedString(@"merge_failure", nil));
+                    finishedHandler(NO, @"合并失败，请稍后再试");
                 }
                 else
                 {
@@ -104,8 +104,8 @@
         else
         {
             finishedHandler(NO, nil);
-            UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"login_iCloud", nil) message:NSLocalizedString(@"iCloud_is_open", nil) preferredStyle:UIAlertControllerStyleAlert];
-            [alertContoller addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil) style:UIAlertActionStyleDefault handler:nil]];
+            UIAlertController *alertContoller = [UIAlertController alertControllerWithTitle:@"请登录iCloud帐号" message:@"设置->iCloud->iCloud Drive" preferredStyle:UIAlertControllerStyleAlert];
+            [alertContoller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
             [[ABUtils currentShowViewController] presentViewController:alertContoller animated:YES completion:nil];
         }
     }];

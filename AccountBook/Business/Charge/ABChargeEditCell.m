@@ -109,7 +109,7 @@ NSInteger const ABChargeEditCellDefaultHeight = 50;
         {
             [text appendString:model.desc];
         }
-        [text appendString:isEdit ? NSLocalizedString(@"required", nil): @""];
+        [text appendString:isEdit ? @"（必填）": @""];
         self.descLabel.text = text;
     }
     else if([model.title isEqualToString:ABChargeEditNotes])

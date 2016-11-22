@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"set", nil);
+    self.title = @"设置";
     
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
@@ -111,7 +111,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if([cell.textLabel.text isEqualToString:ABSetTitleiCloud])
     {
-        [MTProgressHUD showLoadingWithMessage:NSLocalizedString(@"merging", nil)];
+        [MTProgressHUD showLoadingWithMessage:@"合并中"];
         [[ABMergeDataCenter sharedInstance] mergeCloudDataFinishedHandler:^(BOOL success, NSString *errorMessage) {
             
             if(success)

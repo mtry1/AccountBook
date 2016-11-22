@@ -25,7 +25,7 @@
             else
             {
                 success = NO;
-                errorMessge = NSLocalizedString(@"iCloud_is_open", nil);
+                errorMessge = @"设置->iCloud->iCloud Drive";
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionHandler(success, errorMessge);

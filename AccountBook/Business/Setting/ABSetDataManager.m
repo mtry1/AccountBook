@@ -9,6 +9,11 @@
 #import "ABSetDataManager.h"
 #import "ABPasscodeHelper.h"
 
+NSString *const ABSetTitleLock = @"安全锁";
+NSString *const ABSetTitleiCloud = @"合并iCloud数据";
+NSString *const ABSetTitleEndTimeRed = @"关闭超过结束日期显示红色";
+NSString *const ABSetTitleGoAppraise = @"去评价";
+
 @interface ABSetDataManager ()
 
 @property (nonatomic, strong) NSArray *listItem;
