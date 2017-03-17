@@ -12,3 +12,7 @@
 *.xcuserstate
 
 *.xcuserstate
+
+.DS_Store
+
+AccountBook.xcodeproj/xcuserdata/mtry.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
