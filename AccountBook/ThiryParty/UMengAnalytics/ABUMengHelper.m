@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ABUMengHelper.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 
 @implementation ABUMengHelper
 
@@ -27,7 +27,9 @@
 
 + (void)configUMengAnalytics
 {
-    [MobClick startWithAppkey:@"564d8b9667e58eeb6a00283c" reportPolicy:BATCH channelId:nil];
+    UMConfigInstance.appKey = @"564d8b9667e58eeb6a00283c";
+    UMConfigInstance.channelId = @"App Store";
+    [MobClick startWithConfigure:UMConfigInstance];
     [MobClick setEncryptEnabled:YES];
     [MobClick setAppVersion:XcodeAppVersion];
 }

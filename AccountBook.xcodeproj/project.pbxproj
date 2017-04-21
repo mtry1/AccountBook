@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2657A9C11EA9E4B300F54296 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2657A9C01EA9E4B300F54296 /* UMMobClick.framework */; };
+		2657A9C31EA9E6AC00F54296 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2657A9C21EA9E6AC00F54296 /* CoreTelephony.framework */; };
+		2657A9C51EA9E6D400F54296 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2657A9C41EA9E6D400F54296 /* libsqlite3.tbd */; };
 		93562DB11D45E7FE00E6B27A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93562DB01D45E7FE00E6B27A /* LaunchScreen.storyboard */; };
 		936FDD321D41BF4E007E3489 /* UIButton+MTEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD311D41BF4E007E3489 /* UIButton+MTEdgeInsets.m */; };
 		936FDD351D41C00A007E3489 /* ABTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936FDD341D41C00A007E3489 /* ABTextViewController.m */; };
@@ -62,7 +65,6 @@
 		937237061D4109910068C30A /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236BE1D4109910068C30A /* NSObject+MJProperty.m */; };
 		937237071D4109910068C30A /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236C01D4109910068C30A /* NSString+MJExtension.m */; };
 		937237081D4109910068C30A /* ABUMengHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 937236C31D4109910068C30A /* ABUMengHelper.m */; };
-		937237091D4109910068C30A /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 937236C51D4109910068C30A /* libMobClickLibrary.a */; };
 		9372370D1D410A860068C30A /* ABChargeEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372370C1D410A860068C30A /* ABChargeEditModel.m */; };
 		9372370F1D410AF20068C30A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9372370E1D410AF20068C30A /* main.m */; };
 		937237121D410B640068C30A /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 937237111D410B640068C30A /* NSString+Category.m */; };
@@ -71,6 +73,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2657A9C01EA9E4B300F54296 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
+		2657A9C21EA9E6AC00F54296 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2657A9C41EA9E6D400F54296 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		93562DB01D45E7FE00E6B27A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AccountBook/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93679C421BA3D811002B2401 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936FDD301D41BF4E007E3489 /* UIButton+MTEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MTEdgeInsets.h"; sourceTree = "<group>"; };
@@ -182,9 +187,6 @@
 		937236C01D4109910068C30A /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		937236C21D4109910068C30A /* ABUMengHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUMengHelper.h; sourceTree = "<group>"; };
 		937236C31D4109910068C30A /* ABUMengHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUMengHelper.m; sourceTree = "<group>"; };
-		937236C51D4109910068C30A /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		937236C61D4109910068C30A /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		937236C71D4109910068C30A /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		9372370B1D410A860068C30A /* ABChargeEditModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABChargeEditModel.h; sourceTree = "<group>"; };
 		9372370C1D410A860068C30A /* ABChargeEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABChargeEditModel.m; sourceTree = "<group>"; };
 		9372370E1D410AF20068C30A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AccountBook/main.m; sourceTree = "<group>"; };
@@ -200,8 +202,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				937237091D4109910068C30A /* libMobClickLibrary.a in Frameworks */,
+				2657A9C51EA9E6D400F54296 /* libsqlite3.tbd in Frameworks */,
+				2657A9C31EA9E6AC00F54296 /* CoreTelephony.framework in Frameworks */,
 				938AEFBB1C8E7B2D00262E0E /* libz.tbd in Frameworks */,
+				2657A9C11EA9E4B300F54296 /* UMMobClick.framework in Frameworks */,
 				93938FBA1BF32E6D008CDDD4 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,10 +216,20 @@
 		10187D2DD405954A365E3E2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2657A9C41EA9E6D400F54296 /* libsqlite3.tbd */,
+				2657A9C21EA9E6AC00F54296 /* CoreTelephony.framework */,
 				93938FB91BF32E6D008CDDD4 /* CloudKit.framework */,
 				938AEFBA1C8E7B2D00262E0E /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2657A9BF1EA9E4B300F54296 /* umsdk_IOS_analyics_idfa_v4.2.4 */ = {
+			isa = PBXGroup;
+			children = (
+				2657A9C01EA9E4B300F54296 /* UMMobClick.framework */,
+			);
+			path = umsdk_IOS_analyics_idfa_v4.2.4;
 			sourceTree = "<group>";
 		};
 		93679C391BA3D810002B2401 = {
@@ -563,21 +577,11 @@
 		937236C11D4109910068C30A /* UMengAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				2657A9BF1EA9E4B300F54296 /* umsdk_IOS_analyics_idfa_v4.2.4 */,
 				937236C21D4109910068C30A /* ABUMengHelper.h */,
 				937236C31D4109910068C30A /* ABUMengHelper.m */,
-				937236C41D4109910068C30A /* UMAnalytics_Sdk_3.6.6 */,
 			);
 			path = UMengAnalytics;
-			sourceTree = "<group>";
-		};
-		937236C41D4109910068C30A /* UMAnalytics_Sdk_3.6.6 */ = {
-			isa = PBXGroup;
-			children = (
-				937236C51D4109910068C30A /* libMobClickLibrary.a */,
-				937236C61D4109910068C30A /* MobClick.h */,
-				937236C71D4109910068C30A /* MobClickSocialAnalytics.h */,
-			);
-			path = UMAnalytics_Sdk_3.6.6;
 			sourceTree = "<group>";
 		};
 		9372370A1D4109A90068C30A /* Supporting Files */ = {
@@ -829,15 +833,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: rongqing zhou (47237LH7N7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rongqing zhou (47237LH7N7)";
 				DEVELOPMENT_TEAM = ZV5SVKKPDA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AccountBook/ThiryParty/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.2.4",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AccountBook/ThiryParty/UMengAnalytics/UMAnalytics_Sdk_3.6.6",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -856,15 +861,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: rongqing zhou (ZV5SVKKPDA)";
 				DEVELOPMENT_TEAM = ZV5SVKKPDA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AccountBook/ThiryParty/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.2.4",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AccountBook/ABPrefixHeader.pch";
 				INFOPLIST_FILE = AccountBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AccountBook/ThiryParty/UMengAnalytics/UMAnalytics_Sdk_3.6.6",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtry.AccountBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
