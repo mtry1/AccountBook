@@ -7,15 +7,8 @@
 //
 
 #import "ABCenterDataManager.h"
-#import "MTMultiTargetCallBack.h"
 #import "ABCategoryCoreDataManager.h"
 #import "ABChargeCoreDataManager.h"
-
-@interface ABCenterDataManager ()
-
-@property (nonatomic, strong) MTMultiTargetCallBack *targetsCallBack;
-
-@end
 
 @implementation ABCenterDataManager
 
@@ -29,82 +22,59 @@
     return shareObject;
 }
 
-- (MTMultiTargetCallBack *)targetsCallBack
-{
-    if(!_targetsCallBack)
-    {
-        _targetsCallBack = [[MTMultiTargetCallBack alloc] init];
-    }
-    return _targetsCallBack;
-}
-
-- (void)addDelegate:(id<ABCenterDataManagerDelegate>)delegate
-{
-    [self.targetsCallBack addTarget:delegate];
-}
-
 #pragma mark - 分类
 
-- (void)requestCategoryListData
+- (void)requestCategoryListDataWithCompleteHandler:(void(^)(NSArray<ABCategoryModel *> *array))completeHandler
 {
-    [ABCategoryCoreDataManager selectCategoryListData:NO completeHandler:^(NSArray<ABCategoryModel *> *array) {
-        [self.targetsCallBack callBackIfExistSelector:@selector(centerDataManager:successRequestCategoryListData:) params:self, array];
-    }];
+    [ABCategoryCoreDataManager selectCategoryListData:NO completeHandler:completeHandler];
 }
 
-- (void)requestCategoryAddModel:(ABCategoryModel *)model
+- (void)requestCategoryAddModel:(ABCategoryModel *)model completeHandler:(void(^)(BOOL success))completeHandler
 {
     model.isRemoved = NO;
     model.isExistCloud = NO;
     model.createTime = [[NSDate date] timeIntervalSince1970];
     model.modifyTime = [[NSDate date] timeIntervalSince1970];
-    
-    [ABCategoryCoreDataManager insertCategoryModel:model completeHandler:nil];
+    [ABCategoryCoreDataManager insertCategoryModel:model completeHandler:completeHandler];
 }
 
-- (void)requestCategoryRemoveCategoryId:(NSString *)categoryId
+- (void)requestCategoryRemoveCategoryId:(NSString *)categoryId completeHandler:(void(^)(BOOL success))completeHandler
 {
     [ABCategoryCoreDataManager deleteCategoryCategoryID:categoryId flag:NO completeHandler:^(BOOL success) {
-        if(success)
-        {
-            [ABChargeCoreDataManager deleteChargeListDataWithCategoryID:categoryId completeHandler:nil];
-        }
+        [ABChargeCoreDataManager deleteChargeListDataWithCategoryID:categoryId completeHandler:completeHandler];
     }];
 }
 
-- (void)requestCategoryUpdateModel:(ABCategoryModel *)model
+- (void)requestCategoryUpdateModel:(ABCategoryModel *)model completeHandler:(void(^)(BOOL success))completeHandler
 {
     model.modifyTime = [[NSDate date] timeIntervalSince1970];
-    [ABCategoryCoreDataManager updateCategoryModel:model completeHandler:nil];
+    [ABCategoryCoreDataManager updateCategoryModel:model completeHandler:completeHandler];
 }
 
 #pragma mark - 消费
 
-- (void)requestChargeListDateWithCategoryId:(NSString *)categoryId
+- (void)requestChargeListDateWithCategoryId:(NSString *)categoryId completeHandler:(void(^)(NSArray<ABChargeModel *> *array))completeHandler
 {
-    [ABChargeCoreDataManager selectChargeListDateWithCategoryID:categoryId completeHandler:^(NSArray<ABChargeModel *> *array) {
-        [self.targetsCallBack callBackIfExistSelector:@selector(centerDataManager:successRequestChargeListData:) params:self, array];
-    }];
+    [ABChargeCoreDataManager selectChargeListDateWithCategoryID:categoryId completeHandler:completeHandler];
 }
 
-- (void)requestChargeAddModel:(ABChargeModel *)model
+- (void)requestChargeAddModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler
 {
     model.isRemoved = NO;
     model.isExistCloud = NO;
     model.modifyTime = [[NSDate date] timeIntervalSince1970];
-    
-    [ABChargeCoreDataManager insertChargeModel:model completeHandler:nil];
+    [ABChargeCoreDataManager insertChargeModel:model completeHandler:completeHandler];
 }
 
-- (void)requestChargeRemoveChargeId:(NSString *)chargeId
+- (void)requestChargeRemoveChargeId:(NSString *)chargeId completeHandler:(void(^)(BOOL success))completeHandler
 {
-    [ABChargeCoreDataManager deleteChargeChargeID:chargeId flag:NO completeHandler:nil];
+    [ABChargeCoreDataManager deleteChargeChargeID:chargeId flag:NO completeHandler:completeHandler];
 }
 
-- (void)requestChargeUpdateModel:(ABChargeModel *)model
+- (void)requestChargeUpdateModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler
 {
     model.modifyTime = [[NSDate date] timeIntervalSince1970];
-    [ABChargeCoreDataManager updateChargeModel:model completeHandler:nil];
+    [ABChargeCoreDataManager updateChargeModel:model completeHandler:completeHandler];
 }
 
 @end

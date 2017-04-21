@@ -9,48 +9,32 @@
 #import "ABChargeModel.h"
 #import "ABCategoryModel.h"
 
-@class ABCenterDataManager;
-
-@protocol ABCenterDataManagerDelegate <NSObject>
-
-@optional
-
-///分类数据请求请求成功
-- (void)centerDataManager:(ABCenterDataManager *)manager successRequestCategoryListData:(NSArray *)data;
-
-///消费列表数据请求成功
-- (void)centerDataManager:(ABCenterDataManager *)manager successRequestChargeListData:(NSArray *)data;
-
-@end
-
 @interface ABCenterDataManager : NSObject
 
 + (instancetype)sharedInstance;
 
-- (void)addDelegate:(id<ABCenterDataManagerDelegate>)delegate;
-
 ///请求分类列表数据
-- (void)requestCategoryListData;
+- (void)requestCategoryListDataWithCompleteHandler:(void(^)(NSArray<ABCategoryModel *> *array))completeHandler;
 
 ///请求增加分类
-- (void)requestCategoryAddModel:(ABCategoryModel *)model;
+- (void)requestCategoryAddModel:(ABCategoryModel *)model completeHandler:(void(^)(BOOL success))completeHandler;
 
 ///请求删除分类
-- (void)requestCategoryRemoveCategoryId:(NSString *)categoryId;
+- (void)requestCategoryRemoveCategoryId:(NSString *)categoryId completeHandler:(void(^)(BOOL success))completeHandler;
 
 ///请求修改分类
-- (void)requestCategoryUpdateModel:(ABCategoryModel *)model;
+- (void)requestCategoryUpdateModel:(ABCategoryModel *)model completeHandler:(void(^)(BOOL success))completeHandler;
 
 ///请求消费列表
-- (void)requestChargeListDateWithCategoryId:(NSString *)categoryId;
+- (void)requestChargeListDateWithCategoryId:(NSString *)categoryId completeHandler:(void(^)(NSArray<ABChargeModel *> *array))completeHandler;
 
 ///请求增加消费记录
-- (void)requestChargeAddModel:(ABChargeModel *)model;
+- (void)requestChargeAddModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler;
 
 ///请求删除消费记录
-- (void)requestChargeRemoveChargeId:(NSString *)chargeId;
+- (void)requestChargeRemoveChargeId:(NSString *)chargeId completeHandler:(void(^)(BOOL success))completeHandler;
 
 ///请求修改消费记录
-- (void)requestChargeUpdateModel:(ABChargeModel *)model;
+- (void)requestChargeUpdateModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler;
 
 @end

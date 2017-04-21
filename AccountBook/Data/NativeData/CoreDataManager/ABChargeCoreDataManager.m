@@ -116,48 +116,44 @@
 + (void)deleteChargeListDataWithCategoryID:(NSString *)categoryID completeHandler:(void(^)(BOOL success))completeHandler
 {
     [self selectChargeListDateWithCategoryID:categoryID completeHandler:^(NSArray<ABChargeModel *> *array) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            for(ABChargeModel *model in array)
+        for(ABChargeModel *model in array)
+        {
+            ABChargeEntity *entity = [self selectChargeEntityWithChargeID:model.chargeID];
+            if(entity)
             {
-                ABChargeEntity *entity = [self selectChargeEntityWithChargeID:model.chargeID];
-                if(entity)
-                {
-                    entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
-                    entity.isRemoved = @(YES);
-                }
+                entity.modifyTime = @([[NSDate date] timeIntervalSince1970]);
+                entity.isRemoved = @(YES);
             }
-            
-            BOOL result = [[ABCoreDataHelper sharedInstance] saveContext];
-            if(completeHandler)
-            {
-                completeHandler(result);
-            }
-        });
-    }];
-}
-
-+ (void)insertChargeModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        ABChargeEntity *entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([ABChargeEntity class])
-                                                               inManagedObjectContext:[ABCoreDataHelper sharedInstance].context];
-        entity.categoryID = model.categoryID;
-        entity.chargeID = model.chargeID;
-        entity.title = model.title;
-        entity.amount = @(model.amount);
-        entity.startTimeInterval = @(model.startTimeInterval);
-        entity.endTimeInterval = @(model.endTimeInterval);
-        entity.notes = model.notes;
-        entity.isRemoved = @(model.isRemoved);
-        entity.isExistCloud = @(model.isExistCloud);
-        entity.modifyTime = @(model.modifyTime);
+        }
         
         BOOL result = [[ABCoreDataHelper sharedInstance] saveContext];
         if(completeHandler)
         {
             completeHandler(result);
         }
-    });
+    }];
+}
+
++ (void)insertChargeModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler
+{
+    ABChargeEntity *entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([ABChargeEntity class])
+                                                           inManagedObjectContext:[ABCoreDataHelper sharedInstance].context];
+    entity.categoryID = model.categoryID;
+    entity.chargeID = model.chargeID;
+    entity.title = model.title;
+    entity.amount = @(model.amount);
+    entity.startTimeInterval = @(model.startTimeInterval);
+    entity.endTimeInterval = @(model.endTimeInterval);
+    entity.notes = model.notes;
+    entity.isRemoved = @(model.isRemoved);
+    entity.isExistCloud = @(model.isExistCloud);
+    entity.modifyTime = @(model.modifyTime);
+    
+    BOOL result = [[ABCoreDataHelper sharedInstance] saveContext];
+    if(completeHandler)
+    {
+        completeHandler(result);
+    }
 }
 
 + (void)updateChargeModel:(ABChargeModel *)model completeHandler:(void(^)(BOOL success))completeHandler

@@ -282,28 +282,31 @@ static NSString *ABCollectionViewReuseIdentifier = @"ABCollectionViewReuseIdenti
     [self.collectionView reloadData];
 }
 
-- (void)categoryDataManger:(ABCategoryDataManger *)manager addIndexPath:(NSIndexPath *)indexPath
+- (void)categoryDataManger:(ABCategoryDataManger *)manager addIndex:(NSInteger)index
 {
-    [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
 }
 
-- (void)categoryDataManger:(ABCategoryDataManger *)manager removeIndexPath:(NSIndexPath *)indexPath
+- (void)categoryDataManger:(ABCategoryDataManger *)manager removeIndex:(NSInteger)index
 {
-    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     if(cell)
     {
-        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
     }
 }
 
-- (void)categoryDataManger:(ABCategoryDataManger *)manager updateIndexPath:(NSIndexPath *)indexPath
+- (void)categoryDataManger:(ABCategoryDataManger *)manager updateIndex:(NSInteger)index
 {
-    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
 }
 
-- (void)categoryDataManger:(ABCategoryDataManger *)manger moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)categoryDataManger:(ABCategoryDataManger *)manager errorMessage:(NSString *)message
 {
-    [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:toIndexPath];
+    if(message.length)
+    {
+        [MTProgressHUD showErrorWithMessge:message];
+    }
 }
 
 @end

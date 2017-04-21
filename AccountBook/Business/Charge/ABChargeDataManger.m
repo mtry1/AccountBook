@@ -9,7 +9,7 @@
 #import "ABChargeDataManger.h"
 #import "ABCenterDataManager.h"
 
-@interface ABChargeDataManger ()<ABCenterDataManagerDelegate>
+@interface ABChargeDataManger ()
 
 @property (nonatomic, strong) NSMutableArray *listItem;
 
@@ -22,16 +22,6 @@
 }
 
 @synthesize categoryID = _categoryID;
-
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-        [[ABCenterDataManager sharedInstance] addDelegate:self];
-    }
-    return self;
-}
 
 - (NSMutableArray *)listItem
 {
@@ -46,7 +36,26 @@
 - (void)requestChargeDataWithCategoryID:(NSString *)categoryID
 {
     _categoryID = categoryID;
-    [[ABCenterDataManager sharedInstance] requestChargeListDateWithCategoryId:categoryID];
+    [[ABCenterDataManager sharedInstance] requestChargeListDateWithCategoryId:categoryID completeHandler:^(NSArray<ABChargeModel *> *array) {
+        [self.listItem removeAllObjects];
+        if([array isKindOfClass:[NSArray class]] && array.count)
+        {
+            [self.listItem addObjectsFromArray:array];
+        }
+        
+        [self.delegate chargeDataMangerReloadData:self];
+        
+        if(self.numberOfItem)
+        {
+            ABChargeModel *firstModel = [self.listItem firstObject];
+            [self requestCalculateAmountWithStartDate:[NSDate dateWithTimeIntervalSince1970:firstModel.startTimeInterval]
+                                              endDate:[NSDate date]];
+        }
+        else
+        {
+            [self requestCalculateAmountWithStartDate:[NSDate date] endDate:[NSDate date]];
+        }
+    }];
 }
 
 ///请求添加
@@ -56,25 +65,28 @@
     {
         model.categoryID = self.categoryID;
         model.chargeID = [ABUtils uuid];
-        
-        [[ABCenterDataManager sharedInstance] requestChargeAddModel:model];
-        
-        NSInteger i;
-        for(i = self.numberOfItem - 1; i >= 0; i--)
-        {
-            ABChargeModel *tempModel = self.listItem[i];
-            if(tempModel.startTimeInterval <= model.startTimeInterval)
+        [[ABCenterDataManager sharedInstance] requestChargeAddModel:model completeHandler:^(BOOL success) {
+            if(success)
             {
-                break;
+                NSInteger index;
+                for(index = self.numberOfItem - 1; index >= 0; index--)
+                {
+                    ABChargeModel *tempModel = self.listItem[index];
+                    if(tempModel.startTimeInterval <= model.startTimeInterval)
+                    {
+                        break;
+                    }
+                }
+                
+                [self.listItem insertObject:model atIndex:index + 1];
+                [self.delegate chargeDataManger:self addIndex:index + 1];
+                [self requestUpdateAmountWithModel:model];
             }
-        }
-        
-        [self.listItem insertObject:model atIndex:i + 1];
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i + 1 inSection:0];
-        [self.delegate chargeDataManger:self addIndexPath:indexPath];
-        
-        [self requestUpdateAmountWithModel:model];
+            else
+            {
+                [self.delegate chargeDataManger:self errorMessage:@"添加失败"];
+            }
+        }];
     }
 }
 
@@ -87,45 +99,52 @@
     modelCopy.startTimeInterval = model.startTimeInterval;
     modelCopy.endTimeInterval = model.endTimeInterval;
     modelCopy.notes = model.notes;
-    
-    [[ABCenterDataManager sharedInstance] requestChargeUpdateModel:modelCopy];
-    
-    //删除
-    [self.listItem removeObjectAtIndex:index];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    [self.delegate chargeDataManger:self removeIndexPath:indexPath];
-    
-    //添加
-    NSInteger i;
-    for(i = self.numberOfItem - 1; i >= 0; i--)
-    {
-        ABChargeModel *tempModel = self.listItem[i];
-        if(tempModel.startTimeInterval <= model.startTimeInterval)
+    [[ABCenterDataManager sharedInstance] requestChargeUpdateModel:modelCopy completeHandler:^(BOOL success) {
+        if(success)
         {
-            break;
+            //删除
+            [self.listItem removeObjectAtIndex:index];
+            [self.delegate chargeDataManger:self removeIndex:index];
+            
+            //添加
+            NSInteger i;
+            for(i = self.numberOfItem - 1; i >= 0; i--)
+            {
+                ABChargeModel *tempModel = self.listItem[i];
+                if(tempModel.startTimeInterval <= model.startTimeInterval)
+                {
+                    break;
+                }
+            }
+            [self.listItem insertObject:modelCopy atIndex:i + 1];
+            [self.delegate chargeDataManger:self addIndex:i + 1];
+            [self requestUpdateAmountWithModel:model];
         }
-    }
-    [self.listItem insertObject:modelCopy atIndex:i + 1];
-    indexPath = [NSIndexPath indexPathForRow:i + 1 inSection:0];
-    [self.delegate chargeDataManger:self addIndexPath:indexPath];
-    
-    [self requestUpdateAmountWithModel:model];
+        else
+        {
+            [self.delegate chargeDataManger:self errorMessage:@"修改失败"];
+        }
+    }];
 }
 
 ///请求删除
 - (void)requestRemoveIndex:(NSInteger)index
 {
-    if(0 <= index && index < self.numberOfItem)
+    ABChargeModel *model = [self dataAtIndex:index];
+    if(model)
     {
-        ABChargeModel *model = [self dataAtIndex:index];
-        
-        [[ABCenterDataManager sharedInstance] requestChargeRemoveChargeId:model.chargeID];
-        
-        [self.listItem removeObjectAtIndex:index];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.delegate chargeDataManger:self removeIndexPath:indexPath];
-        
-        [self requestUpdateAmountWithModel:model];
+        [[ABCenterDataManager sharedInstance] requestChargeRemoveChargeId:model.chargeID completeHandler:^(BOOL success) {
+            if(success)
+            {
+                [self.listItem removeObjectAtIndex:index];
+                [self.delegate chargeDataManger:self removeIndex:index];
+                [self requestUpdateAmountWithModel:model];
+            }
+            else
+            {
+                [self.delegate chargeDataManger:self errorMessage:@"删除失败"];
+            }
+        }];
     }
 }
 
@@ -178,30 +197,6 @@
         return self.listItem[index];
     }
     return nil;
-}
-
-#pragma mark - ABCenterDataManagerDelegate
-
-- (void)centerDataManager:(ABCenterDataManager *)manager successRequestChargeListData:(NSArray *)data
-{
-    [self.listItem removeAllObjects];
-    if([data isKindOfClass:[NSArray class]] && data.count)
-    {
-        [self.listItem addObjectsFromArray:data];
-    }
-    
-    [self.delegate chargeDataMangerReloadData:self];
-    
-    if(self.numberOfItem)
-    {
-        ABChargeModel *firstModel = [self.listItem firstObject];
-        [self requestCalculateAmountWithStartDate:[NSDate dateWithTimeIntervalSince1970:firstModel.startTimeInterval]
-                                          endDate:[NSDate date]];
-    }
-    else
-    {
-        [self requestCalculateAmountWithStartDate:[NSDate date] endDate:[NSDate date]];
-    }
 }
 
 @end

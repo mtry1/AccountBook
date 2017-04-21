@@ -13,9 +13,10 @@
 @protocol ABCategoryDataMangerDelegate<NSObject>
 
 - (void)categoryDataMangerReloadData:(ABCategoryDataManger *)manager;
-- (void)categoryDataManger:(ABCategoryDataManger *)manager addIndexPath:(NSIndexPath *)indexPath;
-- (void)categoryDataManger:(ABCategoryDataManger *)manager removeIndexPath:(NSIndexPath *)indexPath;
-- (void)categoryDataManger:(ABCategoryDataManger *)manager updateIndexPath:(NSIndexPath *)indexPath;
+- (void)categoryDataManger:(ABCategoryDataManger *)manager addIndex:(NSInteger)index;
+- (void)categoryDataManger:(ABCategoryDataManger *)manager removeIndex:(NSInteger)index;
+- (void)categoryDataManger:(ABCategoryDataManger *)manager updateIndex:(NSInteger)index;
+- (void)categoryDataManger:(ABCategoryDataManger *)manager errorMessage:(NSString *)message;
 
 @end
 

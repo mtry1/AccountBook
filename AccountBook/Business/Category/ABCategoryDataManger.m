@@ -10,23 +10,13 @@
 #import "ABCenterDataManager.h"
 #import "NSString+Category.h"
 
-@interface ABCategoryDataManger()<ABCenterDataManagerDelegate>
+@interface ABCategoryDataManger()
 
 @property (nonatomic, strong) NSMutableArray *listItem;
 
 @end
 
 @implementation ABCategoryDataManger
-
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-        [[ABCenterDataManager sharedInstance] addDelegate:self];
-    }
-    return self;
-}
 
 - (NSMutableArray *)listItem
 {
@@ -39,7 +29,11 @@
 
 - (void)requestInitData;
 {
-    [[ABCenterDataManager sharedInstance] requestCategoryListData];
+    [[ABCenterDataManager sharedInstance] requestCategoryListDataWithCompleteHandler:^(NSArray<ABCategoryModel *> *array) {
+        [self.listItem removeAllObjects];
+        [self.listItem addObjectsFromArray:array];
+        [self.delegate categoryDataMangerReloadData:self];
+    }];
 }
 
 - (NSInteger)numberOfItem
@@ -65,11 +59,20 @@
         model.name = text;
         model.colorHexString = [self colorHexStringAtIndex:self.listItem.count];
         [self.listItem addObject:model];
+        [self.delegate categoryDataManger:self addIndex:self.numberOfItem - 1];
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numberOfItem - 1 inSection:0];
-        [self.delegate categoryDataManger:self addIndexPath:indexPath];
-        
-        [[ABCenterDataManager sharedInstance] requestCategoryAddModel:[model copy]];
+        [[ABCenterDataManager sharedInstance] requestCategoryAddModel:[model copy] completeHandler:^(BOOL success) {
+            if(!success)
+            {
+                NSInteger index = [self.listItem indexOfObject:model];
+                if(index != NSNotFound)
+                {
+                    [self.listItem removeObject:model];
+                    [self.delegate categoryDataManger:self removeIndex:index];
+                    [self.delegate categoryDataManger:self errorMessage:@"添加失败"];
+                }
+            }
+        }];
     }
 }
 
@@ -78,12 +81,17 @@
     if(index < [self numberOfItem])
     {
         ABCategoryModel *model = [self dataAtIndex:index];
-        [self.listItem removeObjectAtIndex:index];
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.delegate categoryDataManger:self removeIndexPath:indexPath];
-        
-        [[ABCenterDataManager sharedInstance] requestCategoryRemoveCategoryId:model.categoryID];
+        [[ABCenterDataManager sharedInstance] requestCategoryRemoveCategoryId:model.categoryID completeHandler:^(BOOL success) {
+            if(success)
+            {
+                [self.listItem removeObjectAtIndex:index];
+                [self.delegate categoryDataManger:self removeIndex:index];
+            }
+            else
+            {
+                [self.delegate categoryDataManger:self errorMessage:@"删除失败"];
+            }
+        }];
     }
 }
 
@@ -98,11 +106,19 @@
     ABCategoryModel *model = [self dataAtIndex:index];
     if(model)
     {
+        NSString *preName = model.name;
         model.name = text;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.delegate categoryDataManger:self updateIndexPath:indexPath];
-        
-        [[ABCenterDataManager sharedInstance] requestCategoryUpdateModel:model.copy];
+        [[ABCenterDataManager sharedInstance] requestCategoryUpdateModel:model.copy completeHandler:^(BOOL success) {
+            if(success)
+            {
+                [self.delegate categoryDataManger:self updateIndex:index];
+            }
+            else
+            {
+                model.name = preName;
+                [self.delegate categoryDataManger:self errorMessage:@"更新失败"];
+            }
+        }];
     }
 }
 
@@ -111,15 +127,6 @@
     NSArray *colors = @[@"0x43A7CA", @"0xF75978", @"0xE9B043", @"0x5DC26D", @"0xB26DAD", @"0xD19459", @"0x6395c5", @"0x98BF58", @"0xD8686B"];
     index = index % colors.count;
     return colors[index];
-}
-
-#pragma mark - ABCenterDataManagerDelegate
-
-- (void)centerDataManager:(ABCenterDataManager *)manager successRequestCategoryListData:(NSArray *)data
-{
-    [self.listItem removeAllObjects];
-    [self.listItem addObjectsFromArray:data];
-    [self.delegate categoryDataMangerReloadData:self];
 }
 
 @end

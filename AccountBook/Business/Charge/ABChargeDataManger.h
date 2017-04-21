@@ -13,9 +13,10 @@
 @protocol ABChargeDataMangerDelegate <NSObject>
 
 - (void)chargeDataMangerReloadData:(ABChargeDataManger *)manager;
-- (void)chargeDataManger:(ABChargeDataManger *)manager removeIndexPath:(NSIndexPath *)indexPath;
-- (void)chargeDataManger:(ABChargeDataManger *)manager updateIndexPath:(NSIndexPath *)indexPath;
-- (void)chargeDataManger:(ABChargeDataManger *)manager addIndexPath:(NSIndexPath *)indexPath;
+- (void)chargeDataManger:(ABChargeDataManger *)manager removeIndex:(NSInteger)index;
+- (void)chargeDataManger:(ABChargeDataManger *)manager updateIndex:(NSInteger)index;
+- (void)chargeDataManger:(ABChargeDataManger *)manager addIndex:(NSInteger)index;
+- (void)chargeDataManger:(ABChargeDataManger *)manager errorMessage:(NSString *)message;
 
 ///计算额度
 - (void)chargeDataManger:(ABChargeDataManger *)chargeDataManger didCalculateAmount:(NSNumber *)amount startDate:(NSDate *)startDate endDate:(NSDate *)endDate;

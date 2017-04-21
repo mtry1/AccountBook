@@ -192,20 +192,20 @@
     [self.tableView reloadData];
 }
 
-- (void)chargeDataManger:(ABChargeDataManger *)manager removeIndexPath:(NSIndexPath *)indexPath
+- (void)chargeDataManger:(ABChargeDataManger *)manager removeIndex:(NSInteger)index
 {
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)chargeDataManger:(ABChargeDataManger *)manager updateIndexPath:(NSIndexPath *)indexPath
+- (void)chargeDataManger:(ABChargeDataManger *)manager updateIndex:(NSInteger)index
 {
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)chargeDataManger:(ABChargeDataManger *)manager addIndexPath:(NSIndexPath *)indexPath
+- (void)chargeDataManger:(ABChargeDataManger *)manager addIndex:(NSInteger)index
 {
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 - (void)chargeDataManger:(ABChargeDataManger *)chargeDataManger didCalculateAmount:(NSNumber *)amount startDate:(NSDate *)startDate endDate:(NSDate *)endDate
@@ -213,6 +213,14 @@
     self.statisticsView.startDate = startDate;
     self.statisticsView.endDate = endDate;
     [self.statisticsView updateStatisticsAmount:[amount floatValue]];
+}
+
+- (void)chargeDataManger:(ABChargeDataManger *)manager errorMessage:(NSString *)message
+{
+    if(message.length)
+    {
+        [MTProgressHUD showErrorWithMessge:message];
+    }
 }
 
 @end
